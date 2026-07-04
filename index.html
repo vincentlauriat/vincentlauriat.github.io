@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincent Lauriat — Open-source macOS apps & AI tools</title>
+<meta name="description" content="Native macOS apps and open-source AI tools by Vincent Lauriat: StartAlice, OpenAlice, MarkdownViewer, RTKInfos, AuditViewer and more.">
+<meta property="og:title" content="Vincent Lauriat — Open-source macOS apps & AI tools">
+<meta property="og:description" content="Native macOS apps and open-source AI tools by Vincent Lauriat.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#0f1630; --card:#141c38; --line:#243056;
+    --txt:#eaf0ff; --muted:#a7b3d6; --accent:#5b8bff; --accent2:#7c5cff; --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 700px at 50% -10%,#1a2350 0%,var(--bg) 55%);
+    color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .en,.fr{display:none}
+  body.lang-en .en{display:revert}
+  body.lang-fr .fr{display:revert}
+  nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);
+    background:rgba(11,16,32,.72);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
+  nav b{font-size:1.05rem}
+  nav .spacer{flex:1}
+  .langtog{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .langtog button{background:transparent;color:var(--muted);border:0;padding:5px 12px;font-size:.82rem;cursor:pointer;font-weight:600}
+  .langtog button.on{background:var(--accent);color:#fff}
+  .ghlink{color:var(--muted);font-size:.9rem;font-weight:600}
+  header{padding:80px 0 48px;text-align:center}
+  h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+  h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--muted);max-width:640px;margin:0 auto}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;padding:20px 0 40px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;transition:transform .14s ease,border-color .2s ease;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .card .top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .card .emoji{font-size:1.7rem;width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#1c2648,#243056);border:1px solid var(--line);border-radius:12px}
+  .card h3{font-size:1.15rem}
+  .tag{font-size:.72rem;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .card p{color:var(--muted);font-size:.93rem;flex:1;margin-bottom:14px}
+  .card .cta{font-weight:700;font-size:.9rem;color:var(--accent);display:inline-flex;align-items:center;gap:6px}
+  .featured{grid-column:1/-1;background:linear-gradient(135deg,#16204a,#1a1440);border-color:#33407a}
+  .featured .top{margin-bottom:8px}
+  footer{padding:40px 0 64px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.9rem}
+  footer a{color:var(--accent);font-weight:600}
+</style>
+</head>
+<body class="lang-en">
+
+<nav><div class="wrap">
+  <b>Vincent Lauriat</b>
+  <div class="spacer"></div>
+  <div class="langtog">
+    <button id="l-en" class="on" onclick="setLang('en')">EN</button>
+    <button id="l-fr" onclick="setLang('fr')">FR</button>
+  </div>
+  <a class="ghlink" href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub ↗</a>
+</div></nav>
+
+<header><div class="wrap">
+  <h1><span class="en">Open-source <span class="grad">macOS apps</span> &amp; AI tools</span>
+      <span class="fr">Apps <span class="grad">macOS</span> &amp; outils IA open-source</span></h1>
+  <p class="tagline">
+    <span class="en">Native, notarized macOS apps and AI tooling I build and open-source. Free to download.</span>
+    <span class="fr">Des apps macOS natives et notarisées, et des outils IA que je conçois et ouvre en open-source. Gratuits.</span>
+  </p>
+</div></header>
+
+<div class="wrap"><div class="grid">
+
+  <!-- Featured: StartAlice + OpenAlice -->
+  <article class="card featured">
+    <div class="top"><div class="emoji">▶️</div>
+      <div><span class="tag"><span class="en">Featured</span><span class="fr">À la une</span></span>
+      <h3>StartAlice &amp; OpenAlice</h3></div></div>
+    <p>
+      <span class="en"><b>OpenAlice</b> is an open-source AI trading agent. <b>StartAlice</b> is the one-click macOS app that installs, updates and launches it. Bilingual, signed &amp; notarized.</span>
+      <span class="fr"><b>OpenAlice</b> est un agent de trading IA open-source. <b>StartAlice</b> est l'app macOS en un clic qui l'installe, le met à jour et le lance. Bilingue, signée &amp; notarisée.</span>
+    </p>
+    <div>
+      <a class="cta" href="https://vincentlauriat.github.io/StartAlice/" target="_blank" rel="noopener">StartAlice →</a>
+      &nbsp;&nbsp;
+      <a class="cta" href="https://github.com/TraderAlice/OpenAlice" target="_blank" rel="noopener">OpenAlice →</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="emoji">📝</div><h3>MarkdownViewer</h3></div>
+    <p><span class="en">Open Markdown files instantly from Finder — KaTeX, Mermaid, live reload.</span>
+       <span class="fr">Ouvre les fichiers Markdown depuis le Finder — KaTeX, Mermaid, live reload.</span></p>
+    <a class="cta" href="https://vincentlauriat.github.io/MarkdownViewer/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="emoji">🔎</div><h3>AuditViewer</h3></div>
+    <p><span class="en">Turn any company, product or market into a complete, sourced strategic dossier.</span>
+       <span class="fr">Transforme une entreprise, un produit ou un marché en dossier stratégique sourcé.</span></p>
+    <a class="cta" href="https://vincentlauriat.github.io/AuditViewer/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="emoji">⚡</div><h3>RTKInfos</h3></div>
+    <p><span class="en">Visualize token savings from RTK — daily KPIs, 7-day chart, live history.</span>
+       <span class="fr">Visualise les économies de tokens de RTK — KPIs, graphique 7 jours, historique.</span></p>
+    <a class="cta" href="https://vincentlauriat.github.io/RTKInfos/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="emoji">📡</div><h3>NetCheck</h3></div>
+    <p><span class="en">Menu-bar network diagnostics — WiFi finder, speed test, traceroute, usage.</span>
+       <span class="fr">Diagnostic réseau menu bar — WiFi finder, speed test, traceroute, usages.</span></p>
+    <a class="cta" href="https://github.com/vincentlauriat/NetCheck" target="_blank" rel="noopener">GitHub →</a>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="emoji">📶</div><h3>WifiManager</h3></div>
+    <p><span class="en">Menu-bar app that scores your WiFi quality in real time and flags hotspots.</span>
+       <span class="fr">App menu bar qui note la qualité WiFi en temps réel et repère les hotspots.</span></p>
+    <a class="cta" href="https://github.com/vincentlauriat/WifiManager" target="_blank" rel="noopener">GitHub →</a>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="emoji">🎙️</div><h3>Plaud Companion</h3></div>
+    <p><span class="en">Browse, read and sync your Plaud voice-recording notes — push them to Notion.</span>
+       <span class="fr">Parcours, lis et synchronise tes notes vocales Plaud — pousse-les vers Notion.</span></p>
+    <a class="cta" href="https://github.com/vincentlauriat/plaud-companion" target="_blank" rel="noopener">GitHub →</a>
+  </article>
+
+</div></div>
+
+<footer><div class="wrap">
+  <p>
+    <span class="en">More about me on <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · </span>
+    <span class="fr">Plus sur moi sur <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · </span>
+    <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a>
+  </p>
+</div></footer>
+
+<script>
+  function setLang(l){
+    document.body.classList.remove('lang-en','lang-fr');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l;
+    document.getElementById('l-en').classList.toggle('on',l==='en');
+    document.getElementById('l-fr').classList.toggle('on',l==='fr');
+    try{localStorage.setItem('vl-lang',l)}catch(e){}
+  }
+  (function(){
+    var saved;try{saved=localStorage.getItem('vl-lang')}catch(e){}
+    var l=saved||((navigator.language||'en').slice(0,2)==='fr'?'fr':'en');
+    setLang(l);
+  })();
+</script>
+</body>
+</html>
