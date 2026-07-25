@@ -1,0 +1,15 @@
+# Docs de suivi de session (locales, jamais partagées)
+COMMANDS.md
+MEMORY.md
+CHANGES.md
+TODOS.md
+PLAN.md
+
+# Tooling / agents state
+.claude/
+.omc/
+.playwright-mcp/
+.superpowers/
+
+# OS
+.DS_Store

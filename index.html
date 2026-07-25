@@ -3,196 +3,382 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vincent Lauriat — Open-source macOS apps & AI tools</title>
-<meta name="description" content="Native macOS & iOS apps and open-source AI tools by Vincent Lauriat: TheNews, StartAlice, OpenAlice, MarkdownViewer, AppsSwitch, MacInside, iPhoneStatus, RTKInfos, ClaudeCodeUsage, AuditViewer and more.">
-<meta property="og:title" content="Vincent Lauriat — Open-source macOS apps & AI tools">
-<meta property="og:description" content="Native macOS apps and open-source AI tools by Vincent Lauriat.">
+<title>Vincent Lauriat — Native macOS instruments, open source</title>
+<meta name="description" content="Native, notarized macOS &amp; iOS apps and open-source AI tools by Vincent Lauriat: MacInside, TheNews, StartAlice, OpenAlice, MarkdownViewer, AppsSwitch, iPhoneStatus, RTKInfos, ClaudeCodeUsage, AuditViewer, NetCheck, WifiManager, BmadBrowser, Plaud Companion.">
+<meta property="og:title" content="Vincent Lauriat — Native macOS instruments, open source">
+<meta property="og:description" content="Thirteen native macOS instruments that surface what the system keeps to itself. Signed, notarized, open source, no telemetry.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://vincentlauriat.github.io/">
+<meta name="theme-color" content="#0a0c12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/base.css">
 <style>
-  :root{
-    --bg:#0b1020; --bg2:#0f1630; --card:#141c38; --line:#243056;
-    --txt:#eaf0ff; --muted:#a7b3d6; --accent:#5b8bff; --accent2:#7c5cff; --radius:16px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:radial-gradient(1200px 700px at 50% -10%,#1a2350 0%,var(--bg) 55%);
-    color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  /* --- Mise en page propre au hub ------------------------------------- */
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
   .en,.fr{display:none}
   body.lang-en .en{display:revert}
   body.lang-fr .fr{display:revert}
-  nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);
-    background:rgba(11,16,32,.72);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
-  nav b{font-size:1.05rem}
+
+  /* Barre de navigation */
+  nav{position:sticky;top:0;z-index:var(--z-nav);backdrop-filter:blur(14px);
+    background:rgba(10,12,18,.78);border-bottom:1px solid var(--line-soft)}
+  nav .wrap{display:flex;align-items:center;gap:16px;height:58px}
+  nav .sig{font-weight:700;letter-spacing:-.01em}
   nav .spacer{flex:1}
   .langtog{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-  .langtog button{background:transparent;color:var(--muted);border:0;padding:5px 12px;font-size:.82rem;cursor:pointer;font-weight:600}
+  .langtog button{background:transparent;color:var(--muted);border:0;padding:6px 13px;
+    font-family:var(--font-mono);font-size:.72rem;font-weight:600;cursor:pointer;min-height:32px}
   .langtog button.on{background:var(--accent);color:#fff}
-  .ghlink{color:var(--muted);font-size:.9rem;font-weight:600}
-  header{padding:80px 0 48px;text-align:center}
-  h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
-  h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .tagline{font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--muted);max-width:640px;margin:0 auto}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;padding:20px 0 40px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:24px;transition:transform .14s ease,border-color .2s ease;display:flex;flex-direction:column}
-  .card:hover{transform:translateY(-4px);border-color:var(--accent)}
-  .card .top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-  .card .emoji{font-size:1.7rem;width:46px;height:46px;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,#1c2648,#243056);border:1px solid var(--line);border-radius:12px}
-  .card h3{font-size:1.15rem}
-  .tag{font-size:.72rem;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-  .card p{color:var(--muted);font-size:.93rem;flex:1;margin-bottom:14px}
-  .card .cta{font-weight:700;font-size:.9rem;color:var(--accent);display:inline-flex;align-items:center;gap:6px}
-  .featured{grid-column:1/-1;background:linear-gradient(135deg,#16204a,#1a1440);border-color:#33407a}
-  .featured .top{margin-bottom:8px}
-  .cat-header{grid-column:1/-1;display:flex;align-items:center;gap:8px;margin:10px 0 -4px;
-    font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent)}
-  .cat-header .cat-icon{font-size:.95rem}
-  footer{padding:40px 0 64px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.9rem}
+  .langtog button:not(.on):hover{color:var(--txt)}
+  .ghlink{color:var(--muted);font-family:var(--font-mono);font-size:.78rem;font-weight:500}
+  .ghlink:hover{color:var(--txt)}
+
+  /* Hero — une thèse, puis un relevé */
+  header{padding:96px 0 56px}
+  h1{font-size:clamp(2.3rem,6vw,4rem);max-width:15ch}
+  h1 .dim{color:var(--faint)}
+  .lede{font-size:clamp(1.02rem,2.2vw,1.16rem);color:var(--muted);max-width:56ch;margin-top:22px}
+
+  /* Le relevé : la signature de la page — un panneau d'instrument */
+  .readout{display:flex;flex-wrap:wrap;align-items:center;gap:0;margin-top:34px;
+    border:1px solid var(--line);border-radius:var(--radius-sm);
+    background:linear-gradient(180deg,var(--surface),var(--bg-lift));width:fit-content;overflow:hidden}
+  .readout .cell{display:flex;align-items:baseline;gap:7px;padding:11px 16px;
+    border-right:1px solid var(--line-soft);font-family:var(--font-mono);font-size:.76rem;white-space:nowrap}
+  .readout .cell:last-child{border-right:0}
+  .readout .v{color:var(--txt);font-weight:700}
+  .readout .k{color:var(--faint)}
+  .pulse{width:7px;height:7px;border-radius:50%;background:#3ddc84;
+    box-shadow:0 0 0 0 rgba(61,220,132,.55);animation:pulse 2.6s infinite;align-self:center}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(61,220,132,.5)}
+    70%{box-shadow:0 0 0 7px rgba(61,220,132,0)}
+    100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}
+  }
+
+  /* La planche d'instruments.
+     4 colonnes en grand écran : la rangée « IA & dev » (4 instruments) tombe juste.
+     Les instruments seuls dans leur bande prennent la largeur plutôt que de
+     laisser un trou — un rack ne se lit pas bien à moitié vide. */
+  .rack{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:var(--gap);
+    padding:16px 0 48px}
+  .inst.wide{grid-column:1/-1}
+  .band{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:30px 0 2px}
+  .band .lbl{font-family:var(--font-mono);font-size:.7rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:.13em;color:var(--muted);white-space:nowrap}
+  .band .rule{flex:1;height:1px;background:var(--line)}
+  .band .n{font-family:var(--font-mono);font-size:.7rem;color:var(--faint)}
+
+  /* Tuile = un instrument dans son rack */
+  .inst{position:relative;display:flex;flex-direction:column;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 20px;overflow:hidden;
+    transition:border-color .2s ease,background .2s ease}
+  /* la LED du rack : l'accent du projet, repris sur sa landing page */
+  .inst::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
+    background:var(--accent);opacity:.5;transition:opacity .2s ease}
+  .inst:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));background:var(--surface-2)}
+  .inst:hover::before{opacity:1}
+  .inst:focus-within{border-color:var(--accent)}
+
+  .inst .head{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+  .inst .gauge{flex:none;width:42px;height:42px;display:grid;place-items:center;
+    border:1px solid var(--line);border-radius:11px;background:var(--bg-lift);color:var(--accent)}
+  .inst h3{font-size:1.06rem;font-weight:700;letter-spacing:-.015em}
+  .inst .sub{font-family:var(--font-mono);font-size:.66rem;color:var(--faint);
+    text-transform:uppercase;letter-spacing:.09em;margin-top:2px}
+  .inst p{color:var(--muted);font-size:.9rem;flex:1;margin-bottom:16px}
+  .inst .go{font-family:var(--font-mono);font-size:.78rem;font-weight:600;color:var(--accent);
+    display:inline-flex;align-items:center;gap:7px}
+  .inst:hover .go .arw{transform:translateX(3px)}
+  .go .arw{transition:transform .2s ease}
+  /* toute la tuile est cliquable, sans piéger le clavier */
+  .inst .go::after{content:"";position:absolute;inset:0}
+
+  /* L'instrument mis en avant */
+  .inst.lead{grid-column:1/-1;background:
+    radial-gradient(700px 220px at 12% 0%,color-mix(in srgb,var(--accent) 13%,transparent),transparent 70%),
+    var(--surface)}
+  .inst.lead h3{font-size:1.34rem}
+  .inst.lead p{max-width:70ch}
+  .inst.lead .links{display:flex;gap:22px;flex-wrap:wrap}
+  .inst.lead .go::after{content:none}
+
+  footer{border-top:1px solid var(--line);padding:38px 0 64px;color:var(--muted);font-size:.88rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
   footer a{color:var(--accent);font-weight:600}
+  footer .mono{font-family:var(--font-mono);font-size:.74rem;color:var(--faint)}
+
+  /* Plaud comble la fin de la bande « productivité » — mais seulement
+     quand la grille a réellement plusieurs colonnes. */
+  @media (min-width:820px){ .inst.span2{grid-column:span 2} }
+
+  @media (max-width:620px){
+    header{padding:56px 0 36px}
+    h1{font-size:clamp(1.95rem,8.5vw,3rem);max-width:none}
+    .lede{font-size:1rem}
+    .readout{width:100%}
+    .readout .cell{flex:1 1 45%;justify-content:flex-start}
+    .rack{grid-template-columns:1fr}
+    .inst.lead h3{font-size:1.16rem}
+  }
 </style>
 </head>
 <body class="lang-en">
 
+<a class="skip" href="#rack"><span class="en">Skip to projects</span><span class="fr">Aller aux projets</span></a>
+
 <nav><div class="wrap">
-  <b>Vincent Lauriat</b>
+  <span class="sig">Vincent Lauriat</span>
   <div class="spacer"></div>
-  <div class="langtog">
+  <div class="langtog" role="group" aria-label="Language / Langue">
     <button id="l-en" class="on" onclick="setLang('en')">EN</button>
     <button id="l-fr" onclick="setLang('fr')">FR</button>
   </div>
-  <a class="ghlink" href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub ↗</a>
+  <a class="ghlink" href="https://github.com/vincentlauriat" target="_blank" rel="noopener">github ↗</a>
 </div></nav>
 
 <header><div class="wrap">
-  <h1><span class="en">Open-source <span class="grad">macOS apps</span> &amp; AI tools</span>
-      <span class="fr">Apps <span class="grad">macOS</span> &amp; outils IA open-source</span></h1>
-  <p class="tagline">
-    <span class="en">Native, notarized macOS apps and AI tooling I build and open-source. Free to download.</span>
-    <span class="fr">Des apps macOS natives et notarisées, et des outils IA que je conçois et ouvre en open-source. Gratuits.</span>
+  <p class="eyebrow"><span class="en">Native macOS &amp; iOS · open source</span><span class="fr">macOS &amp; iOS natif · open source</span></p>
+  <h1 style="margin-top:14px">
+    <span class="en">Your Mac knows more <span class="dim">than it shows.</span></span>
+    <span class="fr">Votre Mac en sait plus <span class="dim">qu'il n'en montre.</span></span>
+  </h1>
+  <p class="lede">
+    <span class="en">Sensors, fan speed, window stack, bandwidth, token spend, iPhone health — the system measures all of it and surfaces almost none of it. These are the instruments that read it back.</span>
+    <span class="fr">Capteurs, vitesse des ventilateurs, pile de fenêtres, bande passante, tokens consommés, santé de l'iPhone — le système mesure tout cela et n'en montre presque rien. Voici les instruments qui le donnent à lire.</span>
   </p>
+
+  <div class="readout" role="group" aria-label="Build facts">
+    <div class="cell"><span class="pulse" aria-hidden="true"></span><span class="v">13</span><span class="k">instruments</span></div>
+    <div class="cell"><span class="v">100%</span><span class="k">native swift</span></div>
+    <div class="cell"><span class="v">0</span><span class="k"><span class="en">telemetry</span><span class="fr">télémétrie</span></span></div>
+    <div class="cell"><span class="v">MIT</span><span class="k"><span class="en">licensed</span><span class="fr">licence</span></span></div>
+    <div class="cell"><span class="v">EN/FR</span><span class="k"><span class="en">localized</span><span class="fr">localisé</span></span></div>
+  </div>
 </div></header>
 
-<div class="wrap"><div class="grid">
+<main class="wrap"><div class="rack" id="rack">
 
-  <!-- Featured: StartAlice + OpenAlice -->
-  <article class="card featured">
-    <div class="top"><div class="emoji">▶️</div>
-      <div><span class="tag"><span class="en">Featured</span><span class="fr">À la une</span></span>
-      <h3>StartAlice &amp; OpenAlice</h3></div></div>
+  <!-- ── Mis en avant ────────────────────────────────────────────────── -->
+  <article class="inst lead" style="--accent:#84cc16">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 17.5 8 11l4 3.5L21 5"/><path d="M15 5h6v6"/>
+        </svg>
+      </div>
+      <div>
+        <p class="eyebrow"><span class="en">Featured</span><span class="fr">À la une</span></p>
+        <h3>StartAlice &amp; OpenAlice</h3>
+      </div>
+    </div>
     <p>
-      <span class="en"><b>OpenAlice</b> is an open-source AI trading agent. <b>StartAlice</b> is the one-click macOS app that installs, updates and launches it. Bilingual, signed &amp; notarized.</span>
-      <span class="fr"><b>OpenAlice</b> est un agent de trading IA open-source. <b>StartAlice</b> est l'app macOS en un clic qui l'installe, le met à jour et le lance. Bilingue, signée &amp; notarisée.</span>
+      <span class="en"><b>OpenAlice</b> is an open-source AI trading agent. <b>StartAlice</b> is the one-click macOS app that installs, updates and launches it — signed, notarized, bilingual.</span>
+      <span class="fr"><b>OpenAlice</b> est un agent de trading IA open-source. <b>StartAlice</b> est l'app macOS en un clic qui l'installe, le met à jour et le lance — signée, notarisée, bilingue.</span>
     </p>
-    <div>
-      <a class="cta" href="https://vincentlauriat.github.io/StartAlice/" target="_blank" rel="noopener">StartAlice →</a>
-      &nbsp;&nbsp;
-      <a class="cta" href="https://openalice.ai" target="_blank" rel="noopener">OpenAlice →</a>
+    <div class="links">
+      <a class="go" href="https://vincentlauriat.github.io/StartAlice/" target="_blank" rel="noopener">StartAlice <span class="arw">→</span></a>
+      <a class="go" href="https://openalice.ai" target="_blank" rel="noopener">OpenAlice <span class="arw">→</span></a>
     </div>
   </article>
 
-  <div class="cat-header" style="margin-top:0"><span class="cat-icon" aria-hidden="true">🤖</span><span class="en">AI &amp; dev tools</span><span class="fr">IA &amp; outils dev</span></div>
+  <!-- ── IA & outils dev ─────────────────────────────────────────────── -->
+  <div class="band">
+    <span class="lbl"><span class="en">AI &amp; dev tools</span><span class="fr">IA &amp; outils dev</span></span>
+    <span class="rule"></span><span class="n">04</span>
+  </div>
 
-  <article class="card">
-    <div class="top"><div class="emoji">🔎</div><h3>AuditViewer</h3></div>
+  <article class="inst" style="--accent:#a78bfa">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/><path d="M8 12v-2M10.8 12V8.4M13.5 12v-3"/>
+        </svg>
+      </div>
+      <div><h3>AuditViewer</h3><p class="sub">research</p></div>
+    </div>
     <p><span class="en">Turn any company, product or market into a complete, sourced strategic dossier.</span>
        <span class="fr">Transforme une entreprise, un produit ou un marché en dossier stratégique sourcé.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/AuditViewer/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+    <a class="go" href="https://vincentlauriat.github.io/AuditViewer/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <article class="card">
-    <div class="top"><div class="emoji">⚡</div><h3>RTKInfos</h3></div>
+  <article class="inst" style="--accent:#34d399">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 15.5 7 9l3.5 4L14 6.5 17 11l4-6.5"/><path d="M3 20h18"/>
+        </svg>
+      </div>
+      <div><h3>RTKInfos</h3><p class="sub">token savings</p></div>
+    </div>
     <p><span class="en">Visualize token savings from RTK — daily KPIs, 7-day chart, live history.</span>
        <span class="fr">Visualise les économies de tokens de RTK — KPIs, graphique 7 jours, historique.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/RTKInfos/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+    <a class="go" href="https://vincentlauriat.github.io/RTKInfos/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <article class="card">
-    <div class="top"><div class="emoji">📊</div><h3>ClaudeCodeUsage</h3></div>
-    <p><span class="en">Native dashboard for your local Claude Code usage — sessions, tokens, cache, cost (editable rates), filters by project, and a breakdown by agent/skill.</span>
-       <span class="fr">Dashboard natif pour ton usage local de Claude Code — sessions, tokens, cache, coût (tarifs éditables), filtres par projet, et répartition par agent/skill.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/ClaudeCodeUsage/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  <article class="inst" style="--accent:#22c55e">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20V12M9.3 20V6M14.7 20v-5M20 20V9"/>
+        </svg>
+      </div>
+      <div><h3>ClaudeCodeUsage</h3><p class="sub">usage dashboard</p></div>
+    </div>
+    <p><span class="en">Sessions, tokens, cache and cost with editable rates — filtered by project, broken down by agent and skill.</span>
+       <span class="fr">Sessions, tokens, cache et coût à tarifs éditables — filtrés par projet, répartis par agent et skill.</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/ClaudeCodeUsage/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <article class="card">
-    <div class="top"><div class="emoji">🗂️</div><h3>BmadBrowser</h3></div>
-    <p><span class="en">Native browser &amp; editor for BMad method markdown artifacts — multi-project workspace, 3-column UI.</span>
-       <span class="fr">Navigateur &amp; éditeur natif pour les artefacts markdown BMad — workspace multi-projets, UI 3 colonnes.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/BmadBrowser/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  <article class="inst" style="--accent:#38bdf8">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/>
+        </svg>
+      </div>
+      <div><h3>BmadBrowser</h3><p class="sub">bmad artifacts</p></div>
+    </div>
+    <p><span class="en">Native browser and editor for BMad method markdown artifacts — multi-project workspace, three-column UI.</span>
+       <span class="fr">Navigateur et éditeur natif pour les artefacts markdown BMad — workspace multi-projets, UI trois colonnes.</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/BmadBrowser/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <div class="cat-header"><span class="cat-icon" aria-hidden="true">🖥️</span><span class="en">macOS productivity</span><span class="fr">Productivité macOS</span></div>
+  <!-- ── Productivité macOS ──────────────────────────────────────────── -->
+  <div class="band">
+    <span class="lbl"><span class="en">macOS productivity</span><span class="fr">Productivité macOS</span></span>
+    <span class="rule"></span><span class="n">07</span>
+  </div>
 
-  <article class="card">
-    <div class="top"><div class="emoji">🌡️</div><h3>MacInside</h3></div>
-    <p><span class="en">Real-time macOS system dashboard — CPU, memory, storage, network, real SMC sensors, GPU and battery, in a window and a fully customizable menu bar. Bilingual, self-updating.</span>
-       <span class="fr">Tableau de bord système macOS temps réel — CPU, mémoire, stockage, réseau, capteurs SMC réels, GPU et batterie, en fenêtre et en menu bar personnalisable. Bilingue, auto-update.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/MacInside/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  <article class="inst" style="--accent:#f5a524">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4.2 17a9 9 0 1 1 15.6 0"/><path d="m12 13 4-3.4"/><circle cx="12" cy="17" r="1.4"/>
+        </svg>
+      </div>
+      <div><h3>MacInside</h3><p class="sub">system sensors</p></div>
+    </div>
+    <p><span class="en">CPU load, real SMC temperatures, fan RPM, GPU, battery and network — one native dashboard, from the Dock to the menu bar.</span>
+       <span class="fr">Charge CPU, températures SMC réelles, RPM des ventilateurs, GPU, batterie et réseau — un tableau de bord natif, du Dock à la barre de menus.</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/MacInside/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <article class="card">
-    <div class="top"><div class="emoji">🪟</div><h3>AppsSwitch</h3></div>
-    <p><span class="en">Alt-Tab style window switcher for macOS — cycles through every open window (not just apps), with a live-thumbnail overlay.</span>
-       <span class="fr">Alt-Tab façon Windows pour macOS — cycle entre toutes les fenêtres ouvertes (pas seulement les apps), avec overlay de miniatures live.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/AppsSwitch/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  <article class="inst" style="--accent:#f472b6">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="6" width="13" height="10" rx="1.6"/><path d="M8 19h11a2 2 0 0 0 2-2V9"/>
+        </svg>
+      </div>
+      <div><h3>AppsSwitch</h3><p class="sub">window switcher</p></div>
+    </div>
+    <p><span class="en">Alt-Tab style switching for macOS — cycles through every open window, not just apps, with live thumbnails.</span>
+       <span class="fr">Alt-Tab façon Windows pour macOS — cycle entre toutes les fenêtres ouvertes, pas seulement les apps, avec miniatures live.</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/AppsSwitch/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <article class="card">
-    <div class="top"><div class="emoji">📝</div><h3>MarkdownViewer</h3></div>
-    <p><span class="en">Open Markdown files instantly from Finder — KaTeX, Mermaid, live reload.</span>
-       <span class="fr">Ouvre les fichiers Markdown depuis le Finder — KaTeX, Mermaid, live reload.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/MarkdownViewer/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  <article class="inst" style="--accent:#58a6ff">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M6.5 15.5v-7l3 3.5 3-3.5v7"/><path d="M16.5 8.5v7M14.5 13l2 2.5 2-2.5"/>
+        </svg>
+      </div>
+      <div><h3>MarkdownViewer</h3><p class="sub">markdown</p></div>
+    </div>
+    <p><span class="en">Open any Markdown file straight from Finder — KaTeX, Mermaid, live reload, rendered the way GitHub does.</span>
+       <span class="fr">Ouvre n'importe quel fichier Markdown depuis le Finder — KaTeX, Mermaid, live reload, rendu comme sur GitHub.</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/MarkdownViewer/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <article class="card">
-    <div class="top"><div class="emoji">📶</div><h3>WifiManager</h3></div>
+  <article class="inst" style="--accent:#0891b2">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2.5 9a15 15 0 0 1 19 0"/><path d="M5.8 12.5a10 10 0 0 1 12.4 0"/><path d="M9 15.9a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.1"/>
+        </svg>
+      </div>
+      <div><h3>WifiManager</h3><p class="sub">wifi quality</p></div>
+    </div>
     <p><span class="en">Menu-bar app that scores your WiFi quality in real time and flags hotspots.</span>
        <span class="fr">App menu bar qui note la qualité WiFi en temps réel et repère les hotspots.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/WifiManager/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+    <a class="go" href="https://vincentlauriat.github.io/WifiManager/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <article class="card">
-    <div class="top"><div class="emoji">📡</div><h3>NetCheck</h3></div>
-    <p><span class="en">Menu-bar network diagnostics — WiFi finder, speed test, traceroute, usage.</span>
-       <span class="fr">Diagnostic réseau menu bar — WiFi finder, speed test, traceroute, usages.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/NetCheck/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  <article class="inst" style="--accent:#818cf8">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12h4l2.5-6 3.5 12 3-8 2 2h5"/>
+        </svg>
+      </div>
+      <div><h3>NetCheck</h3><p class="sub">network diagnostics</p></div>
+    </div>
+    <p><span class="en">Menu-bar network diagnostics — WiFi finder, speed test, traceroute and usage.</span>
+       <span class="fr">Diagnostic réseau en menu bar — WiFi finder, speed test, traceroute et usages.</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/NetCheck/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <article class="card">
-    <div class="top"><div class="emoji">🔋</div><h3>iPhoneStatus</h3></div>
-    <p><span class="en">Menu-bar app showing your connected iPhone's full status — battery health, storage, hardware, cellular — via libimobiledevice. Sensitive identifiers masked by default.</span>
-       <span class="fr">App menu bar qui affiche le statut complet de votre iPhone connecté — batterie, stockage, matériel, cellulaire — via libimobiledevice. Identifiants sensibles masqués par défaut.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/iPhoneStatus/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  <article class="inst" style="--accent:#e879f9">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6.5" y="2.5" width="11" height="19" rx="2.4"/><path d="M9.5 6.5h5"/><path d="M9.5 12h5v4h-5z"/>
+        </svg>
+      </div>
+      <div><h3>iPhoneStatus</h3><p class="sub">iphone health</p></div>
+    </div>
+    <p><span class="en">Your connected iPhone's full status in the menu bar — battery health, storage, hardware, cellular. Sensitive identifiers masked by default.</span>
+       <span class="fr">Le statut complet de votre iPhone connecté en menu bar — batterie, stockage, matériel, cellulaire. Identifiants sensibles masqués par défaut.</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/iPhoneStatus/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <article class="card">
-    <div class="top"><div class="emoji">🎙️</div><h3>Plaud Companion</h3></div>
-    <p><span class="en">Browse, read and sync your Plaud voice-recording notes — now browse them <b>by person</b>, and push everything to Notion.</span>
-       <span class="fr">Parcours, lis et synchronise tes notes vocales Plaud — désormais <b>par personne</b>, et pousse tout vers Notion.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/plaud-companion/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  <article class="inst span2" style="--accent:#f5731f">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 10v4M8 6.5v11M12 3.5v17M16 7.5v9M20 10.5v3"/>
+        </svg>
+      </div>
+      <div><h3>Plaud Companion</h3><p class="sub">voice notes</p></div>
+    </div>
+    <p><span class="en">Browse, read and sync your Plaud voice-recording notes — now by person too — and push everything to Notion.</span>
+       <span class="fr">Parcours, lis et synchronise tes notes vocales Plaud — désormais par personne — et pousse tout vers Notion.</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/plaud-companion/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-  <div class="cat-header"><span class="cat-icon" aria-hidden="true">📰</span><span class="en">News</span><span class="fr">Actualité</span></div>
+  <!-- ── Actualité ───────────────────────────────────────────────────── -->
+  <div class="band">
+    <span class="lbl"><span class="en">News</span><span class="fr">Actualité</span></span>
+    <span class="rule"></span><span class="n">01</span>
+  </div>
 
-  <article class="card">
-    <div class="top"><div class="emoji">🗞️</div><h3>TheNews</h3></div>
-    <p><span class="en">Multi-source news watch for <b>macOS &amp; iOS</b> — Le Monde, Les Echos &amp; any RSS feed, cross-source grouping, daily briefing, home-screen widget &amp; iCloud sync. Serverless, zero-dependency.</span>
-       <span class="fr">Veille d'actualité multi-sources pour <b>macOS &amp; iOS</b> — Le Monde, Les Echos &amp; n'importe quel flux RSS, regroupement cross-source, briefing quotidien, widget &amp; sync iCloud. Sans serveur, zéro dépendance.</span></p>
-    <a class="cta" href="https://vincentlauriat.github.io/TheNews/" target="_blank" rel="noopener"><span class="en">Visit</span><span class="fr">Voir</span> →</a>
+  <article class="inst wide" style="--accent:#e5484d">
+    <div class="head">
+      <div class="gauge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h11a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-3 1.7"/><path d="M7.5 8.5h6M7.5 12h6M7.5 15h3.5"/>
+        </svg>
+      </div>
+      <div><h3>TheNews</h3><p class="sub">macOS · iOS</p></div>
+    </div>
+    <p><span class="en">Le Monde, Les Echos and any RSS feed in one app — cross-source grouping, daily briefing, home-screen widget, iCloud sync. Serverless, zero dependency.</span>
+       <span class="fr">Le Monde, Les Echos et n'importe quel flux RSS dans une seule app — regroupement cross-source, briefing quotidien, widget, sync iCloud. Sans serveur, zéro dépendance.</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/TheNews/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
   </article>
 
-</div></div>
+</div></main>
 
 <footer><div class="wrap">
   <p>
-    <span class="en">More about me on <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · </span>
-    <span class="fr">Plus sur moi sur <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · </span>
-    <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a>
+    <span class="en">More on <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span>
+    <span class="fr">Plus sur <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span>
   </p>
+  <p class="mono">signed &amp; notarized · macOS 13+</p>
 </div></footer>
 
 <script>
@@ -202,12 +388,13 @@
     document.documentElement.lang=l;
     document.getElementById('l-en').classList.toggle('on',l==='en');
     document.getElementById('l-fr').classList.toggle('on',l==='fr');
+    document.getElementById('l-en').setAttribute('aria-pressed',l==='en');
+    document.getElementById('l-fr').setAttribute('aria-pressed',l==='fr');
     try{localStorage.setItem('vl-lang',l)}catch(e){}
   }
   (function(){
     var saved;try{saved=localStorage.getItem('vl-lang')}catch(e){}
-    var l=saved||((navigator.language||'en').slice(0,2)==='fr'?'fr':'en');
-    setLang(l);
+    setLang(saved||((navigator.language||'en').slice(0,2)==='fr'?'fr':'en'));
   })();
 </script>
 </body>
