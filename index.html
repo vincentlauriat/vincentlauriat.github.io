@@ -17,9 +17,8 @@
 <style>
   /* --- Mise en page propre au hub ------------------------------------- */
   .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-  .en,.fr{display:none}
-  body.lang-en .en{display:revert}
-  body.lang-fr .fr{display:revert}
+  /* Les règles de bascule de langue vivent désormais dans base.css v1.0.3,
+     partagées par les 15 pages du corpus. */
 
   /* Barre de navigation */
   nav{position:sticky;top:0;z-index:var(--z-nav);backdrop-filter:blur(14px);
@@ -30,7 +29,7 @@
   .langtog{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
   .langtog button{background:transparent;color:var(--muted);border:0;padding:6px 13px;
     font-family:var(--font-mono);font-size:.72rem;font-weight:600;cursor:pointer;min-height:32px}
-  .langtog button.on{background:var(--accent);color:#fff}
+  .langtog button.on{background:var(--accent);color:var(--on-accent)}
   .langtog button:not(.on):hover{color:var(--txt)}
   .ghlink{color:var(--muted);font-family:var(--font-mono);font-size:.78rem;font-weight:500}
   .ghlink:hover{color:var(--txt)}
@@ -128,35 +127,41 @@
 </head>
 <body class="lang-en">
 
-<a class="skip" href="#rack"><span class="en">Skip to projects</span><span class="fr">Aller aux projets</span></a>
+<a class="skip" href="#rack"><span class="en">Skip to projects</span><span class="fr">Aller aux projets</span><span class="zh">跳至專案</span></a>
 
 <nav><div class="wrap">
   <span class="sig">Vincent Lauriat</span>
   <div class="spacer"></div>
-  <div class="langtog" role="group" aria-label="Language / Langue">
-    <button id="l-en" class="on" onclick="setLang('en')">EN</button>
-    <button id="l-fr" onclick="setLang('fr')">FR</button>
+  <div class="langtog" role="group" aria-label="Language / Langue / 語言">
+    <button type="button" data-lang="en" class="on" onclick="setLang('en')">EN</button>
+    <button type="button" data-lang="fr" onclick="setLang('fr')">FR</button>
+    <button type="button" data-lang="zh" onclick="setLang('zh')">中文</button>
   </div>
   <a class="ghlink" href="https://github.com/vincentlauriat" target="_blank" rel="noopener">github ↗</a>
 </div></nav>
 
 <header><div class="wrap">
-  <p class="eyebrow"><span class="en">Native macOS &amp; iOS · open source</span><span class="fr">macOS &amp; iOS natif · open source</span></p>
+  <p class="eyebrow"><span class="en">Native macOS &amp; iOS · open source</span><span class="fr">macOS &amp; iOS natif · open source</span><span class="zh">原生 macOS 與 iOS · 開源</span></p>
   <h1 style="margin-top:14px">
     <span class="en">Your Mac knows more <span class="dim">than it shows.</span></span>
     <span class="fr">Votre Mac en sait plus <span class="dim">qu'il n'en montre.</span></span>
+    <span class="zh">你的 Mac 知道的，<span class="dim">遠比它顯示的多。</span></span>
   </h1>
   <p class="lede">
     <span class="en">Sensors, fan speed, window stack, bandwidth, token spend, iPhone health — the system measures all of it and surfaces almost none of it. These are the instruments that read it back.</span>
     <span class="fr">Capteurs, vitesse des ventilateurs, pile de fenêtres, bande passante, tokens consommés, santé de l'iPhone — le système mesure tout cela et n'en montre presque rien. Voici les instruments qui le donnent à lire.</span>
+    <span class="zh">感測器、風扇轉速、視窗堆疊、頻寬、token 用量、iPhone 健康度——系統全都測量了，卻幾乎什麼都不顯示。這些就是把它讀回來的儀器。</span>
   </p>
 
   <div class="readout" role="group" aria-label="Build facts">
     <div class="cell"><span class="pulse" aria-hidden="true"></span><span class="v">14</span><span class="k">instruments</span></div>
     <div class="cell"><span class="v">100%</span><span class="k">native swift</span></div>
-    <div class="cell"><span class="v">0</span><span class="k"><span class="en">telemetry</span><span class="fr">télémétrie</span></span></div>
-    <div class="cell"><span class="v">MIT</span><span class="k"><span class="en">licensed</span><span class="fr">licence</span></span></div>
-    <div class="cell"><span class="v">EN/FR</span><span class="k"><span class="en">localized</span><span class="fr">localisé</span></span></div>
+    <div class="cell"><span class="v">0</span><span class="k"><span class="en">telemetry</span><span class="fr">télémétrie</span><span class="zh">遙測</span></span></div>
+    <div class="cell"><span class="v">MIT</span><span class="k"><span class="en">licensed</span><span class="fr">licence</span><span class="zh">授權</span></span></div>
+    <!-- Ce relevé décrit les apps, pas cette page. Les apps sont localisées
+         EN/FR ; la page est trilingue. Ne pas y écrire 中文 tant que les
+         apps elles-mêmes ne le sont pas — ce serait une promesse fausse. -->
+    <div class="cell"><span class="v">EN/FR</span><span class="k"><span class="en">apps localized</span><span class="fr">apps localisées</span><span class="zh">應用程式語言</span></span></div>
   </div>
 </div></header>
 
@@ -171,13 +176,13 @@
         </svg>
       </div>
       <div>
-        <p class="eyebrow"><span class="en">Featured</span><span class="fr">À la une</span></p>
+        <p class="eyebrow"><span class="en">Featured</span><span class="fr">À la une</span><span class="zh">精選</span></p>
         <h3>StartAlice &amp; OpenAlice</h3>
       </div>
     </div>
     <p>
       <span class="en"><b>OpenAlice</b> is an open-source AI trading agent. <b>StartAlice</b> is the one-click macOS app that installs, updates and launches it — signed, notarized, bilingual.</span>
-      <span class="fr"><b>OpenAlice</b> est un agent de trading IA open-source. <b>StartAlice</b> est l'app macOS en un clic qui l'installe, le met à jour et le lance — signée, notarisée, bilingue.</span>
+      <span class="fr"><b>OpenAlice</b> est un agent de trading IA open-source. <b>StartAlice</b> est l'app macOS en un clic qui l'installe, le met à jour et le lance — signée, notarisée, bilingue.</span><span class="zh"><b>OpenAlice</b> 是開源的 AI 交易代理程式。<b>StartAlice</b> 則是一鍵安裝、更新並啟動它的 macOS 應用程式——已簽章、已公證、雙語。</span>
     </p>
     <div class="links">
       <a class="go" href="https://vincentlauriat.github.io/StartAlice/" target="_blank" rel="noopener">StartAlice <span class="arw">→</span></a>
@@ -187,7 +192,7 @@
 
   <!-- ── IA & outils dev ─────────────────────────────────────────────── -->
   <div class="band">
-    <span class="lbl"><span class="en">AI &amp; dev tools</span><span class="fr">IA &amp; outils dev</span></span>
+    <span class="lbl"><span class="en">AI &amp; dev tools</span><span class="fr">IA &amp; outils dev</span><span class="zh">AI 與開發工具</span></span>
     <span class="rule"></span><span class="n">04</span>
   </div>
 
@@ -201,8 +206,8 @@
       <div><h3>AuditViewer</h3><p class="sub">research</p></div>
     </div>
     <p><span class="en">Turn any company, product or market into a complete, sourced strategic dossier.</span>
-       <span class="fr">Transforme une entreprise, un produit ou un marché en dossier stratégique sourcé.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/AuditViewer/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Transforme une entreprise, un produit ou un marché en dossier stratégique sourcé.</span><span class="zh">把任何公司、產品或市場，變成一份完整且有出處的策略檔案。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/AuditViewer/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst" style="--accent:#34d399">
@@ -215,8 +220,8 @@
       <div><h3>RTKInfos</h3><p class="sub">token savings</p></div>
     </div>
     <p><span class="en">Visualize token savings from RTK — daily KPIs, 7-day chart, live history.</span>
-       <span class="fr">Visualise les économies de tokens de RTK — KPIs, graphique 7 jours, historique.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/RTKInfos/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Visualise les économies de tokens de RTK — KPIs, graphique 7 jours, historique.</span><span class="zh">視覺化 RTK 節省的 token——每日 KPI、7 天圖表、即時歷史。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/RTKInfos/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst" style="--accent:#22c55e">
@@ -229,8 +234,8 @@
       <div><h3>ClaudeCodeUsage</h3><p class="sub">usage dashboard</p></div>
     </div>
     <p><span class="en">Sessions, tokens, cache and cost with editable rates — filtered by project, broken down by agent and skill.</span>
-       <span class="fr">Sessions, tokens, cache et coût à tarifs éditables — filtrés par projet, répartis par agent et skill.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/ClaudeCodeUsage/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Sessions, tokens, cache et coût à tarifs éditables — filtrés par projet, répartis par agent et skill.</span><span class="zh">工作階段、token、快取與成本，費率可編輯——依專案篩選，按 agent 與 skill 拆解。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/ClaudeCodeUsage/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst" style="--accent:#38bdf8">
@@ -243,13 +248,13 @@
       <div><h3>BmadBrowser</h3><p class="sub">bmad artifacts</p></div>
     </div>
     <p><span class="en">Native browser and editor for BMad method markdown artifacts — multi-project workspace, three-column UI.</span>
-       <span class="fr">Navigateur et éditeur natif pour les artefacts markdown BMad — workspace multi-projets, UI trois colonnes.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/BmadBrowser/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Navigateur et éditeur natif pour les artefacts markdown BMad — workspace multi-projets, UI trois colonnes.</span><span class="zh">BMad 方法 markdown 產出物的原生瀏覽與編輯工具——多專案工作區、三欄式介面。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/BmadBrowser/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <!-- ── Productivité macOS ──────────────────────────────────────────── -->
   <div class="band">
-    <span class="lbl"><span class="en">macOS productivity</span><span class="fr">Productivité macOS</span></span>
+    <span class="lbl"><span class="en">macOS productivity</span><span class="fr">Productivité macOS</span><span class="zh">macOS 生產力</span></span>
     <span class="rule"></span><span class="n">08</span>
   </div>
 
@@ -263,8 +268,8 @@
       <div><h3>MacInside</h3><p class="sub">system sensors</p></div>
     </div>
     <p><span class="en">CPU load, real SMC temperatures, fan RPM, GPU, battery and network — one native dashboard, from the Dock to the menu bar.</span>
-       <span class="fr">Charge CPU, températures SMC réelles, RPM des ventilateurs, GPU, batterie et réseau — un tableau de bord natif, du Dock à la barre de menus.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/MacInside/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Charge CPU, températures SMC réelles, RPM des ventilateurs, GPU, batterie et réseau — un tableau de bord natif, du Dock à la barre de menus.</span><span class="zh">CPU 負載、真實 SMC 溫度、風扇轉速、GPU、電池與網路——一個原生儀表板，從 Dock 到選單列。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/MacInside/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst" style="--accent:#f472b6">
@@ -277,8 +282,8 @@
       <div><h3>AppsSwitch</h3><p class="sub">window switcher</p></div>
     </div>
     <p><span class="en">Alt-Tab style switching for macOS — cycles through every open window, not just apps, with live thumbnails.</span>
-       <span class="fr">Alt-Tab façon Windows pour macOS — cycle entre toutes les fenêtres ouvertes, pas seulement les apps, avec miniatures live.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/AppsSwitch/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Alt-Tab façon Windows pour macOS — cycle entre toutes les fenêtres ouvertes, pas seulement les apps, avec miniatures live.</span><span class="zh">macOS 上的 Alt-Tab 式切換——在每一個開啟的視窗之間循環，而不只是應用程式，並附即時縮圖。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/AppsSwitch/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst" style="--accent:#58a6ff">
@@ -291,8 +296,8 @@
       <div><h3>MarkdownViewer</h3><p class="sub">markdown</p></div>
     </div>
     <p><span class="en">Open any Markdown file straight from Finder — KaTeX, Mermaid, live reload, rendered the way GitHub does.</span>
-       <span class="fr">Ouvre n'importe quel fichier Markdown depuis le Finder — KaTeX, Mermaid, live reload, rendu comme sur GitHub.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/MarkdownViewer/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Ouvre n'importe quel fichier Markdown depuis le Finder — KaTeX, Mermaid, live reload, rendu comme sur GitHub.</span><span class="zh">直接從 Finder 開啟任何 Markdown 檔案——KaTeX、Mermaid、即時重新載入，並以 GitHub 的方式呈現。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/MarkdownViewer/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst" style="--accent:#0891b2">
@@ -305,8 +310,8 @@
       <div><h3>WifiManager</h3><p class="sub">wifi quality</p></div>
     </div>
     <p><span class="en">Menu-bar app that scores your WiFi quality in real time and flags hotspots.</span>
-       <span class="fr">App menu bar qui note la qualité WiFi en temps réel et repère les hotspots.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/WifiManager/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">App menu bar qui note la qualité WiFi en temps réel et repère les hotspots.</span><span class="zh">選單列應用程式，即時為你的 WiFi 品質評分並標出熱點。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/WifiManager/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst" style="--accent:#818cf8">
@@ -319,8 +324,8 @@
       <div><h3>NetCheck</h3><p class="sub">network diagnostics</p></div>
     </div>
     <p><span class="en">Menu-bar network diagnostics — WiFi finder, speed test, traceroute and usage.</span>
-       <span class="fr">Diagnostic réseau en menu bar — WiFi finder, speed test, traceroute et usages.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/NetCheck/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Diagnostic réseau en menu bar — WiFi finder, speed test, traceroute et usages.</span><span class="zh">選單列網路診斷——WiFi 搜尋、速度測試、traceroute 與用量。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/NetCheck/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst" style="--accent:#6ad65c">
@@ -333,8 +338,8 @@
       <div><h3>StarlinkInfos</h3><p class="sub">dish telemetry</p></div>
     </div>
     <p><span class="en">Talks straight to your Starlink dish — live status, latency and throughput charts, obstruction map, reboot and stow. Plus launches and constellation stats.</span>
-       <span class="fr">Parle directement à votre antenne Starlink — statut en direct, graphes de latence et de débit, carte d'obstruction, redémarrage et repli. Plus les lancements et les stats de constellation.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/StarlinkInfos/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Parle directement à votre antenne Starlink — statut en direct, graphes de latence et de débit, carte d'obstruction, redémarrage et repli. Plus les lancements et les stats de constellation.</span><span class="zh">直接與你的 Starlink 天線通訊——即時狀態、延遲與吞吐量圖表、遮蔽圖、重新啟動與收合。另有發射與星系數據。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/StarlinkInfos/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst" style="--accent:#a78bfa">
@@ -347,8 +352,8 @@
       <div><h3>iPhoneStatus</h3><p class="sub">iphone health</p></div>
     </div>
     <p><span class="en">Your connected iPhone's full status in the menu bar — battery health, storage, hardware, cellular. Sensitive identifiers masked by default.</span>
-       <span class="fr">Le statut complet de votre iPhone connecté en menu bar — batterie, stockage, matériel, cellulaire. Identifiants sensibles masqués par défaut.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/iPhoneStatus/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Le statut complet de votre iPhone connecté en menu bar — batterie, stockage, matériel, cellulaire. Identifiants sensibles masqués par défaut.</span><span class="zh">在選單列查看已連接 iPhone 的完整狀態——電池健康度、儲存空間、硬體、行動網路。敏感識別碼預設遮蔽。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/iPhoneStatus/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <article class="inst span2" style="--accent:#f5731f">
@@ -361,13 +366,13 @@
       <div><h3>Plaud Companion</h3><p class="sub">voice notes</p></div>
     </div>
     <p><span class="en">Browse, read and sync your Plaud voice-recording notes — now by person too — and push everything to Notion.</span>
-       <span class="fr">Parcours, lis et synchronise tes notes vocales Plaud — désormais par personne — et pousse tout vers Notion.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/plaud-companion/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Parcours, lis et synchronise tes notes vocales Plaud — désormais par personne — et pousse tout vers Notion.</span><span class="zh">瀏覽、閱讀並同步你的 Plaud 錄音筆記——現在也能依人物分類——並將全部推送到 Notion。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/plaud-companion/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
   <!-- ── Actualité ───────────────────────────────────────────────────── -->
   <div class="band">
-    <span class="lbl"><span class="en">News</span><span class="fr">Actualité</span></span>
+    <span class="lbl"><span class="en">News</span><span class="fr">Actualité</span><span class="zh">新聞</span></span>
     <span class="rule"></span><span class="n">01</span>
   </div>
 
@@ -381,8 +386,8 @@
       <div><h3>TheNews</h3><p class="sub">macOS · iOS</p></div>
     </div>
     <p><span class="en">Le Monde, Les Echos and any RSS feed in one app — cross-source grouping, daily briefing, home-screen widget, iCloud sync. Serverless, zero dependency.</span>
-       <span class="fr">Le Monde, Les Echos et n'importe quel flux RSS dans une seule app — regroupement cross-source, briefing quotidien, widget, sync iCloud. Sans serveur, zéro dépendance.</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/TheNews/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span> <span class="arw">→</span></a>
+       <span class="fr">Le Monde, Les Echos et n'importe quel flux RSS dans une seule app — regroupement cross-source, briefing quotidien, widget, sync iCloud. Sans serveur, zéro dépendance.</span><span class="zh">Le Monde、Les Echos 與任何 RSS 來源集於一個應用程式——跨來源分組、每日簡報、主畫面小工具、iCloud 同步。無伺服器、零依賴。</span></p>
+    <a class="go" href="https://vincentlauriat.github.io/TheNews/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="arw">→</span></a>
   </article>
 
 </div></main>
@@ -390,25 +395,37 @@
 <footer><div class="wrap">
   <p>
     <span class="en">More on <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span>
-    <span class="fr">Plus sur <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span>
+    <span class="fr">Plus sur <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span><span class="zh">更多內容請見 <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span>
   </p>
   <p class="mono">signed &amp; notarized · macOS 13+</p>
 </div></footer>
 
 <script>
+  /* zh-Hant et non zh : sur un système configuré en chinois simplifié, un
+     simple `zh` laisse le navigateur choisir une fonte Han simplifiée, qui
+     rend certains caractères traditionnels dans la mauvaise forme. */
+  var LANG_TAG={en:'en',fr:'fr',zh:'zh-Hant'};
   function setLang(l){
-    document.body.classList.remove('lang-en','lang-fr');
+    if(!LANG_TAG[l]) l='en';
+    document.body.classList.remove('lang-en','lang-fr','lang-zh');
     document.body.classList.add('lang-'+l);
-    document.documentElement.lang=l;
-    document.getElementById('l-en').classList.toggle('on',l==='en');
-    document.getElementById('l-fr').classList.toggle('on',l==='fr');
-    document.getElementById('l-en').setAttribute('aria-pressed',l==='en');
-    document.getElementById('l-fr').setAttribute('aria-pressed',l==='fr');
+    document.documentElement.lang=LANG_TAG[l];
+    /* On boucle sur les boutons au lieu de les nommer un par un : ajouter une
+       4ᵉ langue ne demandera alors aucune retouche de ce script. */
+    document.querySelectorAll('.langtog button').forEach(function(b){
+      var on=b.dataset.lang===l;
+      b.classList.toggle('on',on);
+      b.setAttribute('aria-pressed',on?'true':'false');
+    });
     try{localStorage.setItem('vl-lang',l)}catch(e){}
   }
   (function(){
     var saved;try{saved=localStorage.getItem('vl-lang')}catch(e){}
-    setLang(saved||((navigator.language||'en').slice(0,2)==='fr'?'fr':'en'));
+    var n=(navigator.language||'en').slice(0,2).toLowerCase();
+    /* Le traditionnel est servi à tout visiteur sinophone, y compris zh-CN :
+       c'est la seule variante chinoise disponible, et la renvoyer vaut mieux
+       que de rabattre ce visiteur sur l'anglais. */
+    setLang(saved||(n==='zh'?'zh':(n==='fr'?'fr':'en')));
   })();
 </script>
 </body>
