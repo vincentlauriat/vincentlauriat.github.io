@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Reprend la signature du hub : une trace d'instrument sur le fond du
+       site, terminée par la LED verte du readout. Lisible à 16px. -->
+  <rect width="32" height="32" rx="7" fill="#0a0c12"/>
+  <rect x=".5" y=".5" width="31" height="31" rx="6.5" fill="none" stroke="#232838"/>
+  <path d="M5 22l7-8 5 4.5L26 8" fill="none" stroke="#5b8bff" stroke-width="3"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="26" cy="8" r="3.2" fill="#3ddc84"/>
+</svg>

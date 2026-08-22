@@ -1,6 +1,6 @@
 /* ==========================================================================
    base.css — socle commun des landing pages
-   version 1.0.4 — 2026-07-26
+   version 1.0.5 — 2026-08-21
    --------------------------------------------------------------------------
    Ce fichier pose le plancher : tokens, typographie, accessibilité.
    Il ne dessine aucune mise en page — chaque page garde la sienne.
@@ -67,7 +67,9 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+/* Le corpus est sombre par choix : sans ce signal, scrollbars et widgets
+   natifs (champs, menus) restent clairs sur certains navigateurs. */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;color-scheme:dark}
 
 body{
   font-family:var(--font-sans);
@@ -167,6 +169,14 @@ body.lang-zh{font-family:var(--font-sans)}
     transition-duration:.01ms !important;
     scroll-behavior:auto !important;
   }
+}
+
+/* Texte pour lecteurs d'écran uniquement — jamais display:none, qui le
+   retirerait aussi de l'arbre d'accessibilité. Sert à désambiguïser des
+   libellés répétés (« Open » × 26 sur le hub) sans surcharger le visuel. */
+.vh{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;
 }
 
 /* Lien d'évitement — visible uniquement au clavier */
