@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-22T00:00:00Z",
+  "title": "Design System: Vincent Lauriat — hub (the flight case)",
+  "extensions": {
+    "colorMeta": {
+      "case-laminate": { "role": "neutral", "displayName": "Case Laminate", "canonical": "#16130f", "tonalRamp": ["#0b0906", "#16130f", "#201c16", "#3a342a", "#57503f", "#7a7158", "#a2977c", "#d9cfb6"] },
+      "stencil-beige": { "role": "neutral", "displayName": "Stencil Beige", "canonical": "#d9cfb6", "tonalRamp": ["#2a2618", "#4a4330", "#6b614a", "#8c7f63", "#a2977c", "#bcb094", "#d9cfb6", "#efe8d6"] },
+      "stencil-dim": { "role": "neutral", "displayName": "Dim Stencil", "canonical": "#a2977c", "tonalRamp": ["#241f14", "#3f3826", "#5a513a", "#75694e", "#8f8163", "#a2977c", "#c1b79c", "#ded5bd"] },
+      "vinyl-white": { "role": "neutral", "displayName": "Vinyl White", "canonical": "#f0e9d8", "tonalRamp": ["#33301f", "#565137", "#797252", "#9b936e", "#bcb28c", "#d8d0bc", "#f0e9d8", "#faf6ec"] },
+      "sticker-ink": { "role": "neutral", "displayName": "Sticker Ink", "canonical": "#17130d", "tonalRamp": ["#0a0805", "#17130d", "#2b2418", "#453a26", "#5f5035", "#7a6845", "#a08a5e", "#c9b586"] },
+      "caution-yellow": { "role": "primary", "displayName": "Caution Yellow", "canonical": "#e8b90f", "tonalRamp": ["#3a3008", "#6b570a", "#9c7f0b", "#caa00c", "#e8b90f", "#f0c422", "#f6d55a", "#fbe9a6"] },
+      "manifest-paper": { "role": "neutral", "displayName": "Manifest Paper", "canonical": "#ece4cf", "tonalRamp": ["#332f22", "#56503a", "#797154", "#9b9270", "#bcb290", "#dcd3b6", "#ece4cf", "#f2ebd8"] },
+      "paper-ink": { "role": "neutral", "displayName": "Paper Ink", "canonical": "#23201a", "tonalRamp": ["#100e0b", "#23201a", "#3a352b", "#544c30", "#6e6448", "#8a7f60", "#a99c7c", "#c9bda0"] },
+      "stamp-red": { "role": "secondary", "displayName": "Stamp Red", "canonical": "#c8352b", "tonalRamp": ["#2e0c09", "#571712", "#80211b", "#a42b23", "#c8352b", "#d95c50", "#e78a80", "#f2bab3"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Stencil (Saira Stencil One)", "purpose": "The case-marking voice: h1, stamps, case/zone stencil marks. Never used for Han glyphs (ZH h1 falls back to the sans stack at 800)." },
+      "block": { "displayName": "Block (Archivo Black)", "purpose": "Die-cut sticker lettering and caution-tape values; always uppercase on stickers." },
+      "mark": { "displayName": "Marker (Permanent Marker)", "purpose": "Hand-lettered sticker voice; also the round GH sticker." },
+      "type": { "displayName": "Typewriter (Courier Prime 400/700)", "purpose": "Lede, sticker sublabels, tape labels, the entire manifest, footer plate copy." }
+    },
+    "shadows": [
+      { "name": "sticker-rest", "value": "0 3px 10px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.12) inset", "purpose": "Vinyl sitting on laminate; inset line is the vinyl edge catching light." },
+      { "name": "sticker-lifted", "value": "0 14px 30px rgba(0,0,0,.65)", "purpose": "Hover/focus peel state, paired with translateY(-5px) scale(1.03) and z-index 55." },
+      { "name": "tape", "value": "0 6px 16px rgba(0,0,0,.5)", "purpose": "Caution-tape band floating off the case." },
+      { "name": "manifest", "value": "0 18px 44px rgba(0,0,0,.6)", "purpose": "The taped paper sheet — deepest shadow in the world." },
+      { "name": "plate", "value": "0 8px 20px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.5)", "purpose": "Riveted footer plate; inset top line is machined edge light." },
+      { "name": "handle", "value": "drop-shadow(0 10px 22px rgba(0,0,0,.65))", "purpose": "Filter shadow under the recessed-handle SVG." }
+    ],
+    "motion": [
+      { "name": "ease-out-quint", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "The peel: sticker corner curl + lift, .22s. The world's only motion grammar." },
+      { "name": "state-fade", "value": "ease .18s", "purpose": "Language-chip filter/transform state changes." },
+      { "name": "arrow-nudge", "value": "ease .2s", "purpose": "Manifest row arrow translateX(4px) on hover/focus." }
+    ],
+    "breakpoints": [
+      { "name": "hero-stack", "value": "900px" },
+      { "name": "field-recompact", "value": "760px" },
+      { "name": "base-font-floor", "value": "600px" },
+      { "name": "name-clamp", "value": "430px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Die-cut Sticker",
+      "kind": "card",
+      "refersTo": "sticker",
+      "description": "The signature component: a project as die-cut vinyl on the case. Per-sticker inline API: --c color, --x/--y position, --r rotation, --w width, --z chronology; one shape class, one voice class, one age class. Hover peels the corner.",
+      "html": "<a class=\"ds-stk\" href=\"#\" style=\"--c:#34d399;--r:-4deg\"><span class=\"ds-stk-nm\">RTKInfos</span><span class=\"ds-stk-sub\">token savings</span></a>",
+      "css": ".ds-stk { position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 190px; min-height: 44px; padding: 20px 16px; text-align: center; text-decoration: none; background: var(--c, #34d399); color: #17130d; border: 5px solid #f0e9d8; border-radius: 18px; transform: rotate(var(--r, 0deg)); box-shadow: 0 3px 10px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.12) inset; transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease; } .ds-stk::before { content: \"\"; position: absolute; right: -5px; top: -5px; width: 34px; height: 34px; background: linear-gradient(225deg, #16130f 0 48%, #d8d0bc 50%, #efe8d6 100%); border-radius: 0 18px 0 14px; box-shadow: -3px 3px 6px rgba(0,0,0,.35); transform: scale(0); transform-origin: top right; transition: transform .22s cubic-bezier(.22,1,.36,1); } .ds-stk:hover, .ds-stk:focus-visible { transform: rotate(var(--r, 0deg)) translateY(-5px) scale(1.03); box-shadow: 0 14px 30px rgba(0,0,0,.65); } .ds-stk:hover::before, .ds-stk:focus-visible::before { transform: scale(1); } .ds-stk-nm { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 1.02rem; line-height: 1.05; text-transform: uppercase; } .ds-stk-sub { font-family: 'Courier Prime', 'Courier New', monospace; font-weight: 700; font-size: .62rem; letter-spacing: .13em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Language Sticker Toggle",
+      "kind": "button",
+      "refersTo": "lang-chip",
+      "description": "Language switch as three small vinyl stickers: inactive ones are sun-faded via filter, the active one is a fresh caution-yellow sticker lifted 1px.",
+      "html": "<div class=\"ds-langtog\"><button class=\"ds-lang on\" style=\"--r:-3deg\" aria-pressed=\"true\">EN</button><button class=\"ds-lang\" style=\"--r:2deg\" aria-pressed=\"false\">FR</button><button class=\"ds-lang\" style=\"--r:-2deg\" aria-pressed=\"false\">中文</button></div>",
+      "css": ".ds-langtog { display: flex; gap: 9px; } .ds-lang { min-height: 44px; min-width: 46px; padding: 8px 12px; cursor: pointer; font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: .72rem; letter-spacing: .04em; background: #f0e9d8; color: #17130d; border: 0; border-radius: 7px; box-shadow: 0 1px 0 rgba(255,255,255,.14) inset, 0 2px 5px rgba(0,0,0,.55); transform: rotate(var(--r, 0deg)); filter: saturate(.45) sepia(.28) brightness(.82); transition: filter .18s ease, transform .18s ease; } .ds-lang:not(.on):hover { filter: saturate(.8) sepia(.1) brightness(.95); } .ds-lang.on { filter: none; background: #e8b90f; transform: rotate(var(--r, 0deg)) translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,.3) inset, 0 4px 9px rgba(0,0,0,.55); }"
+    },
+    {
+      "name": "Caution Tape Facts",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The facts band: yellow caution tape with hazard striping, ragged clip-path ends, dark separators; Archivo Black values + Courier labels. Slightly rotated.",
+      "html": "<div class=\"ds-tape\"><div class=\"ds-tape-cell\"><span class=\"ds-tape-v\">21</span><span class=\"ds-tape-k\">instruments</span></div><span class=\"ds-tape-sep\"></span><div class=\"ds-tape-cell\"><span class=\"ds-tape-v\">0</span><span class=\"ds-tape-k\">telemetry</span></div><span class=\"ds-tape-sep\"></span><div class=\"ds-tape-cell\"><span class=\"ds-tape-v\">MIT</span><span class=\"ds-tape-k\">licensed</span></div></div>",
+      "css": ".ds-tape { display: flex; flex-wrap: wrap; align-items: center; background: repeating-linear-gradient(45deg, rgba(0,0,0,.14) 0 3px, transparent 3px 22px), linear-gradient(180deg, #f0c422, #e8b90f 55%, #caa00c); border-top: 3px solid #171410; border-bottom: 3px solid #171410; box-shadow: 0 6px 16px rgba(0,0,0,.5); clip-path: polygon(0 8%, 1% 0, 99% 3%, 100% 12%, 100% 88%, 99% 100%, 1% 97%, 0 90%); transform: rotate(-1.4deg); } .ds-tape-cell { display: flex; align-items: baseline; gap: 8px; padding: 13px 22px; white-space: nowrap; color: #171410; } .ds-tape-v { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 1.05rem; } .ds-tape-k { font-family: 'Courier Prime', 'Courier New', monospace; font-weight: 700; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: #3a3008; } .ds-tape-sep { width: 2px; align-self: stretch; background: rgba(23,20,16,.5); }"
+    },
+    {
+      "name": "Manifest Row",
+      "kind": "custom",
+      "refersTo": "manifest",
+      "description": "One line of the typewritten packing manifest: ref / name / description / arrow on a baseline grid; hover is a red stamp-ink wash plus a 4px arrow nudge. The manifest is the catalog and screen-reader backbone.",
+      "html": "<div class=\"ds-manifest\"><a class=\"ds-mrow\" href=\"#\"><span class=\"ds-mref\">B-01</span><span class=\"ds-mname\">MacInside</span><span class=\"ds-mdesc\">CPU load, real SMC temperatures, fan RPM — one native dashboard.</span><span class=\"ds-marw\">→</span></a></div>",
+      "css": ".ds-manifest { background: repeating-linear-gradient(180deg, transparent 0 27px, rgba(35,32,26,.05) 27px 28px), linear-gradient(180deg, #f2ebd8, #ece4cf 30%, #e3d9bf); color: #23201a; padding: 24px; border-radius: 3px; box-shadow: 0 18px 44px rgba(0,0,0,.6); font-family: 'Courier Prime', 'Courier New', monospace; } .ds-mrow { display: grid; grid-template-columns: 64px 178px 1fr 34px; gap: 14px; align-items: baseline; padding: 8px 10px; border-radius: 4px; color: inherit; text-decoration: none; font-size: .88rem; line-height: 1.5; min-height: 44px; } .ds-mrow:hover, .ds-mrow:focus-visible { background: rgba(200,53,43,.09); } .ds-mrow:hover .ds-marw, .ds-mrow:focus-visible .ds-marw { transform: translateX(4px); } .ds-mref { font-weight: 700; color: #5f573f; letter-spacing: .05em; } .ds-mname { font-weight: 700; } .ds-mdesc { color: #4a4433; } .ds-marw { justify-self: end; transition: transform .2s ease; font-weight: 700; }"
+    },
+    {
+      "name": "Zone Stencil Mark",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Beige spray-stencil label painted on the laminate between sticker clusters. Decorative (aria-hidden); the manifest carries the real structure.",
+      "html": "<span class=\"ds-zone\" aria-hidden=\"true\">AI / DEV — 07</span>",
+      "css": ".ds-zone { display: inline-block; font-family: 'Saira Stencil One', sans-serif; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; color: #a2977c; opacity: .85; white-space: nowrap; transform: rotate(-2deg); }"
+    },
+    {
+      "name": "Ghost Residue",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Adhesive residue of a torn-off sticker: die silhouette, translucent vinyl border, grainy radial fill. Non-interactive, aria-hidden, used sparsely.",
+      "html": "<span class=\"ds-ghost\" aria-hidden=\"true\"></span>",
+      "css": ".ds-ghost { display: inline-block; width: 170px; height: 120px; border-radius: 18px; background: radial-gradient(80% 70% at 40% 45%, rgba(217,207,182,.10), rgba(217,207,182,.05) 70%, transparent); border: 5px solid rgba(240,233,216,.14); transform: rotate(-5deg); opacity: .9; }"
+    },
+    {
+      "name": "Riveted Footer Plate",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Brushed-aluminium spec plate with four rivet dots: the factual sign-off (signed & notarized, macOS 13+, EST. MMXXIII).",
+      "html": "<div class=\"ds-plate\"><span class=\"ds-rvt\" style=\"top:9px;left:11px\"></span><span class=\"ds-rvt\" style=\"top:9px;right:11px\"></span><span class=\"ds-rvt\" style=\"bottom:9px;left:11px\"></span><span class=\"ds-rvt\" style=\"bottom:9px;right:11px\"></span><p>Signed &amp; notarized · macOS 13+ · handle with care</p><p class=\"ds-plate-mono\">VINCENT LAURIAT · EST. MMXXIII</p></div>",
+      "css": ".ds-plate { position: relative; max-width: 640px; text-align: center; background: linear-gradient(180deg, #8d887e, #c7c2b7 18%, #b1aca1 60%, #767167); color: #221f1a; border-radius: 10px; padding: 20px 30px; box-shadow: 0 8px 20px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.5); } .ds-plate p { font-family: 'Courier Prime', 'Courier New', monospace; font-weight: 700; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; } .ds-plate-mono { margin-top: 6px; font-size: .7rem; color: #4c483f; letter-spacing: .18em; } .ds-rvt { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #efece2, #8b867b 60%, #57534a); box-shadow: 0 1px 2px rgba(0,0,0,.5); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Flight Case",
+    "overview": "The hub is not a page about a portfolio; it is one physical object — a road case owned by one builder, photographed straight-on. Black scuffed laminate, riveted aluminium extrusion rails and corner braces framing the viewport, and years of die-cut vinyl stickers accreted on the lid: 28 stickers, one per shipped project, each carrying its project's own accent color inside a white vinyl border. Depth is chronology — the newest stickers sit highest in the stack and shine, the oldest have yellowed and bleached. Facts print on a strip of yellow caution tape; findability lives in a typewritten packing manifest taped to the case; the footer is a riveted spec plate. It refuses the dev-portfolio card grid entirely. Every texture is authored in CSS/SVG. Where the world's mess and the catalog's job conflict, clarity wins: sticker names stay legible, and the manifest — not the sticker field — is the screen-reader and findability backbone.",
+    "keyCharacteristics": [
+      "One object, not a layout: fixed aluminium frame, laminate ground, accreted stickers.",
+      "Depth = time: z-index and fading (age-0…age-3) encode shipping chronology together.",
+      "Four lettering voices (stencil, block, marker, typewriter), zero system display faces.",
+      "One motion: the sticker corner peel. Nothing else moves for decoration.",
+      "All claims printed on the case are factual and countable."
+    ],
+    "rules": [
+      { "name": "The Sticker-Owns-Its-Color Rule", "body": "Project accents (--c, set inline per sticker) come from each project's own landing-page identity; the hub palette never dictates them. Ink on a sticker is always dark (--sink defaults to --ink); never white text on an accent.", "section": "colors" },
+      { "name": "The One Loud Voice Rule", "body": "Caution yellow is the only saturated color the case itself speaks. Everything else on the laminate is beige, alu, or near-black.", "section": "colors" },
+      { "name": "The Paper World Rule", "body": "Red exists only on paper (manifest); paper colors never leak onto the laminate, and laminate beige never appears on paper.", "section": "colors" },
+      { "name": "The Four Voices Rule", "body": "Every piece of text speaks in exactly one of the four voices; the voice varies per sticker but never mixes inside one sticker name.", "section": "typography" },
+      { "name": "The ZH Exception Rule", "body": "Chinese never uses the stencil face; it takes --font-sans at 800 (hub override) plus base.css's ZH sizing/line-breaking floor. Nothing may degrade in FR or ZH.", "section": "typography" },
+      { "name": "The Chronology-Is-Depth Rule", "body": "Stacking is meaning: --z rises with recency (lead sticker --z:40, freshest 30–39, oldest 5–9) and always pairs with the matching age-* class. A new sticker goes on top; never re-sort the pile alphabetically or by grid.", "section": "layout" },
+      { "name": "The Recompaction Rule", "body": "Below 761px the accretion flows but stays an accretion: rotations and die-cut shapes survive; only the coordinates die.", "section": "layout" },
+      { "name": "The One Peel Rule", "body": "The world has exactly one motion idea: the peel. Corner curl + lift on hover/focus-visible, ease-out-quint cubic-bezier(.22,1,.36,1) at .22s; secondary state transitions stay under .25s. No entrance animations, no parallax, no loops.", "section": "elevation" },
+      { "name": "The Never-Square Rule", "body": "Anything stuck onto the case carries both a rotation and a die-cut radius. Only the case's own machined parts (rails, braces, separators) may be perfectly straight.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do add a new project as sticker + manifest row together, and bump the tape counts, the zone counts, --field-h, and the meta/og descriptions in the same change.",
+      "Do put a new sticker on top: age-0, filter: none, a --z above the current maximum, positioned in its zone's cluster; demote the previous .lead if the newcomer is the flagship.",
+      "Do give every sticker one shape class, one voice class, one age class, a project --c with dark ink, a 40px stroke icon, and the 5px vinyl border.",
+      "Do keep all texture authored in CSS/SVG (--grain, scratch gradients, inline SVG) — zero external images.",
+      "Do keep every visible string trilingual (.en/.fr/.zh spans) and every control at ≥44px — the base.css floor is binding and WCAG AA may not regress."
+    ],
+    "donts": [
+      "Don't reflow the field into a uniform grid, equalize sticker sizes, or zero the rotations — the irregular accretion is the identity; clarity is won by legible names and the manifest, not by tidying the pile.",
+      "Don't add a second motion idea. The peel (ease-out-quint, ≤.25s) is the entire grammar; no entrance animations, parallax, marquees, or hover glows.",
+      "Don't write light text on an accent or on yellow — ink on stickers and tape is always dark (--ink / --on-accent: #17130d).",
+      "Don't let paper and laminate worlds bleed: no red on the case, no stencil-beige text on the manifest, no cool base.css surface colors (#0a0c12 family) anywhere on this page.",
+      "Don't print a claim the corpus can't count — facts on tape, stamp, and plate stay factual (\"21 instruments\", \"0 telemetry\", \"signed & notarized\"; apps are EN/FR only — never promise ZH for the apps)."
+    ]
+  }
+}
