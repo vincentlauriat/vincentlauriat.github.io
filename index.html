@@ -13,638 +13,659 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0a0c12">
+<meta name="theme-color" content="#121210">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Fonte non bloquante : la feuille se charge en `print` (sans bloquer le
-     rendu) puis bascule en `all`. display=swap couvre déjà le FOUT ; sans JS,
-     le <noscript> recharge la feuille normalement. -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<!-- Fonte non bloquante : la feuille se charge en `print` puis bascule en `all`.
+     display=swap couvre le FOUT ; sans JS, le <noscript> recharge normalement. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Saira+Stencil+One&family=Permanent+Marker&family=Courier+Prime:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Saira+Stencil+One&family=Permanent+Marker&family=Courier+Prime:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="assets/base.css">
 <style>
-  /* --- Mise en page propre au hub ------------------------------------- */
-  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-  /* Les règles de bascule de langue vivent désormais dans base.css,
-     partagé par les 15 pages du corpus (version : voir l'en-tête du fichier). */
+  /* ══ LE FLIGHT CASE ════════════════════════════════════════════════════
+     Un seul monde : laminate noir rayé, extrusion alu rivetée, vinyle
+     die-cut, pochoir, ruban de chantier, manifeste dactylographié.
+     Les règles de langue et le plancher a11y restent dans base.css. */
 
-  /* Barre de navigation */
-  nav{position:sticky;top:0;z-index:var(--z-nav);backdrop-filter:blur(14px);
-    background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line-soft)}
-  nav .wrap{display:flex;align-items:center;gap:16px;height:58px}
-  nav .sig{font-weight:700;letter-spacing:-.01em}
+  :root{
+    --case:      #16130f;   /* laminate noir chaud, rayé */
+    --case-2:    #201c16;
+    --alu:       #b9b4aa;   /* extrusion aluminium */
+    --alu-dark:  #6d6961;
+    --stencil:   #d9cfb6;   /* résidu adhésif / pochoir beige */
+    --stencil-dim:#a2977c;
+    --vinyl:     #f0e9d8;   /* blanc vinyle des bords de stickers */
+    --ink:       #17130d;   /* encre des stickers clairs */
+    --tape-y:    #e8b90f;   /* ruban de chantier */
+    --paper:     #ece4cf;   /* papier du manifeste */
+    --paper-ink: #23201a;
+    --red:       #c8352b;   /* tampon / crayon gras */
+    --accent:    var(--tape-y);
+    --on-accent: #17130d;
+    --f-block:  "Archivo Black", "Arial Black", var(--font-sans);
+    --f-sten:   "Saira Stencil One", var(--font-sans);
+    --f-mark:   "Permanent Marker", "Comic Sans MS", cursive;
+    --f-type:   "Courier Prime", "Courier New", monospace;
+    /* grain photographique partagé (turbulence SVG inline) */
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  body{
+    background:
+      var(--grain),
+      repeating-linear-gradient(103deg, transparent 0 190px, rgba(233,222,196,.055) 190px 191.5px, transparent 192px 340px),
+      repeating-linear-gradient(-24deg, transparent 0 260px, rgba(233,222,196,.045) 260px 261.5px, transparent 262px 420px),
+      repeating-linear-gradient(66deg, transparent 0 470px, rgba(233,222,196,.06) 470px 471px, transparent 471.5px 900px),
+      repeating-linear-gradient(-81deg, transparent 0 620px, rgba(233,222,196,.04) 620px 622px, transparent 623px 1100px),
+      radial-gradient(420px 260px at 6% 3%, rgba(233,222,196,.05), transparent 70%),
+      radial-gradient(520px 300px at 96% 88%, rgba(233,222,196,.045), transparent 70%),
+      radial-gradient(340px 220px at 78% 30%, rgba(233,222,196,.03), transparent 70%),
+      radial-gradient(1200px 700px at 30% -5%, #221d15, transparent 60%),
+      var(--case);
+    color:var(--stencil);
+  }
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+
+  /* ── L'extrusion aluminium du case : cadre fixe + coins rivetés ── */
+  .rail{position:fixed;z-index:60;background:
+      linear-gradient(90deg,#8d887e,#cfcabf 30%,#f2eee4 50%,#a9a49a 75%,#7c776d);
+    box-shadow:inset 0 0 2px rgba(0,0,0,.55), 0 0 10px rgba(0,0,0,.6)}
+  .rail.t{top:0;left:0;right:0;height:10px}
+  .rail.b{bottom:0;left:0;right:0;height:10px}
+  .rail.l{left:0;top:0;bottom:0;width:10px;background:
+      linear-gradient(180deg,#8d887e,#cfcabf 30%,#f2eee4 50%,#a9a49a 75%,#7c776d)}
+  .rail.r{right:0;top:0;bottom:0;width:10px;background:
+      linear-gradient(180deg,#8d887e,#cfcabf 30%,#f2eee4 50%,#a9a49a 75%,#7c776d)}
+  .brace{position:fixed;z-index:61;width:56px;height:56px;pointer-events:none}
+  .brace svg{display:block}
+  .brace.tl{top:0;left:0}
+  .brace.tr{top:0;right:0;transform:scaleX(-1)}
+  .brace.bl{bottom:0;left:0;transform:scaleY(-1)}
+  .brace.br{bottom:0;right:0;transform:scale(-1)}
+
+  /* ── Marquage haut du case : pochoir + stickers de contrôle ── */
+  nav{padding:34px 0 0}
+  nav .wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .sig{font-family:var(--f-sten);font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--stencil);text-shadow:0 1px 0 rgba(0,0,0,.6)}
+  .sig .dim2{color:var(--stencil-dim)}
   nav .spacer{flex:1}
-  /* Pas d'overflow:hidden sur la pilule : il rognerait la zone de frappe
-     étendue des boutons. L'arrondi vit sur les boutons d'extrémité. */
-  .langtog{display:flex;border:1px solid var(--line);border-radius:999px}
-  .langtog button{background:transparent;color:var(--muted);border:0;padding:6px 13px;
-    font-family:var(--font-mono);font-size:.72rem;font-weight:600;cursor:pointer;min-height:32px;
-    position:relative}
-  .langtog button:first-child{border-radius:999px 0 0 999px}
-  .langtog button:last-child{border-radius:0 999px 999px 0}
-  /* Cible tactile 44px sans épaissir la pilule : la zone de frappe déborde
-     verticalement (32 + 2×7 = 46px). Pas de débord horizontal, les boutons
-     sont adjacents et se voleraient les clics. */
-  .langtog button::after{content:"";position:absolute;inset:-7px 0}
-  .langtog button.on{background:var(--accent);color:var(--on-accent)}
-  .langtog button:not(.on):hover{color:var(--txt)}
-  .ghlink{color:var(--muted);font-family:var(--font-mono);font-size:.78rem;font-weight:500;
-    display:inline-flex;align-items:center;min-height:44px}
-  .ghlink:hover{color:var(--txt)}
 
-  /* Hero — une thèse, puis un relevé */
-  header{padding:96px 0 56px}
-  h1{font-size:clamp(2.3rem,6vw,4rem);max-width:15ch}
-  h1 .dim{color:var(--faint)}
-  .lede{font-size:clamp(1.02rem,2.2vw,1.16rem);color:var(--muted);max-width:56ch;margin-top:22px}
+  /* La bascule de langue : trois petits stickers collés sur le case.
+     L'actif est un sticker frais ; les autres ont jauni. */
+  .langtog{display:flex;gap:9px;border:0;border-radius:0}
+  .langtog button{position:relative;min-height:44px;min-width:46px;padding:8px 12px;cursor:pointer;
+    font-family:var(--f-block);font-size:.72rem;letter-spacing:.04em;
+    background:var(--vinyl);color:var(--ink);border:0;border-radius:7px;
+    box-shadow:0 1px 0 rgba(255,255,255,.14) inset, 0 2px 5px rgba(0,0,0,.55);
+    transform:rotate(var(--r,0deg));
+    filter:saturate(.45) sepia(.28) brightness(.82);
+    transition:filter .18s ease, transform .18s ease}
+  .langtog button:nth-child(1){--r:-3deg}
+  .langtog button:nth-child(2){--r:2deg}
+  .langtog button:nth-child(3){--r:-2deg}
+  .langtog button.on{filter:none;background:var(--tape-y);
+    transform:rotate(var(--r,0deg)) translateY(-1px);
+    box-shadow:0 1px 0 rgba(255,255,255,.3) inset, 0 4px 9px rgba(0,0,0,.55)}
+  .langtog button:not(.on):hover{filter:saturate(.8) sepia(.1) brightness(.95)}
 
-  /* Le relevé : la signature de la page — un panneau d'instrument */
-  .readout{display:flex;flex-wrap:wrap;align-items:center;gap:0;margin-top:34px;
-    border:1px solid var(--line);border-radius:var(--radius-sm);
-    background:linear-gradient(180deg,var(--surface),var(--bg-lift));width:fit-content;overflow:hidden}
-  .readout .cell{display:flex;align-items:baseline;gap:7px;padding:11px 16px;
-    border-right:1px solid var(--line-soft);font-family:var(--font-mono);font-size:.76rem;white-space:nowrap}
-  .readout .cell:last-child{border-right:0}
-  .readout .v{color:var(--txt);font-weight:700}
-  .readout .k{color:var(--faint)}
-  /* L'onde est un ::after animé en transform/opacity (composité) plutôt
-     qu'un box-shadow animé (repeint à chaque frame). scale(3) sur 7px
-     reproduit l'ancien halo de 7px d'étalement. */
-  /* --ok : le vert « instrument sous tension », propre au pulse — pas promu
-     en token base.css tant qu'un second usage n'existe pas. */
-  .pulse{--ok:#3ddc84;position:relative;width:7px;height:7px;border-radius:50%;
-    background:var(--ok);align-self:center}
-  .pulse::after{content:"";position:absolute;inset:0;border-radius:50%;
-    background:var(--ok);opacity:.55;animation:pulse 2.6s infinite}
-  @keyframes pulse{
-    0%{transform:scale(1);opacity:.55}
-    70%,100%{transform:scale(3);opacity:0}
+  .ghlink{position:relative;display:inline-flex;align-items:center;justify-content:center;
+    min-height:44px;min-width:52px;padding:8px 10px;border-radius:50%;
+    font-family:var(--f-mark);font-size:.85rem;background:var(--vinyl);color:var(--ink);
+    transform:rotate(6deg);box-shadow:0 2px 6px rgba(0,0,0,.55);
+    filter:saturate(.7) sepia(.12) brightness(.9);transition:filter .18s ease,transform .18s ease}
+  .ghlink:hover{filter:none;transform:rotate(6deg) translateY(-2px)}
+
+  /* ── Hero : le pochoir, le ruban, la poignée ── */
+  header{padding:74px 0 10px}
+  header .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:40px;align-items:start}
+  /* marquage pochoir du case, apposé sous le ruban — jamais au-dessus du titre */
+  .case-mark{grid-column:1/-1;margin-top:26px;text-align:right;
+    font-family:var(--f-sten);font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--stencil-dim);transform:rotate(-.6deg)}
+  h1{margin-top:0;font-family:var(--f-sten);font-size:clamp(2.4rem,5.6vw,4.4rem);line-height:1.02;
+    letter-spacing:.015em;text-transform:uppercase;color:var(--stencil);margin-top:16px;
+    text-shadow:0 2px 0 rgba(0,0,0,.5)}
+  h1 .dim{color:var(--stencil-dim)}
+  .lede{font-family:var(--f-type);font-size:clamp(.95rem,1.6vw,1.05rem);line-height:1.75;
+    color:#b7ad93;max-width:58ch;margin-top:24px}
+
+  /* La poignée encastrée — l'objet-signature du case */
+  .handle{justify-self:end;align-self:center;width:min(258px,100%);filter:drop-shadow(0 10px 22px rgba(0,0,0,.65))}
+
+  /* Le ruban de chantier : les faits imprimés sur bande jaune */
+  .tape{position:relative;margin:44px 0 0;transform:rotate(-1.4deg)}
+  .tape .band{display:flex;flex-wrap:wrap;align-items:center;gap:0;
+    background:
+      var(--grain),
+      repeating-linear-gradient(45deg, rgba(0,0,0,.14) 0 3px, transparent 3px 22px),
+      linear-gradient(180deg,#f0c422,var(--tape-y) 55%,#caa00c);
+    border-top:3px solid #171410;border-bottom:3px solid #171410;
+    box-shadow:0 6px 16px rgba(0,0,0,.5);
+    clip-path:polygon(0 8%,1% 0,99% 3%,100% 12%,100% 88%,99% 100%,1% 97%,0 90%)}
+  .tape .cell{display:flex;align-items:baseline;gap:8px;padding:13px 22px;white-space:nowrap;
+    font-family:var(--f-block);color:#171410}
+  .tape .v{font-size:1.05rem}
+  .tape .k{font-family:var(--f-type);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#3a3008}
+  .tape .sep{width:2px;align-self:stretch;background:rgba(23,20,16,.5)}
+
+  /* ── L'accrétion : le champ de stickers ─────────────────────────────
+     Bureau : positions absolues (--x/--y/--r par sticker), la profondeur
+     est la chronologie (z-index = fraîcheur). Mobile : le champ se
+     recompacte en flux serré, rotations conservées, positions abandonnées. */
+  .field{position:relative;margin-top:26px;height:var(--field-h,1310px)}
+  .stk{position:absolute;left:var(--x);top:var(--y);width:var(--w,200px);
+    transform:rotate(var(--r,0deg));z-index:var(--z,10);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    padding:20px 16px;text-align:center;min-height:44px;
+    background:var(--c);color:var(--sink,var(--ink));
+    border:5px solid var(--vinyl);border-radius:var(--shape,18px);
+    box-shadow:0 3px 10px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.12) inset;
+    transition:transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease, z-index 0s .1s}
+  /* la matière : grain + rayures du vinyle */
+  .stk::after{content:"";position:absolute;inset:-5px;border-radius:inherit;pointer-events:none;
+    background:var(--grain);opacity:.5;mix-blend-mode:overlay}
+  /* le coin qui se soulève au survol : l'unique grammaire de mouvement */
+  .stk::before{content:"";position:absolute;right:-5px;top:-5px;width:34px;height:34px;z-index:2;
+    background:linear-gradient(225deg,var(--case) 0 48%,#d8d0bc 50%,#efe8d6 100%);
+    border-radius:0 var(--shape,18px) 0 14px;
+    box-shadow:-3px 3px 6px rgba(0,0,0,.35);
+    transform:scale(0);transform-origin:top right;
+    transition:transform .22s cubic-bezier(.22,1,.36,1)}
+  .stk:hover,.stk:focus-visible{z-index:55;transform:rotate(var(--r,0deg)) translateY(-5px) scale(1.03);
+    box-shadow:0 14px 30px rgba(0,0,0,.65)}
+  .stk:hover::before,.stk:focus-visible::before{transform:scale(1)}
+  .stk .ic{width:40px;height:40px;flex:none}
+  .stk .ic svg{width:100%;height:100%;display:block}
+  .stk .nm{font-size:1.02rem;line-height:1.05;letter-spacing:.01em}
+  .stk .sub{font-family:var(--f-type);font-weight:700;font-size:.62rem;letter-spacing:.13em;
+    text-transform:uppercase}
+  /* familles de lettrage */
+  .f-block .nm{font-family:var(--f-block);text-transform:uppercase}
+  .f-sten .nm{font-family:var(--f-sten);text-transform:uppercase;letter-spacing:.06em}
+  .f-mark .nm{font-family:var(--f-mark);font-size:1.18rem}
+  /* formes de découpe */
+  .s-round{--shape:50%;aspect-ratio:1;justify-content:center}
+  .s-pill{--shape:999px}
+  .s-tab{--shape:14px 14px 40px 14px}
+  .s-arch{--shape:48% 48% 12px 12px}
+  .s-slant{--shape:6px 26px 6px 26px}
+  /* l'âge : la chronologie en décoloration */
+  .age-3{filter:saturate(.45) sepia(.55) brightness(.88) contrast(.92)}
+  .age-2{filter:saturate(.68) sepia(.3) brightness(.93)}
+  .age-1{filter:saturate(.88) sepia(.05)}
+  .age-0{filter:none}
+  .age-3::after{opacity:.75}
+  .age-2::after{opacity:.62}
+  /* le sticker vedette : le plus frais, le plus haut de la pile */
+  .stk.lead{--z:40;padding:26px 22px}
+  .stk.lead .nm{font-size:1.3rem}
+
+  /* le fantôme d'un sticker arraché : résidu adhésif et contour blanchi */
+  .ghost{position:absolute;left:var(--x);top:var(--y);width:var(--w,170px);height:var(--gh,120px);
+    transform:rotate(var(--r,0deg));border-radius:var(--shape,18px);pointer-events:none;
+    background:
+      var(--grain),
+      radial-gradient(80% 70% at 40% 45%, rgba(217,207,182,.10), rgba(217,207,182,.05) 70%, transparent);
+    border:5px solid rgba(240,233,216,.14);opacity:.9}
+  .ghost::after{content:"";position:absolute;inset:12% 18% 30% 24%;
+    background:var(--grain);opacity:.5;border-radius:40%;
+    box-shadow:0 0 24px rgba(217,207,182,.05)}
+  /* un vieux sticker dont le coin est resté décollé */
+  .stk.lifted::before{transform:scale(1)}
+
+  /* étiquette de zone peinte au pochoir sur le case, entre les grappes */
+  .zone-mark{position:absolute;left:var(--x);top:var(--y);transform:rotate(var(--r,0deg));
+    font-family:var(--f-sten);font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--stencil-dim);opacity:.85;white-space:nowrap;pointer-events:none}
+
+  /* ── Le manifeste : l'inventaire dactylographié scotché au case ── */
+  .manifest{position:relative;margin:64px auto 90px;max-width:1080px;
+    background:
+      var(--grain),
+      repeating-linear-gradient(180deg, transparent 0 27px, rgba(35,32,26,.05) 27px 28px),
+      linear-gradient(180deg,#f2ebd8,var(--paper) 30%,#e3d9bf);
+    color:var(--paper-ink);padding:56px 54px 48px;
+    border-radius:3px;box-shadow:0 18px 44px rgba(0,0,0,.6);
+    transform:rotate(.4deg)}
+  .manifest::before,.manifest::after{content:"";position:absolute;width:120px;height:34px;
+    background:linear-gradient(180deg,rgba(240,233,216,.5),rgba(240,233,216,.32));
+    box-shadow:0 2px 5px rgba(0,0,0,.25);top:-14px}
+  .manifest::before{left:8%;transform:rotate(-4deg)}
+  .manifest::after{right:8%;transform:rotate(3deg)}
+  .manifest,.manifest h2,.manifest h3{font-family:var(--f-type)}
+  .manifest header{padding:0;display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .manifest h2{font-size:1.15rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+  .manifest .stamp{font-family:var(--f-sten);color:var(--red);border:3px solid var(--red);
+    border-radius:6px;padding:4px 12px;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+    transform:rotate(-6deg);opacity:.85}
+  .manifest h3{font-size:.82rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    margin:40px 0 8px;display:flex;align-items:baseline;gap:12px}
+  .manifest h3 .n{color:#5f573f}
+  .manifest h3::after{content:"";flex:1;border-bottom:2px dotted #b4a883;transform:translateY(-4px)}
+  .mrow{display:grid;grid-template-columns:64px 178px 1fr 34px;gap:14px;align-items:baseline;
+    padding:8px 10px;margin:0 -10px;border-radius:4px;color:inherit;
+    font-size:.88rem;line-height:1.5;min-height:44px}
+  .mrow:hover,.mrow:focus-visible{background:rgba(200,53,43,.09)}
+  .mrow:hover .arw,.mrow:focus-visible .arw{transform:translateX(4px)}
+  .mrow .ref{font-weight:700;color:#5f573f;letter-spacing:.05em}
+  .mrow .pname{font-weight:700}
+  .mrow .desc{color:#4a4433}
+  .mrow .arw{justify-self:end;transition:transform .2s ease;font-weight:700}
+  .manifest .foot{margin-top:44px;font-size:.78rem;color:#544c30;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+  /* ── La plaque rivetée du pied ── */
+  footer{padding:0 0 70px}
+  footer .plate{max-width:640px;margin:0 auto;text-align:center;
+    background:linear-gradient(180deg,#8d887e,#c7c2b7 18%,#b1aca1 60%,#767167);
+    color:#221f1a;border-radius:10px;padding:20px 30px;position:relative;
+    box-shadow:0 8px 20px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.5)}
+  footer .plate .rvt{position:absolute;width:11px;height:11px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#efece2,#8b867b 60%,#57534a);
+    box-shadow:0 1px 2px rgba(0,0,0,.5)}
+  footer .rvt.a{top:9px;left:11px}   footer .rvt.b{top:9px;right:11px}
+  footer .rvt.c{bottom:9px;left:11px} footer .rvt.d{bottom:9px;right:11px}
+  footer .plate p{font-family:var(--f-type);font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
+  footer .plate a{color:#5d2019;text-decoration:underline;text-underline-offset:3px}
+  footer .plate .mono{margin-top:6px;font-size:.7rem;color:#4c483f;letter-spacing:.18em}
+
+  ::selection{background:var(--tape-y);color:var(--ink)}
+
+  /* ── Recompactage mobile / tablette ── */
+  @media (max-width:900px){
+    header .wrap{grid-template-columns:1fr}
+    .handle{justify-self:center;width:220px;order:2}
   }
-
-  /* La planche d'instruments.
-     4 colonnes en grand écran : la rangée « IA & dev » (4 instruments) tombe juste.
-     Les instruments seuls dans leur bande prennent la largeur plutôt que de
-     laisser un trou — un rack ne se lit pas bien à moitié vide. */
-  .rack{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:var(--gap);
-    padding:16px 0 48px}
-  .inst.wide{grid-column:1/-1}
-  .band{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:30px 0 2px}
-  .band .lbl{font-family:var(--font-mono);font-size:.7rem;font-weight:700;text-transform:uppercase;
-    letter-spacing:.13em;color:var(--muted);white-space:nowrap}
-  .band .rule{flex:1;height:1px;background:var(--line)}
-  .band .n{font-family:var(--font-mono);font-size:.7rem;color:var(--faint)}
-
-  /* Tuile = un instrument dans son rack */
-  .inst{position:relative;display:flex;flex-direction:column;
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    padding:22px 22px 20px;overflow:hidden;
-    transition:border-color .2s ease,background .2s ease}
-  /* la LED du rack : l'accent du projet, repris sur sa landing page */
-  .inst::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
-    background:var(--accent);opacity:.5;transition:opacity .2s ease}
-  .inst:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));background:var(--surface-2)}
-  .inst:hover::before{opacity:1}
-  .inst:focus-within{border-color:var(--accent)}
-
-  .inst .head{display:flex;align-items:center;gap:12px;margin-bottom:11px}
-  .inst .gauge{flex:none;width:42px;height:42px;display:grid;place-items:center;
-    border:1px solid var(--line);border-radius:11px;background:var(--bg-lift);color:var(--accent)}
-  .inst h3{font-size:1.06rem;font-weight:700;letter-spacing:-.015em}
-  .inst .sub{font-family:var(--font-mono);font-size:.66rem;color:var(--faint);
-    text-transform:uppercase;letter-spacing:.09em;margin-top:2px}
-  .inst p{color:var(--muted);font-size:.9rem;flex:1;margin-bottom:16px}
-  .inst .go{font-family:var(--font-mono);font-size:.78rem;font-weight:600;color:var(--accent);
-    display:inline-flex;align-items:center;gap:7px}
-  .inst:hover .go .arw{transform:translateX(3px)}
-  .go .arw{transition:transform .2s ease}
-  /* toute la tuile est cliquable, sans piéger le clavier */
-  .inst .go::after{content:"";position:absolute;inset:0}
-
-  /* L'instrument mis en avant */
-  .inst.lead{grid-column:1/-1;background:
-    radial-gradient(700px 220px at 12% 0%,color-mix(in srgb,var(--accent) 13%,transparent),transparent 70%),
-    var(--surface)}
-  .inst.lead h3{font-size:1.34rem}
-  .inst.lead p{max-width:70ch}
-  .inst.lead .links{display:flex;gap:22px;flex-wrap:wrap}
-  .inst.lead .go::after{content:none}
-  /* Seules tuiles sans overlay cliquable : les deux liens portent la cible
-     tactile eux-mêmes. */
-  .inst.lead .go{min-height:44px}
-
-  footer{border-top:1px solid var(--line);padding:38px 0 64px;color:var(--muted);font-size:.88rem}
-  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
-  footer a{color:var(--accent);font-weight:600}
-  footer .mono{font-family:var(--font-mono);font-size:.74rem;color:var(--faint)}
-
-  /* Plaud comble la fin de la bande « productivité » — mais seulement
-     quand la grille a réellement plusieurs colonnes. */
-  @media (min-width:820px){ .inst.span2{grid-column:span 2} }
-
-  @media (max-width:620px){
-    header{padding:56px 0 36px}
-    h1{font-size:clamp(1.95rem,8.5vw,3rem);max-width:none}
-    .lede{font-size:1rem}
-    .readout{width:100%}
-    .readout .cell{flex:1 1 45%;justify-content:flex-start}
-    .rack{grid-template-columns:1fr}
-    .inst.lead h3{font-size:1.16rem}
+  @media (max-width:760px){
+    header{padding:46px 0 6px}
+    .field{height:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:22px 16px;padding:10px 0 6px}
+    .stk{position:relative;left:auto;top:auto;width:clamp(140px,44vw,210px)}
+    .stk.lead{width:min(320px,92vw)}
+    .zone-mark{position:static;flex-basis:100%;text-align:center;transform:rotate(-1deg);margin-top:16px}
+    .manifest{padding:42px 20px 36px;transform:none}
+    .mrow{grid-template-columns:52px 1fr 26px;grid-template-rows:auto auto}
+    .mrow .desc{grid-column:2/4}
+    .mrow .ref{grid-row:1;grid-column:1}
+    .mrow .pname{grid-row:1;grid-column:2}
+    .mrow .arw{grid-row:1;grid-column:3}
+    .tape{transform:rotate(-1deg)}
   }
+  @media (max-width:430px){
+    .stk{padding:16px 12px}
+    .stk .nm{font-size:.84rem;letter-spacing:0;overflow-wrap:anywhere}
+    .f-mark .nm{font-size:.98rem}
+    .stk .sub{font-size:.56rem;letter-spacing:.08em}
+  }
+  body.lang-zh h1{font-family:var(--font-sans);font-weight:800}
 </style>
 </head>
 <body class="lang-en">
+<!-- THESIS: the hub is one builder's road case — the shipped corpus (28 stickers) as years of
+     die-cut stickers on scuffed laminate; it refuses the dev-portfolio card grid.
+     OWN-WORLD: black scuffed case laminate framed in riveted aluminium extrusion;
+     die-cut vinyl stickers (each project's color, white vinyl border, aged by
+     chronology); beige stencil case markings; yellow caution tape carrying the
+     facts; typewritten packing manifest on taped paper. Recognizable empty.
+     STORY: the visitor lands on a real object proving years of shipping, spots
+     their tool by sticker or manifest, clicks through to its landing page.
+     FIRST VIEWPORT: stencil headline left, caution-tape facts angled below,
+     recessed steel handle right, the accretion rising underneath; language
+     switch is three small stickers top right.
+     FORM: layered sticker accretion (flight case) — dealt challenger, won the
+     round by user choice over assigned candidate #4; seed key 39f91a6c.
+     FINISH: unreviewed and undocumented is unfinished; this build ends with the
+     finish review, the verdict, DESIGN.md, and every shipping raster carrying
+     its provenance. -->
 
-<a class="skip" href="#rack"><span class="en">Skip to projects</span><span class="fr">Aller aux projets</span><span class="zh">跳至專案</span></a>
+<a class="skip" href="#field"><span class="en">Skip to projects</span><span class="fr">Aller aux projets</span><span class="zh">跳至專案</span></a>
+
+<div class="rail t" aria-hidden="true"></div>
+<div class="rail b" aria-hidden="true"></div>
+<div class="rail l" aria-hidden="true"></div>
+<div class="rail r" aria-hidden="true"></div>
+<div class="brace tl" aria-hidden="true"><svg width="56" height="56" viewBox="0 0 56 56"><path d="M0 0h56v14L38 18 18 38 14 56H0z" fill="#a49f94"/><path d="M0 0h56v6H6v50H0z" fill="#cdc8bd"/><circle cx="12" cy="12" r="4" fill="#7b766c"/><circle cx="34" cy="10" r="3" fill="#7b766c"/><circle cx="10" cy="34" r="3" fill="#7b766c"/></svg></div>
+<div class="brace tr" aria-hidden="true"><svg width="56" height="56" viewBox="0 0 56 56"><path d="M0 0h56v14L38 18 18 38 14 56H0z" fill="#a49f94"/><path d="M0 0h56v6H6v50H0z" fill="#cdc8bd"/><circle cx="12" cy="12" r="4" fill="#7b766c"/><circle cx="34" cy="10" r="3" fill="#7b766c"/><circle cx="10" cy="34" r="3" fill="#7b766c"/></svg></div>
+<div class="brace bl" aria-hidden="true"><svg width="56" height="56" viewBox="0 0 56 56"><path d="M0 0h56v14L38 18 18 38 14 56H0z" fill="#a49f94"/><path d="M0 0h56v6H6v50H0z" fill="#cdc8bd"/><circle cx="12" cy="12" r="4" fill="#7b766c"/><circle cx="34" cy="10" r="3" fill="#7b766c"/><circle cx="10" cy="34" r="3" fill="#7b766c"/></svg></div>
+<div class="brace br" aria-hidden="true"><svg width="56" height="56" viewBox="0 0 56 56"><path d="M0 0h56v14L38 18 18 38 14 56H0z" fill="#a49f94"/><path d="M0 0h56v6H6v50H0z" fill="#cdc8bd"/><circle cx="12" cy="12" r="4" fill="#7b766c"/><circle cx="34" cy="10" r="3" fill="#7b766c"/><circle cx="10" cy="34" r="3" fill="#7b766c"/></svg></div>
 
 <nav><div class="wrap">
-  <span class="sig">Vincent Lauriat</span>
+  <span class="sig">Vincent Lauriat <span class="dim2">· flight case</span></span>
   <div class="spacer"></div>
   <div class="langtog" role="group" aria-label="Language / Langue / 語言">
     <button type="button" data-lang="en" class="on" onclick="setLang('en')">EN</button>
     <button type="button" data-lang="fr" onclick="setLang('fr')">FR</button>
     <button type="button" data-lang="zh" onclick="setLang('zh')">中文</button>
   </div>
-  <a class="ghlink" href="https://github.com/vincentlauriat" target="_blank" rel="noopener">github ↗</a>
+  <a class="ghlink" href="https://github.com/vincentlauriat" target="_blank" rel="noopener" aria-label="GitHub">GH↗</a>
 </div></nav>
 
 <header><div class="wrap">
-  <p class="eyebrow"><span class="en">Native macOS &amp; iOS · open source</span><span class="fr">macOS &amp; iOS natif · open source</span><span class="zh">原生 macOS 與 iOS · 開源</span></p>
-  <h1 style="margin-top:14px">
-    <span class="en">Your Mac knows more <span class="dim">than it shows.</span></span>
-    <span class="fr">Votre Mac en sait plus <span class="dim">qu'il n'en montre.</span></span>
-    <span class="zh">你的 Mac 知道的，<span class="dim">遠比它顯示的多。</span></span>
-  </h1>
-  <p class="lede">
-    <span class="en">Sensors, fan speed, window stack, bandwidth, token spend, iPhone health — the system measures all of it and surfaces almost none of it. These are the instruments that read it back.</span>
-    <span class="fr">Capteurs, vitesse des ventilateurs, pile de fenêtres, bande passante, tokens consommés, santé de l'iPhone — le système mesure tout cela et n'en montre presque rien. Voici les instruments qui le donnent à lire.</span>
-    <span class="zh">感測器、風扇轉速、視窗堆疊、頻寬、token 用量、iPhone 健康度——系統全都測量了，卻幾乎什麼都不顯示。這些就是把它讀回來的儀器。</span>
-  </p>
+  <div>
+    <h1>
+      <span class="en">Your Mac knows more <span class="dim">than it shows.</span></span>
+      <span class="fr">Votre Mac en sait plus <span class="dim">qu'il n'en montre.</span></span>
+      <span class="zh">你的 Mac 知道的，<span class="dim">遠比它顯示的多。</span></span>
+    </h1>
+    <p class="lede">
+      <span class="en">Sensors, fan speed, window stack, bandwidth, token spend, iPhone health — the system measures all of it and surfaces almost none of it. Every sticker on this case is a shipped instrument that reads it back.</span>
+      <span class="fr">Capteurs, ventilateurs, pile de fenêtres, bande passante, tokens, santé de l'iPhone — le système mesure tout et n'en montre presque rien. Chaque sticker sur ce case est un instrument livré qui le donne à lire.</span>
+      <span class="zh">感測器、風扇轉速、視窗堆疊、頻寬、token 用量、iPhone 健康度——系統全都測量了，卻幾乎什麼都不顯示。這個箱子上的每一張貼紙，都是一件已出廠、把數據讀回來的儀器。</span>
+    </p>
+  </div>
+  <svg class="handle" viewBox="0 0 300 190" aria-hidden="true">
+    <rect x="6" y="6" width="288" height="178" rx="20" fill="#8b867b"/>
+    <rect x="6" y="6" width="288" height="172" rx="20" fill="url(#hgrad)"/>
+    <defs>
+      <linearGradient id="hgrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#b5b0a5"/><stop offset=".5" stop-color="#9b968b"/><stop offset="1" stop-color="#6b665d"/>
+      </linearGradient>
+      <linearGradient id="hbar" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#c2bdb2"/><stop offset=".5" stop-color="#948f84"/><stop offset="1" stop-color="#615d54"/>
+      </linearGradient>
+    </defs>
+    <rect x="34" y="34" width="232" height="122" rx="14" fill="#14110d"/>
+    <rect x="34" y="30" width="232" height="10" rx="5" fill="#0b0906"/>
+    <rect x="38" y="38" width="224" height="114" rx="12" fill="none" stroke="#000" stroke-opacity=".55" stroke-width="5"/>
+    <rect x="58" y="74" width="184" height="30" rx="15" fill="url(#hbar)"/>
+    <rect x="58" y="74" width="184" height="9" rx="4.5" fill="#d8d3c8" opacity=".22"/>
+    <g fill="#57534a">
+      <circle cx="22" cy="22" r="5"/><circle cx="278" cy="22" r="5"/><circle cx="22" cy="168" r="5"/><circle cx="278" cy="168" r="5"/>
+      <circle cx="150" cy="20" r="4"/><circle cx="150" cy="170" r="4"/>
+    </g>
+    <g fill="#dcd7cc">
+      <circle cx="21" cy="21" r="2"/><circle cx="277" cy="21" r="2"/><circle cx="21" cy="167" r="2"/><circle cx="277" cy="167" r="2"/>
+    </g>
+  </svg>
 
-  <div class="readout" role="group" aria-label="Build facts">
-    <div class="cell"><span class="pulse" aria-hidden="true"></span><span class="v">21</span><span class="k">instruments</span></div>
-    <div class="cell"><span class="v">100%</span><span class="k">native swift</span></div>
-    <div class="cell"><span class="v">0</span><span class="k"><span class="en">telemetry</span><span class="fr">télémétrie</span><span class="zh">遙測</span></span></div>
-    <div class="cell"><span class="v">MIT</span><span class="k"><span class="en">licensed</span><span class="fr">licence</span><span class="zh">授權</span></span></div>
-    <!-- Ce relevé décrit les apps, pas cette page. Les apps sont localisées
-         EN/FR ; la page est trilingue. Ne pas y écrire 中文 tant que les
-         apps elles-mêmes ne le sont pas — ce serait une promesse fausse. -->
-    <div class="cell"><span class="v">EN/FR</span><span class="k"><span class="en">apps localized</span><span class="fr">apps localisées</span><span class="zh">應用程式語言</span></span></div>
+  <!-- Le relevé, imprimé sur ruban de chantier. Les faits décrivent les apps
+       (localisées EN/FR) ; la page, elle, est trilingue. Règle de comptage :
+       21 = apps macOS natives Swift — jeux, OpenAlice (agent), HomebrewConfig
+       (TUI Rust) et Toolkit (plugins) exclus. À CHAQUE AJOUT DE PROJET :
+       bumper ce ruban, la zone du manifeste, meta description et og:description. -->
+  <div class="tape" role="group" aria-label="Build facts" id="facts" style="grid-column:1/-1">
+    <div class="band">
+      <div class="cell"><span class="v">21</span><span class="k"><span class="en">instruments</span><span class="fr">instruments</span><span class="zh">儀器</span></span></div>
+      <span class="sep" aria-hidden="true"></span>
+      <div class="cell"><span class="v">100%</span><span class="k">swift</span></div>
+      <span class="sep" aria-hidden="true"></span>
+      <div class="cell"><span class="v">0</span><span class="k"><span class="en">telemetry</span><span class="fr">télémétrie</span><span class="zh">遙測</span></span></div>
+      <span class="sep" aria-hidden="true"></span>
+      <div class="cell"><span class="v">MIT</span><span class="k"><span class="en">licensed</span><span class="fr">licence</span><span class="zh">授權</span></span></div>
+      <span class="sep" aria-hidden="true"></span>
+      <div class="cell"><span class="v">EN/FR</span><span class="k"><span class="en">apps localized</span><span class="fr">apps localisées</span><span class="zh">應用程式語言</span></span></div>
+      <span class="sep" aria-hidden="true"></span>
+      <div class="cell"><span class="v">✓</span><span class="k"><span class="en">signed &amp; notarized</span><span class="fr">signé &amp; notarisé</span><span class="zh">已簽章公證</span></span></div>
+    </div>
+    <p class="case-mark" aria-hidden="false"><span class="en">Native macOS &amp; iOS · open source · one-man crew</span><span class="fr">macOS &amp; iOS natif · open source · équipe d'un seul homme</span><span class="zh">原生 macOS 與 iOS · 開源 · 一人團隊</span></p>
   </div>
 </div></header>
 
-<!-- ═══ AJOUTER UNE CARTE = SYNCHRONISER LES COMPTEURS ═══════════════════
-     Quatre valeurs dénombrées à la main dépendent du contenu du rack :
-       1. le <span class="n"> de la bande concernée (nombre de tuiles) ;
-       2. le « 21 instruments » du readout — règle de comptage : apps macOS
-          natives Swift uniquement (jeux exclus ; OpenAlice = agent,
-          HomebrewConfig = TUI Rust, Toolkit = plugins : exclus aussi —
-          c'est ce qui rend « 100% native swift » exact) ;
-       3. meta name="description" (liste nominative des projets) ;
-       4. og:description (« Twenty-one … plus four games »).
-     tabindex="-1" : cible du lien d'évitement — garantit que le focus se
-     déplace bien, pas seulement le scroll. ═══════════════════════════════ -->
-<main class="wrap"><div class="rack" id="rack" tabindex="-1">
+<main class="wrap">
 
-  <!-- ── Mis en avant ────────────────────────────────────────────────── -->
-  <article class="inst lead" style="--accent:#84cc16">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 17.5 8 11l4 3.5L21 5"/><path d="M15 5h6v6"/>
-        </svg>
-      </div>
-      <div>
-        <p class="eyebrow"><span class="en">Featured</span><span class="fr">À la une</span><span class="zh">精選</span></p>
-        <h3>StartAlice &amp; OpenAlice</h3>
-      </div>
-    </div>
-    <p>
-      <span class="en"><b>OpenAlice</b> is an open-source AI trading agent. <b>StartAlice</b> is the one-click macOS app that installs, updates and launches it — signed, notarized, bilingual.</span>
-      <span class="fr"><b>OpenAlice</b> est un agent de trading IA open-source. <b>StartAlice</b> est l'app macOS en un clic qui l'installe, le met à jour et le lance — signée, notarisée, bilingue.</span><span class="zh"><b>OpenAlice</b> 是開源的 AI 交易代理程式。<b>StartAlice</b> 則是一鍵安裝、更新並啟動它的 macOS 應用程式——已簽章、已公證、雙語。</span>
+  <!-- ══ L'ACCRÉTION ══ 26 stickers, la profondeur est la chronologie.
+       Chaque sticker reprend l'icône et la couleur du projet ; les vieux ont
+       jauni (.age-3) ; les récents brillent (.age-0, z-index haut). -->
+  <div class="field" id="field" tabindex="-1" role="group" aria-label="Projects">
+
+    <span class="zone-mark" style="--x:2%;--y:8px;--r:-2deg" aria-hidden="true">AI / DEV — 07</span>
+
+    <a class="stk s-slant f-block age-1" href="https://vincentlauriat.github.io/AuditViewer/" target="_blank" rel="noopener"
+       style="--c:#e879f9;--x:1%;--y:52px;--r:-6deg;--w:190px;--z:14">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/><path d="M8 12v-2M10.8 12V8.4M13.5 12v-3"/></svg></span>
+      <span class="nm">AuditViewer</span><span class="sub">research</span>
+    </a>
+
+    <a class="stk s-round f-mark age-1" href="https://vincentlauriat.github.io/RTKInfos/" target="_blank" rel="noopener"
+       style="--c:#34d399;--x:14%;--y:10px;--r:5deg;--w:176px;--z:15">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15.5 7 9l3.5 4L14 6.5 17 11l4-6.5"/><path d="M3 20h18"/></svg></span>
+      <span class="nm">RTKInfos</span><span class="sub">token savings</span>
+    </a>
+
+    <a class="stk s-tab f-block age-1" href="https://vincentlauriat.github.io/ClaudeCodeUsage/" target="_blank" rel="noopener"
+       style="--c:#22c55e;--x:27.5%;--y:58px;--r:-3deg;--w:210px;--z:13">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V12M9.3 20V6M14.7 20v-5M20 20V9"/></svg></span>
+      <span class="nm">ClaudeCodeUsage</span><span class="sub">usage dashboard</span>
+    </a>
+
+    <a class="stk s-pill f-sten age-1" href="https://vincentlauriat.github.io/BmadBrowser/" target="_blank" rel="noopener"
+       style="--c:#38bdf8;--x:44.5%;--y:16px;--r:4deg;--w:214px;--z:12">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg></span>
+      <span class="nm">BmadBrowser</span><span class="sub">bmad artifacts</span>
+    </a>
+
+    <a class="stk s-arch f-block age-1" href="https://vincentlauriat.github.io/ClaudeSessionView/" target="_blank" rel="noopener"
+       style="--c:#d97757;--x:61%;--y:52px;--r:-5deg;--w:200px;--z:16">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+      <span class="nm">ClaudeSessionView</span><span class="sub">account usage</span>
+    </a>
+
+    <a class="stk s-slant f-mark age-1" href="https://vincentlauriat.github.io/toolkit/" target="_blank" rel="noopener"
+       style="--c:#c084fc;--x:78%;--y:12px;--r:6deg;--w:176px;--z:11">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg></span>
+      <span class="nm">Toolkit</span><span class="sub">cc plugins</span>
+    </a>
+
+    <a class="stk s-tab f-sten age-1" href="https://vincentlauriat.github.io/homebrewconfig/" target="_blank" rel="noopener"
+       style="--c:#fbbf24;--x:82%;--y:168px;--r:-4deg;--w:190px;--z:10">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M12 15h5"/></svg></span>
+      <span class="nm">HomebrewConfig</span><span class="sub">brew tui</span>
+    </a>
+
+    <!-- vedette : le sticker le plus frais, en haut de pile -->
+    <a class="stk lead s-badge f-block age-0" href="https://vincentlauriat.github.io/StartAlice/" target="_blank" rel="noopener"
+       style="--c:#84cc16;--x:22%;--y:222px;--r:-2deg;--w:304px;--z:40">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17.5 8 11l4 3.5L21 5"/><path d="M15 5h6v6"/></svg></span>
+      <span class="nm">StartAlice</span>
+      <span class="sub"><span class="en">one-click AI trading agent launcher</span><span class="fr">lanceur one-click de l'agent de trading IA</span><span class="zh">AI 交易代理一鍵啟動器</span></span>
+    </a>
+
+    <a class="stk s-round f-mark age-0" href="https://openalice.ai" target="_blank" rel="noopener"
+       style="--c:#a3e635;--x:46.5%;--y:292px;--r:7deg;--w:152px;--z:39">
+      <span class="nm">OpenAlice</span><span class="sub">open source</span>
+    </a>
+
+    <span class="zone-mark" style="--x:2%;--y:420px;--r:-1deg" aria-hidden="true">MACOS — 14</span>
+
+    <a class="stk s-badge f-block age-2" href="https://vincentlauriat.github.io/MacInside/" target="_blank" rel="noopener"
+       style="--c:#f5a524;--x:1%;--y:460px;--r:4deg;--w:210px;--z:8">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.2 17a9 9 0 1 1 15.6 0"/><path d="m12 13 4-3.4"/><circle cx="12" cy="17" r="1.4"/></svg></span>
+      <span class="nm">MacInside</span><span class="sub">system sensors</span>
+    </a>
+
+    <a class="stk s-pill f-mark age-2" href="https://vincentlauriat.github.io/AppsSwitch/" target="_blank" rel="noopener"
+       style="--c:#f472b6;--x:14.5%;--y:420px;--r:-5deg;--w:200px;--z:9">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="10" rx="1.6"/><path d="M8 19h11a2 2 0 0 0 2-2V9"/></svg></span>
+      <span class="nm">AppsSwitch</span><span class="sub">window switcher</span>
+    </a>
+
+    <a class="stk lifted s-tab f-sten age-3" href="https://vincentlauriat.github.io/MarkdownViewer/" target="_blank" rel="noopener"
+       style="--c:#58a6ff;--x:30.5%;--y:466px;--r:3deg;--w:204px;--z:6">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M6.5 15.5v-7l3 3.5 3-3.5v7"/><path d="M16.5 8.5v7M14.5 13l2 2.5 2-2.5"/></svg></span>
+      <span class="nm">MarkdownViewer</span><span class="sub">markdown</span>
+    </a>
+
+    <a class="stk s-round f-block age-3" href="https://vincentlauriat.github.io/WifiManager/" target="_blank" rel="noopener"
+       style="--c:#0e9fc3;--x:47.5%;--y:430px;--r:-6deg;--w:172px;--z:5">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a15 15 0 0 1 19 0"/><path d="M5.8 12.5a10 10 0 0 1 12.4 0"/><path d="M9 15.9a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.1"/></svg></span>
+      <span class="nm">WifiManager</span><span class="sub">wifi quality</span>
+    </a>
+
+    <a class="stk s-slant f-sten age-3" href="https://vincentlauriat.github.io/NetCheck/" target="_blank" rel="noopener"
+       style="--c:#818cf8;--x:61.5%;--y:466px;--r:5deg;--w:188px;--z:7">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2.5-6 3.5 12 3-8 2 2h5"/></svg></span>
+      <span class="nm">NetCheck</span><span class="sub">network diag</span>
+    </a>
+
+    <a class="stk s-arch f-block age-2" href="https://vincentlauriat.github.io/StarlinkInfos/" target="_blank" rel="noopener"
+       style="--c:#6ad65c;--x:77%;--y:422px;--r:-3deg;--w:194px;--z:8">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a7.31 7.31 0 0 0 10 10Z"/><path d="m9 15 3-3"/><path d="M17 13a6 6 0 0 0-6-6"/><path d="M21 13A10 10 0 0 0 11 3"/></svg></span>
+      <span class="nm">StarlinkInfos</span><span class="sub">dish telemetry</span>
+    </a>
+
+    <a class="stk s-pill f-block age-2" href="https://vincentlauriat.github.io/iPhoneStatus/" target="_blank" rel="noopener"
+       style="--c:#a78bfa;--x:3%;--y:640px;--r:-4deg;--w:198px;--z:9">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.4"/><path d="M9.5 6.5h5"/><path d="M9.5 12h5v4h-5z"/></svg></span>
+      <span class="nm">iPhoneStatus</span><span class="sub">iphone health</span>
+    </a>
+
+    <a class="stk s-tab f-mark age-3" href="https://vincentlauriat.github.io/MoveApps/" target="_blank" rel="noopener"
+       style="--c:#2dd4bf;--x:17%;--y:678px;--r:5deg;--w:182px;--z:5">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h13M13 4l4 4-4 4"/><path d="M21 16H8M11 12l-4 4 4 4"/></svg></span>
+      <span class="nm">MoveApps</span><span class="sub">project mover</span>
+    </a>
+
+    <a class="stk s-round f-sten age-2" href="https://vincentlauriat.github.io/OSINT-index/" target="_blank" rel="noopener"
+       style="--c:#22d3ee;--x:32%;--y:645px;--r:-5deg;--w:174px;--z:7">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/><circle cx="10.5" cy="10.5" r="2.6"/></svg></span>
+      <span class="nm">OSINT-index</span><span class="sub">osint catalog</span>
+    </a>
+
+    <a class="stk s-badge f-block age-0" href="https://vincentlauriat.github.io/ZendureMonitor/" target="_blank" rel="noopener"
+       style="--c:#facc15;--x:46.5%;--y:680px;--r:3deg;--w:216px;--z:30">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/></svg></span>
+      <span class="nm">ZendureMonitor</span><span class="sub">solar monitor</span>
+    </a>
+
+    <a class="stk s-arch f-sten age-0" href="https://vincentlauriat.github.io/HaywardMonitor/" target="_blank" rel="noopener"
+       style="--c:#22d3ee;--x:64%;--y:640px;--r:-4deg;--w:202px;--z:31">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.34 17.66A8 8 0 1 1 17.66 17.66"/><path d="M7.4 13.4c1.53-1.1 3.07-1.1 4.6 0s3.07 1.1 4.6 0"/><path d="M9.2 16.1c1-0.8 2-0.8 3 0s2 0.8 3 0"/></svg></span>
+      <span class="nm">HaywardMonitor</span><span class="sub">pool control</span>
+    </a>
+
+    <a class="stk s-round f-block age-0" href="https://vincentlauriat.github.io/MeteoStation/" target="_blank" rel="noopener"
+       style="--c:#7dd3fc;--x:80%;--y:678px;--r:6deg;--w:180px;--z:32">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="3.4"/><path d="M9 2.2v1.6M9 14.2v1.6M2.2 9h1.6M14.2 9h1.6M4.2 4.2l1.1 1.1M12.7 12.7l1.1 1.1M13.8 4.2l-1.1 1.1"/><path d="M18.5 6.5v9.2a2.3 2.3 0 1 1-2-.1"/></svg></span>
+      <span class="nm">MeteoStation</span><span class="sub">weather station</span>
+    </a>
+
+    <a class="stk s-badge f-mark age-0" href="https://vincentlauriat.github.io/EufyGuard/" target="_blank" rel="noopener"
+       style="--c:#2dd4bf;--x:6%;--y:848px;--r:3deg;--w:202px;--z:33">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6l7.2 3v5.8c0 4.6-3 7.8-7.2 9.6-4.2-1.8-7.2-5-7.2-9.6V5.6l7.2-3z"/><circle cx="12" cy="10.8" r="3.1"/><circle cx="12" cy="10.8" r=".6" fill="currentColor"/></svg></span>
+      <span class="nm">EufyGuard</span><span class="sub">camera watch</span>
+    </a>
+
+    <a class="stk s-slant f-block age-1" href="https://vincentlauriat.github.io/plaud-companion/" target="_blank" rel="noopener"
+       style="--c:#f5731f;--x:20.5%;--y:888px;--r:-5deg;--w:208px;--z:12">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4M8 6.5v11M12 3.5v17M16 7.5v9M20 10.5v3"/></svg></span>
+      <span class="nm">Plaud Companion</span><span class="sub">voice notes</span>
+    </a>
+
+    <span class="ghost" style="--x:88%;--y:552px;--r:8deg;--w:150px;--gh:110px;--shape:50%" aria-hidden="true"></span>
+    <span class="ghost" style="--x:38%;--y:1080px;--r:-5deg;--w:180px;--gh:96px" aria-hidden="true"></span>
+
+    <span class="zone-mark" style="--x:42%;--y:856px;--r:-2deg" aria-hidden="true">NEWS — 01</span>
+
+    <a class="stk s-tab f-block age-2" href="https://vincentlauriat.github.io/TheNews/" target="_blank" rel="noopener"
+       style="--c:#e8564f;--x:41%;--y:892px;--r:2deg;--w:218px;--z:9">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-3 1.7"/><path d="M7.5 8.5h6M7.5 12h6M7.5 15h3.5"/></svg></span>
+      <span class="nm">TheNews</span><span class="sub">macOS · iOS</span>
+    </a>
+
+    <span class="zone-mark" style="--x:64%;--y:856px;--r:2deg" aria-hidden="true">GAMES — 04</span>
+
+    <a class="stk s-round f-mark age-2" href="https://vincentlauriat.github.io/Solitaire/" target="_blank" rel="noopener"
+       style="--c:#d9b45c;--x:60.5%;--y:890px;--r:-6deg;--w:164px;--z:6">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5C8.6 7 5 9.3 5 12.6a3.3 3.3 0 0 0 5.7 2.3L12 13.5l1.3 1.4a3.3 3.3 0 0 0 5.7-2.3c0-3.3-3.6-5.6-7-10.1Z"/><path d="M12 15v4.5M9 21.5h6"/></svg></span>
+      <span class="nm">Solitaire</span><span class="sub">klondike</span>
+    </a>
+
+    <a class="stk s-badge f-block age-2" href="https://vincentlauriat.github.io/SpaceInvaders/" target="_blank" rel="noopener"
+       style="--c:#3cff6e;--x:74.5%;--y:862px;--r:4deg;--w:190px;--z:7">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h2v2H6zM16 4h2v2h-2zM8 6h2v2H8zM14 6h2v2h-2zM6 8h12v2H6zM4 10h6v2H4zM10 10h4v2h-4zM14 10h6v2h-6zM2 12h20v2H2zM2 14h2v4H2zM20 14h2v4h-2zM6 16h2v2H6zM16 16h2v2h-2zM9 18h2v2H9zM13 18h2v2h-2z"/></svg></span>
+      <span class="nm">Space Invaders</span><span class="sub">arcade 1978</span>
+    </a>
+
+    <a class="stk s-round f-block age-2" href="https://vincentlauriat.github.io/PacMan/" target="_blank" rel="noopener"
+       style="--c:#f0c419;--x:64%;--y:1074px;--r:5deg;--w:160px;--z:8">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12 21.1 6.75A10.5 10.5 0 1 0 21.1 17.25Z"/><circle cx="11.4" cy="6.6" r="1.35" fill="#16130f"/></svg></span>
+      <span class="nm">Pac-Man</span><span class="sub">arcade 1980</span>
+    </a>
+
+    <a class="stk s-slant f-sten age-2" href="https://vincentlauriat.github.io/Sudoku/" target="_blank" rel="noopener"
+       style="--c:#5d88ff;--x:77.5%;--y:1056px;--r:-3deg;--w:176px;--z:9">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9.2h17M3.5 14.8h17M9.2 3.5v17M14.8 3.5v17"/></svg></span>
+      <span class="nm">Sudoku</span><span class="sub">logic</span>
+    </a>
+
+  </div>
+
+  <!-- ══ LE MANIFESTE ══ l'inventaire dactylographié : la findability.
+       Chaque ligne double le sticker — c'est aussi l'ossature lecteur d'écran. -->
+  <section class="manifest" aria-labelledby="mtitle">
+    <header>
+      <h2 id="mtitle"><span class="en">Packing manifest</span><span class="fr">Inventaire de tournée</span><span class="zh">裝箱清單</span></h2>
+      <span class="stamp" aria-hidden="true"><span class="en">all shipped</span><span class="fr">tout livré</span><span class="zh">全部出貨</span></span>
+    </header>
+
+    <h3><span class="en">Zone A — AI &amp; dev tools</span><span class="fr">Zone A — IA &amp; outils dev</span><span class="zh">A 區 — AI 與開發工具</span> <span class="n">· 07</span></h3>
+    <a class="mrow" href="https://vincentlauriat.github.io/StartAlice/" target="_blank" rel="noopener"><span class="ref">A-01</span><span class="pname">StartAlice &amp; OpenAlice</span><span class="desc"><span class="en"><b>OpenAlice</b> is an open-source AI trading agent; <b>StartAlice</b> is the one-click macOS app that installs, updates and launches it.</span><span class="fr"><b>OpenAlice</b> est un agent de trading IA open-source ; <b>StartAlice</b> est l'app macOS en un clic qui l'installe, le met à jour et le lance.</span><span class="zh"><b>OpenAlice</b> 是開源 AI 交易代理；<b>StartAlice</b> 是一鍵安裝、更新並啟動它的 macOS 應用程式。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/AuditViewer/" target="_blank" rel="noopener"><span class="ref">A-02</span><span class="pname">AuditViewer</span><span class="desc"><span class="en">Turn any company, product or market into a complete, sourced strategic dossier.</span><span class="fr">Transforme une entreprise, un produit ou un marché en dossier stratégique sourcé.</span><span class="zh">把任何公司、產品或市場，變成一份完整且有出處的策略檔案。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/RTKInfos/" target="_blank" rel="noopener"><span class="ref">A-03</span><span class="pname">RTKInfos</span><span class="desc"><span class="en">Visualize token savings from RTK — daily KPIs, 7-day chart, live history.</span><span class="fr">Visualise les économies de tokens de RTK — KPIs, graphique 7 jours, historique.</span><span class="zh">視覺化 RTK 節省的 token——每日 KPI、7 天圖表、即時歷史。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/ClaudeCodeUsage/" target="_blank" rel="noopener"><span class="ref">A-04</span><span class="pname">ClaudeCodeUsage</span><span class="desc"><span class="en">Sessions, tokens, cache and cost with editable rates — filtered by project, broken down by agent and skill.</span><span class="fr">Sessions, tokens, cache et coût à tarifs éditables — filtrés par projet, répartis par agent et skill.</span><span class="zh">工作階段、token、快取與成本，費率可編輯——依專案篩選，按 agent 與 skill 拆解。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/ClaudeSessionView/" target="_blank" rel="noopener"><span class="ref">A-05</span><span class="pname">ClaudeSessionView</span><span class="desc"><span class="en">Your real Anthropic account usage in the menu bar — 5-hour and 7-day windows with exact reset countdowns, straight from the official API.</span><span class="fr">Votre usage réel de compte Anthropic en menu bar — fenêtres 5 h et 7 jours avec compte à rebours exact, via l'API officielle.</span><span class="zh">選單列即時顯示你真實的 Anthropic 帳戶用量——5 小時與 7 天視窗，附精確重置倒數，直接來自官方 API。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/BmadBrowser/" target="_blank" rel="noopener"><span class="ref">A-06</span><span class="pname">BmadBrowser</span><span class="desc"><span class="en">Native browser and editor for BMad method markdown artifacts — multi-project workspace, three-column UI.</span><span class="fr">Navigateur et éditeur natif pour les artefacts markdown BMad — workspace multi-projets, UI trois colonnes.</span><span class="zh">BMad 方法 markdown 產出物的原生瀏覽與編輯工具——多專案工作區、三欄式介面。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/toolkit/" target="_blank" rel="noopener"><span class="ref">A-07</span><span class="pname">Toolkit &amp; HomebrewConfig</span><span class="desc"><span class="en">A Claude Code plugin marketplace (<b>/audit-report</b>), and a Rust terminal UI for Homebrew's 20+ environment variables.</span><span class="fr">Un marketplace de plugins Claude Code (<b>/audit-report</b>), et un TUI Rust pour les 20+ variables d'environnement de Homebrew.</span><span class="zh">Claude Code 外掛市集（<b>/audit-report</b>），以及管理 Homebrew 20+ 環境變數的 Rust 終端介面。</span></span><span class="arw">→</span></a>
+
+    <h3><span class="en">Zone B — macOS productivity</span><span class="fr">Zone B — Productivité macOS</span><span class="zh">B 區 — macOS 生產力</span> <span class="n">· 14</span></h3>
+    <a class="mrow" href="https://vincentlauriat.github.io/MacInside/" target="_blank" rel="noopener"><span class="ref">B-01</span><span class="pname">MacInside</span><span class="desc"><span class="en">CPU load, real SMC temperatures, fan RPM, GPU, battery and network — one native dashboard, from the Dock to the menu bar.</span><span class="fr">Charge CPU, températures SMC réelles, RPM des ventilateurs, GPU, batterie et réseau — un tableau de bord natif, du Dock à la barre de menus.</span><span class="zh">CPU 負載、真實 SMC 溫度、風扇轉速、GPU、電池與網路——一個原生儀表板，從 Dock 到選單列。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/AppsSwitch/" target="_blank" rel="noopener"><span class="ref">B-02</span><span class="pname">AppsSwitch</span><span class="desc"><span class="en">Alt-Tab style switching for macOS — cycles through every open window, not just apps, with live thumbnails.</span><span class="fr">Alt-Tab façon Windows pour macOS — cycle entre toutes les fenêtres ouvertes, pas seulement les apps, avec miniatures live.</span><span class="zh">macOS 上的 Alt-Tab 式切換——在每一個開啟的視窗之間循環，而不只是應用程式，並附即時縮圖。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/MarkdownViewer/" target="_blank" rel="noopener"><span class="ref">B-03</span><span class="pname">MarkdownViewer</span><span class="desc"><span class="en">Open any Markdown file straight from Finder — KaTeX, Mermaid, live reload, rendered the way GitHub does.</span><span class="fr">Ouvre n'importe quel fichier Markdown depuis le Finder — KaTeX, Mermaid, live reload, rendu comme sur GitHub.</span><span class="zh">直接從 Finder 開啟任何 Markdown 檔案——KaTeX、Mermaid、即時重新載入，並以 GitHub 的方式呈現。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/WifiManager/" target="_blank" rel="noopener"><span class="ref">B-04</span><span class="pname">WifiManager</span><span class="desc"><span class="en">Menu-bar app that scores your WiFi quality in real time and flags hotspots.</span><span class="fr">App menu bar qui note la qualité WiFi en temps réel et repère les hotspots.</span><span class="zh">選單列應用程式，即時為你的 WiFi 品質評分並標出熱點。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/NetCheck/" target="_blank" rel="noopener"><span class="ref">B-05</span><span class="pname">NetCheck</span><span class="desc"><span class="en">Menu-bar network diagnostics — WiFi finder, speed test, traceroute and usage.</span><span class="fr">Diagnostic réseau en menu bar — WiFi finder, speed test, traceroute et usages.</span><span class="zh">選單列網路診斷——WiFi 搜尋、速度測試、traceroute 與用量。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/StarlinkInfos/" target="_blank" rel="noopener"><span class="ref">B-06</span><span class="pname">StarlinkInfos</span><span class="desc"><span class="en">Talks straight to your Starlink dish — live status, latency and throughput charts, obstruction map, reboot and stow.</span><span class="fr">Parle directement à votre antenne Starlink — statut en direct, graphes de latence et de débit, carte d'obstruction, redémarrage et repli.</span><span class="zh">直接與你的 Starlink 天線通訊——即時狀態、延遲與吞吐量圖表、遮蔽圖、重新啟動與收合。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/iPhoneStatus/" target="_blank" rel="noopener"><span class="ref">B-07</span><span class="pname">iPhoneStatus</span><span class="desc"><span class="en">Your connected iPhone's full status in the menu bar — battery health, storage, hardware, cellular. Sensitive identifiers masked by default.</span><span class="fr">Le statut complet de votre iPhone connecté en menu bar — batterie, stockage, matériel, cellulaire. Identifiants sensibles masqués par défaut.</span><span class="zh">在選單列查看已連接 iPhone 的完整狀態——電池健康度、儲存空間、硬體、行動網路。敏感識別碼預設遮蔽。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/MoveApps/" target="_blank" rel="noopener"><span class="ref">B-08</span><span class="pname">MoveApps</span><span class="desc"><span class="en">Moves whole dev projects between an iCloud archive and a local active root without breaking git, venvs or Xcode — with a multi-Mac checkout lock.</span><span class="fr">Déplace des projets de dev entiers entre archive iCloud et racine active locale sans casser git, venvs ni Xcode — avec verrou de prise multi-Mac.</span><span class="zh">在 iCloud 封存區與本機工作區之間搬移整個開發專案，不破壞 git、venv 或 Xcode——附多 Mac 取出鎖。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/OSINT-index/" target="_blank" rel="noopener"><span class="ref">B-09</span><span class="pname">OSINT-index</span><span class="desc"><span class="en">Thousands of OSINT tools and resources, categorized and searchable — favorites, offline cache, macOS and iOS/iPadOS.</span><span class="fr">Des milliers d'outils et ressources OSINT, classés et cherchables — favoris, cache hors-ligne, macOS et iOS/iPadOS.</span><span class="zh">數千個 OSINT 工具與資源，分類且可搜尋——收藏、離線快取，支援 macOS 與 iOS/iPadOS。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/ZendureMonitor/" target="_blank" rel="noopener"><span class="ref">B-10</span><span class="pname">ZendureMonitor</span><span class="desc"><span class="en">Live solar production of a Zendure SolarFlow battery in the menu bar — 100% local zenSDK API, animated flow dashboard, Sun window with local weather, widgets, CSV export. No cloud, no credentials.</span><span class="fr">La production solaire d'une batterie Zendure SolarFlow en direct dans la menu bar — API zenSDK 100 % locale, tableau de bord animé, fenêtre Soleil avec météo, widgets, export CSV. Sans cloud, sans identifiants.</span><span class="zh">選單列即時顯示 Zendure SolarFlow 電池的太陽能發電——100% 本地 zenSDK API、動態儀表板、太陽視窗含天氣、小工具、CSV 匯出。無雲端、無帳號。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/HaywardMonitor/" target="_blank" rel="noopener"><span class="ref">B-11</span><span class="pname">HaywardMonitor</span><span class="desc"><span class="en">Monitor and control a Hayward AquaRite / NeoPool swimming pool from the Mac — live pH, redox &amp; temperature, filtration, light schedule, relays, setpoints.</span><span class="fr">Surveille et pilote une piscine Hayward AquaRite / NeoPool depuis le Mac — pH, redox &amp; température en direct, filtration, éclairage, relais, consignes.</span><span class="zh">在 Mac 上監控並控制 Hayward AquaRite / NeoPool 泳池——即時 pH、氧化還原與水溫、過濾、照明排程、繼電器、設定值。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/MeteoStation/" target="_blank" rel="noopener"><span class="ref">B-12</span><span class="pname">MeteoStation</span><span class="desc"><span class="en">Mirror a Bresser Weather Center 7-in-1 console on the Mac — every reading over your LAN every ~5 s, console-style 7-segment UI, wind compass, pressure graph, fully local.</span><span class="fr">Reproduit la console d'une Bresser Weather Center 7-in-1 sur le Mac — chaque mesure via le réseau local toutes les ~5 s, UI 7 segments, boussole de vent, graphe de pression, 100 % local.</span><span class="zh">在 Mac 上復刻 Bresser Weather Center 7-in-1 控制台——每約 5 秒經區域網路推送讀數、七段顯示介面、風向羅盤、氣壓曲線，完全本地。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/EufyGuard/" target="_blank" rel="noopener"><span class="ref">B-13</span><span class="pname">EufyGuard</span><span class="desc"><span class="en">Watch and drive Eufy cameras natively — live H.264/H.265 streaming, PTZ control, guard modes, event timeline with snapshots, optional Claude AI activity summaries.</span><span class="fr">Surveille et pilote des caméras Eufy en natif — direct H.264/H.265, PTZ, modes de garde, timeline d'événements avec snapshots, résumés IA Claude optionnels.</span><span class="zh">原生監看並操控 Eufy 攝影機——H.264/H.265 即時串流、PTZ、布防模式、含快照的事件時間線，可選 Claude AI 活動摘要。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/plaud-companion/" target="_blank" rel="noopener"><span class="ref">B-14</span><span class="pname">Plaud Companion</span><span class="desc"><span class="en">Browse, read and sync your Plaud voice-recording notes — now by person too — and push everything to Notion.</span><span class="fr">Parcours, lis et synchronise tes notes vocales Plaud — désormais par personne — et pousse tout vers Notion.</span><span class="zh">瀏覽、閱讀並同步你的 Plaud 錄音筆記——現在也能依人物分類——並將全部推送到 Notion。</span></span><span class="arw">→</span></a>
+
+    <h3><span class="en">Zone C — News</span><span class="fr">Zone C — Actualité</span><span class="zh">C 區 — 新聞</span> <span class="n">· 01</span></h3>
+    <a class="mrow" href="https://vincentlauriat.github.io/TheNews/" target="_blank" rel="noopener"><span class="ref">C-01</span><span class="pname">TheNews</span><span class="desc"><span class="en">Le Monde, Les Echos and any RSS feed in one app — cross-source grouping, daily briefing, widget, iCloud sync. Serverless, zero dependency.</span><span class="fr">Le Monde, Les Echos et n'importe quel flux RSS dans une seule app — regroupement cross-source, briefing quotidien, widget, sync iCloud. Sans serveur, zéro dépendance.</span><span class="zh">Le Monde、Les Echos 與任何 RSS 來源集於一個應用程式——跨來源分組、每日簡報、小工具、iCloud 同步。無伺服器、零依賴。</span></span><span class="arw">→</span></a>
+
+    <h3><span class="en">Zone D — Games</span><span class="fr">Zone D — Jeux</span><span class="zh">D 區 — 遊戲</span> <span class="n">· 04</span></h3>
+    <a class="mrow" href="https://vincentlauriat.github.io/Solitaire/" target="_blank" rel="noopener"><span class="ref">D-01</span><span class="pname">Solitaire</span><span class="desc"><span class="en">A native Klondike where every card is drawn in code — classic pips, ornate face cards, lattice backs. Zero image assets, 100% SwiftUI.</span><span class="fr">Un Klondike natif où chaque carte est dessinée en code — pips classiques, figures ornées, dos à croisillons. Zéro asset image, 100 % SwiftUI.</span><span class="zh">原生 Klondike 接龍，每張牌都以程式碼繪成——經典牌點、華麗人頭牌、格紋牌背。零圖片素材，100% SwiftUI。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/SpaceInvaders/" target="_blank" rel="noopener"><span class="ref">D-02</span><span class="pname">Space Invaders</span><span class="desc"><span class="en">The 1978 arcade classic reborn native — original 224×256 resolution, CRT scanlines, 8-bit square-wave sounds, one shot on screen at a time.</span><span class="fr">Le classique d'arcade de 1978 renaît en natif — résolution d'origine 224×256, scanlines CRT, sons 8-bit, un seul tir à l'écran à la fois.</span><span class="zh">1978 年的街機經典以原生方式重生——原始 224×256 解析度、CRT 掃描線、8 位元方波音效、螢幕上同時僅一發子彈。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/PacMan/" target="_blank" rel="noopener"><span class="ref">D-03</span><span class="pname">Pac-Man</span><span class="desc"><span class="en">The 1980 arcade classic rebuilt native — the original 28×31 maze, the four ghosts' real target-tile personalities, scatter-chase waves and Pinky's overflow bug.</span><span class="fr">Le classique d'arcade de 1980 rebâti en natif — le labyrinthe 28×31 d'origine, les vraies personnalités de ciblage des quatre fantômes, les vagues scatter-chase et le bug de débordement de Pinky.</span><span class="zh">1980 年的街機經典以原生方式重建——原始 28×31 迷宮、四隻幽靈真實的目標格性格、散開與追逐波次，以及 Pinky 著名的溢位錯誤。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://vincentlauriat.github.io/Sudoku/" target="_blank" rel="noopener"><span class="ref">D-04</span><span class="pname">Sudoku</span><span class="desc"><span class="en">Four difficulty levels, guaranteed-unique puzzles — and an auto-play mode that solves the board by itself, cell by cell, like a human would.</span><span class="fr">Quatre niveaux, grilles à solution unique garantie — et un mode auto-play qui résout la grille tout seul, case par case, comme un humain.</span><span class="zh">四種難度、保證唯一解的謎題——還有自動遊玩模式，像人類一樣逐格自行解盤。</span></span><span class="arw">→</span></a>
+
+    <p class="foot">
+      <span><span class="en">More on</span><span class="fr">Plus sur</span><span class="zh">更多請見</span> <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span>
+      <span>— V.L.</span>
     </p>
-    <div class="links">
-      <a class="go" href="https://vincentlauriat.github.io/StartAlice/" target="_blank" rel="noopener">StartAlice <span class="arw">→</span></a>
-      <a class="go" href="https://openalice.ai" target="_blank" rel="noopener">OpenAlice <span class="arw">→</span></a>
-    </div>
-  </article>
+  </section>
+</main>
 
-  <!-- ── IA & outils dev ─────────────────────────────────────────────── -->
-  <div class="band">
-    <h2 class="lbl"><span class="en">AI &amp; dev tools</span><span class="fr">IA &amp; outils dev</span><span class="zh">AI 與開發工具</span></h2>
-    <span class="rule"></span><span class="n">07</span>
+<footer>
+  <div class="plate">
+    <span class="rvt a" aria-hidden="true"></span><span class="rvt b" aria-hidden="true"></span>
+    <span class="rvt c" aria-hidden="true"></span><span class="rvt d" aria-hidden="true"></span>
+    <p><span class="en">Signed &amp; notarized · macOS 13+ · handle with care</span><span class="fr">Signé &amp; notarisé · macOS 13+ · fragile, manipuler avec soin</span><span class="zh">已簽章公證 · macOS 13+ · 小心輕放</span></p>
+    <p class="mono">VINCENT LAURIAT · EST. MMXXIII</p>
   </div>
-
-  <article class="inst" style="--accent:#e879f9">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/><path d="M8 12v-2M10.8 12V8.4M13.5 12v-3"/>
-        </svg>
-      </div>
-      <div><h3>AuditViewer</h3><p class="sub">research</p></div>
-    </div>
-    <p><span class="en">Turn any company, product or market into a complete, sourced strategic dossier.</span>
-       <span class="fr">Transforme une entreprise, un produit ou un marché en dossier stratégique sourcé.</span><span class="zh">把任何公司、產品或市場，變成一份完整且有出處的策略檔案。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/AuditViewer/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">AuditViewer</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#34d399">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 15.5 7 9l3.5 4L14 6.5 17 11l4-6.5"/><path d="M3 20h18"/>
-        </svg>
-      </div>
-      <div><h3>RTKInfos</h3><p class="sub">token savings</p></div>
-    </div>
-    <p><span class="en">Visualize token savings from RTK — daily KPIs, 7-day chart, live history.</span>
-       <span class="fr">Visualise les économies de tokens de RTK — KPIs, graphique 7 jours, historique.</span><span class="zh">視覺化 RTK 節省的 token——每日 KPI、7 天圖表、即時歷史。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/RTKInfos/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">RTKInfos</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#22c55e">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 20V12M9.3 20V6M14.7 20v-5M20 20V9"/>
-        </svg>
-      </div>
-      <div><h3>ClaudeCodeUsage</h3><p class="sub">usage dashboard</p></div>
-    </div>
-    <p><span class="en">Sessions, tokens, cache and cost with editable rates — filtered by project, broken down by agent and skill.</span>
-       <span class="fr">Sessions, tokens, cache et coût à tarifs éditables — filtrés par projet, répartis par agent et skill.</span><span class="zh">工作階段、token、快取與成本，費率可編輯——依專案篩選，按 agent 與 skill 拆解。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/ClaudeCodeUsage/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">ClaudeCodeUsage</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#38bdf8">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/>
-        </svg>
-      </div>
-      <div><h3>BmadBrowser</h3><p class="sub">bmad artifacts</p></div>
-    </div>
-    <p><span class="en">Native browser and editor for BMad method markdown artifacts — multi-project workspace, three-column UI.</span>
-       <span class="fr">Navigateur et éditeur natif pour les artefacts markdown BMad — workspace multi-projets, UI trois colonnes.</span><span class="zh">BMad 方法 markdown 產出物的原生瀏覽與編輯工具——多專案工作區、三欄式介面。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/BmadBrowser/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">BmadBrowser</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#d97757">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>
-        </svg>
-      </div>
-      <div><h3>ClaudeSessionView</h3><p class="sub">account usage</p></div>
-    </div>
-    <p><span class="en">Your real Anthropic account usage in the menu bar — 5-hour and 7-day windows with exact reset countdowns, straight from the official API.</span>
-       <span class="fr">Votre usage réel de compte Anthropic en menu bar — fenêtres 5 h et 7 jours avec compte à rebours exact, via l'API officielle.</span><span class="zh">選單列即時顯示你真實的 Anthropic 帳戶用量——5 小時與 7 天視窗，附精確重置倒數，直接來自官方 API。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/ClaudeSessionView/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">ClaudeSessionView</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#c084fc">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 17l6-6-6-6"/><path d="M12 19h8"/>
-        </svg>
-      </div>
-      <div><h3>Toolkit</h3><p class="sub">claude code plugins</p></div>
-    </div>
-    <p><span class="en">A Claude Code plugin marketplace — <b>/audit-report</b> turns any company, product or market into a sourced, consulting-grade dossier.</span>
-       <span class="fr">Un marketplace de plugins Claude Code — <b>/audit-report</b> transforme une entreprise, un produit ou un marché en dossier sourcé, qualité cabinet de conseil.</span><span class="zh">Claude Code 外掛市集——<b>/audit-report</b> 把任何公司、產品或市場變成一份有出處、顧問等級的檔案。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/toolkit/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">Toolkit</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#fbbf24">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M12 15h5"/>
-        </svg>
-      </div>
-      <div><h3>HomebrewConfig</h3><p class="sub">brew tui</p></div>
-    </div>
-    <p><span class="en">A Rust terminal UI for Homebrew's 20+ environment variables — clean, idempotent shell exports, shell auto-detected.</span>
-       <span class="fr">Un TUI Rust pour les 20+ variables d'environnement de Homebrew — exports shell propres et idempotents, shell auto-détecté.</span><span class="zh">用 Rust 打造的 Homebrew 環境變數終端介面——乾淨且冪等的 shell export，自動偵測 shell。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/homebrewconfig/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">HomebrewConfig</span> <span class="arw">→</span></a>
-  </article>
-
-  <!-- ── Productivité macOS ──────────────────────────────────────────── -->
-  <div class="band">
-    <h2 class="lbl"><span class="en">macOS productivity</span><span class="fr">Productivité macOS</span><span class="zh">macOS 生產力</span></h2>
-    <span class="rule"></span><span class="n">14</span>
-  </div>
-
-  <article class="inst" style="--accent:#f5a524">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4.2 17a9 9 0 1 1 15.6 0"/><path d="m12 13 4-3.4"/><circle cx="12" cy="17" r="1.4"/>
-        </svg>
-      </div>
-      <div><h3>MacInside</h3><p class="sub">system sensors</p></div>
-    </div>
-    <p><span class="en">CPU load, real SMC temperatures, fan RPM, GPU, battery and network — one native dashboard, from the Dock to the menu bar.</span>
-       <span class="fr">Charge CPU, températures SMC réelles, RPM des ventilateurs, GPU, batterie et réseau — un tableau de bord natif, du Dock à la barre de menus.</span><span class="zh">CPU 負載、真實 SMC 溫度、風扇轉速、GPU、電池與網路——一個原生儀表板，從 Dock 到選單列。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/MacInside/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">MacInside</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#f472b6">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="6" width="13" height="10" rx="1.6"/><path d="M8 19h11a2 2 0 0 0 2-2V9"/>
-        </svg>
-      </div>
-      <div><h3>AppsSwitch</h3><p class="sub">window switcher</p></div>
-    </div>
-    <p><span class="en">Alt-Tab style switching for macOS — cycles through every open window, not just apps, with live thumbnails.</span>
-       <span class="fr">Alt-Tab façon Windows pour macOS — cycle entre toutes les fenêtres ouvertes, pas seulement les apps, avec miniatures live.</span><span class="zh">macOS 上的 Alt-Tab 式切換——在每一個開啟的視窗之間循環，而不只是應用程式，並附即時縮圖。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/AppsSwitch/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">AppsSwitch</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#58a6ff">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M6.5 15.5v-7l3 3.5 3-3.5v7"/><path d="M16.5 8.5v7M14.5 13l2 2.5 2-2.5"/>
-        </svg>
-      </div>
-      <div><h3>MarkdownViewer</h3><p class="sub">markdown</p></div>
-    </div>
-    <p><span class="en">Open any Markdown file straight from Finder — KaTeX, Mermaid, live reload, rendered the way GitHub does.</span>
-       <span class="fr">Ouvre n'importe quel fichier Markdown depuis le Finder — KaTeX, Mermaid, live reload, rendu comme sur GitHub.</span><span class="zh">直接從 Finder 開啟任何 Markdown 檔案——KaTeX、Mermaid、即時重新載入，並以 GitHub 的方式呈現。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/MarkdownViewer/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">MarkdownViewer</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#0891b2">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2.5 9a15 15 0 0 1 19 0"/><path d="M5.8 12.5a10 10 0 0 1 12.4 0"/><path d="M9 15.9a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.1"/>
-        </svg>
-      </div>
-      <div><h3>WifiManager</h3><p class="sub">wifi quality</p></div>
-    </div>
-    <p><span class="en">Menu-bar app that scores your WiFi quality in real time and flags hotspots.</span>
-       <span class="fr">App menu bar qui note la qualité WiFi en temps réel et repère les hotspots.</span><span class="zh">選單列應用程式，即時為你的 WiFi 品質評分並標出熱點。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/WifiManager/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">WifiManager</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#818cf8">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 12h4l2.5-6 3.5 12 3-8 2 2h5"/>
-        </svg>
-      </div>
-      <div><h3>NetCheck</h3><p class="sub">network diagnostics</p></div>
-    </div>
-    <p><span class="en">Menu-bar network diagnostics — WiFi finder, speed test, traceroute and usage.</span>
-       <span class="fr">Diagnostic réseau en menu bar — WiFi finder, speed test, traceroute et usages.</span><span class="zh">選單列網路診斷——WiFi 搜尋、速度測試、traceroute 與用量。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/NetCheck/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">NetCheck</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#6ad65c">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 10a7.31 7.31 0 0 0 10 10Z"/><path d="m9 15 3-3"/><path d="M17 13a6 6 0 0 0-6-6"/><path d="M21 13A10 10 0 0 0 11 3"/>
-        </svg>
-      </div>
-      <div><h3>StarlinkInfos</h3><p class="sub">dish telemetry</p></div>
-    </div>
-    <p><span class="en">Talks straight to your Starlink dish — live status, latency and throughput charts, obstruction map, reboot and stow. Plus launches and constellation stats.</span>
-       <span class="fr">Parle directement à votre antenne Starlink — statut en direct, graphes de latence et de débit, carte d'obstruction, redémarrage et repli. Plus les lancements et les stats de constellation.</span><span class="zh">直接與你的 Starlink 天線通訊——即時狀態、延遲與吞吐量圖表、遮蔽圖、重新啟動與收合。另有發射與星系數據。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/StarlinkInfos/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">StarlinkInfos</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#a78bfa">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="6.5" y="2.5" width="11" height="19" rx="2.4"/><path d="M9.5 6.5h5"/><path d="M9.5 12h5v4h-5z"/>
-        </svg>
-      </div>
-      <div><h3>iPhoneStatus</h3><p class="sub">iphone health</p></div>
-    </div>
-    <p><span class="en">Your connected iPhone's full status in the menu bar — battery health, storage, hardware, cellular. Sensitive identifiers masked by default.</span>
-       <span class="fr">Le statut complet de votre iPhone connecté en menu bar — batterie, stockage, matériel, cellulaire. Identifiants sensibles masqués par défaut.</span><span class="zh">在選單列查看已連接 iPhone 的完整狀態——電池健康度、儲存空間、硬體、行動網路。敏感識別碼預設遮蔽。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/iPhoneStatus/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">iPhoneStatus</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#2dd4bf">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 8h13M13 4l4 4-4 4"/><path d="M21 16H8M11 12l-4 4 4 4"/>
-        </svg>
-      </div>
-      <div><h3>MoveApps</h3><p class="sub">project mover</p></div>
-    </div>
-    <p><span class="en">Moves whole dev projects between an iCloud archive and a local active root without breaking git, venvs or Xcode — with a multi-Mac checkout lock.</span>
-       <span class="fr">Déplace des projets de dev entiers entre archive iCloud et racine active locale sans casser git, venvs ni Xcode — avec verrou de prise multi-Mac.</span><span class="zh">在 iCloud 封存區與本機工作區之間搬移整個開發專案，不破壞 git、venv 或 Xcode——附多 Mac 取出鎖。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/MoveApps/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">MoveApps</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#22d3ee">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/><circle cx="10.5" cy="10.5" r="2.6"/>
-        </svg>
-      </div>
-      <div><h3>OSINT-index</h3><p class="sub">osint catalog</p></div>
-    </div>
-    <p><span class="en">Thousands of OSINT tools and resources, categorized and searchable — favorites, offline cache, macOS and iOS/iPadOS.</span>
-       <span class="fr">Des milliers d'outils et ressources OSINT, classés et cherchables — favoris, cache hors-ligne, macOS et iOS/iPadOS.</span><span class="zh">數千個 OSINT 工具與資源，分類且可搜尋——收藏、離線快取，支援 macOS 與 iOS/iPadOS。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/OSINT-index/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">OSINT-index</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#facc15">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/>
-        </svg>
-      </div>
-      <div><h3>ZendureMonitor</h3><p class="sub">solar monitor</p></div>
-    </div>
-    <p><span class="en">Live solar production of a Zendure SolarFlow battery in the menu bar — 100% local zenSDK API, animated flow dashboard, Sun window with local weather, battery control, widgets with 14-day histogram, CSV export. No cloud, no credentials.</span>
-       <span class="fr">La production solaire d'une batterie Zendure SolarFlow en direct dans la menu bar — API zenSDK 100 % locale, tableau de bord animé, fenêtre Soleil avec météo locale, contrôle batterie, widgets avec histogramme 14 jours, export CSV. Sans cloud, sans identifiants.</span><span class="zh">選單列即時顯示 Zendure SolarFlow 電池的太陽能發電——100% 本地 zenSDK API、動態能流儀表板、太陽視窗含當地天氣、電池控制、小工具（14 天直方圖）、CSV 匯出。無雲端、無帳號。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/ZendureMonitor/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">ZendureMonitor</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#22d3ee">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6.34 17.66A8 8 0 1 1 17.66 17.66"/><path d="M7.4 13.4c1.53-1.1 3.07-1.1 4.6 0s3.07 1.1 4.6 0"/><path d="M9.2 16.1c1-0.8 2-0.8 3 0s2 0.8 3 0"/>
-        </svg>
-      </div>
-      <div><h3>HaywardMonitor</h3><p class="sub">pool control</p></div>
-    </div>
-    <p><span class="en">Monitor and control a Hayward AquaRite / NeoPool swimming pool from the Mac — live pH, redox &amp; temperature, filtration, light schedule, relays, setpoints. Signed, notarized, auto-updating.</span>
-       <span class="fr">Surveille et pilote une piscine Hayward AquaRite / NeoPool depuis le Mac — pH, redox &amp; température en direct, filtration, programmation éclairage, relais, consignes. Signée, notariée, auto-mise à jour.</span><span class="zh">在 Mac 上監控並控制 Hayward AquaRite / NeoPool 泳池——即時 pH、氧化還原與水溫、過濾、照明排程、繼電器、設定值。已簽名、公證並自動更新。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/HaywardMonitor/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">HaywardMonitor</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#7dd3fc">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="9" r="3.4"/><path d="M9 2.2v1.6M9 14.2v1.6M2.2 9h1.6M14.2 9h1.6M4.2 4.2l1.1 1.1M12.7 12.7l1.1 1.1M13.8 4.2l-1.1 1.1"/><path d="M18.5 6.5v9.2a2.3 2.3 0 1 1-2-.1"/>
-        </svg>
-      </div>
-      <div><h3>MeteoStation</h3><p class="sub">weather station</p></div>
-    </div>
-    <p><span class="en">Mirror a Bresser Weather Center 7-in-1 console on the Mac — the station pushes every reading over your LAN every ~5 s. Console-style 7-segment UI, wind compass, pressure graph, fully local, no cloud. Signed, notarized, auto-updating.</span>
-       <span class="fr">Reproduit la console d'une Bresser Weather Center 7-in-1 sur le Mac — la station pousse chaque mesure via le réseau local toutes les ~5 s. UI 7 segments façon console, boussole de vent, graphe de pression, 100 % local, sans cloud. Signée, notariée, auto-mise à jour.</span><span class="zh">在 Mac 上復刻 Bresser Weather Center 7-in-1 控制台——氣象站每約 5 秒經區域網路推送讀數。七段顯示控制台介面、風向羅盤、氣壓曲線，完全本地、無雲端。已簽名、公證並自動更新。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/MeteoStation/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">MeteoStation</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#2dd4bf">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2.6l7.2 3v5.8c0 4.6-3 7.8-7.2 9.6-4.2-1.8-7.2-5-7.2-9.6V5.6l7.2-3z"/><circle cx="12" cy="10.8" r="3.1"/><circle cx="12" cy="10.8" r=".6" fill="currentColor"/>
-        </svg>
-      </div>
-      <div><h3>EufyGuard</h3><p class="sub">camera surveillance</p></div>
-    </div>
-    <p><span class="en">Watch and drive Eufy cameras natively — live H.264/H.265 streaming, PTZ control, guard modes, event timeline with snapshots, and an optional Claude AI agent that analyzes and summarizes activity. Signed, notarized, auto-updating.</span>
-       <span class="fr">Surveille et pilote des caméras Eufy en natif — direct H.264/H.265, PTZ, modes de garde, timeline d'événements avec snapshots, et un agent IA Claude optionnel qui analyse et résume l'activité. Signée, notariée, auto-mise à jour.</span><span class="zh">原生監看並操控 Eufy 攝影機——H.264/H.265 即時串流、PTZ 雲台、布防模式、含快照的事件時間線，以及可選的 Claude AI 智能體分析並總結活動。已簽名、公證並自動更新。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/EufyGuard/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">EufyGuard</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst span2" style="--accent:#f5731f">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 10v4M8 6.5v11M12 3.5v17M16 7.5v9M20 10.5v3"/>
-        </svg>
-      </div>
-      <div><h3>Plaud Companion</h3><p class="sub">voice notes</p></div>
-    </div>
-    <p><span class="en">Browse, read and sync your Plaud voice-recording notes — now by person too — and push everything to Notion.</span>
-       <span class="fr">Parcours, lis et synchronise tes notes vocales Plaud — désormais par personne — et pousse tout vers Notion.</span><span class="zh">瀏覽、閱讀並同步你的 Plaud 錄音筆記——現在也能依人物分類——並將全部推送到 Notion。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/plaud-companion/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">Plaud Companion</span> <span class="arw">→</span></a>
-  </article>
-
-  <!-- ── Actualité ───────────────────────────────────────────────────── -->
-  <div class="band">
-    <h2 class="lbl"><span class="en">News</span><span class="fr">Actualité</span><span class="zh">新聞</span></h2>
-    <span class="rule"></span><span class="n">01</span>
-  </div>
-
-  <article class="inst wide" style="--accent:#e5484d">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 5h11a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-3 1.7"/><path d="M7.5 8.5h6M7.5 12h6M7.5 15h3.5"/>
-        </svg>
-      </div>
-      <div><h3>TheNews</h3><p class="sub">macOS · iOS</p></div>
-    </div>
-    <p><span class="en">Le Monde, Les Echos and any RSS feed in one app — cross-source grouping, daily briefing, home-screen widget, iCloud sync. Serverless, zero dependency.</span>
-       <span class="fr">Le Monde, Les Echos et n'importe quel flux RSS dans une seule app — regroupement cross-source, briefing quotidien, widget, sync iCloud. Sans serveur, zéro dépendance.</span><span class="zh">Le Monde、Les Echos 與任何 RSS 來源集於一個應用程式——跨來源分組、每日簡報、主畫面小工具、iCloud 同步。無伺服器、零依賴。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/TheNews/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">TheNews</span> <span class="arw">→</span></a>
-  </article>
-
-  <!-- ── Jeux ────────────────────────────────────────────────────────── -->
-  <div class="band">
-    <h2 class="lbl"><span class="en">Games</span><span class="fr">Jeux</span><span class="zh">遊戲</span></h2>
-    <span class="rule"></span><span class="n">04</span>
-  </div>
-
-  <article class="inst" style="--accent:#d9b45c">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2.5C8.6 7 5 9.3 5 12.6a3.3 3.3 0 0 0 5.7 2.3L12 13.5l1.3 1.4a3.3 3.3 0 0 0 5.7-2.3c0-3.3-3.6-5.6-7-10.1Z"/><path d="M12 15v4.5M9 21.5h6"/>
-        </svg>
-      </div>
-      <div><h3>Solitaire</h3><p class="sub">klondike</p></div>
-    </div>
-    <p><span class="en">A native Klondike where every card is drawn in code — classic pips, ornate face cards, lattice backs, felt of gradients. Zero image assets, 100% SwiftUI.</span>
-       <span class="fr">Un Klondike natif où chaque carte est dessinée en code — pips classiques, figures ornées, dos à croisillons, tapis en dégradés. Zéro asset image, 100 % SwiftUI.</span><span class="zh">原生 Klondike 接龍，每張牌都以程式碼繪成——經典牌點、華麗人頭牌、格紋牌背、漸層絨面牌桌。零圖片素材，100% SwiftUI。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/Solitaire/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">Solitaire</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#3cff6e">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M6 4h2v2H6zM16 4h2v2h-2zM8 6h2v2H8zM14 6h2v2h-2zM6 8h12v2H6zM4 10h6v2H4zM10 10h4v2h-4zM14 10h6v2h-6zM2 12h20v2H2zM2 14h2v4H2zM20 14h2v4h-2zM6 16h2v2H6zM16 16h2v2h-2zM9 18h2v2H9zM13 18h2v2h-2z"/>
-        </svg>
-      </div>
-      <div><h3>Space Invaders</h3><p class="sub">arcade 1978</p></div>
-    </div>
-    <p><span class="en">The 1978 arcade classic reborn as a native macOS app — original 224×256 resolution, CRT scanlines, 8-bit square-wave sounds, one shot on screen at a time.</span>
-       <span class="fr">Le classique d'arcade de 1978 renaît en app macOS native — résolution d'origine 224×256, scanlines CRT, sons 8-bit, un seul tir à l'écran à la fois.</span><span class="zh">1978 年的街機經典以原生 macOS 應用重生——原始 224×256 解析度、CRT 掃描線、8 位元方波音效、螢幕上同時僅一發子彈。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/SpaceInvaders/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">Space Invaders</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#f0c419">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 12 21.1 6.75A10.5 10.5 0 1 0 21.1 17.25Z"/>
-          <circle cx="11.4" cy="6.6" r="1.35" fill="#0a0c12"/>
-        </svg>
-      </div>
-      <div><h3>Pac-Man</h3><p class="sub">arcade 1980</p></div>
-    </div>
-    <p><span class="en">The 1980 arcade classic rebuilt native — the original 28×31 maze, the four ghosts with their real target-tile personalities, scatter-chase waves and Pinky's famous overflow bug.</span>
-       <span class="fr">Le classique d'arcade de 1980 rebâti en natif — le labyrinthe 28×31 d'origine, les quatre fantômes avec leurs vraies personnalités de ciblage, les vagues scatter-chase et le fameux bug de débordement de Pinky.</span><span class="zh">1980 年的街機經典以原生方式重建——原始 28×31 迷宮、四隻幽靈各自真實的目標格性格、散開與追逐波次，以及 Pinky 著名的溢位錯誤。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/PacMan/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">Pac-Man</span> <span class="arw">→</span></a>
-  </article>
-
-  <article class="inst" style="--accent:#4d7cfe">
-    <div class="head">
-      <div class="gauge" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9.2h17M3.5 14.8h17M9.2 3.5v17M14.8 3.5v17"/>
-        </svg>
-      </div>
-      <div><h3>Sudoku</h3><p class="sub">logic</p></div>
-    </div>
-    <p><span class="en">Four difficulty levels, guaranteed-unique puzzles — and an auto-play mode that solves the board by itself, cell by cell, like a human would.</span>
-       <span class="fr">Quatre niveaux, grilles à solution unique garantie — et un mode auto-play qui résout la grille tout seul, case par case, comme un humain.</span><span class="zh">四種難度、保證唯一解的謎題——還有自動遊玩模式，像人類一樣逐格自行解盤。</span></p>
-    <a class="go" href="https://vincentlauriat.github.io/Sudoku/" target="_blank" rel="noopener"><span class="en">Open</span><span class="fr">Ouvrir</span><span class="zh">開啟</span> <span class="vh">Sudoku</span> <span class="arw">→</span></a>
-  </article>
-
-</div></main>
-
-<footer><div class="wrap">
-  <p>
-    <span class="en">More on <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span>
-    <span class="fr">Plus sur <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span><span class="zh">更多內容請見 <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span>
-  </p>
-  <p class="mono">signed &amp; notarized · macOS 13+</p>
-</div></footer>
+</footer>
 
 <script>
-  /* zh-Hant et non zh : sur un système configuré en chinois simplifié, un
-     simple `zh` laisse le navigateur choisir une fonte Han simplifiée, qui
-     rend certains caractères traditionnels dans la mauvaise forme. */
+  /* zh-Hant et non zh : sur un système en chinois simplifié, un simple `zh`
+     laisserait le navigateur choisir une fonte Han simplifiée. */
   var LANG_TAG={en:'en',fr:'fr',zh:'zh-Hant'};
-  /* Les aria-label ne peuvent pas porter les trois variantes en spans :
-     ils suivent donc la langue active ici. */
-  var READOUT_LABEL={en:'Build facts',fr:'Chiffres clés',zh:'關鍵數據'};
+  var L10N={
+    facts:{en:'Build facts',fr:'Chiffres clés',zh:'關鍵數據'},
+    field:{en:'Projects',fr:'Projets',zh:'專案'}
+  };
   function setLang(l){
     if(!LANG_TAG[l]) l='en';
     document.body.classList.remove('lang-en','lang-fr','lang-zh');
     document.body.classList.add('lang-'+l);
     document.documentElement.lang=LANG_TAG[l];
-    var ro=document.querySelector('.readout');
-    if(ro) ro.setAttribute('aria-label',READOUT_LABEL[l]);
-    /* On boucle sur les boutons au lieu de les nommer un par un : ajouter une
-       4ᵉ langue ne demandera alors aucune retouche de ce script. */
+    var f=document.getElementById('facts');
+    if(f) f.setAttribute('aria-label',L10N.facts[l]);
+    var fd=document.getElementById('field');
+    if(fd) fd.setAttribute('aria-label',L10N.field[l]);
     document.querySelectorAll('.langtog button').forEach(function(b){
       var on=b.dataset.lang===l;
       b.classList.toggle('on',on);
@@ -655,9 +676,6 @@
   (function(){
     var saved;try{saved=localStorage.getItem('vl-lang')}catch(e){}
     var n=(navigator.language||'en').slice(0,2).toLowerCase();
-    /* Le traditionnel est servi à tout visiteur sinophone, y compris zh-CN :
-       c'est la seule variante chinoise disponible, et la renvoyer vaut mieux
-       que de rabattre ce visiteur sur l'anglais. */
     setLang(saved||(n==='zh'?'zh':(n==='fr'?'fr':'en')));
   })();
 </script>

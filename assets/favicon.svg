@@ -1,9 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Reprend la signature du hub : une trace d'instrument sur le fond du
-       site, terminée par la LED verte du readout. Lisible à 16px. -->
-  <rect width="32" height="32" rx="7" fill="#0a0c12"/>
-  <rect x=".5" y=".5" width="31" height="31" rx="6.5" fill="none" stroke="#232838"/>
-  <path d="M5 22l7-8 5 4.5L26 8" fill="none" stroke="#5b8bff" stroke-width="3"
-        stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="26" cy="8" r="3.2" fill="#3ddc84"/>
+  <!-- Le monde « flight case » : un sticker vinyle die-cut collé de travers
+       sur le laminate noir du case. -->
+  <rect width="32" height="32" rx="7" fill="#16130f"/>
+  <rect x=".5" y=".5" width="31" height="31" rx="6.5" fill="none" stroke="#3a352c"/>
+  <g transform="rotate(-8 16 17)">
+    <rect x="5" y="8" width="22" height="17" rx="4" fill="#f0e9d8"/>
+    <rect x="7" y="10" width="18" height="13" rx="2.6" fill="#e8b90f"/>
+    <text x="16" y="20.5" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="10" font-weight="900" fill="#17130d">VL</text>
+  </g>
 </svg>

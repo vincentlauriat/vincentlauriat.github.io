@@ -13,3 +13,9 @@ PLAN.md
 
 # OS
 .DS_Store
+
+# Impeccable — artefacts de travail non versionnés (captures, refs, mocks)
+.impeccable/review/
+.impeccable/refs/
+.impeccable/mocks/
+.impeccable/questions/
