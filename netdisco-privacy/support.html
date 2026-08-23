@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — NetDisco</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1d1d1f;
+            --secondary: #6e6e73;
+            --accent: #0071e3;
+            --border: #d2d2d7;
+            --card-bg: #f5f5f7;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1d1d1f;
+                --text: #f5f5f7;
+                --secondary: #a1a1a6;
+                --accent: #2997ff;
+                --border: #424245;
+                --card-bg: #2d2d2d;
+            }
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-top: 2em;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 1.5em;
+            color: var(--accent);
+        }
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 1.5em 0;
+        }
+        .contact-card p {
+            margin: 0.5em 0;
+            font-size: 1.1em;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .faq-item {
+            margin: 2em 0;
+        }
+        .faq-item h3 {
+            margin-bottom: 0.5em;
+        }
+        .faq-item p {
+            color: var(--text);
+            margin-left: 1em;
+        }
+        code {
+            background: var(--card-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .footer {
+            margin-top: 4em;
+            padding-top: 2em;
+            border-top: 1px solid var(--border);
+            color: var(--secondary);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Support NetDisco</h1>
+    <p class="update-date">Assistance et FAQ pour l'application NetDisco</p>
+
+    <div class="contact-card">
+        <h2>📧 Contact</h2>
+        <p><strong>Email :</strong> <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a></p>
+        <p><strong>Développeur :</strong> SmartColibri</p>
+        <p><strong>Temps de réponse :</strong> Sous 48h ouvrées</p>
+    </div>
+
+    <h2>❓ Foire Aux Questions</h2>
+
+    <div class="faq-item">
+        <h3>Comment lancer un test de débit ?</h3>
+        <p>Cliquez sur l'icône NetDisco dans la barre de menus → sélectionnez "Test de débit" (ou utilisez le raccourci <code>Cmd+Shift+S</code>).</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Les données sont-elles envoyées à des serveurs ?</h3>
+        <p>Non, toutes vos données sont stockées localement sur votre Mac. NetDisco ne collecte aucune information personnelle. Consultez notre <a href="index.html">Politique de confidentialité</a> pour plus de détails.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Comment supprimer l'historique des tests ?</h3>
+        <p>Ouvrez les Réglages (<code>Cmd+,</code>) → onglet "Général" → cliquez sur "Effacer l'historique".</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Comment passer du mode barre de menus au mode application ?</h3>
+        <p>Ouvrez les Réglages → onglet "Général" → section "Mode d'affichage" → choisissez "Application" pour avoir une fenêtre d'accueil, ou "Barre de menus" pour un mode discret.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Qu'est-ce que le "Mode Geek" ?</h3>
+        <p>Le Mode Geek masque les outils avancés (MTR, Multi-ping, SSL Inspector, etc.) pour simplifier l'interface. Vous pouvez l'activer/désactiver dans Réglages → "Mode Geek" ou en faisant Option+Clic sur l'icône de la barre de menus.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Comment activer les tests qualité planifiés ?</h3>
+        <p>Réglages → onglet "Avancé" → section "Tests planifiés" → cochez "Activer" et choisissez l'intervalle (5, 15, 30 ou 60 minutes).</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>NetDisco est-il compatible avec macOS Sequoia ?</h3>
+        <p>Oui, NetDisco est compatible avec macOS 13.0 (Ventura) et supérieur, incluant Sonoma et Sequoia.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>L'app nécessite-t-elle une connexion Internet ?</h3>
+        <p>Oui, NetDisco a besoin d'une connexion Internet active pour effectuer les tests réseau. L'app surveille automatiquement l'état de votre connexion.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Comment utiliser les raccourcis Siri ?</h3>
+        <p>NetDisco intègre 8 raccourcis Siri (test de débit, qualité réseau, diagnostic télétravail, etc.). Ouvrez l'app Raccourcis sur votre Mac pour les configurer.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Comment synchroniser mes données entre Macs ?</h3>
+        <p>Réglages → onglet "Avancé" → activez "Synchronisation iCloud". Vos favoris, profils et historique seront synchronisés automatiquement (nécessite iCloud activé).</p>
+    </div>
+
+    <h2>🐛 Signaler un bug</h2>
+    <p>Si vous rencontrez un problème, envoyez-nous un email à <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a> avec :</p>
+    <ul>
+        <li>Votre version de macOS</li>
+        <li>La version de NetDisco (visible dans "À propos")</li>
+        <li>Une description détaillée du problème</li>
+        <li>Des captures d'écran si possible</li>
+    </ul>
+
+    <h2>💡 Demander une fonctionnalité</h2>
+    <p>Vous avez une idée pour améliorer NetDisco ? Contactez-nous à <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a> !</p>
+
+    <h2>📚 Ressources</h2>
+    <ul>
+        <li><a href="index.html">Politique de confidentialité</a></li>
+        <li><strong>Guide intégré :</strong> Ouvrez NetDisco → menu "Aide" → "Guide"</li>
+        <li><strong>Raccourcis clavier :</strong> Consultez le guide intégré section "Raccourcis"</li>
+    </ul>
+
+    <div class="footer">
+        <p>NetDisco — Développé par SmartColibri</p>
+        <p>© 2024-2025 SmartColibri. Tous droits réservés.</p>
+    </div>
+</body>
+</html>
