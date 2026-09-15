@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vincent Lauriat — Native macOS instruments, open source</title>
-<meta name="description" content="Native, notarized macOS &amp; iOS apps and open-source AI tools by Vincent Lauriat: MacInside, TheNews, StartAlice, OpenAlice, MarkdownViewer, AppsSwitch, StarlinkInfos, iPhoneStatus, RTKInfos, ClaudeCodeUsage, ClaudeSessionView, AuditViewer, NetCheck, WifiManager, BmadBrowser, Plaud Companion, Looki pour Mac, 3D Scanner, MoveApps, OSINT-index, HomebrewConfig, Toolkit, ZendureMonitor, HaywardMonitor, MeteoStation, EufyGuard, Solitaire, Space Invaders, Pac-Man, Sudoku.">
+<meta name="description" content="Native, notarized macOS &amp; iOS apps and open-source AI tools by Vincent Lauriat: MacInside, TheNews, StartAlice, OpenAlice, MarkdownViewer, AppsSwitch, StarlinkInfos, iPhoneStatus, RTKInfos, ClaudeCodeUsage, ClaudeSessionView, AuditViewer, NetCheck, WifiManager, BmadBrowser, Plaud Companion, Looki pour Mac, 3D Scanner, MoveApps, OSINT-index, HomebrewConfig, Toolkit, ZendureMonitor, HaywardMonitor, MeteoStation, EufyGuard, Solitaire, Space Invaders, Pac-Man, Sudoku, VisualRami.">
 <meta property="og:title" content="Vincent Lauriat — Native macOS instruments, open source">
-<meta property="og:description" content="Twenty-two native macOS instruments that surface what the system keeps to itself — plus four games. Signed, notarized, open source, no telemetry.">
+<meta property="og:description" content="Twenty-two native macOS instruments that surface what the system keeps to itself — plus five games. Signed, notarized, open source, no telemetry.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vincentlauriat.github.io/">
 <meta property="og:image" content="https://vincentlauriat.github.io/assets/og.png">
@@ -155,7 +155,7 @@
      Bureau : positions absolues (--x/--y/--r par sticker), la profondeur
      est la chronologie (z-index = fraîcheur). Mobile : le champ se
      recompacte en flux serré, rotations conservées, positions abandonnées. */
-  .field{position:relative;margin-top:26px;height:var(--field-h,1310px)}
+  .field{position:relative;margin-top:26px;height:var(--field-h,1450px)}
   .stk{position:absolute;left:var(--x);top:var(--y);width:var(--w,200px);
     transform:rotate(var(--r,0deg));z-index:var(--z,10);
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
@@ -404,7 +404,7 @@
 
 <main class="wrap">
 
-  <!-- ══ L'ACCRÉTION ══ 30 stickers, la profondeur est la chronologie.
+  <!-- ══ L'ACCRÉTION ══ 31 stickers, la profondeur est la chronologie.
        Chaque sticker reprend l'icône et la couleur du projet ; les vieux ont
        jauni (.age-3) ; les récents brillent (.age-0, z-index haut). -->
   <div class="field" id="field" tabindex="-1" role="group" aria-label="Projects">
@@ -575,7 +575,7 @@
       <span class="nm">TheNews</span><span class="sub">macOS · iOS</span>
     </a>
 
-    <span class="zone-mark" style="--x:64%;--y:856px;--r:2deg" aria-hidden="true">GAMES — 04</span>
+    <span class="zone-mark" style="--x:64%;--y:856px;--r:2deg" aria-hidden="true">GAMES — 05</span>
 
     <a class="stk s-round f-mark age-2" href="https://vincentlauriat.github.io/Solitaire/" target="_blank" rel="noopener"
        style="--c:#d9b45c;--x:60.5%;--y:890px;--r:-6deg;--w:164px;--z:6">
@@ -599,6 +599,12 @@
        style="--c:#5d88ff;--x:77.5%;--y:1056px;--r:-3deg;--w:176px;--z:9">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9.2h17M3.5 14.8h17M9.2 3.5v17M14.8 3.5v17"/></svg></span>
       <span class="nm">Sudoku</span><span class="sub">logic</span>
+    </a>
+
+    <a class="stk s-tab f-block age-0" href="https://lauriat.fr/outils/visualrami/" target="_blank" rel="noopener"
+       style="--c:#2ec27e;--x:66%;--y:1232px;--r:-4deg;--w:196px;--z:12">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="9" height="13" rx="1.6" transform="rotate(-10 8 11.5)"/><rect x="9" y="4.5" width="9" height="13" rx="1.6"/><path d="M13.5 8.6c-.9-1-2.3-.2-1.9 1 .3.9 1.5 1.6 1.9 2.1.4-.5 1.6-1.2 1.9-2.1.4-1.2-1-2-1.9-1Z" fill="currentColor" stroke="none"/><rect x="15" y="14.5" width="5" height="4" rx="1"/><path d="M20 15.8l2-1v3.4l-2-1"/></svg></span>
+      <span class="nm">VisualRami</span><span class="sub"><span class="en">rummy with video · web</span><span class="fr">rami en visio · web</span><span class="zh">視訊拉米牌 · 網頁</span></span>
     </a>
 
   </div>
@@ -641,11 +647,12 @@
     <h3><span class="en">Zone C — News</span><span class="fr">Zone C — Actualité</span><span class="zh">C 區 — 新聞</span> <span class="n">· 01</span></h3>
     <a class="mrow" href="https://vincentlauriat.github.io/TheNews/" target="_blank" rel="noopener"><span class="ref">C-01</span><span class="pname">TheNews</span><span class="desc"><span class="en">Le Monde, Les Echos and any RSS feed in one app — cross-source grouping, daily briefing, widget, iCloud sync. Serverless, zero dependency.</span><span class="fr">Le Monde, Les Echos et n'importe quel flux RSS dans une seule app — regroupement cross-source, briefing quotidien, widget, sync iCloud. Sans serveur, zéro dépendance.</span><span class="zh">Le Monde、Les Echos 與任何 RSS 來源集於一個應用程式——跨來源分組、每日簡報、小工具、iCloud 同步。無伺服器、零依賴。</span></span><span class="arw">→</span></a>
 
-    <h3><span class="en">Zone D — Games</span><span class="fr">Zone D — Jeux</span><span class="zh">D 區 — 遊戲</span> <span class="n">· 04</span></h3>
+    <h3><span class="en">Zone D — Games</span><span class="fr">Zone D — Jeux</span><span class="zh">D 區 — 遊戲</span> <span class="n">· 05</span></h3>
     <a class="mrow" href="https://vincentlauriat.github.io/Solitaire/" target="_blank" rel="noopener"><span class="ref">D-01</span><span class="pname">Solitaire</span><span class="desc"><span class="en">A native Klondike where every card is drawn in code — classic pips, ornate face cards, lattice backs. Zero image assets, 100% SwiftUI.</span><span class="fr">Un Klondike natif où chaque carte est dessinée en code — pips classiques, figures ornées, dos à croisillons. Zéro asset image, 100 % SwiftUI.</span><span class="zh">原生 Klondike 接龍，每張牌都以程式碼繪成——經典牌點、華麗人頭牌、格紋牌背。零圖片素材，100% SwiftUI。</span></span><span class="arw">→</span></a>
     <a class="mrow" href="https://vincentlauriat.github.io/SpaceInvaders/" target="_blank" rel="noopener"><span class="ref">D-02</span><span class="pname">Space Invaders</span><span class="desc"><span class="en">The 1978 arcade classic reborn native — original 224×256 resolution, CRT scanlines, 8-bit square-wave sounds, one shot on screen at a time.</span><span class="fr">Le classique d'arcade de 1978 renaît en natif — résolution d'origine 224×256, scanlines CRT, sons 8-bit, un seul tir à l'écran à la fois.</span><span class="zh">1978 年的街機經典以原生方式重生——原始 224×256 解析度、CRT 掃描線、8 位元方波音效、螢幕上同時僅一發子彈。</span></span><span class="arw">→</span></a>
     <a class="mrow" href="https://vincentlauriat.github.io/PacMan/" target="_blank" rel="noopener"><span class="ref">D-03</span><span class="pname">Pac-Man</span><span class="desc"><span class="en">The 1980 arcade classic rebuilt native — the original 28×31 maze, the four ghosts' real target-tile personalities, scatter-chase waves and Pinky's overflow bug.</span><span class="fr">Le classique d'arcade de 1980 rebâti en natif — le labyrinthe 28×31 d'origine, les vraies personnalités de ciblage des quatre fantômes, les vagues scatter-chase et le bug de débordement de Pinky.</span><span class="zh">1980 年的街機經典以原生方式重建——原始 28×31 迷宮、四隻幽靈真實的目標格性格、散開與追逐波次，以及 Pinky 著名的溢位錯誤。</span></span><span class="arw">→</span></a>
     <a class="mrow" href="https://vincentlauriat.github.io/Sudoku/" target="_blank" rel="noopener"><span class="ref">D-04</span><span class="pname">Sudoku</span><span class="desc"><span class="en">Four difficulty levels, guaranteed-unique puzzles — and an auto-play mode that solves the board by itself, cell by cell, like a human would.</span><span class="fr">Quatre niveaux, grilles à solution unique garantie — et un mode auto-play qui résout la grille tout seul, case par case, comme un humain.</span><span class="zh">四種難度、保證唯一解的謎題——還有自動遊玩模式，像人類一樣逐格自行解盤。</span></span><span class="arw">→</span></a>
+    <a class="mrow" href="https://lauriat.fr/outils/visualrami/" target="_blank" rel="noopener"><span class="ref">D-05</span><span class="pname">VisualRami</span><span class="desc"><span class="en">Online French Rummy (Rami 51) for 2–6 players who see and hear each other at the table — WebRTC mesh, five-letter table code, games kept for a week. Web app, nothing to install, open source.</span><span class="fr">Le Rami 51 en ligne pour 2 à 6 joueurs qui se voient et s'entendent autour de la table — maillage WebRTC, code de table à cinq lettres, parties conservées une semaine. Application web, rien à installer, open source.</span><span class="zh">線上法式拉米牌（Rami 51），2–6 位玩家在牌桌上互相看見、聽見——WebRTC 網狀連線、五字母牌桌代碼、牌局保留一週。網頁應用，無需安裝，開源。</span></span><span class="arw">→</span></a>
 
     <p class="foot">
       <span><span class="en">More on</span><span class="fr">Plus sur</span><span class="zh">更多請見</span> <a href="https://lauriat.fr" target="_blank" rel="noopener">lauriat.fr</a> · <a href="https://github.com/vincentlauriat" target="_blank" rel="noopener">GitHub</a></span>
