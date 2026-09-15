@@ -12,7 +12,7 @@ Primary: Mac users looking for useful native utilities — they arrive from sear
 
 ## Product Purpose
 
-The hub is the front door to Vincent Lauriat's software corpus: 21 native macOS apps (signed, notarized, Swift), 4 games, plus AI/dev tools. Success = a visitor finds the relevant project fast and clicks through to its landing page; secondary success = the visitor leaves convinced of the build quality.
+The hub is the front door to Vincent Lauriat's software corpus: 21 native macOS apps (signed, notarized, Swift), 5 games, plus AI/dev tools. Success = a visitor finds the relevant project fast and clicks through to its landing page; secondary success = the visitor leaves convinced of the build quality.
 
 ## Positioning
 

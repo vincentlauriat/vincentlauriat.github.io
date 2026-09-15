@@ -1,6 +1,6 @@
 ---
 name: Vincent Lauriat — hub
-description: One builder's flight case — 28 die-cut vinyl stickers accreted on scuffed black laminate, framed in riveted aluminium.
+description: One builder's flight case — 29 die-cut vinyl stickers accreted on scuffed black laminate, framed in riveted aluminium.
 colors:
   case-laminate: "#16130f"
   stencil-beige: "#d9cfb6"
@@ -78,7 +78,7 @@ components:
 
 The hub is not a page about a portfolio; it is one physical object — a road case owned by one
 builder, photographed straight-on. Black scuffed laminate, riveted aluminium extrusion rails and
-corner braces framing the viewport, and years of die-cut vinyl stickers accreted on the lid: 28
+corner braces framing the viewport, and years of die-cut vinyl stickers accreted on the lid: 29
 stickers, one per shipped project, each carrying its project's own accent color inside a white
 vinyl border. Depth is chronology — the newest stickers sit highest in the stack and shine, the
 oldest have yellowed and bleached. Facts print on a strip of yellow caution tape; findability
@@ -101,7 +101,7 @@ screen-reader and findability backbone.
 ## Colors
 
 A warm, sun-faded hardware palette: near-black laminate, adhesive-beige stencils, vinyl white,
-one loud caution yellow — plus 28 per-project accents that arrive with the stickers, not from
+one loud caution yellow — plus 29 per-project accents that arrive with the stickers, not from
 this palette.
 
 ### Primary
