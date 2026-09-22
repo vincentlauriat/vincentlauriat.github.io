@@ -16,7 +16,7 @@ The hub is the front door to Vincent Lauriat's software corpus: 21 native macOS 
 
 ## Positioning
 
-One person ships a full rack of native, notarized, open-source macOS instruments that surface what the system measures but hides — no telemetry, no cloud accounts, MIT licensed. A neighboring portfolio cannot truthfully copy the breadth (30 shipped projects) or the "signed & notarized, 100% Swift" floor.
+One person ships a full rack of native, notarized, open-source macOS instruments that surface what the system measures but hides — no telemetry, no cloud accounts, MIT licensed. A neighboring portfolio cannot truthfully copy the breadth (32 shipped projects) or the "signed & notarized, 100% Swift" floor.
 
 ## Operating Context
 
