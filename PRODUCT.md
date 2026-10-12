@@ -8,7 +8,7 @@ web
 
 ## Users
 
-Primary: Mac users looking for useful native utilities — they arrive from search, GitHub, or a project README, scan the catalog, open a project page, download. Secondary (confirmed): peers and recruiters reading the hub as a technical calling card; the page must read as serious craftsmanship without turning into a résumé.
+Primary (equal weight with peers since 2026-10-12): Mac users looking for useful native utilities — they arrive from search, GitHub, or a project README, scan the catalog, open a project page, download. Secondary (confirmed): peers and recruiters reading the hub as a technical calling card; the page must read as serious craftsmanship without turning into a résumé.
 
 ## Product Purpose
 
@@ -20,7 +20,7 @@ One person ships a full rack of native, notarized, open-source macOS instruments
 
 ## Operating Context
 
-- Static GitHub Pages site, one `index.html` + shared `assets/base.css` (v1.0.5) reused by the 14 project landing pages. No build step, no framework.
+- Static GitHub Pages site, one `index.html` + shared `assets/base.css` (v1.0.5) reused by the project landing pages, plus the self-hosted Schibsted Grotesk font (`assets/schibsted.woff2`, 47 KB). No build step, no framework.
 - Each project card links to its own landing page (same corpus, own accent color).
 - Counting rule for hero claims documented in `index.html` comment: 22 = native Swift macOS apps; games, OpenAlice, HomebrewConfig, Toolkit excluded.
 
@@ -35,12 +35,13 @@ One person ships a full rack of native, notarized, open-source macOS instruments
 
 - Name: "Vincent Lauriat" as signature; corpus tone is factual, instrument-precise, no marketing hyperbole.
 - **Binding aesthetic constraint (user, 2026-08-22, redesign brief)**: "un look plus moderne qui fasse pas IA, classe et raffiné" — modern, must not read as AI-generated design, classy and refined.
+- **Redesign guardrails (user, 2026-10-12)**: must not read as AI-generated, must not look like a dev portfolio (card grid, hero stats, neon dark mode), must not sacrifice speed. Per-project accent colours are not required. Finding an app fast and convincing peers of the craft weigh equally. Direction pinned: "plus élégant, architecte" — an architect's monograph.
 
 ## Evidence on Hand
 
 - 36 real shipped projects (36 stickers, 34 manifest rows — two pairs share a row), most with landing pages under `vincentlauriat.github.io/<Project>/`.
 - Real facts: 22 native Swift apps, 0 telemetry, MIT, EN/FR app localization, macOS 13+, signed & notarized.
-- Assets: `assets/favicon.svg`, `assets/og.png` (2026-08-22). No photography, no testimonials — do not fabricate any.
+- Assets: `assets/favicon.svg`, `assets/og.png` (2026-10-12, screenshot of the monograph build), `assets/schibsted.woff2`. No photography, no testimonials — do not fabricate any.
 
 ## Product Principles
 

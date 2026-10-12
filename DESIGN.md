@@ -1,327 +1,430 @@
 ---
 name: Vincent Lauriat — hub
-description: One builder's flight case — 36 die-cut vinyl stickers accreted on scuffed black laminate, framed in riveted aluminium.
+description: One author's monograph of works — title page, contents, index, four cobalt-opened chapters, every project a numbered plate drawn on a construction grid.
 colors:
-  case-laminate: "#16130f"
-  stencil-beige: "#d9cfb6"
-  stencil-dim: "#a2977c"
-  vinyl-white: "#f0e9d8"
-  sticker-ink: "#17130d"
-  caution-yellow: "#e8b90f"
-  manifest-paper: "#ece4cf"
-  paper-ink: "#23201a"
-  stamp-red: "#c8352b"
+  paper: "#eff1f2"
+  plate: "#e4e7e9"
+  ink: "#141414"
+  ink-2: "#4d5155"
+  rule: "#c2c6c9"
+  grid: "#cfd3d6"
+  cobalt: "#2340c8"
+  on-cobalt: "#eff1f2"
 typography:
   display:
-    fontFamily: "Saira Stencil One, sans-serif"
-    fontSize: "clamp(2.4rem, 5.6vw, 4.4rem)"
+    fontFamily: "Schibsted Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, PingFang TC, Noto Sans TC, Microsoft JhengHei, sans-serif"
+    fontSize: "clamp(3.4rem, 11.2vw, 11.5rem)"
+    fontWeight: 500
+    lineHeight: 0.88
+    letterSpacing: "-0.04em"
+  numeral:
+    fontFamily: "Schibsted Grotesk, sans-serif"
+    fontSize: "clamp(7rem, 24vw, 22rem)"
     fontWeight: 400
-    lineHeight: 1.02
-    letterSpacing: "0.015em"
-  block:
-    fontFamily: "Archivo Black, Arial Black, sans-serif"
-    fontSize: "1.02rem"
-    fontWeight: 400
+    lineHeight: 0.78
+    letterSpacing: "-0.06em"
+  headline:
+    fontFamily: "Schibsted Grotesk, sans-serif"
+    fontSize: "clamp(2rem, 3.6vw, 3.4rem)"
+    fontWeight: 500
     lineHeight: 1.05
-  mark:
-    fontFamily: "Permanent Marker, Comic Sans MS, cursive"
-    fontSize: "1.18rem"
+    letterSpacing: "-0.025em"
+  section:
+    fontFamily: "Schibsted Grotesk, sans-serif"
+    fontSize: "clamp(1.8rem, 3.2vw, 2.8rem)"
+    fontWeight: 500
+    lineHeight: 1.05
+    letterSpacing: "-0.02em"
+  work-title:
+    fontFamily: "Schibsted Grotesk, sans-serif"
+    fontSize: "clamp(1.9rem, 3vw, 2.75rem)"
+    fontWeight: 500
+    lineHeight: 1.05
+    letterSpacing: "-0.03em"
+  thesis:
+    fontFamily: "Schibsted Grotesk, sans-serif"
+    fontSize: "clamp(1.6rem, 2.6vw, 2.4rem)"
+    fontWeight: 500
+    lineHeight: 1.12
+    letterSpacing: "-0.02em"
+  entry:
+    fontFamily: "Schibsted Grotesk, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 500
+    letterSpacing: "-0.01em"
+  body:
+    fontFamily: "Schibsted Grotesk, sans-serif"
+    fontSize: "1.0625rem"
     fontWeight: 400
-  type:
-    fontFamily: "Courier Prime, Courier New, monospace"
-    fontSize: "clamp(0.95rem, 1.6vw, 1.05rem)"
+    lineHeight: 1.55
+  small:
+    fontFamily: "Schibsted Grotesk, sans-serif"
+    fontSize: "0.9375rem"
     fontWeight: 400
-    lineHeight: 1.75
+  caption:
+    fontFamily: "Schibsted Grotesk, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.35
+    fontFeature: "tnum"
 rounded:
-  die: "18px"
-  chip: "7px"
-  plate: "10px"
-  paper: "3px"
+  none: "0"
 spacing:
-  gutter: "28px"
-  sticker-pad: "20px 16px"
-  field-gap-mobile: "22px 16px"
+  gutter: "clamp(20px, 5vw, 72px)"
+  column-gap: "24px"
+  column-gap-phone: "16px"
+  running-head: "56px"
+  scroll-offset: "72px"
+  touch: "44px"
+  measure-max: "1440px"
 components:
-  sticker:
-    textColor: "{colors.sticker-ink}"
-    rounded: "{rounded.die}"
-    padding: "20px 16px"
-  lang-chip:
-    backgroundColor: "{colors.vinyl-white}"
-    textColor: "{colors.sticker-ink}"
-    rounded: "{rounded.chip}"
-    padding: "8px 12px"
-  lang-chip-active:
-    backgroundColor: "{colors.caution-yellow}"
-    textColor: "{colors.sticker-ink}"
-    rounded: "{rounded.chip}"
-    padding: "8px 12px"
-  manifest:
-    backgroundColor: "{colors.manifest-paper}"
-    textColor: "{colors.paper-ink}"
-    rounded: "{rounded.paper}"
-    padding: "56px 54px 48px"
+  running-head:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    typography: "{typography.small}"
+    height: "{spacing.running-head}"
+  lang-button:
+    textColor: "{colors.ink-2}"
+    size: "{spacing.touch}"
+    padding: "0 6px"
+  lang-button-active:
+    textColor: "{colors.ink}"
+    size: "{spacing.touch}"
+    padding: "0 6px"
+  contents-entry:
+    textColor: "{colors.ink}"
+    typography: "{typography.entry}"
+    padding: "14px 0"
+  contents-entry-hover:
+    textColor: "{colors.cobalt}"
+  index-entry:
+    textColor: "{colors.ink}"
+    typography: "{typography.body}"
+    padding: "10px 0 11px"
+    height: "{spacing.touch}"
+  index-entry-hover:
+    textColor: "{colors.cobalt}"
+  chapter-opener:
+    backgroundColor: "{colors.cobalt}"
+    textColor: "{colors.on-cobalt}"
+    padding: "clamp(56px, 10vh, 120px) 0 clamp(48px, 8vh, 96px)"
+  plate:
+    backgroundColor: "{colors.plate}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+  work-caption:
+    textColor: "{colors.ink}"
+    typography: "{typography.work-title}"
+  view-link:
+    textColor: "{colors.ink}"
+    typography: "{typography.body}"
+  view-link-hover:
+    textColor: "{colors.cobalt}"
+  colophon:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink-2}"
+    typography: "{typography.small}"
+    padding: "40px 0 64px"
 ---
 
-# Design System: Vincent Lauriat — hub (the flight case)
+# Design System: Vincent Lauriat — hub
 
-> Scope: this file records the world of **`index.html` only** (the hub surface). The 14 project
-> landing pages live in other repos on a different, shared floor — `assets/base.css` v1.0.5 —
-> which this world **inherits unchanged** (tokens `--accent`/`--on-accent`, the trilingual
-> EN/FR/ZH-Hant masking mechanism, and the a11y floor). base.css is documented there, not here;
-> whether the landing pages ever adopt case-world tokens is explicitly unresolved.
-> Direction contract: HTML comment, first child of `<body>` (seed 39f91a6c, user-locked).
+> **Scope.** This file records the world of **`index.html` only**, the hub surface. The project
+> landing pages share a floor, `assets/base.css` (v1.0.5), which the hub also loads first. The
+> hub inherits three things from that floor and overrides the rest:
+>
+> 1. **The trilingual mask.** Every visible string is written three times (`.en`, `.fr`, `.zh`).
+>    `setLang()` puts one class on `<body>` (`lang-en` / `lang-fr` / `lang-zh`) and sets
+>    `<html lang>` to `en` / `fr` / `zh-Hant`. The floor contains only *hiding* rules
+>    (`display:none !important` on the two inactive languages), never display rules. The active
+>    variant therefore keeps whatever display the hub layout gives it. English is the bare default
+>    when no script runs.
+> 2. **The ZH-Hant typographic corrections.** These are `letter-spacing:normal` on headings,
+>    `line-break:strict`, and a system Han font stack. The hub re-asserts its own stack with
+>    `html body.lang-zh`, so Latin glyphs stay in Schibsted Grotesk and the ideographs fall to
+>    PingFang TC / Noto Sans TC / Microsoft JhengHei.
+> 3. **The accessibility floor.** This covers the skip link, the `.vh` screen-reader text, the
+>    reduced-motion kill switch and the 16px phone body minimum.
+>
+> The hub redefines the floor's `--accent` / `--on-accent` as aliases of cobalt and on-cobalt, so
+> that the floor's skip link and focus ring speak the hub's one colour. It also sets
+> `color-scheme: light`, overriding the floor's dark default. The floor's own dark surface tokens,
+> radii, monospace face and label utilities are **not** part of this world.
 
 ## Overview
 
-**Creative North Star: "The Flight Case"**
+**Creative North Star: "The Architect's Monograph"**
 
-The hub is not a page about a portfolio; it is one physical object — a road case owned by one
-builder, photographed straight-on. Black scuffed laminate, riveted aluminium extrusion rails and
-corner braces framing the viewport, and years of die-cut vinyl stickers accreted on the lid: 36
-stickers, one per shipped project, each carrying its project's own accent color inside a white
-vinyl border. Depth is chronology — the newest stickers sit highest in the stack and shine, the
-oldest have yellowed and bleached. Facts print on a strip of yellow caution tape; findability
-lives in a typewritten packing manifest taped to the case; the footer is a riveted spec plate.
-It refuses the dev-portfolio card grid entirely.
+The hub reads as one author's book of works. It opens on a title page: the author's name set
+across the full measure at display scale, with "Works, since 2023" beneath it in the secondary
+ink. Below that come a thesis, a lede, a one-line colophon of countable facts, and a contents
+list of four chapters with roman numerals and work ranges. Next is an index of all thirty-six
+works, numbered No. 01–36. Then four chapters follow. Each chapter opens on a full-bleed cobalt
+page holding a huge roman numeral. After the opener, every work is presented as an
+architectural plate with a caption. The plate is the project's own pictogram redrawn in ink on a
+construction grid, framed by crop marks. Pictogram and caption are wrapped together in one link.
 
-Every texture is authored in CSS/SVG — the laminate scratches are repeating-linear-gradients,
-the grain is an inline SVG turbulence data-URI, the handle and braces are inline SVG. Zero
-external images, zero frameworks. Where the world's mess and the catalog's job conflict,
-**clarity wins**: sticker names stay legible, and the manifest — not the sticker field — is the
-screen-reader and findability backbone.
+The register is daylight desk reading: cool light-grey paper, near-black ink, a secondary ink
+for captions, hairline rules, and a single cobalt. Hierarchy comes from scale, weight and
+position on a 12-column grid, never from ornament. There is one face, Schibsted Grotesk. It
+reaches from an 11.5rem title down to 0.875rem figure captions, using weights 400, 500 and 600
+only. Depth is flat. The only colour field is the cobalt chapter opener. The only motion is one
+left-to-right plotter pass over each plate, the first time it enters the screen.
+
+Density is that of a well-set book: generous margins, long vertical rests between works, and
+captions held to a reading measure. The index and contents exist so that a visitor can reach a
+work in one jump. The plates and captions let a reader linger.
 
 **Key Characteristics:**
-- One object, not a layout: fixed aluminium frame, laminate ground, accreted stickers.
-- Depth = time: z-index and fading (`age-0`…`age-3`) encode shipping chronology together.
-- Four lettering voices (stencil, block, marker, typewriter), zero system display faces.
-- One motion: the sticker corner peel. Nothing else moves for decoration.
-- All claims printed on the case are factual and countable.
+- A book structure: title page, contents, index, chapters, plates, colophon.
+- Cool light-grey paper, two inks, one cobalt; no gradients, shadows or tints.
+- Schibsted Grotesk only, sentence case throughout, tight negative tracking at display sizes.
+- Plates are line drawings on a construction grid, with a strict three-weight stroke hierarchy.
+- A 12-column grid; three alternating plate/caption layouts.
+- Full-bleed cobalt chapter openers carrying a giant roman numeral.
+- One motion: the plotter pass, once per plate, absent under reduced motion and without JS.
 
 ## Colors
 
-A warm, sun-faded hardware palette: near-black laminate, adhesive-beige stencils, vinyl white,
-one loud caution yellow — plus 36 per-project accents that arrive with the stickers, not from
-this palette.
+A near-monochrome paper-and-ink palette with exactly one chromatic voice.
 
 ### Primary
-- **Caution Yellow** (`--tape-y`): the case's only loud voice — the caution-tape facts band,
-  the active language sticker, `::selection`, and (as `--accent`) the base.css focus ring and
-  skip link. `--on-accent` is overridden to `#17130d` (dark ink) so text on yellow stays legible.
-
-### Secondary
-- **Stamp Red** (`--red`): the manifest's rubber-stamp "ALL SHIPPED" and the manifest row hover
-  wash (`rgba(200,53,43,.09)`). Paper-world only; it never appears on the laminate.
+- **Cobalt** (`cobalt`): the only colour in the system. It fills the chapter openers edge to
+  edge. It is also the hover state of every link (work name, "View the project", plate strokes,
+  contents and index entries, colophon links), the focus ring, the text-selection background and
+  the favicon field. On paper and under paper-coloured text it reaches 7.0:1, so it is safe as
+  text and as a fill.
 
 ### Neutral
-- **Case Laminate** (`--case`): the ground. Warm near-black, always seen through the scratch
-  layers and grain; also the "case showing through" color inside the peel gradient.
-- **Stencil Beige** (`--stencil`): default text on the case — the spray-stencil/adhesive-residue
-  color. Headline, signature, zone marks (dimmed via `--stencil-dim` `#a2977c`).
-- **Vinyl White** (`--vinyl`): the 5px die-cut border of every sticker, and the resting
-  background of control stickers (language chips, GH sticker).
-- **Sticker Ink** (`--ink`): dark ink on light sticker faces and on yellow; default `--sink`.
-- **Manifest Paper** (`--paper`) / **Paper Ink** (`--paper-ink`): the taped inventory sheet —
-  the one light surface in the world, with its own ink.
+- **Cool Paper** (`paper`): the page itself and the background of the sticky running head. It is
+  a cool light grey, neither cream nor pure white. It also serves as `theme-color`.
+- **Plate Grey** (`plate`): the ground of every plate, one step darker than the paper, so that a
+  plate reads as a sheet laid on the page without needing a border.
+- **Ink** (`ink`): text, the object stroke of every pictogram, and the full-strength rules under
+  the "Contents" label, the index heading and the colophon top edge.
+- **Secondary Ink** (`ink-2`): work numbers, roles, the subtitle under the author name, the
+  contents numerals and ranges, figure captions, crop marks, dimension lines and inactive
+  language buttons. It reaches 7.1:1 on paper and 6.4:1 on plate grey.
+- **Hairline** (`rule`): divider rules between contents and index entries, and under the running
+  head. It is a decorative separator only (1.5:1), so it never carries meaning alone.
+- **Construction Grey** (`grid`): the 10-unit construction grid inside plates and the dashed
+  construction circle.
+- **Paper on Cobalt** (`on-cobalt`): text on the chapter openers. It has the same value as the
+  paper, so the opener reads as the page inverted.
 
 ### Named Rules
-**The Sticker-Owns-Its-Color Rule.** Project accents (`--c`, set inline per sticker) come from
-each project's own landing-page identity; the hub palette never dictates them. Ink on a sticker
-is always dark (`--sink` defaults to `--ink`); never white text on an accent.
-**The One Loud Voice Rule.** Caution yellow is the only saturated color the case itself speaks.
-Everything else on the laminate is beige, alu, or near-black.
-**The Paper World Rule.** Red exists only on paper (manifest); paper colors never leak onto the
-laminate, and laminate beige never appears on paper.
+**The One Cobalt Rule.** Cobalt is the only hue on the page. It appears as a full-bleed field in
+exactly one place, the chapter opener. Everywhere else it appears only as a *response*: hover,
+focus or selection. No resting text, rule or plate uses it.
+
+**The Two Inks Rule.** Text is either ink or secondary ink, and nothing else. Meaning steps down
+by moving from ink to secondary ink, never by lowering opacity or lightening further.
 
 ## Typography
 
-**Display Font:** Saira Stencil One (stencil — the case marking voice)
-**Block Font:** Archivo Black (die-cut sticker lettering, tape values)
-**Script Font:** Permanent Marker (hand-lettered sticker voice)
-**Typewriter Font:** Courier Prime 400/700 (lede, manifest, sublabels, footer plate)
+**Display Font:** Schibsted Grotesk (variable 400–900, self-hosted latin subset `assets/schibsted.woff2`, preloaded, `font-display: swap`), with the Apple/Segoe/Helvetica system stack as fallback.
+**Body Font:** the same face.
+**CJK:** PingFang TC → Noto Sans TC → Microsoft JhengHei. The browser descends the stack glyph by glyph, so Han characters fall to the system face and Latin stays in Schibsted.
 
-**Character:** four vernacular print voices, all Google-Fonts loaded (non-blocking `media="print"`
-swap trick with `<noscript>` fallback), each with a real fallback stack. No system display face
-ever carries a title — except in ZH, where `body.lang-zh h1` deliberately falls back to
-`--font-sans` at weight 800 because stencil glyphs don't exist for Han characters.
+**Character:** One grotesque carries every role. Hierarchy comes from size and weight, never
+from a second family, so the page looks set rather than styled. Display sizes track tightly
+(−0.02 to −0.06em) and set solid; captions and body run at normal tracking.
 
 ### Hierarchy
-- **Display / h1** (400, `clamp(2.4rem, 5.6vw, 4.4rem)`, lh 1.02): stencil, uppercase,
-  `letter-spacing: .015em`, `text-shadow: 0 2px 0 rgba(0,0,0,.5)`. Second clause dimmed with
-  `--stencil-dim` inside the same h1.
-- **Sticker name `.nm`** (1.02rem base; 1.3rem on `.lead`; 1.18rem in marker voice): voice set
-  per sticker by `f-block` (uppercase), `f-sten` (uppercase, +.06em), or `f-mark`.
-- **Sublabel `.sub`** (Courier 700, .7rem, +.08em, uppercase): the sticker's one-line role, always in the three languages (`.en/.fr/.zh`). Names of 14+ letters take `.nm-long` (.86rem, tracking 0; 1rem for Permanent Marker) so they stay inside the die-cut.
-- **Lede** (Courier, `clamp(.95rem, 1.6vw, 1.05rem)`, lh 1.75, max 58ch, color `#b7ad93`).
-- **Manifest** (everything Courier): h2 1.15rem +.22em uppercase; zone h3 .82rem +.2em with
-  dotted leader line; rows .88rem with bold `.ref`/`.pname`.
-- **Stencil marks** (`.case-mark` .78rem +.26em; `.zone-mark` .8rem +.3em): uppercase,
-  `--stencil-dim`, always slightly rotated.
+- **Display** (500, clamp 3.4–11.5rem, line-height 0.88): the author's name on the title page
+  only, spanning all 12 columns. The subtitle "Works, since 2023" sits on its own line beneath
+  the name at the same size, in weight 400 and secondary ink.
+- **Numeral** (400, clamp 7–22rem, line-height 0.78): the roman numeral on each chapter opener,
+  in paper on cobalt, `aria-hidden`. The chapter heading carries the numeral again as
+  screen-reader text.
+- **Headline** (500, clamp 2–3.4rem): the chapter titles on the openers.
+- **Section** (500, clamp 1.8–2.8rem): the "Index of works" heading. Its count (36) sits on the
+  same baseline at body size in secondary ink, above a full ink rule.
+- **Work title** (500, clamp 1.9–2.75rem; 1.5rem at ≤600px): each work's name (h3). It is
+  preceded inline by its two-digit number in weight 400 and secondary ink. Long CamelCase names
+  carry `<wbr>` break points.
+- **Thesis** (500, clamp 1.6–2.4rem, max 20ch): the one-line thesis on the title page.
+- **Entry** (500, 1.25rem): contents lines.
+- **Body** (400, 1.0625rem / 1.55; 1rem at ≤600px): the lede, descriptions (max 52ch), index
+  names and chapter intros (1.125rem, max 38ch). Emphasis inside descriptions uses weight 600.
+- **Small** (400, 0.9375rem): the running head, the "Contents" label, the colophon line under
+  the lede, and the colophon body.
+- **Caption** (400, 0.875rem, tabular figures): the "Fig. N" captions under plates and the roles
+  in the index.
+- **Link weight** (600): the author name in the running head, "View the project", and the link
+  to the index.
 
 ### Named Rules
-**The Four Voices Rule.** Every piece of text speaks in exactly one of the four voices; the
-voice varies per sticker (part of the accretion's irregularity) but never mixes inside one
-sticker name.
-**The ZH Exception Rule.** Chinese never uses the stencil face; it takes `--font-sans` at 800
-(hub override) plus base.css's ZH sizing/line-breaking floor. Nothing may degrade in FR or ZH.
+**The Single Face Rule.** Schibsted Grotesk is the only typeface loaded. A new role is made by
+choosing a size and one of the weights 400/500/600, never by adding a family. CJK uses the
+system Han stack and is never given a webfont.
+
+**The Sentence Case Rule.** Nothing is uppercased or letter-spaced open. Labels, chapter titles
+and navigation are set in sentence case, at the size their role needs.
+
+**The Tabular Number Rule.** Every work number, range and count uses tabular figures and
+two-digit numbering (01–36), so that columns of numbers align like a book's index.
+
+> ZH-Hant: the floor's `body.lang-zh h1/h2` size clamps would shrink the book's headings in Chinese;
+> the hub restores its own scale for the title h1, the index heading, the chapter titles and the
+> colophon headings (`html body.lang-zh …` overrides).
 
 ## Layout
 
-One centered column: `.wrap` at `max-width: 1240px`, 28px gutters. The viewport is framed by
-fixed chrome — four 10px aluminium `.rail`s (z-60) and four 56×56 SVG corner `.brace`s (z-61) —
-that never scrolls. Vertical order: nav (signature + language stickers + GH sticker) → hero grid
-(`minmax(0,1.25fr) minmax(0,.75fr)`: stencil headline + typewriter lede left, recessed-handle
-SVG right) → caution tape angled −1.4° → stencil case-mark → the sticker field → the manifest →
-the riveted plate.
+The page is a single column of book sections inside a 1440px measure, with fluid side margins
+of clamp(20px, 5vw, 72px). Inside each section a 12-column grid with a 24px column gap places
+everything. Chapter openers break out to full bleed; their content returns to the same 12
+columns.
 
-**The field** (`.field`) is the world's core layout: at ≥761px it is a fixed-height
-(`--field-h`, 1310px) relative canvas where every sticker is absolutely placed by inline
-`--x/--y/--r/--w/--z` custom properties — a hand-composed accretion, denser at the top, with
-`.zone-mark` stencils painted between clusters and two `.ghost` residues in the gaps.
-
-**Responsive** (world-preserving, not grid-reflowing):
-- ≤900px: hero collapses to one column; handle centers below at 220px.
-- ≤1160px: the accretion **recompacts** — the field becomes wrapped flex (`gap: 22px 16px`),
-  stickers keep their rotation and shape but abandon absolute positions
-  (`width: clamp(140px, 44vw, 210px)`, lead `min(320px, 92vw)`); zone marks become full-width
-  centered dividers; `.ghost` residues are hidden (absolute decoration with nowhere to sit —
-  left in place they caused horizontal scroll). The breakpoint is that high because `--x` is in %
-  while `--w` is in px: below ~1160px the absolute layout overlaps and clips names.
-- ≤760px: the manifest drops its rotation and its rows restack to a 2-row grid.
-- ≤430px: sticker names clamp (.84rem, `overflow-wrap: anywhere`), sublabels shrink to .69rem (11px floor).
+- **Running head.** Sticky at the top, at least 56px tall, on paper with a hairline underneath.
+  It holds the author name (link to top), the current chapter title (a scroll handler batched by
+  `requestAnimationFrame` sets it to the section whose top has passed mid-viewport), "Index",
+  the EN/FR/中文 buttons and GitHub. `scroll-padding-top: 72px` keeps anchored targets clear of
+  it.
+- **Title page.** The name spans all 12 columns. Below it, the thesis, lede and colophon line
+  take columns 1–6, and the contents occupy columns 8–12. At ≤960px both stack full width.
+- **Index of works.** A three-column list using CSS columns (minimum column width 18rem, so it
+  can drop to two between breakpoints). Each entry shows number, name and role. At ≤600px it is
+  forced to two columns, roles are hidden and the number column narrows.
+- **Chapter opener.** The numeral takes columns 1–6 and the text columns 8–12, aligned to the
+  bottom. At ≤960px both span full width.
+- **Works: three plate layouts**, cycling A → B → C and restarting at A in each chapter:
+  - **A (large plate left):** plate in columns 1–4, caption in 6–10.
+  - **B (plate right, mirrored):** caption in 3–7, plate in 9–12.
+  - **C (small plate, wide caption):** plate in 3–4, caption in 6–10.
+  - **≤960px:** A and B both become plate 1–5 with caption 7–12, so the mirror exists only
+    above 960px. C becomes plate 1–4 with caption 6–12.
+  - **≤600px:** A stays a large plate across all columns with the caption beneath. B and C
+    both become plate 1–4 with the caption beside it in 5–12. The column gap tightens to 16px.
+- **Vertical rhythm.** Generous, viewport-relative rests: about clamp(56px, 8vh, 104px) between
+  works and clamp(64px, 10vh, 120px) at the head of a chapter's works. Section padding scales
+  with `vh` rather than stepping through a fixed scale.
+- **Colophon.** Three columns (1–5, 7–9, 10–12) under a full ink rule. They stack at ≤960px.
 
 ### Named Rules
-**The Chronology-Is-Depth Rule.** Stacking is meaning: `--z` rises with recency (lead sticker
-`--z:40`, freshest 30–39, oldest 5–9) and always pairs with the matching `age-*` class. A new
-sticker goes on top; never re-sort the pile alphabetically or by grid.
-**The Recompaction Rule.** Below 761px the accretion flows but stays an accretion: rotations
-and die-cut shapes survive; only the coordinates die.
+**The Grid Rule.** Every element starts and ends on one of the 12 columns. Asymmetry is created
+by choosing columns, never by offsets or absolute positioning.
+
+**The Touch Floor Rule.** Every interactive row or button is at least 44px tall, including index
+entries, language buttons and running-head links.
 
 ## Elevation & Depth
 
-Depth is physical, not tonal: every layer casts a soft dark drop shadow onto the laminate, and
-lifting is the hover language. No glows, no colored shadows, no blur-behind.
+The system is flat. There are no shadows, blurs or translucent layers anywhere. Depth is tonal
+and bookish. A plate is a slightly darker sheet (plate grey) on the paper. A chapter is a page
+turned to full cobalt. The running head is separated from the content by a hairline, not a
+shadow. Stacking is limited to the sticky head (`z-index: 20`) and the skip link, which comes
+from the floor.
 
-### Shadow Vocabulary
-- **Sticker at rest** (`0 3px 10px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.12) inset`):
-  vinyl sitting on laminate; the inset line is the vinyl edge catching light.
-- **Sticker lifted** (`0 14px 30px rgba(0,0,0,.65)` + `translateY(-5px) scale(1.03)`, `z-index:55`):
-  hover/focus-visible — the sticker comes off the case toward you.
-- **Tape** (`0 6px 16px rgba(0,0,0,.5)`), **manifest** (`0 18px 44px rgba(0,0,0,.6)`),
-  **plate** (`0 8px 20px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.5)`),
-  **handle** (`drop-shadow(0 10px 22px rgba(0,0,0,.65))`), **rails** (inset + `0 0 10px` dark).
-- **Grain everywhere**: the shared `--grain` SVG-turbulence data-URI layers over the body, the
-  tape, the manifest, and each sticker (`::after`, `mix-blend-mode: overlay`, opacity keyed to age).
-
-### Motion (lives here because it *is* the depth grammar)
-**The One Peel Rule.** The world has exactly one motion idea: the peel. On sticker
-hover/focus-visible, the top-right corner curls (`::before` scales 0→1 from `top right`) and the
-sticker lifts. Easing is ease-out-quint `cubic-bezier(.22, 1, .36, 1)` at .22s; secondary state
-transitions (language-chip filters .18s ease, manifest arrow nudge .2s ease) stay under .25s.
-No entrance animations, no parallax, no loops. `prefers-reduced-motion` is honored by base.css's
-global kill switch; `.lifted` gives one old sticker a *permanently* peeled corner — a static
-state, not an animation.
+### Named Rules
+**The Printed Page Rule.** Nothing floats. If a surface needs separating, use a tonal step
+(paper → plate), a rule (hairline or ink) or a full colour field, in that order of preference.
 
 ## Shapes
 
-The form language is **die-cutting**: every interactive object is a cut vinyl shape with a 5px
-`--vinyl` border, its silhouette set by the `--shape` custom property (default 18px):
+The form language is the right angle. No corner on the hub carries a radius: plates, openers,
+rules and the focus ring (`border-radius: 0`, 2px cobalt outline, 4px offset) are all square.
+Lines do the work of boxes. Hairlines divide list entries, full ink rules close headings, and no
+element carries a full border.
 
-- `.s-round` — `50%` + `aspect-ratio: 1` (circular die)
-- `.s-pill` — `999px`
-- `.s-tab` — `14px 14px 40px 14px` (one drooping corner)
-- `.s-arch` — `48% 48% 12px 12px` (arched top)
-- `.s-slant` — `6px 26px 6px 26px` (parallelogram-feel corners)
-- default die — `18px` rounded rectangle (what `.s-badge`-tagged stickers actually render as; see
-  the not-canonized note)
+**The plate drawing** is the system's signature geometry. It is a 240-unit square viewBox:
+- **Construction grid.** A 10-unit grid in construction grey, stroke 0.5 viewBox units, on plate
+  grey.
+- **Crop marks.** In secondary ink, stroke 0.75 viewBox units: four corner brackets plus two
+  centre ticks on the top and left edges.
+- **Construction circle.** Radius 90, dashed 2 3, in construction grey, stroke 0.5.
+- **Dimension lines.** Secondary ink, stroke 0.5, each with a "24" label (500 weight, 8 units)
+  recording the 24-unit width and height of the source icon. They show on layouts A and B; on A
+  only at ≤600px; never on C.
+- **The object.** The project's own 24-unit pictogram, scaled 7.5× into the central 180-unit
+  field and stroked in ink with round caps and joins. Three pictograms are solid fills instead
+  of strokes.
 
-Everything is slightly rotated — stickers ±2–7°, tape −1.4°, manifest +.4°, stamp −6°, chips
-±2–3° — nothing in the world sits at exactly 0° except the frame and the manifest rows.
-Hard-edged machine parts (rails, braces, sep bars, tape's 3px dark borders) contrast the soft
-die-cuts; the tape's ragged ends are a `clip-path` polygon. Ghosts reuse the die silhouette at
-`border: 5px rgba(240,233,216,.14)` — the outline of a sticker that was torn off.
+The object stroke is a fixed **2.4 CSS px** (`vector-effect: non-scaling-stroke`), so it reads
+the same on every plate size. Grid, marks, circle and dimensions are in viewBox units, so they
+thin out as plates shrink. This is what keeps the hierarchy (object ≫ marks > grid) legible at
+every scale.
 
-**The Never-Square Rule.** Anything stuck onto the case carries both a rotation and a die-cut
-radius. Only the case's own machined parts (rails, braces, separators) may be perfectly straight.
+### Named Rules
+**The Stroke Hierarchy Rule.** There are three line weights, never more: the object at 2.4px
+non-scaling, the crop marks at 0.75, and the grid, circle and dimensions at 0.5. A new plate
+redraws the project's real icon. It never uses a stock glyph, and never fills its grid with
+decoration.
 
 ## Components
 
-### Die-cut sticker (`.stk`) — the signature component
-- **Anatomy:** `<a>` with icon (`.ic`, 40px inline SVG, `stroke="currentColor"` 1.9), name
-  (`.nm`), sublabel (`.sub`); centered column, `min-height: 44px` touch floor.
-- **Per-sticker API (inline style):** `--c` (project color), `--x/--y` (desktop position),
-  `--r` (rotation), `--w` (width), `--z` (chronology), optional `--sink` (ink override).
-- **Classes:** one shape (`s-*`), one voice (`f-*`), one age (`age-0`…`age-3`); `.lead` for the
-  single freshest flagship (bigger padding, 1.3rem name, `--z:40`); `.lifted` for a permanently
-  peeled corner.
-- **Aging:** `age-3` = `saturate(.45) sepia(.55) brightness(.88) contrast(.92)` + grain at .75;
-  down to `age-0` = `filter: none`. Sunfade is a filter, never a different `--c`.
-- **Hover/focus:** the peel (see Elevation & Depth). Focus ring comes from base.css (caution yellow on the case); inside the manifest it switches to `--paper-ink`, since yellow on paper is 1.5:1.
+### Running head
+Quiet and always present. It sits on paper with a hairline underneath and small type. The author
+name is in weight 600; the chapter label is in secondary ink, truncated with an ellipsis.
+"Index" and GitHub underline on hover (4px offset). At ≤600px the chapter label and GitHub are
+hidden.
 
-### Ghost (`.ghost`)
-Adhesive residue where a sticker was torn off: die-cut silhouette, translucent vinyl border,
-grain-and-radial residue fill, `pointer-events: none`, `aria-hidden`. Placed sparsely (2 on the
-shipped page) to prove the accretion is alive. Never interactive, never carries text.
+### Language buttons
+Three borderless text buttons (EN, FR, 中文), each at least 44×44px. Inactive buttons are in
+secondary ink. The active button is in ink with a 2px underline at a 6px offset, and carries
+`aria-pressed`. Hovering an inactive button turns it to ink. The choice persists in
+`localStorage` (key `vl-lang`) and otherwise follows the browser language.
 
-### Language toggle (`.langtog`) & GH link (`.ghlink`)
-Controls are stickers too. Three vinyl chips (7px radius, ±2–3° rotations, 44px min targets);
-inactive chips are sun-faded via `filter: saturate(.45) sepia(.28) brightness(.82)`, the active
-one is a fresh caution-yellow sticker, un-faded, lifted 1px, `aria-pressed`. The GitHub link is
-a round marker-voice sticker rotated 6°. State change = filter/lift only.
+### Contents
+The "Contents" label sits in small secondary ink above a full ink rule. Each entry is a link laid
+out as a three-column row: roman numeral (secondary ink, 400), chapter title (500, 1.25rem) and
+work range (secondary ink, tabular). Entries are separated by hairlines. On hover the title turns
+cobalt. Below the list, an underlined link in weight 600 leads to the index; its authored arrow
+is rotated 90° to point down.
 
-### Caution tape (`.tape`)
-The facts band: yellow gradient + 45° hazard striping + grain, 3px near-black top/bottom
-borders, ragged `clip-path` ends, rotated −1.4°. Cells are Archivo Black value + Courier 700
-uppercase label, separated by 2px dark `.sep` bars. Facts on the tape are countable and true;
-`role="group"` with a localized `aria-label`.
+### Index entry
+A row at least 44px tall: two-digit number (secondary ink, tabular, spanning both lines), name
+(500), and role beneath it (caption size, secondary ink). Rows are separated by hairlines and
+never break across columns. On hover the name turns cobalt. Each entry links to its work's
+anchor (`#w01`–`#w36`).
 
-### Stencil marks (`.case-mark`, `.zone-mark`)
-Spray-stencil paint directly on the laminate: Saira Stencil One, uppercase, wide tracking,
-`--stencil-dim`, slight rotation, `pointer-events: none`. Zone marks label sticker clusters
-("AI / DEV — 09"); they are decorative (`aria-hidden`) — the manifest carries the real structure.
+### Chapter opener (signature)
+A full-bleed cobalt page at the head of each chapter. The giant roman numeral is set
+bottom-aligned, with paper-coloured text beside it: the chapter title (headline), the count line
+("12 works · No. 01–12"), and a one-sentence intro. "No." is left untranslated in all three
+languages, as a bibliographic convention.
 
-### Manifest (`.manifest`, `.mrow`)
-The typewritten inventory taped to the case (max-width 1080px, rotated .4°, two translucent tape
-strips via `::before/::after`, ruled-paper line gradient, grain). Zones A–D with dotted-leader
-h3s; rows are a `64px 178px 1fr 34px` baseline grid (ref / name / description / arrow), hover =
-red wash + 4px arrow nudge. Every sticker has a manifest row; the manifest — not the field — is
-the catalog backbone and the screen-reader path. Red stamp top-right, rotated −6°.
+### Work: plate + caption (signature)
+Each work is an `<article>` containing **one** link that wraps both the plate (a `<figure>`
+holding the drawing and a "Fig. N" caption) and the caption block. The caption block holds the
+name (h3) with its number inline, the role in secondary ink, the description, and "View the
+project" in weight 600, underlined (1px, 5px offset), followed by an authored 16-unit SVG arrow
+(stroke 1.6, round caps). On hover, the name, the link and every pictogram stroke or fill turn
+cobalt at once. The plate ground, grid and marks stay unchanged. The hover has no transition, and
+keyboard focus (`:focus-visible`) applies the same recolour plus the cobalt outline.
 
-### Footer plate (`footer .plate`)
-Brushed-alu gradient plate, 10px radius, four radial-gradient rivet dots in the corners, Courier
-700 uppercase copy, dark-red underlined links, `EST. MMXXIII` engraving line.
+### Plotter pass (motion)
+This is the only motion in the system. When a plate first comes within 85% of the viewport
+height, its pictogram is revealed left to right by a `clip-path` inset sweep (1.3s,
+cubic-bezier(.65, 0, .35, 1)), as if a plotter head drew it once. Only the object is clipped;
+grid, marks and dimensions are already on the sheet. The pass is applied only to plates that are
+below the fold at load. It runs only when JavaScript runs and reduced motion is not requested;
+otherwise every plate is simply drawn. The same scroll handler drives the running-head chapter
+label, so the page has one passive listener, batched by `requestAnimationFrame`.
 
-### Frame (`.rail`, `.brace`)
-Fixed chrome: 10px aluminium gradient rails on all four edges (z-60) and 56px riveted SVG corner
-braces (z-61), all `aria-hidden`, drawn with literal gradient stops (`#8d887e→#f2eee4→#7c776d`).
-The frame is the one part of the world that never scrolls, tilts, or reacts.
+### Colophon
+A footer under a full ink rule, in three columns: Colophon (facts of making), Elsewhere (links)
+and Type & drawings (credits and ©). Headings are 1.25rem, body text is small in secondary ink,
+and links are in ink, turning cobalt on hover.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** add a new project as sticker + manifest row **together**, and bump the tape counts, the
-  zone counts, `--field-h`, and the meta/og descriptions in the same change (the counting rule
-  lives in the HTML comment above `.tape`).
-- **Do** put a new sticker **on top**: `age-0`, `filter: none`, a `--z` above the current
-  maximum, positioned in its zone's cluster; demote the previous `.lead` if the newcomer is the
-  flagship.
-- **Do** give every sticker one shape class, one voice class, one age class, a project `--c`
-  with dark ink, a 40px stroke icon, and the 5px vinyl border.
-- **Do** keep all texture authored in CSS/SVG (`--grain`, scratch gradients, inline SVG) — zero
-  external images.
-- **Do** keep every visible string trilingual (`.en/.fr/.zh` spans) and every control at
-  ≥44px — the base.css floor is binding and WCAG AA may not regress.
+- **Do** keep cobalt (#2340c8) as the single hue: full-bleed on chapter openers, and otherwise only as hover, focus and selection.
+- **Do** set every new role in Schibsted Grotesk at weight 400, 500 or 600, in sentence case.
+- **Do** number works with two tabular digits and keep the index, the contents ranges and the chapter count lines in agreement.
+- **Do** draw every new plate from the project's own 24-unit icon, scaled 7.5× into the 240 viewBox, with the object at 2.4px non-scaling stroke over the shared grid, crop marks and circle.
+- **Do** wrap each work's plate and caption in a single link, and place them on the 12-column grid using the A/B/C layouts in sequence.
+- **Do** write every visible string three times (`.en`, `.fr`, `.zh`) and let the body class decide which one shows.
+- **Do** keep interactive rows at least 44px tall and the focus ring a square 2px cobalt outline.
+- **Do** keep plates fully visible without JavaScript and under reduced motion; the plotter pass is an enhancement.
 
 ### Don't:
-- **Don't** reflow the field into a uniform grid, equalize sticker sizes, or zero the rotations
-  — the irregular accretion *is* the identity; clarity is won by legible names and the manifest,
-  not by tidying the pile.
-- **Don't** add a second motion idea. The peel (ease-out-quint, ≤.25s) is the entire grammar;
-  no entrance animations, parallax, marquees, or hover glows.
-- **Don't** write light text on an accent or on yellow — ink on stickers and tape is always
-  dark (`--ink` / `--on-accent: #17130d`).
-- **Don't** let paper and laminate worlds bleed: no red on the case, no stencil-beige text on
-  the manifest, no cool base.css surface colors (`#0a0c12` family) anywhere on this page.
-- **Don't** print a claim the corpus can't count — facts on tape, stamp, and plate stay factual
-  ("21 instruments", "0 telemetry", "signed & notarized"; apps are EN/FR only — never promise
-  ZH for the apps).
+- **Don't** add a second typeface, a monospace face, or a webfont for CJK.
+- **Don't** introduce shadows, gradients, translucent overlays or rounded corners.
+- **Don't** add a second accent or per-project colours on the hub.
+- **Don't** uppercase or letter-space labels, or place small category labels (kickers) above headings; the one label on the page is the "Contents" heading of the contents list.
+- **Don't** use glyph or emoji arrows; arrows are authored SVG paths that inherit `currentColor`.
+- **Don't** add a fourth stroke weight to the plates or fill their grid with decoration.
+- **Don't** animate anything other than the plotter pass, and never replay it.
+- **Don't** add photographs, screenshots or raster images to the page.
