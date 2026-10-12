@@ -41,6 +41,11 @@
     --paper:     #ece4cf;   /* papier du manifeste */
     --paper-ink: #23201a;
     --red:       #c8352b;   /* tampon / crayon gras */
+    --stencil-mid:#b7ad93;  /* texte courant sur le laminate */
+    --paper-ink-2:#4a4433;  /* descriptions du manifeste */
+    --paper-ref:  #5f573f;  /* références et compteurs du manifeste */
+    --paper-rule: #b4a883;  /* pointillés du manifeste */
+    --plate-ink:  #1a1713;  /* gravure de la plaque rivetée */
     --accent:    var(--tape-y);
     --on-accent: #17130d;
     --f-block:  "Archivo Black", "Arial Black", var(--font-sans);
@@ -130,7 +135,7 @@
     text-shadow:0 2px 0 rgba(0,0,0,.5)}
   h1 .dim{color:var(--stencil-dim)}
   .lede{font-family:var(--f-type);font-size:clamp(.95rem,1.6vw,1.05rem);line-height:1.75;
-    color:#b7ad93;max-width:58ch;margin-top:24px}
+    color:var(--stencil-mid);max-width:58ch;margin-top:24px}
 
   /* La poignée encastrée — l'objet-signature du case */
   .handle{justify-self:end;align-self:center;width:min(258px,100%);filter:drop-shadow(0 10px 22px rgba(0,0,0,.65))}
@@ -179,22 +184,26 @@
   .stk:hover::before,.stk:focus-visible::before{transform:scale(1)}
   .stk .ic{width:40px;height:40px;flex:none}
   .stk .ic svg{width:100%;height:100%;display:block}
-  .stk .nm{font-size:1.02rem;line-height:1.05;letter-spacing:.01em}
-  .stk .sub{font-family:var(--f-type);font-weight:700;font-size:.62rem;letter-spacing:.13em;
+  .stk .nm{font-size:1.02rem;line-height:1.05;letter-spacing:.01em;max-width:100%}
+  .stk .sub{font-family:var(--f-type);font-weight:700;font-size:.7rem;letter-spacing:.08em;line-height:1.3;
     text-transform:uppercase}
   /* familles de lettrage */
   .f-block .nm{font-family:var(--f-block);text-transform:uppercase}
   .f-sten .nm{font-family:var(--f-sten);text-transform:uppercase;letter-spacing:.06em}
   .f-mark .nm{font-family:var(--f-mark);font-size:1.18rem}
+  /* noms de 14 lettres et plus : le lettrage se resserre pour rester dans la découpe */
+  .stk .nm.nm-long{font-size:.86rem;letter-spacing:0}
+  .stk.f-mark .nm.nm-long{font-size:1rem}
   /* formes de découpe */
   .s-round{--shape:50%;aspect-ratio:1;justify-content:center}
   .s-pill{--shape:999px}
   .s-tab{--shape:14px 14px 40px 14px}
   .s-arch{--shape:48% 48% 12px 12px}
   .s-slant{--shape:6px 26px 6px 26px}
+  .s-badge{--shape:12px}
   /* l'âge : la chronologie en décoloration */
-  .age-3{filter:saturate(.45) sepia(.55) brightness(.88) contrast(.92)}
-  .age-2{filter:saturate(.68) sepia(.3) brightness(.93)}
+  .age-3{filter:saturate(.45) sepia(.55) brightness(.95) contrast(.92)}
+  .age-2{filter:saturate(.68) sepia(.3) brightness(.97)}
   .age-1{filter:saturate(.88) sepia(.05)}
   .age-0{filter:none}
   .age-3::after{opacity:.75}
@@ -243,24 +252,26 @@
     transform:rotate(-6deg);opacity:.85}
   .manifest h3{font-size:.82rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
     margin:40px 0 8px;display:flex;align-items:baseline;gap:12px}
-  .manifest h3 .n{color:#5f573f}
-  .manifest h3::after{content:"";flex:1;border-bottom:2px dotted #b4a883;transform:translateY(-4px)}
+  .manifest h3 .n{color:var(--paper-ref)}
+  .manifest h3::after{content:"";flex:1;border-bottom:2px dotted var(--paper-rule);transform:translateY(-4px)}
   .mrow{display:grid;grid-template-columns:64px 178px 1fr 34px;gap:14px;align-items:baseline;
     padding:8px 10px;margin:0 -10px;border-radius:4px;color:inherit;
     font-size:.88rem;line-height:1.5;min-height:44px}
   .mrow:hover,.mrow:focus-visible{background:rgba(200,53,43,.09)}
+  /* le jaune du ruban disparaît sur le papier (1.5:1) : au crayon gras ici */
+  .manifest :focus-visible{outline-color:var(--paper-ink)}
   .mrow:hover .arw,.mrow:focus-visible .arw{transform:translateX(4px)}
-  .mrow .ref{font-weight:700;color:#5f573f;letter-spacing:.05em}
+  .mrow .ref{font-weight:700;color:var(--paper-ref);letter-spacing:.05em}
   .mrow .pname{font-weight:700}
-  .mrow .desc{color:#4a4433}
+  .mrow .desc{color:var(--paper-ink-2)}
   .mrow .arw{justify-self:end;transition:transform .2s ease;font-weight:700}
   .manifest .foot{margin-top:44px;font-size:.78rem;color:#544c30;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 
   /* ── La plaque rivetée du pied ── */
   footer{padding:0 0 70px}
   footer .plate{max-width:640px;margin:0 auto;text-align:center;
-    background:linear-gradient(180deg,#8d887e,#c7c2b7 18%,#b1aca1 60%,#767167);
-    color:#221f1a;border-radius:10px;padding:20px 30px;position:relative;
+    background:linear-gradient(180deg,#8d887e,#c7c2b7 18%,#b8b3a8 60%,#9d988d);
+    color:var(--plate-ink);border-radius:10px;padding:20px 30px;position:relative;
     box-shadow:0 8px 20px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.5)}
   footer .plate .rvt{position:absolute;width:11px;height:11px;border-radius:50%;
     background:radial-gradient(circle at 35% 30%,#efece2,#8b867b 60%,#57534a);
@@ -269,21 +280,29 @@
   footer .rvt.c{bottom:9px;left:11px} footer .rvt.d{bottom:9px;right:11px}
   footer .plate p{font-family:var(--f-type);font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
   footer .plate a{color:#5d2019;text-decoration:underline;text-underline-offset:3px}
-  footer .plate .mono{margin-top:6px;font-size:.7rem;color:#4c483f;letter-spacing:.18em}
+  footer .plate .mono{margin-top:6px;font-size:.72rem;color:var(--plate-ink);letter-spacing:.18em}
 
   ::selection{background:var(--tape-y);color:var(--ink)}
+  .skip{font-family:var(--f-block);font-weight:400;letter-spacing:.04em}
 
   /* ── Recompactage mobile / tablette ── */
   @media (max-width:900px){
     header .wrap{grid-template-columns:1fr}
     .handle{justify-self:center;width:220px;order:2}
   }
-  @media (max-width:760px){
-    header{padding:46px 0 6px}
+  /* Les positions du champ sont en % mais les largeurs en px : sous ~1160px
+     les stickers se chevauchent et débordent. Le champ se recompacte donc
+     dès la tablette ; les fantômes, purement décoratifs et positionnés en
+     absolu, n'ont plus de place où se poser et disparaissent. */
+  @media (max-width:1160px){
     .field{height:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:22px 16px;padding:10px 0 6px}
     .stk{position:relative;left:auto;top:auto;width:clamp(140px,44vw,210px)}
     .stk.lead{width:min(320px,92vw)}
+    .ghost{display:none}
     .zone-mark{position:static;flex-basis:100%;text-align:center;transform:rotate(-1deg);margin-top:16px}
+  }
+  @media (max-width:760px){
+    header{padding:46px 0 6px}
     .manifest{padding:42px 20px 36px;transform:none}
     .mrow{grid-template-columns:52px 1fr 26px;grid-template-rows:auto auto}
     .mrow .desc{grid-column:2/4}
@@ -296,7 +315,7 @@
     .stk{padding:16px 12px}
     .stk .nm{font-size:.84rem;letter-spacing:0;overflow-wrap:anywhere}
     .f-mark .nm{font-size:.98rem}
-    .stk .sub{font-size:.56rem;letter-spacing:.08em}
+    .stk .sub{font-size:.69rem;letter-spacing:.04em}
   }
   body.lang-zh h1{font-family:var(--font-sans);font-weight:800}
 </style>
@@ -319,7 +338,7 @@
      finish review, the verdict, DESIGN.md, and every shipping raster carrying
      its provenance. -->
 
-<a class="skip" href="#field"><span class="en">Skip to projects</span><span class="fr">Aller aux projets</span><span class="zh">跳至專案</span></a>
+<a class="skip" href="#manifest"><span class="en">Skip to project list</span><span class="fr">Aller à la liste des projets</span><span class="zh">跳至專案清單</span></a>
 
 <div class="rail t" aria-hidden="true"></div>
 <div class="rail b" aria-hidden="true"></div>
@@ -409,68 +428,68 @@
        jauni (.age-3) ; les récents brillent (.age-0, z-index haut). -->
   <div class="field" id="field" tabindex="-1" role="group" aria-label="Projects">
 
-    <span class="zone-mark" style="--x:2%;--y:8px;--r:-2deg" aria-hidden="true">AI / DEV — 10</span>
+    <span class="zone-mark" style="--x:2%;--y:8px;--r:-2deg" aria-hidden="true"><span class="en">AI / DEV — 10</span><span class="fr">IA / DEV — 10</span><span class="zh">AI／開發 — 10</span></span>
 
     <a class="stk s-slant f-block age-1" href="https://vincentlauriat.github.io/AuditViewer/" target="_blank" rel="noopener"
        style="--c:#e879f9;--x:1%;--y:52px;--r:-6deg;--w:190px;--z:14">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/><path d="M8 12v-2M10.8 12V8.4M13.5 12v-3"/></svg></span>
-      <span class="nm">AuditViewer</span><span class="sub">research</span>
+      <span class="nm">AuditViewer</span><span class="sub"><span class="en">research</span><span class="fr">recherche</span><span class="zh">研究</span></span>
     </a>
 
     <a class="stk s-round f-mark age-1" href="https://vincentlauriat.github.io/RTKInfos/" target="_blank" rel="noopener"
        style="--c:#34d399;--x:14%;--y:10px;--r:5deg;--w:176px;--z:15">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15.5 7 9l3.5 4L14 6.5 17 11l4-6.5"/><path d="M3 20h18"/></svg></span>
-      <span class="nm">RTKInfos</span><span class="sub">token savings</span>
+      <span class="nm">RTKInfos</span><span class="sub"><span class="en">token savings</span><span class="fr">économies de tokens</span><span class="zh">token 節省</span></span>
     </a>
 
     <a class="stk s-round f-mark age-1" href="https://vincentlauriat.github.io/ClaudeMenu/" target="_blank" rel="noopener"
        style="--c:#30d158;--x:48%;--y:120px;--r:-4deg;--w:178px;--z:12">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17a8 8 0 0 1 16 0"/><path d="M12 17l4.5-5.5"/><path d="M3 20h18"/></svg></span>
-      <span class="nm">ClaudeMenu</span><span class="sub">usage pace</span>
+      <span class="nm">ClaudeMenu</span><span class="sub"><span class="en">usage pace</span><span class="fr">rythme d'usage</span><span class="zh">用量節奏</span></span>
     </a>
 
     <!-- Claude Cockpit : la fusion des quatre outils Claude, le sticker le plus frais de la grappe -->
     <a class="stk s-tab f-block age-0" href="https://smartcolibri.github.io/ClaudeCockpit/" target="_blank" rel="noopener"
        style="--c:#ff9f0a;--x:1%;--y:252px;--r:3deg;--w:180px;--z:42">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><circle cx="8" cy="12" r="3"/><path d="M8 12l2-2"/><path d="M14 10h5M14 13h5M14 16h3"/></svg></span>
-      <span class="nm">Claude Cockpit</span><span class="sub">usage &amp; skills</span>
+      <span class="nm">Claude Cockpit</span><span class="sub"><span class="en">usage &amp; skills</span><span class="fr">usage &amp; skills</span><span class="zh">用量與技能</span></span>
     </a>
 
     <!-- MailClassification (anciennement jevOutlook) : classement sémantique des boîtes mail avec Jev, dashboard + CLI + add-in Outlook -->
     <a class="stk s-slant f-block age-0" href="https://vincentlauriat.github.io/MailClassification.jev/" target="_blank" rel="noopener"
        style="--c:#2b88d8;--x:64%;--y:214px;--r:-4deg;--w:205px;--z:43">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5V11"/><path d="M3 7.5v9A2.5 2.5 0 0 0 5.5 19H11"/><path d="m3.5 7 8.5 6 9-6"/><path d="M14 16.5 17.5 13H21v3.5L17.5 20l-3.5-3.5Z"/><circle cx="19" cy="15" r=".6" fill="currentColor"/></svg></span>
-      <span class="nm">MailClassification</span><span class="sub">mail + add-in</span>
+      <span class="nm nm-long">MailClassification</span><span class="sub"><span class="en">mail + add-in</span><span class="fr">mail + complément</span><span class="zh">郵件＋增益集</span></span>
     </a>
 
     <a class="stk s-tab f-block age-1" href="https://vincentlauriat.github.io/ClaudeCodeUsage/" target="_blank" rel="noopener"
        style="--c:#22c55e;--x:27.5%;--y:58px;--r:-3deg;--w:210px;--z:13">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V12M9.3 20V6M14.7 20v-5M20 20V9"/></svg></span>
-      <span class="nm">ClaudeCodeUsage</span><span class="sub">usage dashboard</span>
+      <span class="nm nm-long">ClaudeCodeUsage</span><span class="sub"><span class="en">usage dashboard</span><span class="fr">tableau d'usage</span><span class="zh">用量儀表板</span></span>
     </a>
 
     <a class="stk s-pill f-sten age-1" href="https://vincentlauriat.github.io/BmadBrowser/" target="_blank" rel="noopener"
        style="--c:#38bdf8;--x:44.5%;--y:16px;--r:4deg;--w:214px;--z:12">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg></span>
-      <span class="nm">BmadBrowser</span><span class="sub">bmad artifacts</span>
+      <span class="nm">BmadBrowser</span><span class="sub"><span class="en">bmad artifacts</span><span class="fr">artefacts bmad</span><span class="zh">BMad 產出物</span></span>
     </a>
 
     <a class="stk s-arch f-block age-1" href="https://vincentlauriat.github.io/ClaudeSessionView/" target="_blank" rel="noopener"
        style="--c:#d97757;--x:61%;--y:52px;--r:-5deg;--w:200px;--z:16">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
-      <span class="nm">ClaudeSessionView</span><span class="sub">account usage</span>
+      <span class="nm nm-long">ClaudeSessionView</span><span class="sub"><span class="en">account usage</span><span class="fr">usage du compte</span><span class="zh">帳戶用量</span></span>
     </a>
 
     <a class="stk s-slant f-mark age-1" href="https://vincentlauriat.github.io/toolkit/" target="_blank" rel="noopener"
        style="--c:#c084fc;--x:78%;--y:12px;--r:6deg;--w:176px;--z:11">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg></span>
-      <span class="nm">Toolkit</span><span class="sub">cc plugins</span>
+      <span class="nm">Toolkit</span><span class="sub"><span class="en">cc plugins</span><span class="fr">plugins cc</span><span class="zh">CC 外掛</span></span>
     </a>
 
     <a class="stk s-tab f-sten age-1" href="https://vincentlauriat.github.io/homebrewconfig/" target="_blank" rel="noopener"
        style="--c:#fbbf24;--x:82%;--y:168px;--r:-4deg;--w:190px;--z:10">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M12 15h5"/></svg></span>
-      <span class="nm">HomebrewConfig</span><span class="sub">brew tui</span>
+      <span class="nm nm-long">HomebrewConfig</span><span class="sub"><span class="en">brew tui</span><span class="fr">tui brew</span><span class="zh">Brew 終端介面</span></span>
     </a>
 
     <!-- vedette : le sticker le plus frais, en haut de pile -->
@@ -483,7 +502,7 @@
 
     <a class="stk s-round f-mark age-0" href="https://openalice.ai" target="_blank" rel="noopener"
        style="--c:#a3e635;--x:46.5%;--y:292px;--r:7deg;--w:152px;--z:39">
-      <span class="nm">OpenAlice</span><span class="sub">open source</span>
+      <span class="nm">OpenAlice</span><span class="sub"><span class="en">open source</span><span class="fr">open source</span><span class="zh">開源</span></span>
     </a>
 
     <span class="zone-mark" style="--x:2%;--y:420px;--r:-1deg" aria-hidden="true">MACOS — 17</span>
@@ -491,79 +510,79 @@
     <a class="stk s-badge f-block age-2" href="https://smartcolibri.github.io/MacInside/" target="_blank" rel="noopener"
        style="--c:#f5a524;--x:1%;--y:460px;--r:4deg;--w:210px;--z:8">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.2 17a9 9 0 1 1 15.6 0"/><path d="m12 13 4-3.4"/><circle cx="12" cy="17" r="1.4"/></svg></span>
-      <span class="nm">MacInside</span><span class="sub">system sensors</span>
+      <span class="nm">MacInside</span><span class="sub"><span class="en">system sensors</span><span class="fr">capteurs système</span><span class="zh">系統感測器</span></span>
     </a>
 
     <a class="stk s-pill f-mark age-2" href="https://vincentlauriat.github.io/AppsSwitch/" target="_blank" rel="noopener"
        style="--c:#f472b6;--x:14.5%;--y:420px;--r:-5deg;--w:200px;--z:9">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="10" rx="1.6"/><path d="M8 19h11a2 2 0 0 0 2-2V9"/></svg></span>
-      <span class="nm">AppsSwitch</span><span class="sub">window switcher</span>
+      <span class="nm">AppsSwitch</span><span class="sub"><span class="en">window switcher</span><span class="fr">sélecteur de fenêtres</span><span class="zh">視窗切換器</span></span>
     </a>
 
     <a class="stk lifted s-tab f-sten age-3" href="https://vincentlauriat.github.io/MarkdownViewer/" target="_blank" rel="noopener"
        style="--c:#58a6ff;--x:30.5%;--y:466px;--r:3deg;--w:204px;--z:6">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M6.5 15.5v-7l3 3.5 3-3.5v7"/><path d="M16.5 8.5v7M14.5 13l2 2.5 2-2.5"/></svg></span>
-      <span class="nm">MarkdownViewer</span><span class="sub">markdown</span>
+      <span class="nm nm-long">MarkdownViewer</span><span class="sub"><span class="en">markdown</span><span class="fr">markdown</span><span class="zh">Markdown 檢視</span></span>
     </a>
 
     <a class="stk s-round f-block age-3" href="https://vincentlauriat.github.io/WifiManager/" target="_blank" rel="noopener"
        style="--c:#0e9fc3;--x:47.5%;--y:430px;--r:-6deg;--w:172px;--z:5">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a15 15 0 0 1 19 0"/><path d="M5.8 12.5a10 10 0 0 1 12.4 0"/><path d="M9 15.9a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.1"/></svg></span>
-      <span class="nm">WifiManager</span><span class="sub">wifi quality</span>
+      <span class="nm">WifiManager</span><span class="sub"><span class="en">wifi quality</span><span class="fr">qualité wifi</span><span class="zh">Wi-Fi 品質</span></span>
     </a>
 
     <a class="stk s-slant f-sten age-3" href="https://vincentlauriat.github.io/NetCheck/" target="_blank" rel="noopener"
        style="--c:#818cf8;--x:61.5%;--y:466px;--r:5deg;--w:188px;--z:7">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2.5-6 3.5 12 3-8 2 2h5"/></svg></span>
-      <span class="nm">NetCheck</span><span class="sub">network diag</span>
+      <span class="nm">NetCheck</span><span class="sub"><span class="en">network diag</span><span class="fr">diag réseau</span><span class="zh">網路診斷</span></span>
     </a>
 
     <a class="stk s-arch f-block age-2" href="https://vincentlauriat.github.io/StarlinkInfos/" target="_blank" rel="noopener"
        style="--c:#6ad65c;--x:77%;--y:422px;--r:-3deg;--w:194px;--z:8">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a7.31 7.31 0 0 0 10 10Z"/><path d="m9 15 3-3"/><path d="M17 13a6 6 0 0 0-6-6"/><path d="M21 13A10 10 0 0 0 11 3"/></svg></span>
-      <span class="nm">StarlinkInfos</span><span class="sub">dish telemetry</span>
+      <span class="nm">StarlinkInfos</span><span class="sub"><span class="en">dish telemetry</span><span class="fr">télémétrie antenne</span><span class="zh">天線遙測</span></span>
     </a>
 
     <a class="stk s-pill f-block age-2" href="https://vincentlauriat.github.io/iPhoneStatus/" target="_blank" rel="noopener"
        style="--c:#a78bfa;--x:3%;--y:640px;--r:-4deg;--w:198px;--z:9">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.4"/><path d="M9.5 6.5h5"/><path d="M9.5 12h5v4h-5z"/></svg></span>
-      <span class="nm">iPhoneStatus</span><span class="sub">iphone health</span>
+      <span class="nm">iPhoneStatus</span><span class="sub"><span class="en">iphone health</span><span class="fr">santé iphone</span><span class="zh">iPhone 健康度</span></span>
     </a>
 
     <a class="stk s-tab f-mark age-3" href="https://vincentlauriat.github.io/MoveApps/" target="_blank" rel="noopener"
        style="--c:#2dd4bf;--x:17%;--y:678px;--r:5deg;--w:182px;--z:5">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h13M13 4l4 4-4 4"/><path d="M21 16H8M11 12l-4 4 4 4"/></svg></span>
-      <span class="nm">MoveApps</span><span class="sub">project mover</span>
+      <span class="nm">MoveApps</span><span class="sub"><span class="en">project mover</span><span class="fr">déménageur de projets</span><span class="zh">專案搬移</span></span>
     </a>
 
     <a class="stk s-round f-sten age-2" href="https://vincentlauriat.github.io/OSINT-index/" target="_blank" rel="noopener"
        style="--c:#22d3ee;--x:32%;--y:645px;--r:-5deg;--w:174px;--z:7">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/><circle cx="10.5" cy="10.5" r="2.6"/></svg></span>
-      <span class="nm">OSINT-index</span><span class="sub">osint catalog</span>
+      <span class="nm">OSINT-index</span><span class="sub"><span class="en">osint catalog</span><span class="fr">catalogue osint</span><span class="zh">OSINT 目錄</span></span>
     </a>
 
     <a class="stk s-badge f-block age-0" href="https://vincentlauriat.github.io/ZendureMonitor/" target="_blank" rel="noopener"
        style="--c:#facc15;--x:46.5%;--y:680px;--r:3deg;--w:216px;--z:30">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/></svg></span>
-      <span class="nm">ZendureMonitor</span><span class="sub">solar monitor</span>
+      <span class="nm nm-long">ZendureMonitor</span><span class="sub"><span class="en">solar monitor</span><span class="fr">suivi solaire</span><span class="zh">太陽能監控</span></span>
     </a>
 
     <a class="stk s-arch f-sten age-0" href="https://vincentlauriat.github.io/HaywardMonitor/" target="_blank" rel="noopener"
        style="--c:#22d3ee;--x:64%;--y:640px;--r:-4deg;--w:202px;--z:31">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.34 17.66A8 8 0 1 1 17.66 17.66"/><path d="M7.4 13.4c1.53-1.1 3.07-1.1 4.6 0s3.07 1.1 4.6 0"/><path d="M9.2 16.1c1-0.8 2-0.8 3 0s2 0.8 3 0"/></svg></span>
-      <span class="nm">HaywardMonitor</span><span class="sub">pool control</span>
+      <span class="nm nm-long">HaywardMonitor</span><span class="sub"><span class="en">pool control</span><span class="fr">pilotage piscine</span><span class="zh">泳池控制</span></span>
     </a>
 
     <a class="stk s-round f-block age-0" href="https://vincentlauriat.github.io/MeteoStation/" target="_blank" rel="noopener"
        style="--c:#7dd3fc;--x:80%;--y:678px;--r:6deg;--w:180px;--z:32">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="3.4"/><path d="M9 2.2v1.6M9 14.2v1.6M2.2 9h1.6M14.2 9h1.6M4.2 4.2l1.1 1.1M12.7 12.7l1.1 1.1M13.8 4.2l-1.1 1.1"/><path d="M18.5 6.5v9.2a2.3 2.3 0 1 1-2-.1"/></svg></span>
-      <span class="nm">MeteoStation</span><span class="sub">weather station</span>
+      <span class="nm">MeteoStation</span><span class="sub"><span class="en">weather station</span><span class="fr">station météo</span><span class="zh">氣象站</span></span>
     </a>
 
     <a class="stk s-badge f-mark age-0" href="https://vincentlauriat.github.io/EufyGuard/" target="_blank" rel="noopener"
        style="--c:#2dd4bf;--x:6%;--y:848px;--r:3deg;--w:202px;--z:33">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6l7.2 3v5.8c0 4.6-3 7.8-7.2 9.6-4.2-1.8-7.2-5-7.2-9.6V5.6l7.2-3z"/><circle cx="12" cy="10.8" r="3.1"/><circle cx="12" cy="10.8" r=".6" fill="currentColor"/></svg></span>
-      <span class="nm">EufyGuard</span><span class="sub">camera watch</span>
+      <span class="nm">EufyGuard</span><span class="sub"><span class="en">camera watch</span><span class="fr">veille caméras</span><span class="zh">攝影機監看</span></span>
     </a>
     <!-- Gym Matinale (Smart Colibri) : routine de mobilité du matin, iPhone · Watch · Mac · TV -->
     <a class="stk s-round f-mark age-0" href="https://smartcolibri.github.io/GymMatinale/" target="_blank" rel="noopener"
@@ -588,13 +607,13 @@
     <a class="stk s-slant f-block age-1" href="https://vincentlauriat.github.io/plaud-companion/" target="_blank" rel="noopener"
        style="--c:#f5731f;--x:20.5%;--y:888px;--r:-5deg;--w:208px;--z:12">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4M8 6.5v11M12 3.5v17M16 7.5v9M20 10.5v3"/></svg></span>
-      <span class="nm">Plaud Companion</span><span class="sub">voice notes</span>
+      <span class="nm">Plaud Companion</span><span class="sub"><span class="en">voice notes</span><span class="fr">notes vocales</span><span class="zh">語音筆記</span></span>
     </a>
 
     <span class="ghost" style="--x:88%;--y:552px;--r:8deg;--w:150px;--gh:110px;--shape:50%" aria-hidden="true"></span>
     <span class="ghost" style="--x:38%;--y:1080px;--r:-5deg;--w:180px;--gh:96px" aria-hidden="true"></span>
 
-    <span class="zone-mark" style="--x:42%;--y:856px;--r:-2deg" aria-hidden="true">NEWS — 01</span>
+    <span class="zone-mark" style="--x:42%;--y:856px;--r:-2deg" aria-hidden="true"><span class="en">NEWS — 01</span><span class="fr">ACTUALITÉ — 01</span><span class="zh">新聞 — 01</span></span>
 
     <a class="stk s-tab f-block age-2" href="https://vincentlauriat.github.io/TheNews/" target="_blank" rel="noopener"
        style="--c:#e8564f;--x:41%;--y:892px;--r:2deg;--w:218px;--z:9">
@@ -602,30 +621,30 @@
       <span class="nm">TheNews</span><span class="sub">macOS · iOS</span>
     </a>
 
-    <span class="zone-mark" style="--x:64%;--y:856px;--r:2deg" aria-hidden="true">GAMES — 06</span>
+    <span class="zone-mark" style="--x:64%;--y:856px;--r:2deg" aria-hidden="true"><span class="en">GAMES — 06</span><span class="fr">JEUX — 06</span><span class="zh">遊戲 — 06</span></span>
 
     <a class="stk s-round f-mark age-2" href="https://vincentlauriat.github.io/Solitaire/" target="_blank" rel="noopener"
        style="--c:#d9b45c;--x:60.5%;--y:890px;--r:-6deg;--w:164px;--z:6">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5C8.6 7 5 9.3 5 12.6a3.3 3.3 0 0 0 5.7 2.3L12 13.5l1.3 1.4a3.3 3.3 0 0 0 5.7-2.3c0-3.3-3.6-5.6-7-10.1Z"/><path d="M12 15v4.5M9 21.5h6"/></svg></span>
-      <span class="nm">Solitaire</span><span class="sub">klondike</span>
+      <span class="nm">Solitaire</span><span class="sub"><span class="en">klondike</span><span class="fr">klondike</span><span class="zh">克朗代克</span></span>
     </a>
 
     <a class="stk s-badge f-block age-2" href="https://vincentlauriat.github.io/SpaceInvaders/" target="_blank" rel="noopener"
        style="--c:#3cff6e;--x:74.5%;--y:862px;--r:4deg;--w:190px;--z:7">
       <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h2v2H6zM16 4h2v2h-2zM8 6h2v2H8zM14 6h2v2h-2zM6 8h12v2H6zM4 10h6v2H4zM10 10h4v2h-4zM14 10h6v2h-6zM2 12h20v2H2zM2 14h2v4H2zM20 14h2v4h-2zM6 16h2v2H6zM16 16h2v2h-2zM9 18h2v2H9zM13 18h2v2h-2z"/></svg></span>
-      <span class="nm">Space Invaders</span><span class="sub">arcade 1978</span>
+      <span class="nm">Space Invaders</span><span class="sub"><span class="en">arcade 1978</span><span class="fr">arcade 1978</span><span class="zh">街機 1978</span></span>
     </a>
 
     <a class="stk s-round f-block age-2" href="https://vincentlauriat.github.io/PacMan/" target="_blank" rel="noopener"
        style="--c:#f0c419;--x:64%;--y:1074px;--r:5deg;--w:160px;--z:8">
       <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12 21.1 6.75A10.5 10.5 0 1 0 21.1 17.25Z"/><circle cx="11.4" cy="6.6" r="1.35" fill="#16130f"/></svg></span>
-      <span class="nm">Pac-Man</span><span class="sub">arcade 1980</span>
+      <span class="nm">Pac-Man</span><span class="sub"><span class="en">arcade 1980</span><span class="fr">arcade 1980</span><span class="zh">街機 1980</span></span>
     </a>
 
     <a class="stk s-slant f-sten age-2" href="https://vincentlauriat.github.io/Sudoku/" target="_blank" rel="noopener"
        style="--c:#5d88ff;--x:77.5%;--y:1056px;--r:-3deg;--w:176px;--z:9">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9.2h17M3.5 14.8h17M9.2 3.5v17M14.8 3.5v17"/></svg></span>
-      <span class="nm">Sudoku</span><span class="sub">logic</span>
+      <span class="nm">Sudoku</span><span class="sub"><span class="en">logic</span><span class="fr">logique</span><span class="zh">邏輯</span></span>
     </a>
 
     <a class="stk s-tab f-block age-0" href="https://lauriat.fr/outils/visualrami/" target="_blank" rel="noopener"
@@ -637,14 +656,14 @@
     <a class="stk s-slant f-block age-0" href="https://vincentlauriat.github.io/barrel-climb/" target="_blank" rel="noopener"
        style="--c:#fa50c8;--x:30%;--y:1272px;--r:3deg;--w:198px;--z:41">
       <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8v2H8zM6 5h12v2H6zM4 7h16v2H4zM4 9h4v6H4zM10 9h4v6h-4zM16 9h4v6h-4zM4 15h16v2H4zM6 17h12v2H6zM8 19h8v2H8z"/></svg></span>
-      <span class="nm">Barrel Climb</span><span class="sub">arcade 1981</span>
+      <span class="nm">Barrel Climb</span><span class="sub"><span class="en">arcade 1981</span><span class="fr">arcade 1981</span><span class="zh">街機 1981</span></span>
     </a>
 
   </div>
 
   <!-- ══ LE MANIFESTE ══ l'inventaire dactylographié : la findability.
        Chaque ligne double le sticker — c'est aussi l'ossature lecteur d'écran. -->
-  <section class="manifest" aria-labelledby="mtitle">
+  <section class="manifest" id="manifest" tabindex="-1" aria-labelledby="mtitle">
     <header>
       <h2 id="mtitle"><span class="en">Packing manifest</span><span class="fr">Inventaire de tournée</span><span class="zh">裝箱清單</span></h2>
       <span class="stamp" aria-hidden="true"><span class="en">all shipped</span><span class="fr">tout livré</span><span class="zh">全部出貨</span></span>
