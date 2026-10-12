@@ -1,6 +1,6 @@
 ---
 name: Vincent Lauriat — hub
-description: One builder's flight case — 35 die-cut vinyl stickers accreted on scuffed black laminate, framed in riveted aluminium.
+description: One builder's flight case — 36 die-cut vinyl stickers accreted on scuffed black laminate, framed in riveted aluminium.
 colors:
   case-laminate: "#16130f"
   stencil-beige: "#d9cfb6"
@@ -78,7 +78,7 @@ components:
 
 The hub is not a page about a portfolio; it is one physical object — a road case owned by one
 builder, photographed straight-on. Black scuffed laminate, riveted aluminium extrusion rails and
-corner braces framing the viewport, and years of die-cut vinyl stickers accreted on the lid: 35
+corner braces framing the viewport, and years of die-cut vinyl stickers accreted on the lid: 36
 stickers, one per shipped project, each carrying its project's own accent color inside a white
 vinyl border. Depth is chronology — the newest stickers sit highest in the stack and shine, the
 oldest have yellowed and bleached. Facts print on a strip of yellow caution tape; findability
@@ -101,7 +101,7 @@ screen-reader and findability backbone.
 ## Colors
 
 A warm, sun-faded hardware palette: near-black laminate, adhesive-beige stencils, vinyl white,
-one loud caution yellow — plus 35 per-project accents that arrive with the stickers, not from
+one loud caution yellow — plus 36 per-project accents that arrive with the stickers, not from
 this palette.
 
 ### Primary
@@ -151,7 +151,7 @@ ever carries a title — except in ZH, where `body.lang-zh h1` deliberately fall
   `--stencil-dim` inside the same h1.
 - **Sticker name `.nm`** (1.02rem base; 1.3rem on `.lead`; 1.18rem in marker voice): voice set
   per sticker by `f-block` (uppercase), `f-sten` (uppercase, +.06em), or `f-mark`.
-- **Sublabel `.sub`** (Courier 700, .62rem, +.13em, uppercase): the sticker's one-line role.
+- **Sublabel `.sub`** (Courier 700, .7rem, +.08em, uppercase): the sticker's one-line role, always in the three languages (`.en/.fr/.zh`). Names of 14+ letters take `.nm-long` (.86rem, tracking 0; 1rem for Permanent Marker) so they stay inside the die-cut.
 - **Lede** (Courier, `clamp(.95rem, 1.6vw, 1.05rem)`, lh 1.75, max 58ch, color `#b7ad93`).
 - **Manifest** (everything Courier): h2 1.15rem +.22em uppercase; zone h3 .82rem +.2em with
   dotted leader line; rows .88rem with bold `.ref`/`.pname`.
@@ -181,11 +181,14 @@ the riveted plate.
 
 **Responsive** (world-preserving, not grid-reflowing):
 - ≤900px: hero collapses to one column; handle centers below at 220px.
-- ≤760px: the accretion **recompacts** — the field becomes wrapped flex (`gap: 22px 16px`),
+- ≤1160px: the accretion **recompacts** — the field becomes wrapped flex (`gap: 22px 16px`),
   stickers keep their rotation and shape but abandon absolute positions
   (`width: clamp(140px, 44vw, 210px)`, lead `min(320px, 92vw)`); zone marks become full-width
-  centered dividers; the manifest drops its rotation and its rows restack to a 2-row grid.
-- ≤430px: sticker names clamp (.84rem, `overflow-wrap: anywhere`), sublabels shrink to .56rem.
+  centered dividers; `.ghost` residues are hidden (absolute decoration with nowhere to sit —
+  left in place they caused horizontal scroll). The breakpoint is that high because `--x` is in %
+  while `--w` is in px: below ~1160px the absolute layout overlaps and clips names.
+- ≤760px: the manifest drops its rotation and its rows restack to a 2-row grid.
+- ≤430px: sticker names clamp (.84rem, `overflow-wrap: anywhere`), sublabels shrink to .69rem (11px floor).
 
 ### Named Rules
 **The Chronology-Is-Depth Rule.** Stacking is meaning: `--z` rises with recency (lead sticker
@@ -253,7 +256,7 @@ radius. Only the case's own machined parts (rails, braces, separators) may be pe
   peeled corner.
 - **Aging:** `age-3` = `saturate(.45) sepia(.55) brightness(.88) contrast(.92)` + grain at .75;
   down to `age-0` = `filter: none`. Sunfade is a filter, never a different `--c`.
-- **Hover/focus:** the peel (see Elevation & Depth). Focus ring comes from base.css.
+- **Hover/focus:** the peel (see Elevation & Depth). Focus ring comes from base.css (caution yellow on the case); inside the manifest it switches to `--paper-ink`, since yellow on paper is 1.5:1.
 
 ### Ghost (`.ghost`)
 Adhesive residue where a sticker was torn off: die-cut silhouette, translucent vinyl border,

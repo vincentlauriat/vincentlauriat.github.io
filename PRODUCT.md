@@ -12,17 +12,17 @@ Primary: Mac users looking for useful native utilities — they arrive from sear
 
 ## Product Purpose
 
-The hub is the front door to Vincent Lauriat's software corpus: 21 native macOS apps (signed, notarized, Swift), 6 games, plus AI/dev tools. Success = a visitor finds the relevant project fast and clicks through to its landing page; secondary success = the visitor leaves convinced of the build quality.
+The hub is the front door to Vincent Lauriat's software corpus: 22 native macOS apps (signed, notarized, Swift), 6 games, plus AI/dev tools. Success = a visitor finds the relevant project fast and clicks through to its landing page; secondary success = the visitor leaves convinced of the build quality.
 
 ## Positioning
 
-One person ships a full rack of native, notarized, open-source macOS instruments that surface what the system measures but hides — no telemetry, no cloud accounts, MIT licensed. A neighboring portfolio cannot truthfully copy the breadth (33 shipped projects) or the "signed & notarized, 100% Swift" floor.
+One person ships a full rack of native, notarized, open-source macOS instruments that surface what the system measures but hides — no telemetry, no cloud accounts, MIT licensed. A neighboring portfolio cannot truthfully copy the breadth (36 shipped projects) or the "signed & notarized, 100% Swift" floor.
 
 ## Operating Context
 
 - Static GitHub Pages site, one `index.html` + shared `assets/base.css` (v1.0.5) reused by the 14 project landing pages. No build step, no framework.
 - Each project card links to its own landing page (same corpus, own accent color).
-- Counting rule for hero claims documented in `index.html` comment: 21 = native Swift macOS apps; games, OpenAlice, HomebrewConfig, Toolkit excluded.
+- Counting rule for hero claims documented in `index.html` comment: 22 = native Swift macOS apps; games, OpenAlice, HomebrewConfig, Toolkit excluded.
 
 ## Capabilities and Constraints
 
@@ -38,8 +38,8 @@ One person ships a full rack of native, notarized, open-source macOS instruments
 
 ## Evidence on Hand
 
-- 25 real shipped projects with landing pages under `vincentlauriat.github.io/<Project>/`.
-- Real facts: 21 native Swift apps, 0 telemetry, MIT, EN/FR app localization, macOS 13+, signed & notarized.
+- 36 real shipped projects (36 stickers, 34 manifest rows — two pairs share a row), most with landing pages under `vincentlauriat.github.io/<Project>/`.
+- Real facts: 22 native Swift apps, 0 telemetry, MIT, EN/FR app localization, macOS 13+, signed & notarized.
 - Assets: `assets/favicon.svg`, `assets/og.png` (2026-08-22). No photography, no testimonials — do not fabricate any.
 
 ## Product Principles
