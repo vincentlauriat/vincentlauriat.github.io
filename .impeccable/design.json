@@ -1,137 +1,371 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-22T00:00:00Z",
-  "title": "Design System: Vincent Lauriat — hub (the flight case)",
+  "generatedAt": "2026-10-12T23:39:15+00:00",
+  "title": "Design System: Vincent Lauriat — hub",
   "extensions": {
     "colorMeta": {
-      "case-laminate": { "role": "neutral", "displayName": "Case Laminate", "canonical": "#16130f", "tonalRamp": ["#0b0906", "#16130f", "#201c16", "#3a342a", "#57503f", "#7a7158", "#a2977c", "#d9cfb6"] },
-      "stencil-beige": { "role": "neutral", "displayName": "Stencil Beige", "canonical": "#d9cfb6", "tonalRamp": ["#2a2618", "#4a4330", "#6b614a", "#8c7f63", "#a2977c", "#bcb094", "#d9cfb6", "#efe8d6"] },
-      "stencil-dim": { "role": "neutral", "displayName": "Dim Stencil", "canonical": "#a2977c", "tonalRamp": ["#241f14", "#3f3826", "#5a513a", "#75694e", "#8f8163", "#a2977c", "#c1b79c", "#ded5bd"] },
-      "vinyl-white": { "role": "neutral", "displayName": "Vinyl White", "canonical": "#f0e9d8", "tonalRamp": ["#33301f", "#565137", "#797252", "#9b936e", "#bcb28c", "#d8d0bc", "#f0e9d8", "#faf6ec"] },
-      "sticker-ink": { "role": "neutral", "displayName": "Sticker Ink", "canonical": "#17130d", "tonalRamp": ["#0a0805", "#17130d", "#2b2418", "#453a26", "#5f5035", "#7a6845", "#a08a5e", "#c9b586"] },
-      "caution-yellow": { "role": "primary", "displayName": "Caution Yellow", "canonical": "#e8b90f", "tonalRamp": ["#3a3008", "#6b570a", "#9c7f0b", "#caa00c", "#e8b90f", "#f0c422", "#f6d55a", "#fbe9a6"] },
-      "manifest-paper": { "role": "neutral", "displayName": "Manifest Paper", "canonical": "#ece4cf", "tonalRamp": ["#332f22", "#56503a", "#797154", "#9b9270", "#bcb290", "#dcd3b6", "#ece4cf", "#f2ebd8"] },
-      "paper-ink": { "role": "neutral", "displayName": "Paper Ink", "canonical": "#23201a", "tonalRamp": ["#100e0b", "#23201a", "#3a352b", "#544c30", "#6e6448", "#8a7f60", "#a99c7c", "#c9bda0"] },
-      "stamp-red": { "role": "secondary", "displayName": "Stamp Red", "canonical": "#c8352b", "tonalRamp": ["#2e0c09", "#571712", "#80211b", "#a42b23", "#c8352b", "#d95c50", "#e78a80", "#f2bab3"] }
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cool Paper",
+        "canonical": "#eff1f2",
+        "oklch": "oklch(95.7% 0.003 229)",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#242526",
+          "#414243",
+          "#606162",
+          "#818383",
+          "#a3a5a6",
+          "#c7c9ca",
+          "#edeff0"
+        ]
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Plate Grey",
+        "canonical": "#e4e7e9",
+        "oklch": "oklch(92.6% 0.004 237)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232527",
+          "#404244",
+          "#5f6263",
+          "#808384",
+          "#a3a5a7",
+          "#c7c9cb",
+          "#eceff1"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#141414",
+        "oklch": "oklch(19.1% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Secondary Ink",
+        "canonical": "#4d5155",
+        "oklch": "oklch(43.3% 0.008 248)",
+        "tonalRamp": [
+          "#080c0f",
+          "#222529",
+          "#3f4246",
+          "#5e6266",
+          "#7e8387",
+          "#a1a6aa",
+          "#c5cace",
+          "#eaeff4"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#c2c6c9",
+        "oklch": "oklch(82.4% 0.006 240)",
+        "tonalRamp": [
+          "#090c0d",
+          "#222528",
+          "#3f4245",
+          "#5e6264",
+          "#7f8386",
+          "#a2a6a8",
+          "#c6cacd",
+          "#ebeff2"
+        ]
+      },
+      "grid": {
+        "role": "neutral",
+        "displayName": "Construction Grey",
+        "canonical": "#cfd3d6",
+        "oklch": "oklch(86.5% 0.006 240)",
+        "tonalRamp": [
+          "#090c0d",
+          "#222528",
+          "#3f4245",
+          "#5e6264",
+          "#7f8386",
+          "#a2a6a8",
+          "#c6cacd",
+          "#ebeff2"
+        ]
+      },
+      "cobalt": {
+        "role": "primary",
+        "displayName": "Cobalt",
+        "canonical": "#2340c8",
+        "oklch": "oklch(45.0% 0.212 267)",
+        "tonalRamp": [
+          "#0b0053",
+          "#0a007e",
+          "#1629ab",
+          "#2e50d4",
+          "#4f77f3",
+          "#739dff",
+          "#9ac4ff",
+          "#c2ebff"
+        ]
+      },
+      "on-cobalt": {
+        "role": "neutral",
+        "displayName": "Paper on Cobalt",
+        "canonical": "#eff1f2",
+        "oklch": "oklch(95.7% 0.003 229)",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#242526",
+          "#414243",
+          "#606162",
+          "#818383",
+          "#a3a5a6",
+          "#c7c9ca",
+          "#edeff0"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Stencil (Saira Stencil One)", "purpose": "The case-marking voice: h1, stamps, case/zone stencil marks. Never used for Han glyphs (ZH h1 falls back to the sans stack at 800)." },
-      "block": { "displayName": "Block (Archivo Black)", "purpose": "Die-cut sticker lettering and caution-tape values; always uppercase on stickers." },
-      "mark": { "displayName": "Marker (Permanent Marker)", "purpose": "Hand-lettered sticker voice; also the round GH sticker." },
-      "type": { "displayName": "Typewriter (Courier Prime 400/700)", "purpose": "Lede, sticker sublabels, tape labels, the entire manifest, footer plate copy." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "The author's name on the title page only, across all 12 columns; subtitle line beneath at weight 400 in secondary ink."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "The roman numeral on each full-bleed cobalt chapter opener."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Chapter titles on the openers."
+      },
+      "section": {
+        "displayName": "Section",
+        "purpose": "The Index of works heading, over a full ink rule."
+      },
+      "work-title": {
+        "displayName": "Work title",
+        "purpose": "Each work's name (h3), led by its inline two-digit number in secondary ink; 1.5rem at ≤600px."
+      },
+      "thesis": {
+        "displayName": "Thesis",
+        "purpose": "The single thesis line on the title page, max 20ch."
+      },
+      "entry": {
+        "displayName": "Entry",
+        "purpose": "Contents list lines."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lede, descriptions (max 52ch), index names; 1rem at ≤600px."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Running head, Contents label, colophon line and colophon body."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Fig. N plate captions and index roles, tabular figures."
+      }
     },
-    "shadows": [
-      { "name": "sticker-rest", "value": "0 3px 10px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.12) inset", "purpose": "Vinyl sitting on laminate; inset line is the vinyl edge catching light." },
-      { "name": "sticker-lifted", "value": "0 14px 30px rgba(0,0,0,.65)", "purpose": "Hover/focus peel state, paired with translateY(-5px) scale(1.03) and z-index 55." },
-      { "name": "tape", "value": "0 6px 16px rgba(0,0,0,.5)", "purpose": "Caution-tape band floating off the case." },
-      { "name": "manifest", "value": "0 18px 44px rgba(0,0,0,.6)", "purpose": "The taped paper sheet — deepest shadow in the world." },
-      { "name": "plate", "value": "0 8px 20px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.5)", "purpose": "Riveted footer plate; inset top line is machined edge light." },
-      { "name": "handle", "value": "drop-shadow(0 10px 22px rgba(0,0,0,.65))", "purpose": "Filter shadow under the recessed-handle SVG." }
-    ],
+    "shadows": [],
     "motion": [
-      { "name": "ease-out-quint", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "The peel: sticker corner curl + lift, .22s. The world's only motion grammar." },
-      { "name": "state-fade", "value": "ease .18s", "purpose": "Language-chip filter/transform state changes." },
-      { "name": "arrow-nudge", "value": "ease .2s", "purpose": "Manifest row arrow translateX(4px) on hover/focus." }
+      {
+        "name": "plotter-pass",
+        "value": "clip-path: inset(0 100% 0 0) view-box → inset(0 0 0 0) view-box; 1.3s cubic-bezier(.65, 0, .35, 1)",
+        "purpose": "The only motion: each plate's pictogram is revealed left to right once, when its top crosses 85% of the viewport height; only plates below the fold at load; none without JS or under prefers-reduced-motion."
+      },
+      {
+        "name": "scroll-smooth",
+        "value": "scroll-behavior: smooth (inherited from base.css; auto under reduced motion)",
+        "purpose": "Anchor jumps from contents and index."
+      }
     ],
     "breakpoints": [
-      { "name": "hero-stack", "value": "900px" },
-      { "name": "field-recompact", "value": "760px" },
-      { "name": "base-font-floor", "value": "600px" },
-      { "name": "name-clamp", "value": "430px" }
-    ]
+      {
+        "name": "tablet",
+        "value": "960px",
+        "purpose": "Title page and opener stack; plate layouts A and B merge (plate 1–5, caption 7–12); C becomes 1–4 / 6–12; colophon stacks."
+      },
+      {
+        "name": "phone",
+        "value": "600px",
+        "purpose": "Layout A goes full width with caption beneath; B and C become plate 1–4 / caption 5–12; index forced to 2 columns without roles; running-head chapter and GitHub hidden; body 1rem."
+      }
+    ],
+    "plateGeometry": {
+      "viewBox": "0 0 240 240",
+      "objectTransform": "translate(30 30) scale(7.5) — the project's 24-unit icon",
+      "strokes": {
+        "object": "2.4px non-scaling (CSS px)",
+        "cropMarks": "0.75 viewBox units",
+        "grid": "0.5 viewBox units, 10-unit cells",
+        "constructionCircle": "0.5 viewBox units, r=90, dash 2 3",
+        "dimensionLines": "0.5 viewBox units, labels '24'"
+      },
+      "dimensionsVisible": "layouts A and B above 600px; A only at ≤600px; never C"
+    },
+    "inheritance": {
+      "floor": "assets/base.css v1.0.5",
+      "inherited": [
+        "trilingual hide-only mask (.en/.fr/.zh, body.lang-*)",
+        "ZH-Hant heading tracking, line-break strict, system Han stack",
+        "skip link, .vh, reduced-motion kill switch, 16px phone body"
+      ],
+      "overridden": [
+        "--accent/--on-accent aliased to cobalt/on-cobalt",
+        "color-scheme light",
+        "font stack (html body.lang-zh restores Schibsted for Latin)",
+        "focus ring square with 4px offset"
+      ],
+      "notes": [
+        "The floor's body.lang-zh h1/h2 size clamps are overridden by html body.lang-zh rules so the title, index, chapter and colophon headings keep the book's scale in ZH-Hant."
+      ]
+    }
   },
   "components": [
     {
-      "name": "Die-cut Sticker",
+      "name": "Running Head",
+      "kind": "nav",
+      "refersTo": "running-head",
+      "description": "Sticky book running head: author, current chapter, Index, language buttons, GitHub.",
+      "html": "<header class=\"ds-running\"><a class=\"ds-au\" href=\"#\">Vincent Lauriat</a><span class=\"ds-chap\">macOS &amp; iPhone apps</span><a class=\"ds-ix\" href=\"#\">Index</a><span class=\"ds-langs\"><button class=\"ds-lang ds-on\" aria-pressed=\"true\">EN</button><button class=\"ds-lang\" aria-pressed=\"false\">FR</button><button class=\"ds-lang\" aria-pressed=\"false\">中文</button></span></header>",
+      "css": ".ds-running { display: flex; align-items: center; gap: 24px; min-height: 56px; padding: 0 24px; background: var(--paper, #eff1f2); color: var(--ink, #141414); border-bottom: 1px solid var(--rule, #c2c6c9); font: 400 .9375rem/1.55 \"Schibsted Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif; } .ds-au { font-weight: 600; color: inherit; text-decoration: none; } .ds-chap { flex: 1; color: var(--ink-2, #4d5155); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-ix { color: inherit; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; } .ds-ix:hover { text-decoration: underline; text-underline-offset: 4px; } .ds-langs { display: flex; gap: 2px; } .ds-lang { font: inherit; min-height: 44px; min-width: 44px; padding: 0 6px; border: 0; background: transparent; color: var(--ink-2, #4d5155); cursor: pointer; } .ds-lang:not(.ds-on):hover { color: var(--ink, #141414); } .ds-lang.ds-on { color: var(--ink, #141414); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; } .ds-running :focus-visible { outline: 2px solid var(--cobalt, #2340c8); outline-offset: 4px; border-radius: 0; }"
+    },
+    {
+      "name": "Contents",
+      "kind": "nav",
+      "refersTo": "contents-entry",
+      "description": "Title-page contents: roman numeral, chapter title, work range; hairline-separated rows.",
+      "html": "<nav class=\"ds-toc\"><p class=\"ds-lbl\">Contents</p><ul class=\"ds-contents\"><li><a href=\"#\"><span class=\"ds-cn\">I</span><span class=\"ds-ct\">AI &amp; development tools</span><span class=\"ds-cr\">01–12</span></a></li><li><a href=\"#\"><span class=\"ds-cn\">II</span><span class=\"ds-ct\">macOS &amp; iPhone apps</span><span class=\"ds-cr\">13–29</span></a></li></ul><a class=\"ds-to-index\" href=\"#\">Index of all 36 works<svg class=\"ds-arw ds-down\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M2 8h11M9 4l4 4-4 4\"/></svg></a></nav>",
+      "css": ".ds-toc { font-family: \"Schibsted Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif; color: var(--ink, #141414); max-width: 520px; } .ds-lbl { margin: 0; font-size: .9375rem; color: var(--ink-2, #4d5155); padding-bottom: 10px; border-bottom: 1px solid var(--ink, #141414); } .ds-contents { list-style: none; margin: 0; padding: 0; } .ds-contents a { display: grid; grid-template-columns: 3.2rem minmax(0,1fr) auto; align-items: baseline; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--rule, #c2c6c9); color: inherit; text-decoration: none; font-size: 1.25rem; font-weight: 500; letter-spacing: -.01em; } .ds-cn { color: var(--ink-2, #4d5155); font-weight: 400; } .ds-cr { color: var(--ink-2, #4d5155); font-weight: 400; font-size: 1rem; font-variant-numeric: tabular-nums; } .ds-contents a:hover .ds-ct { color: var(--cobalt, #2340c8); } .ds-to-index { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 20px; font-weight: 600; color: inherit; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; } .ds-to-index:hover { color: var(--cobalt, #2340c8); } .ds-down { transform: rotate(90deg); } .ds-toc a:focus-visible { outline: 2px solid var(--cobalt, #2340c8); outline-offset: 4px; border-radius: 0; } .ds-arw { width: .9em; height: .9em; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }"
+    },
+    {
+      "name": "Index Entry",
+      "kind": "custom",
+      "refersTo": "index-entry",
+      "description": "One row of the index of works: tabular number, name, role; 44px minimum.",
+      "html": "<ol class=\"ds-ilist\"><li><a href=\"#\"><span class=\"ds-ino\">13</span><span class=\"ds-inm\">MacInside</span><span class=\"ds-irl\">System sensors</span></a></li><li><a href=\"#\"><span class=\"ds-ino\">14</span><span class=\"ds-inm\">AppsSwitch</span><span class=\"ds-irl\">Window switcher</span></a></li></ol>",
+      "css": ".ds-ilist { list-style: none; margin: 0; padding: 0; max-width: 18rem; font: 400 1.0625rem/1.55 \"Schibsted Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif; color: var(--ink, #141414); } .ds-ilist a { display: grid; grid-template-columns: 2.4rem minmax(0,1fr); column-gap: 8px; padding: 10px 0 11px; min-height: 44px; border-bottom: 1px solid var(--rule, #c2c6c9); color: inherit; text-decoration: none; } .ds-ino { grid-row: 1 / 3; color: var(--ink-2, #4d5155); font-variant-numeric: tabular-nums; } .ds-inm { font-weight: 500; } .ds-irl { grid-column: 2; color: var(--ink-2, #4d5155); font-size: .875rem; line-height: 1.35; } .ds-ilist a:hover .ds-inm { color: var(--cobalt, #2340c8); } .ds-ilist a:focus-visible { outline: 2px solid var(--cobalt, #2340c8); outline-offset: 4px; border-radius: 0; }"
+    },
+    {
+      "name": "Chapter Opener",
+      "kind": "custom",
+      "refersTo": "chapter-opener",
+      "description": "Full-bleed cobalt page with a giant roman numeral, chapter title, count line and intro.",
+      "html": "<header class=\"ds-opener\"><p class=\"ds-numeral\" aria-hidden=\"true\">II</p><div class=\"ds-op-text\"><h2>macOS &amp; iPhone apps</h2><p class=\"ds-op-count\">17 works · No. 13–29</p><p class=\"ds-op-intro\">Instruments that read back what the system measures.</p></div></header>",
+      "css": ".ds-opener { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: 24px; align-items: end; padding: 64px 32px 48px; background: var(--cobalt, #2340c8); color: var(--on-cobalt, #eff1f2); font-family: \"Schibsted Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif; } .ds-numeral { grid-column: 1 / 7; margin: 0 0 0 -.04em; font-size: clamp(7rem, 24vw, 14rem); line-height: .78; letter-spacing: -.06em; font-weight: 400; } .ds-op-text { grid-column: 8 / -1; } .ds-op-text h2 { margin: 0; font-size: clamp(2rem, 3.6vw, 3.4rem); font-weight: 500; line-height: 1.05; letter-spacing: -.025em; } .ds-op-count { margin: 16px 0 0; font-variant-numeric: tabular-nums; } .ds-op-intro { margin: 16px 0 0; max-width: 38ch; font-size: 1.125rem; }"
+    },
+    {
+      "name": "Work Plate",
       "kind": "card",
-      "refersTo": "sticker",
-      "description": "The signature component: a project as die-cut vinyl on the case. Per-sticker inline API: --c color, --x/--y position, --r rotation, --w width, --z chronology; one shape class, one voice class, one age class. Hover peels the corner.",
-      "html": "<a class=\"ds-stk\" href=\"#\" style=\"--c:#34d399;--r:-4deg\"><span class=\"ds-stk-nm\">RTKInfos</span><span class=\"ds-stk-sub\">token savings</span></a>",
-      "css": ".ds-stk { position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 190px; min-height: 44px; padding: 20px 16px; text-align: center; text-decoration: none; background: var(--c, #34d399); color: #17130d; border: 5px solid #f0e9d8; border-radius: 18px; transform: rotate(var(--r, 0deg)); box-shadow: 0 3px 10px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.12) inset; transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease; } .ds-stk::before { content: \"\"; position: absolute; right: -5px; top: -5px; width: 34px; height: 34px; background: linear-gradient(225deg, #16130f 0 48%, #d8d0bc 50%, #efe8d6 100%); border-radius: 0 18px 0 14px; box-shadow: -3px 3px 6px rgba(0,0,0,.35); transform: scale(0); transform-origin: top right; transition: transform .22s cubic-bezier(.22,1,.36,1); } .ds-stk:hover, .ds-stk:focus-visible { transform: rotate(var(--r, 0deg)) translateY(-5px) scale(1.03); box-shadow: 0 14px 30px rgba(0,0,0,.65); } .ds-stk:hover::before, .ds-stk:focus-visible::before { transform: scale(1); } .ds-stk-nm { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 1.02rem; line-height: 1.05; text-transform: uppercase; } .ds-stk-sub { font-family: 'Courier Prime', 'Courier New', monospace; font-weight: 700; font-size: .62rem; letter-spacing: .13em; text-transform: uppercase; }"
+      "refersTo": "plate",
+      "description": "A work's plate and caption in one link: pictogram on construction grid with crop marks and dimension lines, number + name, role, description, View the project.",
+      "html": "<article class=\"ds-work\"><a class=\"ds-wl\" href=\"#\"><figure class=\"ds-plate\"><svg class=\"ds-dwg\" viewBox=\"0 0 240 240\" aria-hidden=\"true\"><defs><pattern id=\"ds-grid\" width=\"10\" height=\"10\" patternUnits=\"userSpaceOnUse\"><rect width=\"10\" height=\"10\" fill=\"#e4e7e9\"/><path d=\"M10 0H0V10\" fill=\"none\" stroke=\"#cfd3d6\" stroke-width=\".5\"/></pattern></defs><rect width=\"240\" height=\"240\" fill=\"url(#ds-grid)\"/><g fill=\"none\" stroke=\"#4d5155\" stroke-width=\".75\"><path d=\"M6 18V6h12M222 6h12v12M234 222v12h-12M18 234H6v-12\"/><path d=\"M120 10v12M10 120h12\"/><circle cx=\"120\" cy=\"120\" r=\"90\" stroke=\"#cfd3d6\" stroke-width=\".5\" stroke-dasharray=\"2 3\"/></g><g fill=\"none\" stroke=\"#4d5155\" stroke-width=\".5\"><path d=\"M30 224h76M134 224h76M30 221v6M210 221v6M224 30v76M224 134v76M221 30h6M221 210h6\"/><text x=\"120\" y=\"227\" text-anchor=\"middle\" fill=\"#4d5155\" stroke=\"none\" font-size=\"8\" font-weight=\"500\">24</text><text x=\"224\" y=\"123\" text-anchor=\"middle\" fill=\"#4d5155\" stroke=\"none\" font-size=\"8\" font-weight=\"500\">24</text></g><g class=\"ds-ic\" transform=\"translate(30 30) scale(7.5)\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3.5 2\"/></g></svg><figcaption>Fig. 6</figcaption></figure><div class=\"ds-cap\"><h3 class=\"ds-wn\"><span class=\"ds-wno\">06</span>ClaudeSessionView</h3><p class=\"ds-role\">Account usage</p><p class=\"ds-desc\">Your real Anthropic account usage in the menu bar — 5-hour and 7-day windows with exact reset countdowns.</p><span class=\"ds-go\">View the project<svg class=\"ds-arw\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M2 8h11M9 4l4 4-4 4\"/></svg></span></div></a></article>",
+      "css": ".ds-work { font: 400 1.0625rem/1.55 \"Schibsted Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif; color: var(--ink, #141414); background: var(--paper, #eff1f2); padding: 24px; } .ds-wl { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: 24px; align-items: start; color: inherit; text-decoration: none; } .ds-plate { grid-column: 1 / 5; margin: 0; } .ds-plate figcaption { margin-top: 8px; font-size: .875rem; color: var(--ink-2, #4d5155); font-variant-numeric: tabular-nums; } .ds-dwg { display: block; width: 100%; height: auto; } .ds-ic { fill: none; stroke: var(--ink, #141414); stroke-linecap: round; stroke-linejoin: round; } .ds-ic * { vector-effect: non-scaling-stroke; stroke-width: 2.4px; } .ds-cap { grid-column: 6 / 13; padding-top: 4px; } .ds-wn { margin: 0; font-size: clamp(1.9rem, 3vw, 2.75rem); font-weight: 500; line-height: 1.05; letter-spacing: -.03em; overflow-wrap: break-word; } .ds-wno { margin-right: .32em; color: var(--ink-2, #4d5155); font-weight: 400; font-variant-numeric: tabular-nums; } .ds-role { margin: 8px 0 0; color: var(--ink-2, #4d5155); } .ds-desc { margin: 22px 0 0; max-width: 52ch; } .ds-go { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-weight: 600; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; } .ds-wl:hover .ds-wn, .ds-wl:hover .ds-go { color: var(--cobalt, #2340c8); } .ds-wl:hover .ds-ic { stroke: var(--cobalt, #2340c8); } .ds-wl:focus-visible { outline: 2px solid var(--cobalt, #2340c8); outline-offset: 4px; border-radius: 0; } .ds-arw { width: .9em; height: .9em; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }"
     },
     {
-      "name": "Language Sticker Toggle",
+      "name": "View the project Link",
       "kind": "button",
-      "refersTo": "lang-chip",
-      "description": "Language switch as three small vinyl stickers: inactive ones are sun-faded via filter, the active one is a fresh caution-yellow sticker lifted 1px.",
-      "html": "<div class=\"ds-langtog\"><button class=\"ds-lang on\" style=\"--r:-3deg\" aria-pressed=\"true\">EN</button><button class=\"ds-lang\" style=\"--r:2deg\" aria-pressed=\"false\">FR</button><button class=\"ds-lang\" style=\"--r:-2deg\" aria-pressed=\"false\">中文</button></div>",
-      "css": ".ds-langtog { display: flex; gap: 9px; } .ds-lang { min-height: 44px; min-width: 46px; padding: 8px 12px; cursor: pointer; font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: .72rem; letter-spacing: .04em; background: #f0e9d8; color: #17130d; border: 0; border-radius: 7px; box-shadow: 0 1px 0 rgba(255,255,255,.14) inset, 0 2px 5px rgba(0,0,0,.55); transform: rotate(var(--r, 0deg)); filter: saturate(.45) sepia(.28) brightness(.82); transition: filter .18s ease, transform .18s ease; } .ds-lang:not(.on):hover { filter: saturate(.8) sepia(.1) brightness(.95); } .ds-lang.on { filter: none; background: #e8b90f; transform: rotate(var(--r, 0deg)) translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,.3) inset, 0 4px 9px rgba(0,0,0,.55); }"
+      "refersTo": "view-link",
+      "description": "The underlined weight-600 call to a project page, with an authored SVG arrow; turns cobalt on hover.",
+      "html": "<a class=\"ds-go-link\" href=\"#\">View the project<svg class=\"ds-arw\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M2 8h11M9 4l4 4-4 4\"/></svg></a>",
+      "css": ".ds-go-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font: 600 1.0625rem/1.55 \"Schibsted Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif; color: var(--ink, #141414); text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; } .ds-go-link:hover { color: var(--cobalt, #2340c8); } .ds-go-link:focus-visible { outline: 2px solid var(--cobalt, #2340c8); outline-offset: 4px; border-radius: 0; } .ds-arw { width: .9em; height: .9em; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }"
     },
     {
-      "name": "Caution Tape Facts",
+      "name": "Colophon",
       "kind": "custom",
-      "refersTo": null,
-      "description": "The facts band: yellow caution tape with hazard striping, ragged clip-path ends, dark separators; Archivo Black values + Courier labels. Slightly rotated.",
-      "html": "<div class=\"ds-tape\"><div class=\"ds-tape-cell\"><span class=\"ds-tape-v\">21</span><span class=\"ds-tape-k\">instruments</span></div><span class=\"ds-tape-sep\"></span><div class=\"ds-tape-cell\"><span class=\"ds-tape-v\">0</span><span class=\"ds-tape-k\">telemetry</span></div><span class=\"ds-tape-sep\"></span><div class=\"ds-tape-cell\"><span class=\"ds-tape-v\">MIT</span><span class=\"ds-tape-k\">licensed</span></div></div>",
-      "css": ".ds-tape { display: flex; flex-wrap: wrap; align-items: center; background: repeating-linear-gradient(45deg, rgba(0,0,0,.14) 0 3px, transparent 3px 22px), linear-gradient(180deg, #f0c422, #e8b90f 55%, #caa00c); border-top: 3px solid #171410; border-bottom: 3px solid #171410; box-shadow: 0 6px 16px rgba(0,0,0,.5); clip-path: polygon(0 8%, 1% 0, 99% 3%, 100% 12%, 100% 88%, 99% 100%, 1% 97%, 0 90%); transform: rotate(-1.4deg); } .ds-tape-cell { display: flex; align-items: baseline; gap: 8px; padding: 13px 22px; white-space: nowrap; color: #171410; } .ds-tape-v { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 1.05rem; } .ds-tape-k { font-family: 'Courier Prime', 'Courier New', monospace; font-weight: 700; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: #3a3008; } .ds-tape-sep { width: 2px; align-self: stretch; background: rgba(23,20,16,.5); }"
-    },
-    {
-      "name": "Manifest Row",
-      "kind": "custom",
-      "refersTo": "manifest",
-      "description": "One line of the typewritten packing manifest: ref / name / description / arrow on a baseline grid; hover is a red stamp-ink wash plus a 4px arrow nudge. The manifest is the catalog and screen-reader backbone.",
-      "html": "<div class=\"ds-manifest\"><a class=\"ds-mrow\" href=\"#\"><span class=\"ds-mref\">B-01</span><span class=\"ds-mname\">MacInside</span><span class=\"ds-mdesc\">CPU load, real SMC temperatures, fan RPM — one native dashboard.</span><span class=\"ds-marw\">→</span></a></div>",
-      "css": ".ds-manifest { background: repeating-linear-gradient(180deg, transparent 0 27px, rgba(35,32,26,.05) 27px 28px), linear-gradient(180deg, #f2ebd8, #ece4cf 30%, #e3d9bf); color: #23201a; padding: 24px; border-radius: 3px; box-shadow: 0 18px 44px rgba(0,0,0,.6); font-family: 'Courier Prime', 'Courier New', monospace; } .ds-mrow { display: grid; grid-template-columns: 64px 178px 1fr 34px; gap: 14px; align-items: baseline; padding: 8px 10px; border-radius: 4px; color: inherit; text-decoration: none; font-size: .88rem; line-height: 1.5; min-height: 44px; } .ds-mrow:hover, .ds-mrow:focus-visible { background: rgba(200,53,43,.09); } .ds-mrow:hover .ds-marw, .ds-mrow:focus-visible .ds-marw { transform: translateX(4px); } .ds-mref { font-weight: 700; color: #5f573f; letter-spacing: .05em; } .ds-mname { font-weight: 700; } .ds-mdesc { color: #4a4433; } .ds-marw { justify-self: end; transition: transform .2s ease; font-weight: 700; }"
-    },
-    {
-      "name": "Zone Stencil Mark",
-      "kind": "custom",
-      "refersTo": null,
-      "description": "Beige spray-stencil label painted on the laminate between sticker clusters. Decorative (aria-hidden); the manifest carries the real structure.",
-      "html": "<span class=\"ds-zone\" aria-hidden=\"true\">AI / DEV — 07</span>",
-      "css": ".ds-zone { display: inline-block; font-family: 'Saira Stencil One', sans-serif; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; color: #a2977c; opacity: .85; white-space: nowrap; transform: rotate(-2deg); }"
-    },
-    {
-      "name": "Ghost Residue",
-      "kind": "custom",
-      "refersTo": null,
-      "description": "Adhesive residue of a torn-off sticker: die silhouette, translucent vinyl border, grainy radial fill. Non-interactive, aria-hidden, used sparsely.",
-      "html": "<span class=\"ds-ghost\" aria-hidden=\"true\"></span>",
-      "css": ".ds-ghost { display: inline-block; width: 170px; height: 120px; border-radius: 18px; background: radial-gradient(80% 70% at 40% 45%, rgba(217,207,182,.10), rgba(217,207,182,.05) 70%, transparent); border: 5px solid rgba(240,233,216,.14); transform: rotate(-5deg); opacity: .9; }"
-    },
-    {
-      "name": "Riveted Footer Plate",
-      "kind": "custom",
-      "refersTo": null,
-      "description": "Brushed-aluminium spec plate with four rivet dots: the factual sign-off (signed & notarized, macOS 13+, EST. MMXXIII).",
-      "html": "<div class=\"ds-plate\"><span class=\"ds-rvt\" style=\"top:9px;left:11px\"></span><span class=\"ds-rvt\" style=\"top:9px;right:11px\"></span><span class=\"ds-rvt\" style=\"bottom:9px;left:11px\"></span><span class=\"ds-rvt\" style=\"bottom:9px;right:11px\"></span><p>Signed &amp; notarized · macOS 13+ · handle with care</p><p class=\"ds-plate-mono\">VINCENT LAURIAT · EST. MMXXIII</p></div>",
-      "css": ".ds-plate { position: relative; max-width: 640px; text-align: center; background: linear-gradient(180deg, #8d887e, #c7c2b7 18%, #b1aca1 60%, #767167); color: #221f1a; border-radius: 10px; padding: 20px 30px; box-shadow: 0 8px 20px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.5); } .ds-plate p { font-family: 'Courier Prime', 'Courier New', monospace; font-weight: 700; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; } .ds-plate-mono { margin-top: 6px; font-size: .7rem; color: #4c483f; letter-spacing: .18em; } .ds-rvt { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #efece2, #8b867b 60%, #57534a); box-shadow: 0 1px 2px rgba(0,0,0,.5); }"
+      "refersTo": "colophon",
+      "description": "Book colophon footer under a full ink rule: facts of making, elsewhere, type & drawings.",
+      "html": "<footer class=\"ds-colophon\"><div><h2>Colophon</h2><p>Every work here is built by one person and published open source under the MIT licence.</p></div><div><h2>Elsewhere</h2><p><a href=\"#\">GitHub</a></p></div><div><h2>Type &amp; drawings</h2><p>Set in Schibsted Grotesk.</p><p>© Vincent Lauriat, 2023–2026</p></div></footer>",
+      "css": ".ds-colophon { display: grid; grid-template-columns: 5fr 3fr 3fr; gap: 24px; border-top: 1px solid var(--ink, #141414); padding: 40px 0 64px; background: var(--paper, #eff1f2); font-family: \"Schibsted Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif; color: var(--ink, #141414); } .ds-colophon h2 { margin: 0 0 12px; font-size: 1.25rem; font-weight: 500; letter-spacing: -.02em; line-height: 1.05; } .ds-colophon p { margin: 0; color: var(--ink-2, #4d5155); max-width: 52ch; font-size: .9375rem; line-height: 1.55; } .ds-colophon p + p { margin-top: 10px; } .ds-colophon a { color: var(--ink, #141414); text-underline-offset: 4px; } .ds-colophon a:hover { color: var(--cobalt, #2340c8); } .ds-colophon a:focus-visible { outline: 2px solid var(--cobalt, #2340c8); outline-offset: 4px; border-radius: 0; }"
     }
   ],
   "narrative": {
-    "northStar": "The Flight Case",
-    "overview": "The hub is not a page about a portfolio; it is one physical object — a road case owned by one builder, photographed straight-on. Black scuffed laminate, riveted aluminium extrusion rails and corner braces framing the viewport, and years of die-cut vinyl stickers accreted on the lid: 28 stickers, one per shipped project, each carrying its project's own accent color inside a white vinyl border. Depth is chronology — the newest stickers sit highest in the stack and shine, the oldest have yellowed and bleached. Facts print on a strip of yellow caution tape; findability lives in a typewritten packing manifest taped to the case; the footer is a riveted spec plate. It refuses the dev-portfolio card grid entirely. Every texture is authored in CSS/SVG. Where the world's mess and the catalog's job conflict, clarity wins: sticker names stay legible, and the manifest — not the sticker field — is the screen-reader and findability backbone.",
+    "northStar": "The Architect's Monograph",
+    "overview": "The hub reads as one author's book of works. It opens on a title page: the author's name set across the full measure at display scale, with \"Works, since 2023\" beneath it in the secondary ink. Below that come a thesis, a lede, a one-line colophon of countable facts, and a contents list of four chapters with roman numerals and work ranges. Next is an index of all thirty-six works, numbered No. 01–36. Then four chapters follow. Each chapter opens on a full-bleed cobalt page holding a huge roman numeral. After the opener, every work is presented as an architectural plate with a caption. The plate is the project's own pictogram redrawn in ink on a construction grid, framed by crop marks. Pictogram and caption are wrapped together in one link.\n\nThe register is daylight desk reading: cool light-grey paper, near-black ink, a secondary ink for captions, hairline rules, and a single cobalt. Hierarchy comes from scale, weight and position on a 12-column grid, never from ornament. There is one face, Schibsted Grotesk. It reaches from an 11.5rem title down to 0.875rem figure captions, using weights 400, 500 and 600 only. Depth is flat. The only colour field is the cobalt chapter opener. The only motion is one left-to-right plotter pass over each plate, the first time it enters the screen.\n\nDensity is that of a well-set book: generous margins, long vertical rests between works, and captions held to a reading measure. The index and contents exist so that a visitor can reach a work in one jump. The plates and captions let a reader linger.",
     "keyCharacteristics": [
-      "One object, not a layout: fixed aluminium frame, laminate ground, accreted stickers.",
-      "Depth = time: z-index and fading (age-0…age-3) encode shipping chronology together.",
-      "Four lettering voices (stencil, block, marker, typewriter), zero system display faces.",
-      "One motion: the sticker corner peel. Nothing else moves for decoration.",
-      "All claims printed on the case are factual and countable."
+      "A book structure: title page, contents, index, chapters, plates, colophon.",
+      "Cool light-grey paper, two inks, one cobalt; no gradients, shadows or tints.",
+      "Schibsted Grotesk only, sentence case throughout, tight negative tracking at display sizes.",
+      "Plates are line drawings on a construction grid, with a strict three-weight stroke hierarchy.",
+      "A 12-column grid; three alternating plate/caption layouts.",
+      "Full-bleed cobalt chapter openers carrying a giant roman numeral.",
+      "One motion: the plotter pass, once per plate, absent under reduced motion and without JS."
     ],
     "rules": [
-      { "name": "The Sticker-Owns-Its-Color Rule", "body": "Project accents (--c, set inline per sticker) come from each project's own landing-page identity; the hub palette never dictates them. Ink on a sticker is always dark (--sink defaults to --ink); never white text on an accent.", "section": "colors" },
-      { "name": "The One Loud Voice Rule", "body": "Caution yellow is the only saturated color the case itself speaks. Everything else on the laminate is beige, alu, or near-black.", "section": "colors" },
-      { "name": "The Paper World Rule", "body": "Red exists only on paper (manifest); paper colors never leak onto the laminate, and laminate beige never appears on paper.", "section": "colors" },
-      { "name": "The Four Voices Rule", "body": "Every piece of text speaks in exactly one of the four voices; the voice varies per sticker but never mixes inside one sticker name.", "section": "typography" },
-      { "name": "The ZH Exception Rule", "body": "Chinese never uses the stencil face; it takes --font-sans at 800 (hub override) plus base.css's ZH sizing/line-breaking floor. Nothing may degrade in FR or ZH.", "section": "typography" },
-      { "name": "The Chronology-Is-Depth Rule", "body": "Stacking is meaning: --z rises with recency (lead sticker --z:40, freshest 30–39, oldest 5–9) and always pairs with the matching age-* class. A new sticker goes on top; never re-sort the pile alphabetically or by grid.", "section": "layout" },
-      { "name": "The Recompaction Rule", "body": "Below 761px the accretion flows but stays an accretion: rotations and die-cut shapes survive; only the coordinates die.", "section": "layout" },
-      { "name": "The One Peel Rule", "body": "The world has exactly one motion idea: the peel. Corner curl + lift on hover/focus-visible, ease-out-quint cubic-bezier(.22,1,.36,1) at .22s; secondary state transitions stay under .25s. No entrance animations, no parallax, no loops.", "section": "elevation" },
-      { "name": "The Never-Square Rule", "body": "Anything stuck onto the case carries both a rotation and a die-cut radius. Only the case's own machined parts (rails, braces, separators) may be perfectly straight.", "section": "shapes" }
+      {
+        "name": "The One Cobalt Rule",
+        "body": "Cobalt is the only hue on the page. It appears as a full-bleed field in exactly one place, the chapter opener. Everywhere else it appears only as a *response*: hover, focus or selection. No resting text, rule or plate uses it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Inks Rule",
+        "body": "Text is either ink or secondary ink, and nothing else. Meaning steps down by moving from ink to secondary ink, never by lowering opacity or lightening further.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single Face Rule",
+        "body": "Schibsted Grotesk is the only typeface loaded. A new role is made by choosing a size and one of the weights 400/500/600, never by adding a family. CJK uses the system Han stack and is never given a webfont.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "Nothing is uppercased or letter-spaced open. Labels, chapter titles and navigation are set in sentence case, at the size their role needs.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Number Rule",
+        "body": "Every work number, range and count uses tabular figures and two-digit numbering (01–36), so that columns of numbers align like a book's index.",
+        "section": "typography"
+      },
+      {
+        "name": "The Grid Rule",
+        "body": "Every element starts and ends on one of the 12 columns. Asymmetry is created by choosing columns, never by offsets or absolute positioning.",
+        "section": "layout"
+      },
+      {
+        "name": "The Touch Floor Rule",
+        "body": "Every interactive row or button is at least 44px tall, including index entries, language buttons and running-head links.",
+        "section": "layout"
+      },
+      {
+        "name": "The Printed Page Rule",
+        "body": "Nothing floats. If a surface needs separating, use a tonal step (paper → plate), a rule (hairline or ink) or a full colour field, in that order of preference.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Stroke Hierarchy Rule",
+        "body": "There are three line weights, never more: the object at 2.4px non-scaling, the crop marks at 0.75, and the grid, circle and dimensions at 0.5. A new plate redraws the project's real icon. It never uses a stock glyph, and never fills its grid with decoration.",
+        "section": "shapes"
+      }
     ],
     "dos": [
-      "Do add a new project as sticker + manifest row together, and bump the tape counts, the zone counts, --field-h, and the meta/og descriptions in the same change.",
-      "Do put a new sticker on top: age-0, filter: none, a --z above the current maximum, positioned in its zone's cluster; demote the previous .lead if the newcomer is the flagship.",
-      "Do give every sticker one shape class, one voice class, one age class, a project --c with dark ink, a 40px stroke icon, and the 5px vinyl border.",
-      "Do keep all texture authored in CSS/SVG (--grain, scratch gradients, inline SVG) — zero external images.",
-      "Do keep every visible string trilingual (.en/.fr/.zh spans) and every control at ≥44px — the base.css floor is binding and WCAG AA may not regress."
+      "**Do** keep cobalt (#2340c8) as the single hue: full-bleed on chapter openers, and otherwise only as hover, focus and selection.",
+      "**Do** set every new role in Schibsted Grotesk at weight 400, 500 or 600, in sentence case.",
+      "**Do** number works with two tabular digits and keep the index, the contents ranges and the chapter count lines in agreement.",
+      "**Do** draw every new plate from the project's own 24-unit icon, scaled 7.5× into the 240 viewBox, with the object at 2.4px non-scaling stroke over the shared grid, crop marks and circle.",
+      "**Do** wrap each work's plate and caption in a single link, and place them on the 12-column grid using the A/B/C layouts in sequence.",
+      "**Do** write every visible string three times (`.en`, `.fr`, `.zh`) and let the body class decide which one shows.",
+      "**Do** keep interactive rows at least 44px tall and the focus ring a square 2px cobalt outline.",
+      "**Do** keep plates fully visible without JavaScript and under reduced motion; the plotter pass is an enhancement."
     ],
     "donts": [
-      "Don't reflow the field into a uniform grid, equalize sticker sizes, or zero the rotations — the irregular accretion is the identity; clarity is won by legible names and the manifest, not by tidying the pile.",
-      "Don't add a second motion idea. The peel (ease-out-quint, ≤.25s) is the entire grammar; no entrance animations, parallax, marquees, or hover glows.",
-      "Don't write light text on an accent or on yellow — ink on stickers and tape is always dark (--ink / --on-accent: #17130d).",
-      "Don't let paper and laminate worlds bleed: no red on the case, no stencil-beige text on the manifest, no cool base.css surface colors (#0a0c12 family) anywhere on this page.",
-      "Don't print a claim the corpus can't count — facts on tape, stamp, and plate stay factual (\"21 instruments\", \"0 telemetry\", \"signed & notarized\"; apps are EN/FR only — never promise ZH for the apps)."
+      "**Don't** add a second typeface, a monospace face, or a webfont for CJK.",
+      "**Don't** introduce shadows, gradients, translucent overlays or rounded corners.",
+      "**Don't** add a second accent or per-project colours on the hub.",
+      "**Don't** uppercase or letter-space labels, or place small category labels (kickers) above headings; the one label on the page is the \"Contents\" heading of the contents list.",
+      "**Don't** use glyph or emoji arrows; arrows are authored SVG paths that inherit `currentColor`.",
+      "**Don't** add a fourth stroke weight to the plates or fill their grid with decoration.",
+      "**Don't** animate anything other than the plotter pass, and never replay it.",
+      "**Don't** add photographs, screenshots or raster images to the page."
     ]
   }
 }
