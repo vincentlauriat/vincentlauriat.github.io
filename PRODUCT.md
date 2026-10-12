@@ -16,7 +16,7 @@ The hub is the front door to Vincent Lauriat's software corpus: 22 native macOS 
 
 ## Positioning
 
-One person ships a full rack of native, notarized, open-source macOS instruments that surface what the system measures but hides — no telemetry, no cloud accounts, MIT licensed. A neighboring portfolio cannot truthfully copy the breadth (35 shipped projects) or the "signed & notarized, 100% Swift" floor.
+One person ships a full rack of native, notarized, open-source macOS instruments that surface what the system measures but hides — no telemetry, no cloud accounts, MIT licensed. A neighboring portfolio cannot truthfully copy the breadth (36 shipped projects) or the "signed & notarized, 100% Swift" floor.
 
 ## Operating Context
 
@@ -38,7 +38,7 @@ One person ships a full rack of native, notarized, open-source macOS instruments
 
 ## Evidence on Hand
 
-- 35 real shipped projects (35 stickers, 33 manifest rows — two pairs share a row), most with landing pages under `vincentlauriat.github.io/<Project>/`.
+- 36 real shipped projects (36 stickers, 34 manifest rows — two pairs share a row), most with landing pages under `vincentlauriat.github.io/<Project>/`.
 - Real facts: 22 native Swift apps, 0 telemetry, MIT, EN/FR app localization, macOS 13+, signed & notarized.
 - Assets: `assets/favicon.svg`, `assets/og.png` (2026-08-22). No photography, no testimonials — do not fabricate any.
 
