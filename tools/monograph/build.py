@@ -242,7 +242,7 @@ def build(d):
 </div></header>
 <main>
 <section class="title"><div class="wrap g12">
-<h1 class="nm"><span class="no" aria-label="{plain(UI['work'])} {no}">{no}</span><span>{name}</span></h1>
+<h1 class="nm{" long" if len(name) > 11 else ""}" style="--len:{len(name)}"><span class="no" aria-label="{plain(UI['work'])} {no}">{no}</span><span>{name}</span></h1>
 <p class="role">{T(d["role"])}</p>
 <div class="t-left">
 <p class="thesis">{T(d["thesis"])}</p>

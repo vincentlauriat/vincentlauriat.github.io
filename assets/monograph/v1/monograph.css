@@ -47,10 +47,10 @@ a{color:inherit}
 img{display:block;max-width:100%;height:auto}
 b,strong{font-weight:600}
 code,kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;
-  background:var(--plate);padding:.08em .32em}
+  background:var(--plate);padding:.08em .32em;overflow-wrap:anywhere}
 pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.875rem;line-height:1.6;
   background:var(--plate);border-top:1px solid var(--ink);padding:16px 18px;overflow-x:auto;white-space:pre}
-pre code{background:none;padding:0;font-size:inherit}
+pre code{background:none;padding:0;font-size:inherit;overflow-wrap:normal}
 ::selection{background:var(--accent);color:var(--on-accent)}
 :focus-visible{outline:2px solid var(--accent-ink);outline-offset:4px}
 .num{font-variant-numeric:tabular-nums}
@@ -91,7 +91,9 @@ body.lang-zh{line-break:strict;word-break:normal}
 /* ── Page de titre ── */
 .title{padding:clamp(40px,8vh,104px) 0 clamp(56px,9vh,112px)}
 .title .nm{grid-column:1/-1;display:flex;align-items:baseline;gap:.28em;flex-wrap:wrap;
-  font-size:clamp(2.9rem,8.4vw,8rem);line-height:.9;letter-spacing:-.04em;font-weight:500;overflow-wrap:anywhere}
+  /* le nom ne se coupe jamais : la taille suit sa longueur (--len, posé par le générateur) */
+  font-size:min(clamp(2.9rem,8.4vw,8rem),calc((100vw - 2 * var(--gut)) / (var(--len,8) * .56)));
+  line-height:.9;letter-spacing:-.04em;font-weight:500;overflow-wrap:anywhere}
 .title .no{font-weight:400;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .title .role{grid-column:1/-1;margin-top:18px;font-size:clamp(1.15rem,1.6vw,1.4rem);color:var(--ink-2)}
 .t-left{grid-column:1/6;margin-top:clamp(36px,6vh,72px)}
@@ -203,6 +205,7 @@ body.lang-zh{line-break:strict;word-break:normal}
   .specs li{grid-template-columns:1fr;row-gap:6px}
   .plates{grid-template-columns:1fr;gap:32px}
   .acts .btn{width:100%;justify-content:center}
+  .title .nm.long .no{flex-basis:100%}
 }
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
