@@ -96,6 +96,8 @@ body.lang-zh{line-break:strict;word-break:normal}
 .title .role{grid-column:1/-1;margin-top:18px;font-size:clamp(1.15rem,1.6vw,1.4rem);color:var(--ink-2)}
 .t-left{grid-column:1/6;margin-top:clamp(36px,6vh,72px)}
 .t-right{grid-column:7/-1;margin-top:clamp(36px,6vh,72px)}
+.t-right:empty{display:none}
+.title .g12:not(:has(.t-right .plate)) .t-left{grid-column:1/9}   /* page sans capture */
 .thesis{font-size:clamp(1.55rem,2.4vw,2.3rem);line-height:1.12;font-weight:500;letter-spacing:-.02em;max-width:22ch}
 .lede{margin-top:22px;max-width:48ch}
 .acts{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin-top:30px}
