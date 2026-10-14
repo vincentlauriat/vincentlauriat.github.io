@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Politique de confidentialité — NetDisco</title>
+    <title>Privacy Policy — NetDisco</title>
     <style>
         :root {
             --bg: #ffffff;
@@ -101,16 +101,6 @@
         a:hover {
             text-decoration: underline;
         }
-        .lang-switch {
-            text-align: right;
-            margin-bottom: 1em;
-        }
-        .lang-switch a {
-            padding: 8px 16px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 0.9em;
-        }
         footer {
             margin-top: 3em;
             padding-top: 2em;
@@ -124,13 +114,144 @@
             border-radius: 18px;
             margin-bottom: 1em;
         }
+
+        /* Trilingual mechanism: same as the home page (classes .en/.fr/.zh on body.lang-*,
+           localStorage key "vl-lang", assets/monograph/v1/monograph.js). Only hiding rules. */
+        body:not(.lang-fr) .fr { display: none !important; }
+        body:not(.lang-zh) .zh { display: none !important; }
+        body.lang-fr .en, body.lang-zh .en { display: none !important; }
+        body.lang-zh {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+                         "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            line-break: strict;
+            word-break: normal;
+        }
+        body.lang-zh h1, body.lang-zh h2, body.lang-zh h3 { letter-spacing: normal; }
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 1em;
+        }
+        .topbar nav a { margin-right: 1.2em; font-size: 0.95em; }
+        .topbar nav a[aria-current="page"] { color: var(--text); font-weight: 600; }
+        .langs { display: flex; gap: 2px; }
+        .langs button {
+            font: inherit;
+            min-height: 44px;
+            min-width: 44px;
+            padding: 0 6px;
+            border: 0;
+            background: transparent;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+        .langs button.on {
+            color: var(--text);
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            text-decoration-thickness: 2px;
+        }
+        .langs button:not(.on):hover { color: var(--text); }
+        .langs button:focus-visible, .topbar a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .prevail { color: var(--secondary); font-size: 0.9em; margin-top: 2em; }
+        .tablewrap { overflow-x: auto; }
     </style>
 </head>
-<body>
-    <div class="lang-switch">
-        <a href="#english">English</a>
+<body class="lang-en">
+    <div class="topbar">
+        <nav>
+            <a href="index.html" aria-current="page"><span class="en">Privacy</span><span class="fr">Confidentialité</span><span class="zh">隱私權</span></a>
+            <a href="support.html"><span class="en">Support</span><span class="fr">Support</span><span class="zh">技術支援</span></a>
+        </nav>
+        <div class="langs" role="group" aria-label="Language / Langue / 語言">
+            <button type="button" data-lang="en" class="on">EN</button>
+            <button type="button" data-lang="fr">FR</button>
+            <button type="button" data-lang="zh">中文</button>
+        </div>
     </div>
 
+    <div class="en" lang="en">
+    <h1>🌐 NetDisco</h1>
+    <h2 style="border: none; margin-top: 0.5em;">Privacy Policy</h2>
+    <p class="update-date">Last updated: February 3, 2025</p>
+
+    <h2>Introduction</h2>
+    <p>NetDisco is a network diagnostic application for macOS developed by SmartColibri. This privacy policy explains how the application handles your data.</p>
+
+    <div class="highlight-box">
+        <p class="no-data">No personal data is collected, stored, or shared by SmartColibri.</p>
+        <p>All data stays on your device.</p>
+    </div>
+
+    <h2>Data stored locally</h2>
+    <p>NetDisco stores the following data <strong>on your device only</strong> (in the application's sandbox container):</p>
+    <ul>
+        <li><strong>Speed test history</strong>: test results (speed, latency, date, approximate location)</li>
+        <li><strong>Network quality history</strong>: latency, jitter and packet loss measurements over 24 hours</li>
+        <li><strong>Network profiles</strong>: Wi-Fi network names and the related performance statistics</li>
+        <li><strong>Favorites</strong>: saved DNS, WHOIS and Traceroute query targets</li>
+        <li><strong>Preferences</strong>: application settings (appearance, notifications, etc.)</li>
+    </ul>
+
+    <h2>External services</h2>
+    <p>The application communicates with the following services in order to work:</p>
+    <div class="tablewrap"><table><thead><tr><th>Service</th><th>Data sent</th><th>Purpose</th></tr></thead><tbody><tr><td>speed.cloudflare.com</td><td>HTTP requests</td><td>Speed measurement (download/upload)</td></tr><tr><td>one.one.one.one</td><td>HTTP HEAD requests</td><td>Latency measurement</td></tr><tr><td>ipify.org</td><td>HTTP request</td><td>Detection of your public IP address</td></tr><tr><td>ipapi.co</td><td>IP address</td><td>Approximate geolocation</td></tr><tr><td>ipwho.is</td><td>Router IP addresses</td><td>Geolocation of hops (traceroute)</td></tr><tr><td>WHOIS servers (port 43)</td><td>Domain names or IP addresses</td><td>Registry lookups</td></tr><tr><td>Public DNS servers</td><td>Domain names</td><td>DNS resolution</td></tr></tbody></table></div>
+    <p><strong>None of this data is collected, stored, or processed by SmartColibri.</strong></p>
+
+    <h2>Location</h2>
+    <p>If you grant location access, NetDisco uses your geographic position only to:</p>
+    <ul>
+        <li>Display your location in speed test results</li>
+        <li>Improve the accuracy of network diagnostics</li>
+    </ul>
+    <p>This information is stored locally with the test history and is never transmitted to SmartColibri.</p>
+
+    <h2>Data not collected</h2>
+    <p>NetDisco <strong>does not collect</strong>:</p>
+    <ul>
+        <li>Personally identifiable information</li>
+        <li>Browsing data</li>
+        <li>Contact information</li>
+        <li>Financial data</li>
+        <li>Health data</li>
+        <li>Biometric data</li>
+        <li>Advertising identifiers</li>
+    </ul>
+
+    <h2>Analytics and advertising</h2>
+    <div class="highlight-box">
+        <p>✅ <strong>No analytics SDK</strong> (no Google Analytics, Firebase, etc.)</p>
+        <p>✅ <strong>No advertisements</strong></p>
+        <p>✅ <strong>No data sharing</strong> with third parties for commercial purposes</p>
+    </div>
+
+    <h2>Security</h2>
+    <ul>
+        <li>All network communications use HTTPS (except WHOIS, which uses the standard protocol on port 43)</li>
+        <li>Data is stored in the application's sandbox container, protected by macOS</li>
+        <li>No data is transmitted to SmartColibri servers</li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>You can at any time:</p>
+    <ul>
+        <li><strong>Delete the history</strong> of speed tests from within the application</li>
+        <li><strong>Delete the application</strong> to erase all local data</li>
+        <li><strong>Revoke location access</strong> in System Settings → Privacy</li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>For any question about this privacy policy:</p>
+    <p><strong>SmartColibri</strong><br>
+    Email: <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a></p>
+
+    <p class="prevail">This policy is published in French, English and Traditional Chinese. In case of any discrepancy, the French version prevails.</p>
+</div>
+
+    <div class="fr" lang="fr">
     <h1>🌐 NetDisco</h1>
     <h2 style="border: none; margin-top: 0.5em;">Politique de confidentialité</h2>
     <p class="update-date">Dernière mise à jour : 3 février 2025</p>
@@ -155,52 +276,7 @@
 
     <h2>Services externes</h2>
     <p>L'application communique avec les services suivants pour son fonctionnement :</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Service</th>
-                <th>Données envoyées</th>
-                <th>Finalité</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>speed.cloudflare.com</td>
-                <td>Requêtes HTTP</td>
-                <td>Mesure de débit (download/upload)</td>
-            </tr>
-            <tr>
-                <td>one.one.one.one</td>
-                <td>Requêtes HTTP HEAD</td>
-                <td>Mesure de latence</td>
-            </tr>
-            <tr>
-                <td>ipify.org</td>
-                <td>Requête HTTP</td>
-                <td>Détection de votre adresse IP publique</td>
-            </tr>
-            <tr>
-                <td>ipapi.co</td>
-                <td>Adresse IP</td>
-                <td>Géolocalisation approximative</td>
-            </tr>
-            <tr>
-                <td>ipwho.is</td>
-                <td>Adresses IP des routeurs</td>
-                <td>Géolocalisation des sauts (traceroute)</td>
-            </tr>
-            <tr>
-                <td>Serveurs WHOIS (port 43)</td>
-                <td>Noms de domaine ou IP</td>
-                <td>Consultation des registres</td>
-            </tr>
-            <tr>
-                <td>Serveurs DNS publics</td>
-                <td>Noms de domaine</td>
-                <td>Résolution DNS</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="tablewrap"><table><thead><tr><th>Service</th><th>Données envoyées</th><th>Finalité</th></tr></thead><tbody><tr><td>speed.cloudflare.com</td><td>Requêtes HTTP</td><td>Mesure de débit (download/upload)</td></tr><tr><td>one.one.one.one</td><td>Requêtes HTTP HEAD</td><td>Mesure de latence</td></tr><tr><td>ipify.org</td><td>Requête HTTP</td><td>Détection de votre adresse IP publique</td></tr><tr><td>ipapi.co</td><td>Adresse IP</td><td>Géolocalisation approximative</td></tr><tr><td>ipwho.is</td><td>Adresses IP des routeurs</td><td>Géolocalisation des sauts (traceroute)</td></tr><tr><td>Serveurs WHOIS (port 43)</td><td>Noms de domaine ou IP</td><td>Consultation des registres</td></tr><tr><td>Serveurs DNS publics</td><td>Noms de domaine</td><td>Résolution DNS</td></tr></tbody></table></div>
     <p><strong>Aucune de ces données n'est collectée, stockée ou traitée par SmartColibri.</strong></p>
 
     <h2>Localisation</h2>
@@ -250,42 +326,103 @@
     <p><strong>SmartColibri</strong><br>
     Email : <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a></p>
 
-    <hr style="margin: 3em 0; border: none; border-top: 1px solid var(--border);">
+    <p class="prevail">Cette politique est publiée en français, en anglais et en chinois traditionnel. En cas de divergence, la version française fait foi.</p>
+</div>
 
-    <h1 id="english">🌐 NetDisco</h1>
-    <h2 style="border: none; margin-top: 0.5em;">Privacy Policy</h2>
-    <p class="update-date">Last updated: February 3, 2025</p>
+    <div class="zh" lang="zh-Hant">
+    <h1>🌐 NetDisco</h1>
+    <h2 style="border: none; margin-top: 0.5em;">隱私權政策</h2>
+    <p class="update-date">最後更新：2025 年 2 月 3 日</p>
 
-    <h2>Summary</h2>
-    <p>NetDisco is a network diagnostic application for macOS developed by SmartColibri.</p>
+    <h2>簡介</h2>
+    <p>NetDisco 是由 SmartColibri 開發的 macOS 應用程式。本隱私權政策說明應用程式如何處理您的資料。</p>
 
     <div class="highlight-box">
-        <p class="no-data">No personal data is collected, stored, or shared by SmartColibri.</p>
-        <p>All data stays on your device.</p>
+        <p class="no-data">SmartColibri 不會收集、儲存或分享任何個人資料。</p>
+        <p>所有資料都保留在您的裝置上。</p>
     </div>
 
-    <h3>What we don't do</h3>
+    <h2>儲存在本機的資料</h2>
+    <p>NetDisco 會將下列資料<strong>僅儲存在您的裝置上</strong>（位於應用程式的沙盒容器內）：</p>
     <ul>
-        <li>We don't collect any personal information</li>
-        <li>We don't use analytics SDKs</li>
-        <li>We don't show advertisements</li>
-        <li>We don't track you</li>
-        <li>We don't share data with third parties</li>
+        <li><strong>速度測試記錄</strong>：測試結果（速度、延遲、日期、大致位置）</li>
+        <li><strong>網路品質記錄</strong>：24 小時內的延遲、抖動與封包遺失量測值</li>
+        <li><strong>網路設定檔</strong>：Wi-Fi 網路名稱及相關效能統計</li>
+        <li><strong>我的最愛</strong>：已儲存的 DNS、WHOIS 與 Traceroute 查詢目標</li>
+        <li><strong>偏好設定</strong>：應用程式設定（外觀、通知等）</li>
     </ul>
 
-    <h3>What the app does</h3>
-    <p>NetDisco stores network diagnostics data (speed test results, quality history, favorites) locally on your device only. The app communicates with external services (Cloudflare, ipify.org, ipapi.co, WHOIS servers, DNS servers) solely to perform network diagnostics.</p>
+    <h2>外部服務</h2>
+    <p>為了正常運作，應用程式會與下列服務通訊：</p>
+    <div class="tablewrap"><table><thead><tr><th>服務</th><th>傳送的資料</th><th>用途</th></tr></thead><tbody><tr><td>speed.cloudflare.com</td><td>HTTP 請求</td><td>速度量測（下載／上傳）</td></tr><tr><td>one.one.one.one</td><td>HTTP HEAD 請求</td><td>延遲量測</td></tr><tr><td>ipify.org</td><td>HTTP 請求</td><td>偵測您的公開 IP 位址</td></tr><tr><td>ipapi.co</td><td>IP 位址</td><td>大致地理定位</td></tr><tr><td>ipwho.is</td><td>路由器 IP 位址</td><td>各躍點的地理定位（traceroute）</td></tr><tr><td>WHOIS 伺服器（連接埠 43）</td><td>網域名稱或 IP 位址</td><td>查詢註冊資料</td></tr><tr><td>公用 DNS 伺服器</td><td>網域名稱</td><td>DNS 解析</td></tr></tbody></table></div>
+    <p><strong>SmartColibri 不會收集、儲存或處理上述任何資料。</strong></p>
 
-    <h3>Location</h3>
-    <p>If you grant location access, it's used only to display your location in speed test results. This data is stored locally and never transmitted to SmartColibri.</p>
+    <h2>位置</h2>
+    <p>若您允許存取位置，NetDisco 僅會將您的地理位置用於：</p>
+    <ul>
+        <li>在速度測試時顯示您的所在位置</li>
+        <li>提升網路診斷的準確度</li>
+    </ul>
+    <p>此資訊會與測試記錄一同儲存在本機，絕不會傳送給 SmartColibri。</p>
 
-    <h3>Contact</h3>
-    <p>For questions about this privacy policy:<br>
-    <strong>SmartColibri</strong> — <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a></p>
+    <h2>不收集的資料</h2>
+    <p>NetDisco <strong>不會收集</strong>：</p>
+    <ul>
+        <li>個人身分識別資料</li>
+        <li>瀏覽資料</li>
+        <li>聯絡資訊</li>
+        <li>財務資料</li>
+        <li>健康資料</li>
+        <li>生物辨識資料</li>
+        <li>廣告識別碼</li>
+    </ul>
+
+    <h2>分析與廣告</h2>
+    <div class="highlight-box">
+        <p>✅ <strong>無分析 SDK</strong>（不使用 Google Analytics、Firebase 等）</p>
+        <p>✅ <strong>無廣告</strong></p>
+        <p>✅ <strong>不會為商業目的</strong>與第三方分享資料</p>
+    </div>
+
+    <h2>安全性</h2>
+    <ul>
+        <li>所有網路通訊皆使用 HTTPS（WHOIS 除外，其使用連接埠 43 上的標準協定）</li>
+        <li>資料儲存在應用程式的沙盒容器內，並受 macOS 保護</li>
+        <li>不會有任何資料傳送到 SmartColibri 的伺服器</li>
+    </ul>
+
+    <h2>您的權利</h2>
+    <p>您可隨時：</p>
+    <ul>
+        <li>從應用程式內<strong>刪除</strong>速度測試<strong>記錄</strong></li>
+        <li><strong>刪除應用程式</strong>以清除所有本機資料</li>
+        <li>在「系統設定」 → 「隱私權與安全性」中<strong>撤銷位置存取權限</strong></li>
+    </ul>
+
+    <h2>聯絡方式</h2>
+    <p>如對本隱私權政策有任何疑問：</p>
+    <p><strong>SmartColibri</strong><br>
+    電子郵件：<a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a></p>
+
+    <p class="prevail">本政策以法文、英文及繁體中文發布。如內容有任何出入，以法文版本為準。</p>
+</div>
 
     <footer>
-        <p>© 2024-2025 SmartColibri. Tous droits réservés.</p>
-        <p>NetDisco est une application macOS disponible sur l'App Store.</p>
+        <p>© 2024-2025 SmartColibri. <span class="en">All rights reserved.</span><span class="fr">Tous droits réservés.</span><span class="zh">版權所有。</span></p>
+        <p><span class="en">NetDisco is a macOS application available on the App Store.</span><span class="fr">NetDisco est une application macOS disponible sur l'App Store.</span><span class="zh">NetDisco 是可在 App Store 取得的 macOS 應用程式。</span></p>
     </footer>
+    <script src="../assets/monograph/v1/monograph.js"></script>
+    <script>
+        /* Localised <title>, following body.lang-* set by monograph.js */
+        (function () {
+            var T = {en: "Privacy Policy — NetDisco", fr: "Politique de confidentialité — NetDisco", zh: "隱私權政策 — NetDisco"};
+            function paint() {
+                var c = document.body.className.match(/lang-(en|fr|zh)/);
+                if (c) document.title = T[c[1]];
+            }
+            new MutationObserver(paint).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+            paint();
+        })();
+    </script>
 </body>
 </html>
