@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,9 +94,149 @@
             color: var(--secondary);
             text-align: center;
         }
+
+        /* Trilingual mechanism: same as the home page (classes .en/.fr/.zh on body.lang-*,
+           localStorage key "vl-lang", assets/monograph/v1/monograph.js). Only hiding rules. */
+        body:not(.lang-fr) .fr { display: none !important; }
+        body:not(.lang-zh) .zh { display: none !important; }
+        body.lang-fr .en, body.lang-zh .en { display: none !important; }
+        body.lang-zh {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+                         "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            line-break: strict;
+            word-break: normal;
+        }
+        body.lang-zh h1, body.lang-zh h2, body.lang-zh h3 { letter-spacing: normal; }
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 1em;
+        }
+        .topbar nav a { margin-right: 1.2em; font-size: 0.95em; }
+        .topbar nav a[aria-current="page"] { color: var(--text); font-weight: 600; }
+        .langs { display: flex; gap: 2px; }
+        .langs button {
+            font: inherit;
+            min-height: 44px;
+            min-width: 44px;
+            padding: 0 6px;
+            border: 0;
+            background: transparent;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+        .langs button.on {
+            color: var(--text);
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            text-decoration-thickness: 2px;
+        }
+        .langs button:not(.on):hover { color: var(--text); }
+        .langs button:focus-visible, .topbar a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .prevail { color: var(--secondary); font-size: 0.9em; margin-top: 2em; }
+        .tablewrap { overflow-x: auto; }
     </style>
 </head>
-<body>
+<body class="lang-en">
+    <div class="topbar">
+        <nav>
+            <a href="index.html"><span class="en">Privacy</span><span class="fr">Confidentialité</span><span class="zh">隱私權</span></a>
+            <a href="support.html" aria-current="page"><span class="en">Support</span><span class="fr">Support</span><span class="zh">技術支援</span></a>
+        </nav>
+        <div class="langs" role="group" aria-label="Language / Langue / 語言">
+            <button type="button" data-lang="en" class="on">EN</button>
+            <button type="button" data-lang="fr">FR</button>
+            <button type="button" data-lang="zh">中文</button>
+        </div>
+    </div>
+
+    <div class="en" lang="en">
+    <h1>NetDisco Support</h1>
+    <p class="update-date">Help and FAQ for the NetDisco application</p>
+
+    <div class="contact-card">
+        <h2>📧 Contact</h2>
+        <p><strong>Email:</strong> <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a></p>
+        <p><strong>Developer:</strong> SmartColibri</p>
+        <p><strong>Response time:</strong> Within 48 business hours</p>
+    </div>
+
+    <h2>❓ Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <h3>How do I run a speed test?</h3>
+        <p>Click the NetDisco icon in the menu bar → select "Speed Test" (or use the shortcut <code>Cmd+Shift+S</code>).</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Is my data sent to any servers?</h3>
+        <p>No, all your data is stored locally on your Mac. NetDisco does not collect any personal information. See our <a href="index.html">Privacy Policy</a> for more details.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>How do I delete the test history?</h3>
+        <p>Open Settings (<code>Cmd+,</code>) → "General" tab → click "Clear History".</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>How do I switch between menu bar mode and application mode?</h3>
+        <p>Open Settings → "General" tab → "Display Mode" section → choose "Application" to get a main window, or "Menu Bar" for a discreet mode.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>What is "Geek Mode"?</h3>
+        <p>Geek Mode hides the advanced tools (MTR, Multi-ping, SSL Inspector, etc.) to simplify the interface. You can turn it on/off in Settings → "Geek Mode" or by Option+clicking the menu bar icon.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>How do I enable scheduled quality tests?</h3>
+        <p>Settings → "Advanced" tab → "Scheduled Tests" section → check "Enable" and choose the interval (5, 15, 30 or 60 minutes).</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Is NetDisco compatible with macOS Sequoia?</h3>
+        <p>Yes, NetDisco is compatible with macOS 13.0 (Ventura) and later, including Sonoma and Sequoia.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Does the app require an Internet connection?</h3>
+        <p>Yes, NetDisco needs an active Internet connection to run network tests. The app automatically monitors the state of your connection.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>How do I use Siri Shortcuts?</h3>
+        <p>NetDisco includes 8 Siri Shortcuts (speed test, network quality, remote-work diagnostic, etc.). Open the Shortcuts app on your Mac to set them up.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>How do I sync my data between Macs?</h3>
+        <p>Settings → "Advanced" tab → turn on "iCloud Sync". Your favorites, profiles and history will be synced automatically (requires iCloud to be enabled).</p>
+    </div>
+
+    <h2>🐛 Report a bug</h2>
+    <p>If you run into a problem, email us at <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a> with:</p>
+    <ul>
+        <li>Your macOS version</li>
+        <li>The NetDisco version (shown in "About")</li>
+        <li>A detailed description of the problem</li>
+        <li>Screenshots if possible</li>
+    </ul>
+
+    <h2>💡 Request a feature</h2>
+    <p>Have an idea to improve NetDisco? Get in touch at <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a>!</p>
+
+    <h2>📚 Resources</h2>
+    <ul>
+        <li><a href="index.html">Privacy Policy</a></li>
+        <li><strong>Built-in guide:</strong> Open NetDisco → "Help" menu → "Guide"</li>
+        <li><strong>Keyboard shortcuts:</strong> See the "Shortcuts" section of the built-in guide</li>
+    </ul>
+</div>
+
+    <div class="fr" lang="fr">
     <h1>Support NetDisco</h1>
     <p class="update-date">Assistance et FAQ pour l'application NetDisco</p>
 
@@ -177,10 +317,107 @@
         <li><strong>Guide intégré :</strong> Ouvrez NetDisco → menu "Aide" → "Guide"</li>
         <li><strong>Raccourcis clavier :</strong> Consultez le guide intégré section "Raccourcis"</li>
     </ul>
+</div>
+
+    <div class="zh" lang="zh-Hant">
+    <h1>NetDisco 技術支援</h1>
+    <p class="update-date">NetDisco 應用程式的協助與常見問題</p>
+
+    <div class="contact-card">
+        <h2>📧 聯絡方式</h2>
+        <p><strong>電子郵件：</strong><a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a></p>
+        <p><strong>開發者：</strong>SmartColibri</p>
+        <p><strong>回覆時間：</strong>48 個工作小時內</p>
+    </div>
+
+    <h2>❓ 常見問題</h2>
+
+    <div class="faq-item">
+        <h3>如何執行速度測試？</h3>
+        <p>點選選單列中的 NetDisco 圖示 → 選擇「速度測試」（或使用快速鍵 <code>Cmd+Shift+S</code>）。</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>我的資料會傳送到伺服器嗎？</h3>
+        <p>不會，您的所有資料都儲存在您 Mac 的本機。NetDisco 不會收集任何個人資訊。詳情請參閱我們的<a href="index.html">隱私權政策</a>。</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>如何刪除測試記錄？</h3>
+        <p>開啟「設定」（<code>Cmd+,</code>） → 「一般」分頁 → 點選「清除記錄」。</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>如何在選單列模式與應用程式模式之間切換？</h3>
+        <p>開啟「設定」 → 「一般」分頁 → 「顯示模式」區段 → 選擇「應用程式」以顯示主視窗，或選擇「選單列」使用低調模式。</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>什麼是「極客模式」？</h3>
+        <p>極客模式會隱藏進階工具（MTR、Multi-ping、SSL Inspector 等）以簡化介面。您可在「設定」 → 「極客模式」中開啟或關閉，或按住 Option 鍵點選選單列圖示。</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>如何啟用排程品質測試？</h3>
+        <p>「設定」 → 「進階」分頁 → 「排程測試」區段 → 勾選「啟用」並選擇間隔（5、15、30 或 60 分鐘）。</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>NetDisco 與 macOS Sequoia 相容嗎？</h3>
+        <p>相容，NetDisco 支援 macOS 13.0（Ventura）及更新版本，包括 Sonoma 與 Sequoia。</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>應用程式需要網際網路連線嗎？</h3>
+        <p>需要，NetDisco 需要有效的網際網路連線才能執行網路測試。應用程式會自動監控您的連線狀態。</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>如何使用 Siri 捷徑？</h3>
+        <p>NetDisco 內建 8 個 Siri 捷徑（速度測試、網路品質、遠距工作診斷等）。請在 Mac 上開啟「捷徑」App 進行設定。</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>如何在多部 Mac 之間同步我的資料？</h3>
+        <p>「設定」 → 「進階」分頁 → 開啟「iCloud 同步」。您的我的最愛、設定檔與記錄會自動同步（需啟用 iCloud）。</p>
+    </div>
+
+    <h2>🐛 回報錯誤</h2>
+    <p>如果您遇到問題，請寄電子郵件至 <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a>，並附上：</p>
+    <ul>
+        <li>您的 macOS 版本</li>
+        <li>NetDisco 版本（可在「關於」中查看）</li>
+        <li>問題的詳細描述</li>
+        <li>如有可能，請附上螢幕截圖</li>
+    </ul>
+
+    <h2>💡 建議新功能</h2>
+    <p>對於改進 NetDisco 有任何想法嗎？歡迎來信 <a href="mailto:privacy@smartcolibri.com">privacy@smartcolibri.com</a>！</p>
+
+    <h2>📚 資源</h2>
+    <ul>
+        <li><a href="index.html">隱私權政策</a></li>
+        <li><strong>內建指南：</strong>開啟 NetDisco → 「說明」選單 → 「指南」</li>
+        <li><strong>鍵盤快速鍵：</strong>請參閱內建指南的「快速鍵」章節</li>
+    </ul>
+</div>
 
     <div class="footer">
-        <p>NetDisco — Développé par SmartColibri</p>
-        <p>© 2024-2025 SmartColibri. Tous droits réservés.</p>
+        <p><span class="en">NetDisco — Developed by SmartColibri</span><span class="fr">NetDisco — Développé par SmartColibri</span><span class="zh">NetDisco — 由 SmartColibri 開發</span></p>
+        <p>© 2024-2025 SmartColibri. <span class="en">All rights reserved.</span><span class="fr">Tous droits réservés.</span><span class="zh">版權所有。</span></p>
     </div>
+    <script src="../assets/monograph/v1/monograph.js"></script>
+    <script>
+        /* Localised <title>, following body.lang-* set by monograph.js */
+        (function () {
+            var T = {en: "Support — NetDisco", fr: "Support — NetDisco", zh: "技術支援 — NetDisco"};
+            function paint() {
+                var c = document.body.className.match(/lang-(en|fr|zh)/);
+                if (c) document.title = T[c[1]];
+            }
+            new MutationObserver(paint).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+            paint();
+        })();
+    </script>
 </body>
 </html>
