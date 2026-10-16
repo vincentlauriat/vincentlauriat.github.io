@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+  <defs>
+    <radialGradient id="sea" cx="38%" cy="34%" r="70%"><stop offset="0" stop-color="#5c8fc9"/><stop offset="1" stop-color="#1c3c6e"/></radialGradient>
+    <linearGradient id="night" x1="0" x2="1"><stop offset="0" stop-color="#0b1a33" stop-opacity="0"/><stop offset=".18" stop-color="#0b1a33" stop-opacity=".55"/><stop offset="1" stop-color="#0b1a33" stop-opacity=".7"/></linearGradient>
+    <clipPath id="g"><circle cx="400" cy="300" r="250"/></clipPath>
+    <radialGradient id="glow"><stop offset="0" stop-color="#f2c439" stop-opacity=".75"/><stop offset="1" stop-color="#f2c439" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="#132a4d"/>
+  <circle cx="400" cy="300" r="262" fill="#7fb0e0" opacity=".18"/>
+  <circle cx="400" cy="300" r="250" fill="url(#sea)"/>
+  <g clip-path="url(#g)" fill="#cfdcea" opacity=".9">
+    <path d="M250 120c40-20 90-10 120 10s30 60 0 80-40 60-80 70-70-20-80-60 0-80 40-100z"/>
+    <path d="M330 300c30-10 70 0 90 30s20 90-10 130-60 50-80 20-40-90-30-130 0-40 30-50z"/>
+    <path d="M470 150c50-10 120 10 160 50s20 70-20 80-90-10-120 10-60-20-60-60 0-70 40-80z"/>
+    <path d="M560 360c30 0 50 30 40 60s-40 40-60 20-20-80 20-80z"/>
+  </g>
+  <g clip-path="url(#g)"><rect x="470" y="40" width="200" height="520" fill="url(#night)" transform="rotate(12 400 300)"/></g>
+  <g stroke="#fff" stroke-width="2.5">
+    <circle cx="300" cy="190" r="34" fill="url(#glow)" stroke="none"/><circle cx="300" cy="190" r="13" fill="#f2c439"/>
+    <circle cx="372" cy="232" r="26" fill="url(#glow)" stroke="none"/><circle cx="372" cy="232" r="10" fill="#f2c439"/>
+    <circle cx="395" cy="380" r="40" fill="url(#glow)" stroke="none"/><circle cx="395" cy="380" r="16" fill="#f2c439"/>
+    <circle cx="268" cy="262" r="9" fill="#f2c439"/>
+    <circle cx="520" cy="205" r="11" fill="#2a518c"/>
+    <circle cx="585" cy="395" r="12" fill="#2a518c"/>
+    <circle cx="455" cy="300" r="8" fill="#7b8d9a"/>
+  </g>
+</svg>
