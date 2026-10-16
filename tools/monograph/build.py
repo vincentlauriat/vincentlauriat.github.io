@@ -167,8 +167,8 @@ def chapter(c, figs):
 def build(d):
     fill, on, ink = accent_set(d["accent"])
     figs = Figs()
-    repo = d["repo"]
-    gh = f"https://github.com/{repo}"
+    repo = d.get("repo")  # optional: a private project has no public source to link to
+    gh = f"https://github.com/{repo}" if repo else ""
     name = d["name"]
     no = d["no"]
     meta = d["meta"]
@@ -203,7 +203,7 @@ def build(d):
     colophon = (f'<footer class="colophon"><div class="wrap g12">'
                 f'<div class="c1"><h2>{name}</h2><p>{T(UI["work"])} <span class="num">{no}</span> {T(UI["in_book"])}.</p>'
                 f'<p><a href="{HUB}#w{no}">{T(UI["all"])}</a></p></div>'
-                f'<div class="c2"><h2>{T(UI["source"])}</h2><p><a href="{gh}">github.com/{repo}</a></p><p>{lic} · © {col.get("year", "2026")} Vincent Lauriat</p>{extra}</div>'
+                f'<div class="c2"><h2>{T(UI["source"])}</h2>{f"<p><a href=\"{gh}\">github.com/{repo}</a></p>" if repo else ""}<p>{lic} · © {col.get("year", "2026")} Vincent Lauriat</p>{extra}</div>'
                 f'<div class="c3"><h2>{T(UI["about"])}</h2><p>{T(UI["about_p"])}</p></div>'
                 f'</div></footer>')
 
@@ -238,7 +238,7 @@ def build(d):
 <a class="back" href="{HUB}#w{no}">{ARW.format(c=" l")}{T(UI["back"])}</a>
 <span class="here"><span class="num">{no}</span> · {name}</span>
 <div class="langs" role="group" aria-label="Language / Langue / 語言">{langs}</div>
-<a class="gh" href="{gh}">GitHub</a>
+{f'<a class="gh" href="{gh}">GitHub</a>' if repo else ''}
 </div></header>
 <main>
 <section class="title"><div class="wrap g12">

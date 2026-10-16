@@ -24,7 +24,7 @@ mandatory; the build fails on a missing one.
 |---|---|---|
 | `name` | string | Project name as displayed. |
 | `no` | string | Two-digit work number in the hub (`"03"`). It sets the back link (`#w03`) and the large numeral. |
-| `repo` | string | `owner/name` on GitHub. |
+| `repo` | string | `owner/name` on GitHub. Optional: leave it out for a private project, and the GitHub links are dropped. |
 | `url` | string | Public URL of the page. |
 | `accent` | hex | The project's colour (keep the one the old page used). |
 | `meta` | object | `title`, `description` (plain strings, English, reused from the old page), optional `og_image`, `favicon` (absolute, or relative to the page), `head_extra` (raw HTML for the head, e.g. a JSON-LD block the old page had). |

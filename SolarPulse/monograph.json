@@ -1,0 +1,845 @@
+{
+  "name": "SolarPulse",
+  "no": "37",
+  "url": "https://vincentlauriat.github.io/SolarPulse/",
+  "accent": "#E8A21A",
+  "meta": {
+    "title": "SolarPulse — the real output of a solar fleet, read on a globe",
+    "description": "How to read SolarPulse, a dashboard that replays the measured production of a fleet of solar plants on a 3D globe: colours, performance ratio, periods and data flow.",
+    "favicon": "/assets/favicon.svg"
+  },
+  "role": {
+    "en": "Production dashboard for a fleet of solar plants",
+    "fr": "Tableau de bord de production d'un parc solaire",
+    "zh": "太陽能電廠群的發電儀表板"
+  },
+  "thesis": {
+    "en": "What a solar fleet really produced, read on a globe.",
+    "fr": "Ce qu'un parc solaire a vraiment produit, lu sur un globe.",
+    "zh": "一個太陽能電廠群的實際發電量，在地球儀上一目了然。"
+  },
+  "lede": {
+    "en": "SolarPulse turns the meter readings of dozens of power plants into one picture: a globe where each plant lights up with the sun, then turns green, orange, red or grey depending on how well it did. This page explains how to read it. Every figure and drawing here is illustrative: the real data stays inside the company.",
+    "fr": "SolarPulse transforme les relevés de dizaines de centrales en une seule image : un globe où chaque centrale s'allume avec le soleil, puis passe au vert, à l'orange, au rouge ou au gris selon sa performance. Cette page explique comment la lire. Tous les chiffres et dessins ci-dessous sont illustratifs : les vraies données restent dans l'entreprise.",
+    "zh": "SolarPulse 把數十座電廠的電錶讀數化為一張畫面：一顆地球儀，每座電廠隨太陽亮起，再依表現轉為綠、橙、紅或灰。本頁說明如何閱讀它。頁面上所有數字與圖示皆為示意：真實資料只留在公司內部。"
+  },
+  "actions": [
+    {
+      "label": {
+        "en": "Learn to read the screen",
+        "fr": "Apprendre à lire l'écran",
+        "zh": "學習閱讀畫面"
+      },
+      "href": "#screen",
+      "primary": true
+    },
+    {
+      "label": {
+        "en": "Where the numbers come from",
+        "fr": "D'où viennent les chiffres",
+        "zh": "數字從何而來"
+      },
+      "href": "#data"
+    }
+  ],
+  "facts": [
+    {
+      "k": {
+        "en": "Status",
+        "fr": "Statut",
+        "zh": "狀態"
+      },
+      "v": {
+        "en": "Internal tool, in service since October 2026",
+        "fr": "Outil interne, en service depuis octobre 2026",
+        "zh": "內部工具，2026 年 10 月起上線"
+      }
+    },
+    {
+      "k": {
+        "en": "Access",
+        "fr": "Accès",
+        "zh": "存取"
+      },
+      "v": {
+        "en": "Employees only, through the company's single sign-on",
+        "fr": "Salariés uniquement, via l'authentification unique de l'entreprise",
+        "zh": "僅限員工，透過公司單一登入"
+      }
+    },
+    {
+      "k": {
+        "en": "Data",
+        "fr": "Données",
+        "zh": "資料"
+      },
+      "v": {
+        "en": "Measured, refreshed every night — not live",
+        "fr": "Mesurées, rafraîchies chaque nuit — pas en direct",
+        "zh": "實測數據，每晚更新——非即時"
+      }
+    },
+    {
+      "k": {
+        "en": "Built with",
+        "fr": "Construit avec",
+        "zh": "技術"
+      },
+      "v": "Python · FastAPI · DuckDB · Three.js"
+    },
+    {
+      "k": {
+        "en": "Languages",
+        "fr": "Langues",
+        "zh": "介面語言"
+      },
+      "v": {
+        "en": "French, Brazilian Portuguese, English",
+        "fr": "Français, portugais du Brésil, anglais",
+        "zh": "法文、巴西葡萄牙文、英文"
+      }
+    }
+  ],
+  "hero": {
+    "src": "hero.svg",
+    "w": 800,
+    "h": 600,
+    "dark": true,
+    "alt": {
+      "en": "Illustration: a globe with a day–night line; plants on the day side glow yellow, plants at night are dark blue.",
+      "fr": "Illustration : un globe avec la ligne jour/nuit ; les centrales côté jour brillent en jaune, celles de nuit sont bleu foncé.",
+      "zh": "示意圖：帶有晝夜線的地球儀；白天一側的電廠發出黃光，夜晚的電廠為深藍色。"
+    },
+    "caption": {
+      "en": "Illustration. Replay mode: each disc is a plant; its size is its capacity, its halo is its output at that moment.",
+      "fr": "Illustration. Mode rejeu : chaque disque est une centrale ; sa taille est sa puissance installée, son halo sa production à cet instant.",
+      "zh": "示意圖。重播模式：每個圓點是一座電廠；大小代表裝置容量，光暈代表該時刻的發電量。"
+    }
+  },
+  "opener": {
+    "h": {
+      "en": "Four questions, one screen",
+      "fr": "Quatre questions, un seul écran",
+      "zh": "四個問題，一個畫面"
+    },
+    "p": {
+      "en": "What did the fleet produce yesterday? Which plants fell short? Is it a bad day or a lasting fault? And can we trust the number? SolarPulse answers each one without a spreadsheet.",
+      "fr": "Qu'a produit le parc hier ? Quelles centrales ont été en dessous ? Est-ce une mauvaise journée ou une panne qui dure ? Et peut-on se fier au chiffre ? SolarPulse répond à chacune sans tableur.",
+      "zh": "電廠群昨天發了多少電？哪些電廠表現不佳？是一天的低谷，還是持續的故障？這個數字可信嗎？SolarPulse 不用試算表就能逐一回答。"
+    }
+  },
+  "features": [
+    {
+      "h": {
+        "en": "Replay a day",
+        "fr": "Rejouer une journée",
+        "zh": "重播一天"
+      },
+      "p": {
+        "en": "The day runs again in sixty seconds: the night line sweeps the globe and each plant lights up as its sun rises.",
+        "fr": "La journée se rejoue en soixante secondes : la ligne de nuit balaie le globe et chaque centrale s'allume quand son soleil se lève.",
+        "zh": "一天在六十秒內重播：夜線掃過地球，每座電廠在日出時亮起。"
+      }
+    },
+    {
+      "h": {
+        "en": "See the fleet's health",
+        "fr": "Voir la santé du parc",
+        "zh": "掌握電廠群健康狀況"
+      },
+      "p": {
+        "en": "One click colours every plant by its performance, with a legend that counts each state.",
+        "fr": "Un clic colore chaque centrale selon sa performance, avec une légende qui compte chaque état.",
+        "zh": "一鍵依表現為每座電廠著色，圖例同時統計各狀態數量。"
+      }
+    },
+    {
+      "h": {
+        "en": "Change the time scale",
+        "fr": "Changer d'échelle de temps",
+        "zh": "切換時間尺度"
+      },
+      "p": {
+        "en": "Day, week, fortnight or month, calendar or rolling: the globe, the counters and the plant sheet all follow.",
+        "fr": "Jour, semaine, quinzaine ou mois, calendaire ou glissant : le globe, les compteurs et la fiche suivent tous.",
+        "zh": "日、週、半月或月，曆法或滾動：地球儀、計數器與電廠頁面同步切換。"
+      }
+    },
+    {
+      "h": {
+        "en": "Open one plant",
+        "fr": "Ouvrir une centrale",
+        "zh": "打開單一電廠"
+      },
+      "p": {
+        "en": "Five cards tell its story, from today's curve to the month's losses, each exportable as CSV.",
+        "fr": "Cinq cartes racontent son histoire, de la courbe du jour aux pertes du mois, chacune exportable en CSV.",
+        "zh": "五張卡片講述它的故事，從當日曲線到當月損失，皆可匯出 CSV。"
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "id": "screen",
+      "h": {
+        "en": "Reading the globe",
+        "fr": "Lire le globe",
+        "zh": "閱讀地球儀"
+      },
+      "p": {
+        "en": "Everything starts here. Three things to know.",
+        "fr": "Tout commence ici. Trois choses à savoir.",
+        "zh": "一切由此開始。需要知道三件事。"
+      },
+      "blocks": [
+        {
+          "type": "specs",
+          "items": [
+            {
+              "h": {
+                "en": "A disc is a plant",
+                "fr": "Un disque est une centrale",
+                "zh": "一個圓點代表一座電廠"
+              },
+              "p": {
+                "en": "The bigger the disc, the bigger the plant (its installed capacity, in kilowatts peak).",
+                "fr": "Plus le disque est grand, plus la centrale est puissante (sa puissance installée, en kilowatts-crête).",
+                "zh": "圓點越大，電廠裝置容量越大（以千瓦峰值計）。"
+              }
+            },
+            {
+              "h": {
+                "en": "A number is a group",
+                "fr": "Un nombre est un groupe",
+                "zh": "數字代表一個群組"
+              },
+              "p": {
+                "en": "Plants close together merge into one disc with a count. Click it: the globe zooms in until they separate.",
+                "fr": "Les centrales proches se regroupent en un disque avec un compteur. Cliquez : le globe zoome jusqu'à ce qu'elles se séparent.",
+                "zh": "相鄰的電廠合併為帶有數字的圓點。點擊後地球儀會放大，直到它們分開。"
+              }
+            },
+            {
+              "h": {
+                "en": "Yellow means producing",
+                "fr": "Jaune veut dire « produit »",
+                "zh": "黃色代表正在發電"
+              },
+              "p": {
+                "en": "In replay mode, a yellow disc is producing, a dark blue one is in the night, a grey one has no data.",
+                "fr": "En mode rejeu, un disque jaune produit, un disque bleu foncé est dans la nuit, un disque gris n'a pas de données.",
+                "zh": "重播模式下，黃色表示發電中，深藍色表示處於夜間，灰色表示沒有資料。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "h": {
+        "en": "The four colours",
+        "fr": "Les quatre couleurs",
+        "zh": "四種顏色"
+      },
+      "p": {
+        "en": "In fleet-state mode each plant takes a traffic-light colour. Colour is never the only cue: each state also has its own shape.",
+        "fr": "En mode état du parc, chaque centrale prend une couleur de feu tricolore. La couleur n'est jamais le seul indice : chaque état a aussi sa forme.",
+        "zh": "在電廠群狀態模式下，每座電廠會顯示紅綠燈顏色。顏色從來不是唯一線索：每種狀態也有自己的形狀。"
+      },
+      "blocks": [
+        {
+          "type": "plates",
+          "items": [
+            {
+              "src": "states.svg",
+              "w": 800,
+              "h": 260,
+              "dark": true,
+              "wide": true,
+              "alt": {
+                "en": "Four markers: a green disc with a tick, an orange disc with an exclamation mark, a red square with a cross, a grey dashed disc with a question mark.",
+                "fr": "Quatre marqueurs : un disque vert avec une coche, un disque orange avec un point d'exclamation, un carré rouge avec une croix, un disque gris en pointillés avec un point d'interrogation.",
+                "zh": "四個標記：帶勾號的綠色圓點、帶驚嘆號的橙色圓點、帶叉號的紅色方塊、帶問號的灰色虛線圓點。"
+              },
+              "caption": {
+                "en": "Normal, under-performing, stopped, incomplete data.",
+                "fr": "Normal, sous-performance, à l'arrêt, données incomplètes.",
+                "zh": "正常、表現不佳、停機、資料不完整。"
+              }
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "head": [
+            {
+              "en": "Colour",
+              "fr": "Couleur",
+              "zh": "顏色"
+            },
+            {
+              "en": "Means",
+              "fr": "Signifie",
+              "zh": "意義"
+            },
+            {
+              "en": "Rule",
+              "fr": "Règle",
+              "zh": "規則"
+            }
+          ],
+          "rows": [
+            [
+              {
+                "en": "Green",
+                "fr": "Vert",
+                "zh": "綠"
+              },
+              {
+                "en": "Normal",
+                "fr": "Normal",
+                "zh": "正常"
+              },
+              {
+                "en": "Performance ratio at least 90 % of the plant's own usual level",
+                "fr": "Performance ratio au moins égal à 90 % du niveau habituel de la centrale",
+                "zh": "性能比至少達到該電廠平常水準的 90%"
+              }
+            ],
+            [
+              {
+                "en": "Orange",
+                "fr": "Orange",
+                "zh": "橙"
+              },
+              {
+                "en": "Under-performing",
+                "fr": "Sous-performance",
+                "zh": "表現不佳"
+              },
+              {
+                "en": "Between 50 % and 90 % of its usual level",
+                "fr": "Entre 50 % et 90 % de son niveau habituel",
+                "zh": "介於平常水準的 50% 至 90%"
+              }
+            ],
+            [
+              {
+                "en": "Red",
+                "fr": "Rouge",
+                "zh": "紅"
+              },
+              {
+                "en": "Stopped",
+                "fr": "À l'arrêt",
+                "zh": "停機"
+              },
+              {
+                "en": "Almost no energy although the sun was there",
+                "fr": "Presque aucune énergie alors que le soleil était là",
+                "zh": "有日照卻幾乎沒有發電"
+              }
+            ],
+            [
+              {
+                "en": "Grey",
+                "fr": "Gris",
+                "zh": "灰"
+              },
+              {
+                "en": "Incomplete data",
+                "fr": "Données incomplètes",
+                "zh": "資料不完整"
+              },
+              {
+                "en": "Too many gaps to judge — the plant is not blamed for missing data",
+                "fr": "Trop de trous pour juger — on ne reproche pas à la centrale des données manquantes",
+                "zh": "缺口太多無法判斷——不會因資料缺失而歸咎電廠"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "h": {
+        "en": "The performance ratio, plainly",
+        "fr": "Le performance ratio, en clair",
+        "zh": "性能比，簡單說"
+      },
+      "p": {
+        "en": "The colours rest on one number. Here is what it measures, and why each plant is compared with itself.",
+        "fr": "Les couleurs reposent sur un seul chiffre. Voici ce qu'il mesure, et pourquoi chaque centrale est comparée à elle-même.",
+        "zh": "顏色建立在一個數字上。以下說明它衡量什麼，以及為何每座電廠只和自己比較。"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "t": {
+            "en": "A sunny day and a cloudy day do not produce the same energy, and that is nobody's fault. The <b>performance ratio</b> (PR) removes the weather: it divides what the plant produced by what the sun made possible.",
+            "fr": "Une journée de soleil et une journée de nuages ne produisent pas la même énergie, et ce n'est la faute de personne. Le <b>performance ratio</b> (PR) retire la météo : il divise ce que la centrale a produit par ce que le soleil permettait.",
+            "zh": "晴天和陰天的發電量本來就不同，這不是誰的錯。<b>性能比</b>（PR）把天氣因素排除：用電廠實際發電量除以日照所能提供的電量。"
+          }
+        },
+        {
+          "type": "p",
+          "t": {
+            "en": "<code>PR = energy produced ÷ (sunlight received × installed capacity)</code>",
+            "fr": "<code>PR = énergie produite ÷ (ensoleillement reçu × puissance installée)</code>",
+            "zh": "<code>PR = 實際發電量 ÷（接收日照量 × 裝置容量）</code>"
+          }
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "en": "Take a plant of 1 MWp (1,000 kWp).",
+              "fr": "Prenons une centrale de 1 MWc (1 000 kWc).",
+              "zh": "假設一座 1 MWp（1,000 kWp）的電廠。"
+            },
+            {
+              "en": "The sun delivered 5 kWh per square metre that day: at best, 1,000 × 5 = 5,000 kWh.",
+              "fr": "Le soleil a apporté 5 kWh par mètre carré ce jour-là : au mieux, 1 000 × 5 = 5 000 kWh.",
+              "zh": "當天日照為每平方公尺 5 kWh：理想情況下為 1,000 × 5 = 5,000 kWh。"
+            },
+            {
+              "en": "The meter read 4,000 kWh. PR = 4,000 ÷ 5,000 = 80 %.",
+              "fr": "Le compteur indique 4 000 kWh. PR = 4 000 ÷ 5 000 = 80 %.",
+              "zh": "電錶讀數為 4,000 kWh。PR = 4,000 ÷ 5,000 = 80%。"
+            },
+            {
+              "en": "If this plant usually sits at 82 %, 80 % is normal: green. At 60 %, it is under-performing: orange.",
+              "fr": "Si cette centrale tourne d'habitude à 82 %, 80 % est normal : vert. À 60 %, elle est en sous-performance : orange.",
+              "zh": "若這座電廠平常約 82%，80% 屬正常：綠色。若只有 60%，即表現不佳：橙色。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "t": {
+            "en": "Why compare a plant with <b>itself</b>? A plant on sun trackers and a fixed one on a cloudier coast have different normal PRs. Its usual level is the median of its own previous 30 days — taken <i>before</i> the period being judged, so a month-long fault cannot lower its own yardstick.",
+            "fr": "Pourquoi comparer une centrale à <b>elle-même</b> ? Une centrale sur trackers et une centrale fixe sur une côte plus nuageuse n'ont pas le même PR normal. Son niveau habituel est la médiane de ses 30 jours précédents — prise <i>avant</i> la période jugée, pour qu'une panne d'un mois ne puisse pas abaisser sa propre référence.",
+            "zh": "為何讓電廠和<b>自己</b>比較？追日式電廠和位於多雲海岸的固定式電廠，正常 PR 並不相同。它的平常水準是自身前 30 天的中位數——取自受評期間<i>之前</i>，因此持續一個月的故障無法拉低自己的基準。"
+          }
+        }
+      ]
+    },
+    {
+      "h": {
+        "en": "One plant, one day",
+        "fr": "Une centrale, une journée",
+        "zh": "一座電廠，一天"
+      },
+      "p": {
+        "en": "Click a plant and the day card shows three lines on one chart.",
+        "fr": "Cliquez sur une centrale : la carte du jour montre trois tracés sur un même graphique.",
+        "zh": "點擊電廠，當日卡片會在同一張圖上顯示三條線。"
+      },
+      "blocks": [
+        {
+          "type": "plates",
+          "items": [
+            {
+              "src": "day.svg",
+              "w": 800,
+              "h": 340,
+              "wide": true,
+              "alt": {
+                "en": "Illustrative chart: a yellow area for sunlight, a dashed clear-sky curve, a green measured curve with a dip around noon, and a red vertical cursor.",
+                "fr": "Graphique illustratif : une aire jaune pour l'ensoleillement, une courbe ciel clair en pointillés, une courbe mesurée verte avec un creux vers midi, et un curseur rouge vertical.",
+                "zh": "示意圖：黃色區域為日照，虛線為晴空曲線，綠色實測曲線在中午附近下陷，紅色垂直游標。"
+              },
+              "caption": {
+                "en": "Illustration. At midday the green curve dips but the yellow area does not: the sun was there, so the plant itself fell short. Had the yellow dipped too, it would just have been a cloud.",
+                "fr": "Illustration. À midi, la courbe verte plonge mais pas l'aire jaune : le soleil était là, c'est donc la centrale qui a faibli. Si l'aire jaune avait plongé aussi, ce n'aurait été qu'un nuage.",
+                "zh": "示意圖。中午綠色曲線下陷，黃色區域卻沒有：日照仍在，因此是電廠本身出了狀況。若黃色區域也同步下降，那只是一片雲。"
+              }
+            }
+          ]
+        },
+        {
+          "type": "specs",
+          "items": [
+            {
+              "h": {
+                "en": "Green line",
+                "fr": "Courbe verte",
+                "zh": "綠線"
+              },
+              "p": {
+                "en": "What the plant actually delivered, every ten minutes.",
+                "fr": "Ce que la centrale a réellement fourni, toutes les dix minutes.",
+                "zh": "電廠每十分鐘的實際發電量。"
+              }
+            },
+            {
+              "h": {
+                "en": "Yellow area",
+                "fr": "Aire jaune",
+                "zh": "黃色區域"
+              },
+              "p": {
+                "en": "The sunlight measured on site: the fuel.",
+                "fr": "L'ensoleillement mesuré sur place : le carburant.",
+                "zh": "現場量測的日照：也就是燃料。"
+              }
+            },
+            {
+              "h": {
+                "en": "Dashed line",
+                "fr": "Pointillés",
+                "zh": "虛線"
+              },
+              "p": {
+                "en": "What a cloudless sky would have given, from a simple solar model.",
+                "fr": "Ce qu'aurait donné un ciel sans nuage, d'après un modèle solaire simple.",
+                "zh": "以簡單太陽模型推算的無雲晴空發電量。"
+              }
+            },
+            {
+              "h": {
+                "en": "Red cursor",
+                "fr": "Curseur rouge",
+                "zh": "紅色游標"
+              },
+              "p": {
+                "en": "The moment the globe is replaying, so the chart and the globe tell the same time.",
+                "fr": "L'instant que le globe est en train de rejouer : le graphique et le globe indiquent la même heure.",
+                "zh": "地球儀正在重播的時刻，讓圖表與地球儀顯示同一時間。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "h": {
+        "en": "Day, week, fortnight, month",
+        "fr": "Jour, semaine, quinzaine, mois",
+        "zh": "日、週、半月、月"
+      },
+      "p": {
+        "en": "The bar at the bottom changes the time scale. Everything on screen follows it.",
+        "fr": "La barre du bas change l'échelle de temps. Tout ce qui est à l'écran la suit.",
+        "zh": "底部的列可切換時間尺度，畫面上所有內容隨之變動。"
+      },
+      "blocks": [
+        {
+          "type": "table",
+          "head": [
+            {
+              "en": "View",
+              "fr": "Vue",
+              "zh": "檢視"
+            },
+            {
+              "en": "Calendar",
+              "fr": "Calendaire",
+              "zh": "曆法"
+            },
+            {
+              "en": "Rolling",
+              "fr": "Glissante",
+              "zh": "滾動"
+            },
+            {
+              "en": "On the globe",
+              "fr": "Sur le globe",
+              "zh": "地球儀上"
+            }
+          ],
+          "rows": [
+            [
+              {
+                "en": "Day",
+                "fr": "Jour",
+                "zh": "日"
+              },
+              "—",
+              "—",
+              {
+                "en": "Animated replay or fleet state",
+                "fr": "Rejeu animé ou état du parc",
+                "zh": "動畫重播或電廠群狀態"
+              }
+            ],
+            [
+              {
+                "en": "Week",
+                "fr": "Semaine",
+                "zh": "週"
+              },
+              {
+                "en": "Monday to Sunday",
+                "fr": "Du lundi au dimanche",
+                "zh": "週一至週日"
+              },
+              {
+                "en": "Last 7 days",
+                "fr": "7 derniers jours",
+                "zh": "最近 7 天"
+              },
+              {
+                "en": "Fleet state for the period",
+                "fr": "État du parc sur la période",
+                "zh": "該期間的電廠群狀態"
+              }
+            ],
+            [
+              {
+                "en": "Fortnight",
+                "fr": "Quinzaine",
+                "zh": "半月"
+              },
+              {
+                "en": "1st–15th or 16th–end",
+                "fr": "Du 1er au 15 ou du 16 à la fin",
+                "zh": "1 日至 15 日或 16 日至月底"
+              },
+              {
+                "en": "Last 15 days",
+                "fr": "15 derniers jours",
+                "zh": "最近 15 天"
+              },
+              {
+                "en": "Fleet state for the period",
+                "fr": "État du parc sur la période",
+                "zh": "該期間的電廠群狀態"
+              }
+            ],
+            [
+              {
+                "en": "Month",
+                "fr": "Mois",
+                "zh": "月"
+              },
+              {
+                "en": "Calendar month",
+                "fr": "Mois civil",
+                "zh": "曆月"
+              },
+              {
+                "en": "Last 30 days",
+                "fr": "30 derniers jours",
+                "zh": "最近 30 天"
+              },
+              {
+                "en": "Fleet state for the period",
+                "fr": "État du parc sur la période",
+                "zh": "該期間的電廠群狀態"
+              }
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "t": {
+            "en": "A period still running is labelled <i>in progress</i> and judged only on the days already elapsed. The view is kept in the address, so a link shows a colleague exactly the same thing.",
+            "fr": "Une période pas encore terminée est marquée <i>en cours</i> et jugée seulement sur les jours écoulés. La vue est gardée dans l'adresse : un lien montre à un collègue exactement la même chose.",
+            "zh": "尚未結束的期間會標示為<i>進行中</i>，僅以已過去的天數評估。檢視狀態保存在網址中，分享連結即可讓同事看到完全相同的畫面。"
+          }
+        }
+      ]
+    },
+    {
+      "h": {
+        "en": "The five cards of a plant",
+        "fr": "Les cinq cartes d'une centrale",
+        "zh": "電廠的五張卡片"
+      },
+      "p": {
+        "en": "From the broad picture to the detail, in reading order.",
+        "fr": "Du général au détail, dans l'ordre de lecture.",
+        "zh": "由整體到細節，依閱讀順序排列。"
+      },
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "en": "<b>Identity</b> — capacity, commissioning date, time zone, and its state for the chosen period.",
+              "fr": "<b>Identité</b> — puissance, date de mise en service, fuseau horaire, et son état sur la période choisie.",
+              "zh": "<b>基本資料</b>——容量、併網日期、時區，以及所選期間的狀態。"
+            },
+            {
+              "en": "<b>The day</b> — the chart above; over a period, a summary: energy, sunlight, PR against its reference.",
+              "fr": "<b>La journée</b> — le graphique ci-dessus ; sur une période, une synthèse : énergie, ensoleillement, PR face à sa référence.",
+              "zh": "<b>當日</b>——即上方圖表；若選擇期間，則顯示摘要：發電量、日照、PR 與基準的比較。"
+            },
+            {
+              "en": "<b>Day by day</b> — one bar per day, faded when the data is doubtful. Click a bar to see that day's curve.",
+              "fr": "<b>Jour par jour</b> — une barre par jour, estompée quand la donnée est douteuse. Cliquez une barre pour voir la courbe de ce jour.",
+              "zh": "<b>逐日</b>——每天一根長條，資料可疑時呈淡色。點擊長條可查看當日曲線。"
+            },
+            {
+              "en": "<b>Performance</b> — the daily PR next to its usual level, to tell a bad day from a lasting drift.",
+              "fr": "<b>Performance</b> — le PR quotidien à côté de son niveau habituel, pour distinguer une mauvaise journée d'une dérive qui dure.",
+              "zh": "<b>表現</b>——每日 PR 與平常水準並列，用以區分一日低谷與持續偏移。"
+            },
+            {
+              "en": "<b>The month</b> — where the energy went: expected, lost to outages, lost to grid curtailment, and produced.",
+              "fr": "<b>Le mois</b> — où est passée l'énergie : attendue, perdue en indisponibilité, perdue en bridage réseau, et produite.",
+              "zh": "<b>當月</b>——電量的去向：預期值、因停機損失、因電網限電損失，以及實際發電。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "h": {
+        "en": "Where the numbers come from",
+        "fr": "D'où viennent les chiffres",
+        "zh": "數字從何而來"
+      },
+      "p": {
+        "en": "Four steps, once a night.",
+        "fr": "Quatre étapes, une fois par nuit.",
+        "zh": "四個步驟，每晚一次。"
+      },
+      "blocks": [
+        {
+          "type": "plates",
+          "items": [
+            {
+              "src": "pipeline.svg",
+              "w": 900,
+              "h": 220,
+              "wide": true,
+              "alt": {
+                "en": "Diagram: a database, a clock, a table and a globe, linked by arrows from left to right.",
+                "fr": "Schéma : une base de données, une horloge, un tableau et un globe, reliés par des flèches de gauche à droite.",
+                "zh": "示意圖：資料庫、時鐘、表格與地球儀，由左至右以箭頭相連。"
+              },
+              "caption": {
+                "en": "Company data lake → nightly sync → compact cache → the browser.",
+                "fr": "Lac de données de l'entreprise → synchronisation de nuit → cache compact → le navigateur.",
+                "zh": "公司資料湖 → 夜間同步 → 精簡快取 → 瀏覽器。"
+              }
+            }
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "en": "The plants' meters and weather stations feed the company's data lake, which computes its official daily figures overnight.",
+              "fr": "Les compteurs et stations météo des centrales alimentent le lac de données de l'entreprise, qui calcule ses chiffres officiels du jour pendant la nuit.",
+              "zh": "電廠的電錶與氣象站將資料送入公司資料湖，資料湖於夜間計算每日官方數據。"
+            },
+            {
+              "en": "Early each morning, SolarPulse reads them with a read-only account and keeps only what the screen needs — a few megabytes instead of millions of raw rows.",
+              "fr": "Tôt chaque matin, SolarPulse les lit avec un compte en lecture seule et ne garde que ce dont l'écran a besoin — quelques mégaoctets au lieu de millions de lignes brutes.",
+              "zh": "每天清晨，SolarPulse 以唯讀帳號讀取資料，只保留畫面所需——數 MB，而非數百萬筆原始資料。"
+            },
+            {
+              "en": "It checks itself: where the ten-minute curve and the official daily total disagree, the curve is rescaled to the official total and the card says so.",
+              "fr": "Il se contrôle : quand la courbe à dix minutes et le total officiel du jour divergent, la courbe est recalée sur le total officiel et la carte le signale.",
+              "zh": "系統會自我檢查：若十分鐘曲線與官方每日總量不一致，曲線會依官方總量校正，卡片也會註明。"
+            },
+            {
+              "en": "The page opens in under a second, because nothing is fetched from the data lake while you look.",
+              "fr": "La page s'ouvre en moins d'une seconde, car rien n'est demandé au lac de données pendant que vous regardez.",
+              "zh": "頁面不到一秒即可開啟，因為瀏覽時不會向資料湖發出任何請求。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "t": {
+            "en": "That is why SolarPulse is <b>not live</b>: the data is about a night behind, and a banner always says how fresh it is. If the sync fails, the previous day stays on screen and the banner turns orange.",
+            "fr": "C'est pourquoi SolarPulse n'est <b>pas en direct</b> : les données ont environ une nuit de retard, et un bandeau indique toujours leur fraîcheur. Si la synchronisation échoue, la veille reste affichée et le bandeau passe à l'orange.",
+            "zh": "這就是 SolarPulse <b>並非即時</b>的原因：資料約落後一個晚上，橫幅會隨時標示資料新舊。若同步失敗，前一天的畫面會保留，橫幅轉為橙色。"
+          }
+        }
+      ]
+    },
+    {
+      "h": {
+        "en": "Safe by design",
+        "fr": "Sûr par construction",
+        "zh": "設計即安全"
+      },
+      "blocks": [
+        {
+          "type": "specs",
+          "items": [
+            {
+              "h": {
+                "en": "Only employees",
+                "fr": "Seulement les salariés",
+                "zh": "僅限員工"
+              },
+              "p": {
+                "en": "The site sits behind the company's single sign-on; guests and external accounts are kept out.",
+                "fr": "Le site est derrière l'authentification unique de l'entreprise ; invités et comptes externes restent dehors.",
+                "zh": "網站位於公司單一登入之後；訪客與外部帳號無法進入。"
+              }
+            },
+            {
+              "h": {
+                "en": "Read-only",
+                "fr": "Lecture seule",
+                "zh": "唯讀"
+              },
+              "p": {
+                "en": "SolarPulse can read the figures, never change them. Its secret lives in a vault, not in the code.",
+                "fr": "SolarPulse peut lire les chiffres, jamais les modifier. Son secret est rangé dans un coffre, pas dans le code.",
+                "zh": "SolarPulse 只能讀取數據，無法修改。金鑰存放於保險庫，不在程式碼中。"
+              }
+            },
+            {
+              "h": {
+                "en": "Honest about gaps",
+                "fr": "Honnête sur les trous",
+                "zh": "如實呈現缺口"
+              },
+              "p": {
+                "en": "A plant with missing data turns grey rather than green, and each card says when a figure is rescaled or estimated.",
+                "fr": "Une centrale aux données manquantes passe au gris plutôt qu'au vert, et chaque carte dit quand un chiffre est recalé ou estimé.",
+                "zh": "資料缺失的電廠顯示為灰色而非綠色，每張卡片也會註明數字是否經過校正或估算。"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "close": {
+    "h": {
+      "en": "A private instrument",
+      "fr": "Un instrument privé",
+      "zh": "一件私有儀器"
+    },
+    "p": {
+      "en": "SolarPulse is an internal tool: there is nothing to download and its source is not public. This page exists to show how it reads a fleet — and how the other works of this book are built.",
+      "fr": "SolarPulse est un outil interne : il n'y a rien à télécharger et sa source n'est pas publique. Cette page existe pour montrer comment il lit un parc — et comment sont construites les autres réalisations de ce livre.",
+      "zh": "SolarPulse 是內部工具：沒有可下載的內容，原始碼也不公開。本頁旨在展示它如何解讀電廠群——以及本書其他作品的打造方式。"
+    },
+    "actions": [
+      {
+        "label": {
+          "en": "See all works",
+          "fr": "Voir toutes les réalisations",
+          "zh": "查看全部作品"
+        },
+        "href": "https://vincentlauriat.github.io/"
+      }
+    ]
+  },
+  "colophon": {
+    "license": {
+      "en": "Internal tool, private source",
+      "fr": "Outil interne, source privée",
+      "zh": "內部工具，原始碼不公開"
+    },
+    "year": "2026",
+    "notes": [
+      {
+        "en": "All figures and drawings on this page are illustrative and contain no real data.",
+        "fr": "Tous les chiffres et dessins de cette page sont illustratifs et ne contiennent aucune donnée réelle.",
+        "zh": "本頁所有數字與圖示皆為示意，不含任何真實資料。"
+      }
+    ]
+  }
+}
