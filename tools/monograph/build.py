@@ -104,6 +104,9 @@ class Figs:
     n = 0
 
 
+BASE = "."  # directory of the content file; inline SVG plates are read from it
+
+
 def figure(p, figs):
     figs.n += 1
     cls = "plate" + (" ink" if p.get("dark") else "") + (" wide" if p.get("wide") else "")
@@ -112,7 +115,21 @@ def figure(p, figs):
     cap = p.get("caption")
     capt = f'<figcaption><span class="fg">{T(UI["fig"])} {figs.n}</span>{T(cap)}</figcaption>' if cap else \
         f'<figcaption><span class="fg">{T(UI["fig"])} {figs.n}</span></figcaption>'
-    return (f'<figure class="{cls}"><div class="pl"><img src="{esc(p["src"])}" alt="{plain(p["alt"])}"'
+    if p.get("svg"):
+        # inline drawing: its labels carry .en/.fr/.zh, so the language switch reaches inside it
+        import os
+        svg = open(os.path.join(BASE, p["svg"]), encoding="utf-8").read().strip()
+        return (f'<figure class="{cls} dg"><div class="pl">{svg}<p class="vh">{T(p["alt"])}</p></div>{capt}</figure>')
+    src = p["src"]
+    if isinstance(src, dict):
+        # one capture per language (the app's own UI language); hidden variants stay unloaded
+        miss = [l for l in LANGS if not src.get(l)]
+        if miss:
+            sys.exit(f"capture incomplète ({', '.join(miss)} manquant) : {src}")
+        imgs = "".join(f'<img class="{l}" src="{esc(src[l])}" alt="{plain(p["alt"], l)}"{w} loading="lazy" decoding="async">'
+                       for l in LANGS)
+        return f'<figure class="{cls}"><div class="pl">{imgs}</div>{capt}</figure>'
+    return (f'<figure class="{cls}"><div class="pl"><img src="{esc(src)}" alt="{plain(p["alt"])}"'
             f'{w}{load} decoding="async"></div>{capt}</figure>')
 
 
@@ -269,6 +286,8 @@ if __name__ == "__main__":
     ap.add_argument("content")
     ap.add_argument("-o", "--out", required=True)
     a = ap.parse_args()
+    import os
+    BASE = os.path.dirname(os.path.abspath(a.content))
     d = json.load(open(a.content, encoding="utf-8"))
     open(a.out, "w", encoding="utf-8").write(build(d))
     f, o, i = accent_set(d["accent"])
