@@ -699,11 +699,6 @@
         "en": "Built on <a href=\"https://github.com/AlexsJones/llmfit\">llmfit</a> (Alex Jones, MIT, bundled), <a href=\"https://github.com/ggml-org/llama.cpp\">llama.cpp</a> (ggml-org, MIT), <a href=\"https://github.com/ollama/ollama\">Ollama</a> (MIT) and <a href=\"https://sparkle-project.org\">Sparkle</a> (MIT).",
         "fr": "Construit avec <a href=\"https://github.com/AlexsJones/llmfit\">llmfit</a> (Alex Jones, MIT, intégré), <a href=\"https://github.com/ggml-org/llama.cpp\">llama.cpp</a> (ggml-org, MIT), <a href=\"https://github.com/ollama/ollama\">Ollama</a> (MIT) et <a href=\"https://sparkle-project.org\">Sparkle</a> (MIT).",
         "zh": "基於 <a href=\"https://github.com/AlexsJones/llmfit\">llmfit</a>（Alex Jones，MIT，隨附）、<a href=\"https://github.com/ggml-org/llama.cpp\">llama.cpp</a>（ggml-org，MIT）、<a href=\"https://github.com/ollama/ollama\">Ollama</a>（MIT）與 <a href=\"https://sparkle-project.org\">Sparkle</a>（MIT）。"
-      },
-      {
-        "en": "Claude Code is a product of Anthropic. Localia is an independent project, not affiliated with Anthropic, Ollama or ggml-org.",
-        "fr": "Claude Code est un produit d'Anthropic. Localia est un projet indépendant, sans lien avec Anthropic, Ollama ou ggml-org.",
-        "zh": "Claude Code 為 Anthropic 的產品。Localia 是獨立專案，與 Anthropic、Ollama 或 ggml-org 均無隸屬關係。"
       }
     ]
   }
