@@ -29,12 +29,20 @@
   "actions": [
     {
       "label": {
+        "en": "Download for macOS",
+        "fr": "Télécharger pour macOS",
+        "zh": "下載 macOS 版"
+      },
+      "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.0.0/Localia-1.0.0.dmg",
+      "primary": true
+    },
+    {
+      "label": {
         "en": "View on GitHub",
         "fr": "Voir sur GitHub",
         "zh": "在 GitHub 上查看"
       },
-      "href": "https://github.com/vincentlauriat/Localia",
-      "primary": true
+      "href": "https://github.com/vincentlauriat/Localia"
     },
     {
       "label": {
@@ -53,9 +61,9 @@
         "zh": "狀態"
       },
       "v": {
-        "en": "Build from source today · signed download coming soon",
-        "fr": "À compiler depuis les sources · téléchargement signé bientôt",
-        "zh": "目前可從原始碼建置 · 簽署版下載即將推出"
+        "en": "Version 1.0.0 · signed and notarized by Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.0\">release notes</a>",
+        "fr": "Version 1.0.0 · signée et notarisée par Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.0\">notes de version</a>",
+        "zh": "版本 1.0.0 · 已由 Apple 簽署並公證 · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.0\">版本說明</a>"
       }
     },
     {
@@ -504,9 +512,9 @@
                 "zh": "網路"
               },
               {
-                "en": "Only what you trigger: engine, model and llmfit downloads; update checks once signed. No telemetry.",
-                "fr": "Seulement ce que vous déclenchez : téléchargement du moteur, des modèles et de llmfit ; vérification des mises à jour une fois signé. Aucune télémétrie.",
-                "zh": "只有你觸發的連線：下載引擎、模型與 llmfit；簽署版推出後才會檢查更新。無遙測。"
+                "en": "Only what you trigger: engine, model and llmfit downloads; update checks. No telemetry.",
+                "fr": "Seulement ce que vous déclenchez : téléchargement du moteur, des modèles et de llmfit ; vérification des mises à jour. Aucune télémétrie.",
+                "zh": "只有你觸發的連線：下載引擎、模型與 llmfit；以及檢查更新。無遙測。"
               }
             ],
             [
@@ -671,24 +679,40 @@
   ],
   "close": {
     "h": {
-      "en": "Read the code, build it, run it locally.",
-      "fr": "Lisez le code, compilez-le, faites tourner en local.",
-      "zh": "閱讀程式碼、自行建置、在本機執行。"
+      "en": "Download it, or read the code and build it.",
+      "fr": "Téléchargez-la, ou lisez le code et compilez-la.",
+      "zh": "下載使用，或閱讀程式碼自行建置。"
     },
     "p": {
-      "en": "Localia is open source under the MIT licence. A signed and notarized download is coming soon; until then, build it from source.",
-      "fr": "Localia est open source sous licence MIT. Un téléchargement signé et notarisé arrive bientôt ; d'ici là, compilez-le depuis les sources.",
-      "zh": "Localia 以 MIT 授權開源。經簽署與公證的下載版即將推出；在此之前，請從原始碼建置。"
+      "en": "Localia is open source under the MIT licence. The signed, Apple-notarized app (version 1.0.0, macOS 14 or later) is a free download; or read the code and build it yourself.",
+      "fr": "Localia est open source sous licence MIT. L'app signée et notarisée par Apple (version 1.0.0, macOS 14 ou ultérieur) se télécharge gratuitement ; ou lisez le code et compilez-la vous-même.",
+      "zh": "Localia 以 MIT 授權開源。經簽署並由 Apple 公證的應用程式（版本 1.0.0，macOS 14 以上）可免費下載；也可以閱讀程式碼，自行建置。"
     },
     "actions": [
+      {
+        "label": {
+          "en": "Download for macOS",
+          "fr": "Télécharger pour macOS",
+          "zh": "下載 macOS 版"
+        },
+        "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.0.0/Localia-1.0.0.dmg",
+        "primary": true
+      },
+      {
+        "label": {
+          "en": "Release notes",
+          "fr": "Notes de version",
+          "zh": "版本說明"
+        },
+        "href": "https://github.com/vincentlauriat/Localia/releases/tag/v1.0.0"
+      },
       {
         "label": {
           "en": "View on GitHub",
           "fr": "Voir sur GitHub",
           "zh": "在 GitHub 上查看"
         },
-        "href": "https://github.com/vincentlauriat/Localia",
-        "primary": true
+        "href": "https://github.com/vincentlauriat/Localia"
       }
     ]
   },
