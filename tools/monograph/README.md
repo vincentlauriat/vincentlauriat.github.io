@@ -44,6 +44,10 @@ A **plate** is `{src, alt: T, caption?: T, w?, h?, wide?: bool, dark?: bool}`:
 - `w` and `h` are the image's intrinsic pixel size; giving them avoids layout shift.
 - `dark: true` sets a dark capture on an ink plate.
 - `wide: true` spans both columns of a gallery.
+- `src` may be `{en, fr, zh}`: one capture per language (e.g. the app's own UI language). All three
+  images are emitted, the inactive ones are hidden and, being lazy, never fetched.
+- `svg: "file.svg"` instead of `src` inlines a drawing (path relative to the content file). Its labels can
+  carry `.en`/`.fr`/`.zh`, so the language switch reaches inside it; `alt` becomes visually hidden text.
 
 Plates are numbered Fig. 1, 2… in reading order.
 

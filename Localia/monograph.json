@@ -1,0 +1,705 @@
+{
+  "name": "Localia",
+  "no": "39",
+  "repo": "vincentlauriat/Localia",
+  "url": "https://vincentlauriat.github.io/Localia/",
+  "accent": "#045A54",
+  "meta": {
+    "title": "Localia — run AI models on your Mac, and Claude Code on them",
+    "description": "Localia is a free, open-source macOS menu-bar app that picks the AI models that really fit your Mac, installs Ollama or llama.cpp in one click, and points Claude Code at a local model with one switch. How it works, step by step.",
+    "og_image": "https://vincentlauriat.github.io/Localia/og.png",
+    "favicon": "favicon.svg",
+    "head_extra": "<meta property=\"og:image:width\" content=\"1200\">\n<meta property=\"og:image:height\" content=\"630\">\n<meta name=\"twitter:image\" content=\"https://vincentlauriat.github.io/Localia/og.png\">\n<style>\n.t-right .plate .pl img{max-width:340px;margin-inline:auto}\n.plates .plate .pl img{max-width:300px;margin-inline:auto}\n.dg .pl{padding:clamp(18px,3vw,40px) clamp(12px,2.4vw,32px)}\n.dgm{display:block;width:100%;height:auto;max-width:620px;margin-inline:auto;overflow:visible}\n.dgm text{font-family:var(--sans);fill:var(--ink)}\n.dgm .t{font-size:21px;font-weight:500;letter-spacing:-.01em}\n.dgm .c{font-size:16px;fill:var(--ink-2)}\n.dgm .c.sm{font-size:14px}\n.dgm .c.it{font-size:15px}\n.dgm .m{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;fill:var(--accent-ink)}\n.dgm .tn{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums}\n.dgm .tn.on{fill:var(--on-accent)}\n.dgm .s,.dgm .s2,.dgm .ac,.dgm .loop,.dgm .loop-h{fill:none;stroke-linecap:round;stroke-linejoin:round}\n.dgm .s{stroke:var(--ink);stroke-width:1.6}\n.dgm .s2{stroke:var(--ink-2);stroke-width:1.2}\n.dgm .ac{stroke:var(--accent-ink);stroke-width:2}\n.dgm .dash{stroke-dasharray:4 4}\n.dgm .loop{stroke:var(--accent-ink);stroke-width:1.4;stroke-dasharray:4 4}\n.dgm .loop-h{stroke:var(--accent-ink);stroke-width:1.4}\n.dgm .node{fill:var(--paper);stroke:var(--ink);stroke-width:1.4}\n.dgm .fa{fill:var(--accent)}\n.dgm .knob{fill:var(--on-accent)}\n.dgm .box{fill:var(--paper);stroke:var(--ink-2);stroke-width:1.2}\n.dgm .box.strong{stroke:var(--ink);stroke-width:1.6}\n.dgm .bound{fill:none;stroke:var(--accent-ink);stroke-width:1.4;stroke-dasharray:6 5}\n.dgm .hatch{fill:url(#lc-hatch);stroke:var(--ink-2);stroke-width:1.2}\n.tbl td{font-variant-numeric:normal}\npre{white-space:pre-wrap;overflow-wrap:anywhere}\n.dgm .c{font-size:17px}\n@media (max-width:600px){.dg .pl{padding:16px 6px}}\n</style>\n<script defer src=\"/vl.js\"></script>"
+  },
+  "role": {
+    "en": "Local AI models for Claude Code, from the macOS menu bar",
+    "fr": "Des modèles d'IA locaux pour Claude Code, depuis la barre de menus macOS",
+    "zh": "從 macOS 選單列，為 Claude Code 執行本機 AI 模型"
+  },
+  "thesis": {
+    "en": "Airplane mode for AI: one switch, and Claude Code runs on your Mac.",
+    "fr": "Le mode avion de l'IA : un interrupteur, et Claude Code tourne sur votre Mac.",
+    "zh": "AI 的飛航模式：一個開關，Claude Code 就在你的 Mac 上執行。"
+  },
+  "lede": {
+    "en": "Running models locally is fiddly: pick one that fits your RAM, install an engine, download gigabytes, wire Claude Code to a local server. Pick wrong and it crawls, or the Mac swaps. Localia does each step for you, measures what your Mac can really hold, and keeps every prompt and every line of code on the machine.",
+    "fr": "Faire tourner des modèles en local est laborieux : en choisir un qui tient dans la RAM, installer un moteur, télécharger des gigaoctets, brancher Claude Code sur un serveur local. Un mauvais choix et tout rame, ou le Mac swappe. Localia fait chaque étape pour vous, mesure ce que votre Mac peut vraiment tenir, et garde chaque prompt et chaque ligne de code sur la machine.",
+    "zh": "在本機執行模型很麻煩：要挑一個放得進記憶體的模型、安裝引擎、下載數 GB 檔案，再把 Claude Code 接到本機伺服器。選錯了就會很慢，或讓 Mac 開始使用置換空間。Localia 替你完成每一步，實際量測你的 Mac 能承載多少，並讓每個提示與每一行程式碼都留在這台機器上。"
+  },
+  "actions": [
+    {
+      "label": {
+        "en": "View on GitHub",
+        "fr": "Voir sur GitHub",
+        "zh": "在 GitHub 上查看"
+      },
+      "href": "https://github.com/vincentlauriat/Localia",
+      "primary": true
+    },
+    {
+      "label": {
+        "en": "How it works",
+        "fr": "Comment ça marche",
+        "zh": "運作原理"
+      },
+      "href": "#pick"
+    }
+  ],
+  "facts": [
+    {
+      "k": {
+        "en": "Status",
+        "fr": "Statut",
+        "zh": "狀態"
+      },
+      "v": {
+        "en": "Build from source today · signed download coming soon",
+        "fr": "À compiler depuis les sources · téléchargement signé bientôt",
+        "zh": "目前可從原始碼建置 · 簽署版下載即將推出"
+      }
+    },
+    {
+      "k": {
+        "en": "Requires",
+        "fr": "Configuration",
+        "zh": "需求"
+      },
+      "v": {
+        "en": "macOS 14 or later, tuned for Apple Silicon",
+        "fr": "macOS 14 ou ultérieur, optimisé pour Apple Silicon",
+        "zh": "macOS 14 以上，針對 Apple Silicon 最佳化"
+      }
+    },
+    {
+      "k": {
+        "en": "Engines",
+        "fr": "Moteurs",
+        "zh": "引擎"
+      },
+      "v": "Ollama · llama.cpp"
+    },
+    {
+      "k": {
+        "en": "Privacy",
+        "fr": "Confidentialité",
+        "zh": "隱私"
+      },
+      "v": {
+        "en": "No telemetry; in local mode nothing leaves the Mac",
+        "fr": "Aucune télémétrie ; en mode local, rien ne quitte le Mac",
+        "zh": "無遙測；本機模式下沒有任何資料離開 Mac"
+      }
+    },
+    {
+      "k": {
+        "en": "Interface",
+        "fr": "Interface",
+        "zh": "介面語言"
+      },
+      "v": {
+        "en": "English, French",
+        "fr": "Anglais, français",
+        "zh": "英文、法文（無中文介面）"
+      }
+    },
+    {
+      "k": {
+        "en": "Licence",
+        "fr": "Licence",
+        "zh": "授權"
+      },
+      "v": "MIT"
+    }
+  ],
+  "hero": {
+    "src": {
+      "en": "img/panel-on-light-en.png",
+      "fr": "img/panel-on-light-fr.png",
+      "zh": "img/panel-on-light-en.png"
+    },
+    "w": 680,
+    "h": 1640,
+    "alt": {
+      "en": "The Localia menu-bar panel with local mode on: 24 words per second, 9.6 GB of free memory, Qwen3-Coder-30B-A3B-Instruct running on Ollama.",
+      "fr": "Le panneau de Localia dans la barre de menus, mode local activé : 24 mots par seconde, 9,6 Go de mémoire libre, Qwen3-Coder-30B-A3B-Instruct sur Ollama.",
+      "zh": "Localia 選單列面板，本機模式已開啟：每秒 24 個字、9.6 GB 可用記憶體，Qwen3-Coder-30B-A3B-Instruct 在 Ollama 上執行。"
+    },
+    "caption": {
+      "en": "The menu-bar panel, local mode on. Speed in words per second, free memory, the loaded model and its engine.",
+      "fr": "Le panneau de la barre de menus, mode local activé. Vitesse en mots par seconde, mémoire libre, le modèle chargé et son moteur.",
+      "zh": "選單列面板，本機模式開啟。以每秒字數顯示速度，並列出可用記憶體、已載入的模型與其引擎。（App 介面為英文。）"
+    }
+  },
+  "opener": {
+    "h": {
+      "en": "Four jobs, one menu-bar icon",
+      "fr": "Quatre tâches, une icône dans la barre de menus",
+      "zh": "四項工作，一個選單列圖示"
+    },
+    "p": {
+      "en": "Choose a model that fits, install the engine, manage what is downloaded, and launch Claude Code on it. Free, open source, MIT.",
+      "fr": "Choisir un modèle qui tient, installer le moteur, gérer ce qui est téléchargé, et lancer Claude Code dessus. Gratuit, open source, MIT.",
+      "zh": "挑選放得下的模型、安裝引擎、管理已下載的內容，並在其上啟動 Claude Code。免費、開源、MIT 授權。"
+    }
+  },
+  "features": [
+    {
+      "h": {
+        "en": "Recommends models that fit this Mac",
+        "fr": "Recommande des modèles qui tiennent sur ce Mac",
+        "zh": "推薦適合這台 Mac 的模型"
+      },
+      "p": {
+        "en": "Scored by llmfit, then corrected with this Mac's real GPU memory limit and re-measured on first load. Speed comes first.",
+        "fr": "Notés par llmfit, puis corrigés avec la vraie limite de mémoire GPU de ce Mac et remesurés au premier chargement. La vitesse d'abord.",
+        "zh": "先由 llmfit 評分，再以這台 Mac 實際的 GPU 記憶體上限修正，並在首次載入時重新量測。速度優先。"
+      }
+    },
+    {
+      "h": {
+        "en": "Installs engines in one click",
+        "fr": "Installe les moteurs en un clic",
+        "zh": "一鍵安裝引擎"
+      },
+      "p": {
+        "en": "Ollama (the official release) and llama.cpp (the official ggml-org macOS arm64 build), with no Homebrew. Every download is SHA-256 verified, atomic and cancellable.",
+        "fr": "Ollama (la version officielle) et llama.cpp (le build officiel ggml-org macOS arm64), sans Homebrew. Chaque téléchargement est vérifié en SHA-256, atomique et annulable.",
+        "zh": "Ollama（官方版本）與 llama.cpp（ggml-org 官方 macOS arm64 版本），無需 Homebrew。每次下載都經 SHA-256 驗證、以原子方式寫入，且可取消。"
+      }
+    },
+    {
+      "h": {
+        "en": "Manages models",
+        "fr": "Gère les modèles",
+        "zh": "管理模型"
+      },
+      "p": {
+        "en": "Download with progress, delete, see what is loaded, free the memory. A guard warns before loading when free RAM is short, or when Teams, Outlook or Chrome are eating it.",
+        "fr": "Téléchargement avec progression, suppression, ce qui est chargé, libération de la mémoire. Un garde-fou prévient avant le chargement si la RAM libre manque, ou si Teams, Outlook ou Chrome la dévorent.",
+        "zh": "下載時顯示進度、刪除、查看已載入的模型、釋放記憶體。可用記憶體不足，或 Teams、Outlook、Chrome 佔用太多時，載入前會先提醒。"
+      }
+    },
+    {
+      "h": {
+        "en": "Launches Claude Code where you work",
+        "fr": "Lance Claude Code là où vous travaillez",
+        "zh": "在你的工作資料夾啟動 Claude Code"
+      },
+      "p": {
+        "en": "In a folder you choose, in Terminal, iTerm2 or Ghostty, on Anthropic's cloud or on a local model. Local runs need no Anthropic account.",
+        "fr": "Dans le dossier de votre choix, dans Terminal, iTerm2 ou Ghostty, sur le cloud d'Anthropic ou sur un modèle local. En local, aucun compte Anthropic n'est nécessaire.",
+        "zh": "在你選定的資料夾中，透過 Terminal、iTerm2 或 Ghostty，於 Anthropic 雲端或本機模型上執行。本機執行不需要 Anthropic 帳號。"
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "id": "pick",
+      "h": {
+        "en": "How a model is picked",
+        "fr": "Comment un modèle est choisi",
+        "zh": "如何挑選模型"
+      },
+      "p": {
+        "en": "Five stages, from the chip to a short list. The fourth one feeds back into the third.",
+        "fr": "Cinq étapes, de la puce à une courte liste. La quatrième nourrit la troisième.",
+        "zh": "從晶片到一份簡短清單，共五個階段。第四階段會回饋給第三階段。"
+      },
+      "blocks": [
+        {
+          "type": "plates",
+          "items": [
+            {
+              "svg": "diagrams/pipeline.svg",
+              "wide": true,
+              "alt": {
+                "en": "Diagram: hardware profile, then llmfit scoring, then re-quantisation and the Metal limit, then measured calibration, which feeds back into the estimates, then the recommendation.",
+                "fr": "Schéma : profil matériel, puis score llmfit, puis requantification et limite Metal, puis calibration mesurée, qui corrige les estimations, puis recommandation.",
+                "zh": "圖示：硬體概況 → llmfit 評分 → 重新量化與 Metal 上限 → 實測校準（回饋修正估計值）→ 推薦。"
+              },
+              "caption": {
+                "en": "The recommendation pipeline. The dashed line: what is measured on first load corrects the next estimates.",
+                "fr": "La chaîne de recommandation. En pointillé : ce qui est mesuré au premier chargement corrige les estimations suivantes.",
+                "zh": "推薦流程。虛線表示：首次載入時的實測結果會修正之後的估計值。"
+              }
+            }
+          ]
+        },
+        {
+          "type": "specs",
+          "items": [
+            {
+              "h": {
+                "en": "Why not trust the score as is",
+                "fr": "Pourquoi ne pas croire le score tel quel",
+                "zh": "為何不直接採用評分"
+              },
+              "p": {
+                "en": "llmfit reasons about total RAM and the quantisation it prefers. The GPU, though, may only use Metal's <code>recommendedMaxWorkingSetSize</code>, and Localia downloads Q4_K_M. Size and speed are recomputed for both.",
+                "fr": "llmfit raisonne sur la RAM totale et la quantification qu'il préfère. Or le GPU ne peut utiliser que le <code>recommendedMaxWorkingSetSize</code> de Metal, et Localia télécharge du Q4_K_M. Taille et vitesse sont recalculées pour les deux.",
+                "zh": "llmfit 以總記憶體與它偏好的量化方式推算。但 GPU 只能使用 Metal 的 <code>recommendedMaxWorkingSetSize</code>，而 Localia 下載的是 Q4_K_M。因此大小與速度都會依這兩點重新計算。"
+              }
+            },
+            {
+              "h": {
+                "en": "Why measure",
+                "fr": "Pourquoi mesurer",
+                "zh": "為何要量測"
+              },
+              "p": {
+                "en": "Estimates were about twice off on an M5. On first load, Localia records the real tokens per second and memory, and recalibrates.",
+                "fr": "Les estimations étaient fausses d'environ 2× sur un M5. Au premier chargement, Localia relève les vrais tokens par seconde et la mémoire, puis recalibre.",
+                "zh": "在 M5 上，估計值偏差約兩倍。首次載入時，Localia 會記錄實際的每秒 token 數與記憶體用量，並重新校準。"
+              }
+            },
+            {
+              "h": {
+                "en": "Why speed first",
+                "fr": "Pourquoi la vitesse d'abord",
+                "zh": "為何速度優先"
+              },
+              "p": {
+                "en": "A model you wait for is a model you stop using. Below about 15 tokens per second a model is flagged slow, and community fine-tunes (\"uncensored\", \"distilled\"…) are left out.",
+                "fr": "Un modèle qu'on attend est un modèle qu'on abandonne. Sous 15 tokens par seconde environ, un modèle est signalé lent, et les fine-tunes communautaires (« uncensored », « distilled »…) sont écartés.",
+                "zh": "需要等待的模型，終究會被放棄。每秒低於約 15 個 token 的模型會被標示為慢，社群微調版本（「uncensored」、「distilled」等）也會被排除。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "h": {
+        "en": "What \"fits\" means",
+        "fr": "Ce que « tenir » veut dire",
+        "zh": "「放得下」是什麼意思"
+      },
+      "p": {
+        "en": "On Apple Silicon the GPU shares the RAM, but not all of it.",
+        "fr": "Sur Apple Silicon, le GPU partage la RAM, mais pas toute.",
+        "zh": "在 Apple Silicon 上，GPU 與系統共用記憶體，但不是全部。"
+      },
+      "blocks": [
+        {
+          "type": "plates",
+          "items": [
+            {
+              "svg": "diagrams/memory.svg",
+              "wide": true,
+              "alt": {
+                "en": "Diagram: of 24 GB of unified memory, Metal lets the GPU use 17.8 GB; Localia keeps 1.5 GB free; a 10 GB model fills a little over half of the rest.",
+                "fr": "Schéma : sur 24 Go de mémoire unifiée, Metal laisse 17,8 Go au GPU ; Localia en garde 1,5 Go libres ; un modèle de 10 Go occupe un peu plus de la moitié du reste.",
+                "zh": "圖示：24 GB 統一記憶體中，Metal 允許 GPU 使用 17.8 GB；Localia 保留 1.5 GB；10 GB 的模型佔用剩餘空間的一半多一點。"
+              },
+              "caption": {
+                "en": "A real example: a 24 GB M5 MacBook Air and the model Localia recommends by default. Ticks mark 60 and 85 % of what the model may use; the dashed line is the limit.",
+                "fr": "Un exemple réel : un MacBook Air M5 de 24 Go et le modèle que Localia recommande par défaut. Les repères marquent 60 et 85 % de ce que le modèle peut occuper ; le pointillé est la limite.",
+                "zh": "實際例子：24 GB 的 M5 MacBook Air，以及 Localia 預設推薦的模型。刻度標示模型可用空間的 60% 與 85%；虛線為上限。"
+              }
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "t": {
+            "en": "The model has to sit inside the GPU's working set, with room left for the context. If it does not, the Mac swaps and generation slows to a crawl. That is the failure Localia is built to avoid, and why it warns before loading when memory is short.",
+            "fr": "Le modèle doit tenir dans le working set du GPU, avec de la place pour le contexte. Sinon, le Mac swappe et la génération s'effondre. C'est l'échec que Localia est conçu pour éviter, et la raison pour laquelle il prévient avant de charger quand la mémoire manque.",
+            "zh": "模型必須放進 GPU 的工作集，並為上下文留出空間。否則 Mac 會開始使用置換空間，生成速度將急遽下降。這正是 Localia 要避免的情況，也是它在記憶體不足時會於載入前提醒的原因。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "local",
+      "h": {
+        "en": "Local mode, wire by wire",
+        "fr": "Le mode local, fil à fil",
+        "zh": "本機模式，逐條拆解"
+      },
+      "p": {
+        "en": "Like airplane mode: one switch sends Claude Code to the local model.",
+        "fr": "Comme le mode avion : un interrupteur envoie Claude Code vers le modèle local.",
+        "zh": "就像飛航模式：一個開關，就讓 Claude Code 改用本機模型。"
+      },
+      "blocks": [
+        {
+          "type": "plates",
+          "items": [
+            {
+              "svg": "diagrams/localmode.svg",
+              "wide": true,
+              "alt": {
+                "en": "Diagram: the local-mode switch reaches Claude Code either through Localia's own sessions, with an isolated config, or through a shell shim for every claude command. Claude Code then talks to Ollama on port 11434 or llama.cpp on port 11435, on 127.0.0.1, and never falls back silently to the cloud.",
+                "fr": "Schéma : l'interrupteur du mode local atteint Claude Code soit par les sessions de Localia, avec une configuration isolée, soit par un shim du shell pour chaque commande claude. Claude Code parle alors à Ollama sur le port 11434 ou à llama.cpp sur le port 11435, sur 127.0.0.1, sans jamais se rabattre en silence sur le cloud.",
+                "zh": "圖示：本機模式開關透過兩種方式作用於 Claude Code：Localia 自己的工作階段（使用獨立設定），或為每個 claude 指令加上的 shell shim。Claude Code 接著連到 127.0.0.1 上的 Ollama（連接埠 11434）或 llama.cpp（連接埠 11435），絕不會悄悄改用雲端。"
+              },
+              "caption": {
+                "en": "Two scopes, one destination. Both engines listen on the loopback address only.",
+                "fr": "Deux portées, une seule destination. Les deux moteurs n'écoutent que sur l'adresse de bouclage.",
+                "zh": "兩種範圍，同一個目的地。兩個引擎都只在迴路位址上監聽。"
+              }
+            }
+          ]
+        },
+        {
+          "type": "specs",
+          "items": [
+            {
+              "h": {
+                "en": "Localia's sessions only",
+                "fr": "Sessions de Localia uniquement",
+                "zh": "僅限 Localia 的工作階段"
+              },
+              "p": {
+                "en": "The default. Sessions launched from the menu bar get an isolated config, so your own <code>~/.claude</code> is never touched and no Anthropic account is needed.",
+                "fr": "Le réglage par défaut. Les sessions lancées depuis la barre de menus reçoivent une configuration isolée : votre <code>~/.claude</code> n'est jamais modifié et aucun compte Anthropic n'est nécessaire.",
+                "zh": "預設值。從選單列啟動的工作階段使用獨立設定，因此絕不會動到你自己的 <code>~/.claude</code>，也不需要 Anthropic 帳號。"
+              }
+            },
+            {
+              "h": {
+                "en": "Every claude you type",
+                "fr": "Chaque claude que vous tapez",
+                "zh": "你輸入的每個 claude"
+              },
+              "p": {
+                "en": "Opt-in. A marked block in <code>~/.zshrc</code> loads a small shim, so <code>claude</code> in any terminal follows the switch. While local mode is on, it never falls back silently to the cloud.",
+                "fr": "Sur option. Un bloc balisé dans <code>~/.zshrc</code> charge un petit shim : <code>claude</code>, dans n'importe quel terminal, suit l'interrupteur. Tant que le mode local est activé, il ne se rabat jamais en silence sur le cloud.",
+                "zh": "選用。<code>~/.zshrc</code> 中一段有標記的區塊會載入一個小型 shim，讓任何終端機裡的 <code>claude</code> 都跟隨開關。本機模式開啟時，絕不會悄悄改用雲端。"
+              }
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "t": {
+            "en": "This is the whole block Localia adds to <code>~/.zshrc</code>. A backup of the file is taken first, and the \"Remove Localia from my shell\" button, in Settings, deletes exactly these three lines.",
+            "fr": "Voici tout le bloc que Localia ajoute à <code>~/.zshrc</code>. Une sauvegarde du fichier est faite avant, et le bouton « Retirer Localia de mon shell », dans les Réglages, supprime exactement ces trois lignes.",
+            "zh": "這就是 Localia 加入 <code>~/.zshrc</code> 的完整區塊。寫入前會先備份該檔案，而「設定」中的「Remove Localia from my shell」按鈕只會刪除這三行。"
+          }
+        },
+        {
+          "type": "pre",
+          "code": "# >>> localia >>>\n[ -f \"$HOME/Library/Application Support/Localia/shell/claude.zsh\" ] && source \"$HOME/Library/Application Support/Localia/shell/claude.zsh\"\n# <<< localia <<<"
+        }
+      ]
+    },
+    {
+      "id": "specs",
+      "h": {
+        "en": "Specifications",
+        "fr": "Caractéristiques",
+        "zh": "規格"
+      },
+      "p": {
+        "en": "The numbers behind the switch.",
+        "fr": "Les chiffres derrière l'interrupteur.",
+        "zh": "開關背後的數字。"
+      },
+      "blocks": [
+        {
+          "type": "table",
+          "head": [
+            {
+              "en": "Item",
+              "fr": "Élément",
+              "zh": "項目"
+            },
+            {
+              "en": "Value",
+              "fr": "Valeur",
+              "zh": "數值"
+            }
+          ],
+          "rows": [
+            [
+              {
+                "en": "Engines",
+                "fr": "Moteurs",
+                "zh": "引擎"
+              },
+              {
+                "en": "Ollama (official release) · llama.cpp (official ggml-org macOS arm64 build)",
+                "fr": "Ollama (version officielle) · llama.cpp (build officiel ggml-org macOS arm64)",
+                "zh": "Ollama（官方版本）· llama.cpp（ggml-org 官方 macOS arm64 版本）"
+              }
+            ],
+            [
+              {
+                "en": "Local endpoints",
+                "fr": "Points d'accès locaux",
+                "zh": "本機端點"
+              },
+              "<code>127.0.0.1:11434</code> Ollama · <code>127.0.0.1:11435</code> llama.cpp"
+            ],
+            [
+              {
+                "en": "Quantisation",
+                "fr": "Quantification",
+                "zh": "量化"
+              },
+              "<code>Q4_K_M</code>"
+            ],
+            [
+              {
+                "en": "Context window",
+                "fr": "Fenêtre de contexte",
+                "zh": "上下文視窗"
+              },
+              {
+                "en": "65,536 tokens, with auto-compaction set for that window",
+                "fr": "65 536 tokens, avec auto-compaction réglée pour cette fenêtre",
+                "zh": "65,536 個 token，並針對此視窗設定自動壓縮"
+              }
+            ],
+            [
+              {
+                "en": "Model fit",
+                "fr": "Adéquation",
+                "zh": "模型適配"
+              },
+              {
+                "en": "llmfit 1.1.20, corrected with Metal <code>recommendedMaxWorkingSetSize</code>",
+                "fr": "llmfit 1.1.20, corrigé par le <code>recommendedMaxWorkingSetSize</code> de Metal",
+                "zh": "llmfit 1.1.20，以 Metal 的 <code>recommendedMaxWorkingSetSize</code> 修正"
+              }
+            ],
+            [
+              {
+                "en": "Speed floor",
+                "fr": "Vitesse plancher",
+                "zh": "速度下限"
+              },
+              {
+                "en": "about 15 tokens/s; slower models are flagged",
+                "fr": "environ 15 tokens/s ; en dessous, le modèle est signalé",
+                "zh": "約每秒 15 個 token；更慢的模型會被標示"
+              }
+            ],
+            [
+              {
+                "en": "Downloads",
+                "fr": "Téléchargements",
+                "zh": "下載"
+              },
+              {
+                "en": "SHA-256 verified, atomic, cancellable; no Homebrew",
+                "fr": "vérifiés en SHA-256, atomiques, annulables ; sans Homebrew",
+                "zh": "SHA-256 驗證、原子寫入、可取消；無需 Homebrew"
+              }
+            ],
+            [
+              {
+                "en": "Terminals",
+                "fr": "Terminaux",
+                "zh": "終端機"
+              },
+              "Terminal · iTerm2 · Ghostty"
+            ],
+            [
+              {
+                "en": "Network",
+                "fr": "Réseau",
+                "zh": "網路"
+              },
+              {
+                "en": "Only what you trigger: engine, model and llmfit downloads; update checks once signed. No telemetry.",
+                "fr": "Seulement ce que vous déclenchez : téléchargement du moteur, des modèles et de llmfit ; vérification des mises à jour une fois signé. Aucune télémétrie.",
+                "zh": "只有你觸發的連線：下載引擎、模型與 llmfit；簽署版推出後才會檢查更新。無遙測。"
+              }
+            ],
+            [
+              {
+                "en": "System",
+                "fr": "Système",
+                "zh": "系統"
+              },
+              {
+                "en": "macOS 14+, tuned for Apple Silicon",
+                "fr": "macOS 14+, optimisé pour Apple Silicon",
+                "zh": "macOS 14 以上，針對 Apple Silicon 最佳化"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "panel",
+      "h": {
+        "en": "The panel",
+        "fr": "Le panneau",
+        "zh": "面板"
+      },
+      "p": {
+        "en": "Real renders of the menu-bar panel, in the app's language for this page.",
+        "fr": "Des rendus réels du panneau, dans la langue de l'app correspondant à cette page.",
+        "zh": "選單列面板的實際畫面。App 只有英文與法文介面，此處顯示英文版。"
+      },
+      "blocks": [
+        {
+          "type": "plates",
+          "items": [
+            {
+              "src": {
+                "en": "img/panel-off-light-en.png",
+                "fr": "img/panel-off-light-fr.png",
+                "zh": "img/panel-off-light-en.png"
+              },
+              "w": 680,
+              "h": 1640,
+              "alt": {
+                "en": "The panel with local mode off: Claude Code launches on Anthropic's cloud.",
+                "fr": "Le panneau, mode local désactivé : Claude Code se lance sur le cloud d'Anthropic.",
+                "zh": "本機模式關閉時的面板：Claude Code 在 Anthropic 雲端啟動。"
+              },
+              "caption": {
+                "en": "Local mode off.",
+                "fr": "Mode local désactivé.",
+                "zh": "本機模式關閉。"
+              }
+            },
+            {
+              "src": {
+                "en": "img/panel-on-dark-en.png",
+                "fr": "img/panel-on-dark-fr.png",
+                "zh": "img/panel-on-dark-en.png"
+              },
+              "w": 680,
+              "h": 1640,
+              "dark": true,
+              "alt": {
+                "en": "The panel in dark mode with local mode on.",
+                "fr": "Le panneau en mode sombre, mode local activé.",
+                "zh": "深色模式下、本機模式開啟時的面板。"
+              },
+              "caption": {
+                "en": "Local mode on, dark appearance.",
+                "fr": "Mode local activé, apparence sombre.",
+                "zh": "本機模式開啟，深色外觀。"
+              }
+            },
+            {
+              "src": {
+                "en": "img/panel-on-expanded-dark-en.png",
+                "fr": "img/panel-on-expanded-dark-fr.png",
+                "zh": "img/panel-on-expanded-dark-en.png"
+              },
+              "w": 680,
+              "h": 2446,
+              "dark": true,
+              "alt": {
+                "en": "The expanded panel: installed models, memory-hungry apps (Google Chrome, Microsoft Teams), running sessions, engine choice between Ollama and llama.cpp, and recent folders for Claude Code.",
+                "fr": "Le panneau déplié : modèles installés, apps gourmandes en mémoire (Google Chrome, Microsoft Teams), sessions en cours, choix du moteur entre Ollama et llama.cpp, et dossiers récents pour Claude Code.",
+                "zh": "展開的面板：已安裝的模型、佔用大量記憶體的 App（Google Chrome、Microsoft Teams）、執行中的工作階段、Ollama 與 llama.cpp 引擎切換，以及 Claude Code 的最近資料夾。"
+              },
+              "caption": {
+                "en": "Expanded: models, memory-hungry apps, sessions, engine, recent folders.",
+                "fr": "Déplié : modèles, apps gourmandes, sessions, moteur, dossiers récents.",
+                "zh": "展開：模型、耗記憶體的 App、工作階段、引擎、最近資料夾。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "why",
+      "h": {
+        "en": "Local, and why not only local",
+        "fr": "Le local, et pourquoi pas seulement",
+        "zh": "本機，但不只本機"
+      },
+      "p": {
+        "en": "A complement to the cloud, not a replacement.",
+        "fr": "Un complément au cloud, pas un remplaçant.",
+        "zh": "是雲端的補充，而非取代。"
+      },
+      "blocks": [
+        {
+          "type": "specs",
+          "items": [
+            {
+              "h": {
+                "en": "Sovereignty",
+                "fr": "Souveraineté",
+                "zh": "資料自主"
+              },
+              "p": {
+                "en": "In local mode, prompts and code never leave the Mac. Useful for sensitive code.",
+                "fr": "En mode local, prompts et code ne quittent jamais le Mac. Utile pour le code sensible.",
+                "zh": "本機模式下，提示與程式碼從不離開 Mac。適合處理敏感程式碼。"
+              }
+            },
+            {
+              "h": {
+                "en": "Cost and reach",
+                "fr": "Coût et portée",
+                "zh": "成本與可用性"
+              },
+              "p": {
+                "en": "Inference on a Mac you already own costs no tokens and no per-seat API fees, and works offline: on a plane, on a train, on a restricted network.",
+                "fr": "L'inférence sur un Mac que vous possédez déjà ne coûte aucun token ni frais d'API par poste, et fonctionne hors ligne : en avion, en train, sur un réseau restreint.",
+                "zh": "在你已擁有的 Mac 上推論，不花 token，也沒有按席位計費的 API 費用，且可離線使用：飛機上、火車上、受限網路中皆可。"
+              }
+            },
+            {
+              "h": {
+                "en": "The honest limit",
+                "fr": "La limite, honnêtement",
+                "zh": "坦白說的限制"
+              },
+              "p": {
+                "en": "Local models are smaller than frontier cloud models. Use them for quick tasks, offline work and cost control; switch local mode off for the hard problems.",
+                "fr": "Les modèles locaux sont plus petits que les modèles de pointe du cloud. Utilisez-les pour les tâches rapides, le travail hors ligne et la maîtrise des coûts ; coupez le mode local pour les problèmes difficiles.",
+                "zh": "本機模型比雲端的前沿模型小。適合快速任務、離線工作與控制成本；遇到困難問題時，關閉本機模式即可。"
+              }
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "t": {
+            "en": "<b>Next on the roadmap:</b> an MLX engine with an Anthropic-API gateway, then other coding tools: Codex, OpenCode, Pi.",
+            "fr": "<b>Prochaines étapes :</b> un moteur MLX avec une passerelle compatible avec l'API d'Anthropic, puis d'autres outils de code : Codex, OpenCode, Pi.",
+            "zh": "<b>後續規劃：</b>MLX 引擎與相容 Anthropic API 的閘道，接著支援其他程式開發工具：Codex、OpenCode、Pi。"
+          }
+        }
+      ]
+    }
+  ],
+  "close": {
+    "h": {
+      "en": "Read the code, build it, run it locally.",
+      "fr": "Lisez le code, compilez-le, faites tourner en local.",
+      "zh": "閱讀程式碼、自行建置、在本機執行。"
+    },
+    "p": {
+      "en": "Localia is open source under the MIT licence. A signed and notarized download is coming soon; until then, build it from source.",
+      "fr": "Localia est open source sous licence MIT. Un téléchargement signé et notarisé arrive bientôt ; d'ici là, compilez-le depuis les sources.",
+      "zh": "Localia 以 MIT 授權開源。經簽署與公證的下載版即將推出；在此之前，請從原始碼建置。"
+    },
+    "actions": [
+      {
+        "label": {
+          "en": "View on GitHub",
+          "fr": "Voir sur GitHub",
+          "zh": "在 GitHub 上查看"
+        },
+        "href": "https://github.com/vincentlauriat/Localia",
+        "primary": true
+      }
+    ]
+  },
+  "colophon": {
+    "year": "2026",
+    "notes": [
+      {
+        "en": "Built on <a href=\"https://github.com/AlexsJones/llmfit\">llmfit</a> (Alex Jones, MIT, bundled), <a href=\"https://github.com/ggml-org/llama.cpp\">llama.cpp</a> (ggml-org, MIT), <a href=\"https://github.com/ollama/ollama\">Ollama</a> (MIT) and <a href=\"https://sparkle-project.org\">Sparkle</a> (MIT).",
+        "fr": "Construit avec <a href=\"https://github.com/AlexsJones/llmfit\">llmfit</a> (Alex Jones, MIT, intégré), <a href=\"https://github.com/ggml-org/llama.cpp\">llama.cpp</a> (ggml-org, MIT), <a href=\"https://github.com/ollama/ollama\">Ollama</a> (MIT) et <a href=\"https://sparkle-project.org\">Sparkle</a> (MIT).",
+        "zh": "基於 <a href=\"https://github.com/AlexsJones/llmfit\">llmfit</a>（Alex Jones，MIT，隨附）、<a href=\"https://github.com/ggml-org/llama.cpp\">llama.cpp</a>（ggml-org，MIT）、<a href=\"https://github.com/ollama/ollama\">Ollama</a>（MIT）與 <a href=\"https://sparkle-project.org\">Sparkle</a>（MIT）。"
+      }
+    ]
+  }
+}
