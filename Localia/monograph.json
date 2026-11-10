@@ -33,7 +33,7 @@
         "fr": "Télécharger pour macOS",
         "zh": "下載 macOS 版"
       },
-      "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.0.0/Localia-1.0.0.dmg",
+      "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.0.1/Localia-1.0.1.dmg",
       "primary": true
     },
     {
@@ -61,9 +61,9 @@
         "zh": "狀態"
       },
       "v": {
-        "en": "Version 1.0.0 · signed and notarized by Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.0\">release notes</a>",
-        "fr": "Version 1.0.0 · signée et notarisée par Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.0\">notes de version</a>",
-        "zh": "版本 1.0.0 · 已由 Apple 簽署並公證 · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.0\">版本說明</a>"
+        "en": "Version 1.0.1 · signed and notarized by Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.1\">release notes</a>",
+        "fr": "Version 1.0.1 · signée et notarisée par Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.1\">notes de version</a>",
+        "zh": "版本 1.0.1 · 已由 Apple 簽署並公證 · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.1\">版本說明</a>"
       }
     },
     {
@@ -684,9 +684,9 @@
       "zh": "下載使用，或閱讀程式碼自行建置。"
     },
     "p": {
-      "en": "Localia is open source under the MIT licence. The signed, Apple-notarized app (version 1.0.0, macOS 14 or later) is a free download; or read the code and build it yourself.",
-      "fr": "Localia est open source sous licence MIT. L'app signée et notarisée par Apple (version 1.0.0, macOS 14 ou ultérieur) se télécharge gratuitement ; ou lisez le code et compilez-la vous-même.",
-      "zh": "Localia 以 MIT 授權開源。經簽署並由 Apple 公證的應用程式（版本 1.0.0，macOS 14 以上）可免費下載；也可以閱讀程式碼，自行建置。"
+      "en": "Localia is open source under the MIT licence. The signed, Apple-notarized app (version 1.0.1, macOS 14 or later) is a free download; or read the code and build it yourself.",
+      "fr": "Localia est open source sous licence MIT. L'app signée et notarisée par Apple (version 1.0.1, macOS 14 ou ultérieur) se télécharge gratuitement ; ou lisez le code et compilez-la vous-même.",
+      "zh": "Localia 以 MIT 授權開源。經簽署並由 Apple 公證的應用程式（版本 1.0.1，macOS 14 以上）可免費下載；也可以閱讀程式碼，自行建置。"
     },
     "actions": [
       {
@@ -695,7 +695,7 @@
           "fr": "Télécharger pour macOS",
           "zh": "下載 macOS 版"
         },
-        "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.0.0/Localia-1.0.0.dmg",
+        "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.0.1/Localia-1.0.1.dmg",
         "primary": true
       },
       {
@@ -704,7 +704,7 @@
           "fr": "Notes de version",
           "zh": "版本說明"
         },
-        "href": "https://github.com/vincentlauriat/Localia/releases/tag/v1.0.0"
+        "href": "https://github.com/vincentlauriat/Localia/releases/tag/v1.0.1"
       },
       {
         "label": {
