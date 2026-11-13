@@ -126,10 +126,10 @@ b.append(arrow_down(220, 456, 500))
 # loopback boundary
 b.append('<rect x="24" y="500" width="512" height="132" class="bound"/>')
 b.append(L(44, 528, "t", {"en": "127.0.0.1 · this Mac only", "fr": "127.0.0.1 · ce Mac seulement", "zh": "127.0.0.1 · 僅限這台 Mac"}))
-for x, name, port in ((44, "Ollama", ":11434"), (290, "llama.cpp", ":11435")):
-    b.append(f'<rect x="{x}" y="546" width="226" height="68" class="box"/>')
+for x, name, port in ((44, "Ollama", ":11434"), (220, "llama.cpp", ":11435"), (396, "MLX", ":11436")):
+    b.append(f'<rect x="{x}" y="546" width="152" height="68" class="box"/>')
     b.append(L(x + 16, 574, "t", name))
-    b.append(L(x + 16, 598, "m", port + "  Q4_K_M"))
+    b.append(L(x + 16, 598, "m", port + (" 4-bit" if name == "MLX" else " Q4_K_M")))
 svg("localmode.svg", 560, 650, "".join(b))
 
 # ── 3. memory ────────────────────────────────────────────────────────────
