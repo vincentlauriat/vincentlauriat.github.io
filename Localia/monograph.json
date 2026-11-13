@@ -456,9 +456,9 @@
                 "zh": "上下文視窗"
               },
               {
-                "en": "65,536 tokens, with auto-compaction set for that window",
-                "fr": "65 536 tokens, avec auto-compaction réglée pour cette fenêtre",
-                "zh": "65,536 個 token，並針對此視窗設定自動壓縮"
+                "en": "The model's real context window (trained length, capped at 65,536), passed as CLAUDE_CODE_MAX_CONTEXT_TOKENS",
+                "fr": "La vraie fenêtre du modèle (longueur d'entraînement, plafonnée à 65 536), transmise via CLAUDE_CODE_MAX_CONTEXT_TOKENS",
+                "zh": "模型的實際上下文視窗（訓練長度，上限 65,536），透過 CLAUDE_CODE_MAX_CONTEXT_TOKENS 傳遞"
               }
             ],
             [

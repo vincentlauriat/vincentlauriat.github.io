@@ -115,9 +115,9 @@ b.append('<path class="s" d="M536 150H548V344H220V356M536 278H548M215 349l5 7 5-
 b.append('<rect x="24" y="364" width="408" height="92" class="box strong"/>')
 b.append(L(44, 394, "t", "Claude Code"))
 b.append(L(44, 418, "m", "ANTHROPIC_BASE_URL=http://127.0.0.1:…"))
-b.append(L(44, 440, "c", {"en": "65,536-token context, auto-compaction to match",
-                          "fr": "contexte de 65 536 tokens, compaction ajustée",
-                          "zh": "65,536 tokens 上下文，自動壓縮隨之設定"}))
+b.append(L(44, 440, "c", {"en": "the model's real context window, up to 65,536",
+                          "fr": "la vraie fenêtre du modèle, jusqu'à 65 536",
+                          "zh": "模型的實際上下文視窗，最多 65,536"}))
 b.append('<path class="s2 dash" d="M432 410H462"/><path class="ac" d="M440 402l14 16M454 402l-14 16"/>')
 b.append('<path class="s2" d="M478 414h44a10 10 0 0 0 0-20 14 14 0 0 0-26-6 11 11 0 0 0-18 8 9 9 0 0 0 0 18Z"/>')
 b.append(L(500, 440, "c sm", {"en": "no silent", "fr": "pas de repli", "zh": "不會悄悄"}, "middle"))
