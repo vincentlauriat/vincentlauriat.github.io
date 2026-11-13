@@ -6,7 +6,7 @@
   "accent": "#045A54",
   "meta": {
     "title": "Localia — run AI models on your Mac, and Claude Code on them",
-    "description": "Localia is a free, open-source macOS menu-bar app that picks the AI models that really fit your Mac, installs Ollama or llama.cpp in one click, and points Claude Code at a local model with one switch. How it works, step by step.",
+    "description": "Localia is a free, open-source macOS menu-bar app that picks the AI models that really fit your Mac, installs Ollama, llama.cpp or MLX in one click, and points Claude Code, Codex, OpenCode or Pi at a local model with one switch. How it works, step by step.",
     "og_image": "https://vincentlauriat.github.io/Localia/og.png",
     "favicon": "favicon.svg",
     "head_extra": "<meta property=\"og:image:width\" content=\"1200\">\n<meta property=\"og:image:height\" content=\"630\">\n<meta name=\"twitter:image\" content=\"https://vincentlauriat.github.io/Localia/og.png\">\n<style>\n.t-right .plate .pl img{max-width:340px;margin-inline:auto}\n.plates .plate .pl img{max-width:300px;margin-inline:auto}\n.dg .pl{padding:clamp(18px,3vw,40px) clamp(12px,2.4vw,32px)}\n.dgm{display:block;width:100%;height:auto;max-width:620px;margin-inline:auto;overflow:visible}\n.dgm text{font-family:var(--sans);fill:var(--ink)}\n.dgm .t{font-size:21px;font-weight:500;letter-spacing:-.01em}\n.dgm .c{font-size:16px;fill:var(--ink-2)}\n.dgm .c.sm{font-size:14px}\n.dgm .c.it{font-size:15px}\n.dgm .m{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;fill:var(--accent-ink)}\n.dgm .tn{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums}\n.dgm .tn.on{fill:var(--on-accent)}\n.dgm .s,.dgm .s2,.dgm .ac,.dgm .loop,.dgm .loop-h{fill:none;stroke-linecap:round;stroke-linejoin:round}\n.dgm .s{stroke:var(--ink);stroke-width:1.6}\n.dgm .s2{stroke:var(--ink-2);stroke-width:1.2}\n.dgm .ac{stroke:var(--accent-ink);stroke-width:2}\n.dgm .dash{stroke-dasharray:4 4}\n.dgm .loop{stroke:var(--accent-ink);stroke-width:1.4;stroke-dasharray:4 4}\n.dgm .loop-h{stroke:var(--accent-ink);stroke-width:1.4}\n.dgm .node{fill:var(--paper);stroke:var(--ink);stroke-width:1.4}\n.dgm .fa{fill:var(--accent)}\n.dgm .knob{fill:var(--on-accent)}\n.dgm .box{fill:var(--paper);stroke:var(--ink-2);stroke-width:1.2}\n.dgm .box.strong{stroke:var(--ink);stroke-width:1.6}\n.dgm .bound{fill:none;stroke:var(--accent-ink);stroke-width:1.4;stroke-dasharray:6 5}\n.dgm .hatch{fill:url(#lc-hatch);stroke:var(--ink-2);stroke-width:1.2}\n.tbl td{font-variant-numeric:normal}\npre{white-space:pre-wrap;overflow-wrap:anywhere}\n.dgm .c{font-size:17px}\n@media (max-width:600px){.dg .pl{padding:16px 6px}}\n</style>\n<script defer src=\"/vl.js\"></script>"
@@ -33,7 +33,7 @@
         "fr": "Télécharger pour macOS",
         "zh": "下載 macOS 版"
       },
-      "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.0.3/Localia-1.0.3.dmg",
+      "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.1.0/Localia-1.1.0.dmg",
       "primary": true
     },
     {
@@ -61,9 +61,9 @@
         "zh": "狀態"
       },
       "v": {
-        "en": "Version 1.0.3 · signed and notarized by Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.3\">release notes</a>",
-        "fr": "Version 1.0.3 · signée et notarisée par Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.3\">notes de version</a>",
-        "zh": "版本 1.0.3 · 已由 Apple 簽署並公證 · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.0.3\">版本說明</a>"
+        "en": "Version 1.1.0 · signed and notarized by Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.1.0\">release notes</a>",
+        "fr": "Version 1.1.0 · signée et notarisée par Apple · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.1.0\">notes de version</a>",
+        "zh": "版本 1.1.0 · 已由 Apple 簽署並公證 · <a href=\"https://github.com/vincentlauriat/Localia/releases/tag/v1.1.0\">版本說明</a>"
       }
     },
     {
@@ -84,7 +84,7 @@
         "fr": "Moteurs",
         "zh": "引擎"
       },
-      "v": "Ollama · llama.cpp"
+      "v": "Ollama · llama.cpp · MLX"
     },
     {
       "k": {
@@ -170,9 +170,9 @@
         "zh": "一鍵安裝引擎"
       },
       "p": {
-        "en": "Ollama (the official release) and llama.cpp (the official ggml-org macOS arm64 build), with no Homebrew. Every download is SHA-256 verified, atomic and cancellable.",
-        "fr": "Ollama (la version officielle) et llama.cpp (le build officiel ggml-org macOS arm64), sans Homebrew. Chaque téléchargement est vérifié en SHA-256, atomique et annulable.",
-        "zh": "Ollama（官方版本）與 llama.cpp（ggml-org 官方 macOS arm64 版本），無需 Homebrew。每次下載都經 SHA-256 驗證、以原子方式寫入，且可取消。"
+        "en": "Ollama (the official release) and llama.cpp (the official ggml-org macOS arm64 build), with no Homebrew. MLX, the third engine for Apple Silicon, installs a private Python with mlx-lm through uv, with 4-bit models from mlx-community. Every download is SHA-256 verified, atomic and cancellable.",
+        "fr": "Ollama (la version officielle) et llama.cpp (le build officiel ggml-org macOS arm64), sans Homebrew. MLX, le troisième moteur pour Apple Silicon, installe un Python privé avec mlx-lm via uv, avec des modèles 4 bits de mlx-community. Chaque téléchargement est vérifié en SHA-256, atomique et annulable.",
+        "zh": "Ollama（官方版本）與 llama.cpp（ggml-org 官方 macOS arm64 版本），無需 Homebrew。MLX 是適用於 Apple Silicon 的第三個引擎，透過 uv 安裝獨立的 Python 與 mlx-lm，並使用 mlx-community 的 4 位元模型。每次下載都經 SHA-256 驗證、以原子方式寫入，且可取消。"
       }
     },
     {
@@ -194,9 +194,9 @@
         "zh": "在你的工作資料夾啟動 Claude Code"
       },
       "p": {
-        "en": "In a folder you choose, in Terminal, iTerm2 or Ghostty, on Anthropic's cloud or on a local model. Local runs need no Anthropic account.",
-        "fr": "Dans le dossier de votre choix, dans Terminal, iTerm2 ou Ghostty, sur le cloud d'Anthropic ou sur un modèle local. En local, aucun compte Anthropic n'est nécessaire.",
-        "zh": "在你選定的資料夾中，透過 Terminal、iTerm2 或 Ghostty，於 Anthropic 雲端或本機模型上執行。本機執行不需要 Anthropic 帳號。"
+        "en": "In a folder you choose, in Terminal, iTerm2 or Ghostty, on Anthropic's cloud or on a local model. Local runs need no Anthropic account. Codex, OpenCode and Pi launch the same way on the local model, each with its own config; yours are never touched.",
+        "fr": "Dans le dossier de votre choix, dans Terminal, iTerm2 ou Ghostty, sur le cloud d'Anthropic ou sur un modèle local. En local, aucun compte Anthropic n'est nécessaire. Codex, OpenCode et Pi se lancent de la même façon sur le modèle local, chacun avec sa propre configuration ; les vôtres ne sont jamais modifiées.",
+        "zh": "在你選定的資料夾中，透過 Terminal、iTerm2 或 Ghostty，於 Anthropic 雲端或本機模型上執行。本機執行不需要 Anthropic 帳號。Codex、OpenCode 與 Pi 也以相同方式在本機模型上啟動，各自使用獨立設定；你自己的設定檔絕不會被動到。"
       }
     }
   ],
@@ -338,9 +338,9 @@
               "svg": "diagrams/localmode.svg",
               "wide": true,
               "alt": {
-                "en": "Diagram: the local-mode switch reaches Claude Code either through Localia's own sessions, with an isolated config, or through a shell shim for every claude command. Claude Code then talks to Ollama on port 11434 or llama.cpp on port 11435, on 127.0.0.1, and never falls back silently to the cloud.",
-                "fr": "Schéma : l'interrupteur du mode local atteint Claude Code soit par les sessions de Localia, avec une configuration isolée, soit par un shim du shell pour chaque commande claude. Claude Code parle alors à Ollama sur le port 11434 ou à llama.cpp sur le port 11435, sur 127.0.0.1, sans jamais se rabattre en silence sur le cloud.",
-                "zh": "圖示：本機模式開關透過兩種方式作用於 Claude Code：Localia 自己的工作階段（使用獨立設定），或為每個 claude 指令加上的 shell shim。Claude Code 接著連到 127.0.0.1 上的 Ollama（連接埠 11434）或 llama.cpp（連接埠 11435），絕不會悄悄改用雲端。"
+                "en": "Diagram: the local-mode switch reaches Claude Code either through Localia's own sessions, with an isolated config, or through a shell shim for every claude command. Claude Code then talks to Ollama on port 11434, llama.cpp on port 11435 or MLX on port 11436, on 127.0.0.1, and never falls back silently to the cloud.",
+                "fr": "Schéma : l'interrupteur du mode local atteint Claude Code soit par les sessions de Localia, avec une configuration isolée, soit par un shim du shell pour chaque commande claude. Claude Code parle alors à Ollama sur le port 11434, à llama.cpp sur le port 11435 ou à MLX sur le port 11436, sur 127.0.0.1, sans jamais se rabattre en silence sur le cloud.",
+                "zh": "圖示：本機模式開關透過兩種方式作用於 Claude Code：Localia 自己的工作階段（使用獨立設定），或為每個 claude 指令加上的 shell shim。Claude Code 接著連到 127.0.0.1 上的 Ollama（連接埠 11434）、llama.cpp（連接埠 11435）或 MLX（連接埠 11436），絕不會悄悄改用雲端。"
               },
               "caption": {
                 "en": "Two scopes, one destination. Both engines listen on the loopback address only.",
@@ -428,9 +428,9 @@
                 "zh": "引擎"
               },
               {
-                "en": "Ollama (official release) · llama.cpp (official ggml-org macOS arm64 build)",
-                "fr": "Ollama (version officielle) · llama.cpp (build officiel ggml-org macOS arm64)",
-                "zh": "Ollama（官方版本）· llama.cpp（ggml-org 官方 macOS arm64 版本）"
+                "en": "Ollama (official release) · llama.cpp (official ggml-org macOS arm64 build) · MLX (mlx-lm, 4-bit models from mlx-community)",
+                "fr": "Ollama (version officielle) · llama.cpp (build officiel ggml-org macOS arm64) · MLX (mlx-lm, modèles 4 bits de mlx-community)",
+                "zh": "Ollama（官方版本）· llama.cpp（ggml-org 官方 macOS arm64 版本）· MLX（mlx-lm，mlx-community 的 4 位元模型）"
               }
             ],
             [
@@ -439,7 +439,7 @@
                 "fr": "Points d'accès locaux",
                 "zh": "本機端點"
               },
-              "<code>127.0.0.1:11434</code> Ollama · <code>127.0.0.1:11435</code> llama.cpp"
+              "<code>127.0.0.1:11434</code> Ollama · <code>127.0.0.1:11435</code> llama.cpp · <code>127.0.0.1:11436</code> MLX"
             ],
             [
               {
@@ -504,6 +504,18 @@
                 "zh": "終端機"
               },
               "Terminal · iTerm2 · Ghostty"
+            ],
+            [
+              {
+                "en": "Local launchers",
+                "fr": "Lanceurs locaux",
+                "zh": "本機啟動器"
+              },
+              {
+                "en": "Claude Code · Codex (Ollama or llama.cpp, not MLX) · OpenCode · Pi; a gateway built into the app lets Claude Code talk to MLX",
+                "fr": "Claude Code · Codex (Ollama ou llama.cpp, pas MLX) · OpenCode · Pi ; une passerelle intégrée à l'app permet à Claude Code de parler à MLX",
+                "zh": "Claude Code · Codex（Ollama 或 llama.cpp，不支援 MLX）· OpenCode · Pi；App 內建的閘道讓 Claude Code 能與 MLX 通訊"
+              }
             ],
             [
               {
@@ -684,9 +696,9 @@
       "zh": "下載使用，或閱讀程式碼自行建置。"
     },
     "p": {
-      "en": "Localia is open source under the MIT licence. The signed, Apple-notarized app (version 1.0.3, macOS 14 or later) is a free download; or read the code and build it yourself.",
-      "fr": "Localia est open source sous licence MIT. L'app signée et notarisée par Apple (version 1.0.3, macOS 14 ou ultérieur) se télécharge gratuitement ; ou lisez le code et compilez-la vous-même.",
-      "zh": "Localia 以 MIT 授權開源。經簽署並由 Apple 公證的應用程式（版本 1.0.3，macOS 14 以上）可免費下載；也可以閱讀程式碼，自行建置。"
+      "en": "Localia is open source under the MIT licence. The signed, Apple-notarized app (version 1.1.0, macOS 14 or later) is a free download; or read the code and build it yourself.",
+      "fr": "Localia est open source sous licence MIT. L'app signée et notarisée par Apple (version 1.1.0, macOS 14 ou ultérieur) se télécharge gratuitement ; ou lisez le code et compilez-la vous-même.",
+      "zh": "Localia 以 MIT 授權開源。經簽署並由 Apple 公證的應用程式（版本 1.1.0，macOS 14 以上）可免費下載；也可以閱讀程式碼，自行建置。"
     },
     "actions": [
       {
@@ -695,7 +707,7 @@
           "fr": "Télécharger pour macOS",
           "zh": "下載 macOS 版"
         },
-        "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.0.3/Localia-1.0.3.dmg",
+        "href": "https://github.com/vincentlauriat/Localia/releases/download/v1.1.0/Localia-1.1.0.dmg",
         "primary": true
       },
       {
@@ -704,7 +716,7 @@
           "fr": "Notes de version",
           "zh": "版本說明"
         },
-        "href": "https://github.com/vincentlauriat/Localia/releases/tag/v1.0.3"
+        "href": "https://github.com/vincentlauriat/Localia/releases/tag/v1.1.0"
       },
       {
         "label": {
