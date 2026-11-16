@@ -1,6 +1,6 @@
 ---
 name: Vincent Lauriat — hub
-description: One author's monograph of works — title page, contents, index, four cobalt-opened chapters, every project a numbered plate drawn on a construction grid.
+description: One author's monograph of works — title page, contents, index, seven themed cobalt-opened chapters, every project a numbered plate drawn on a construction grid, a few shown as full-page plates.
 colors:
   paper: "#eff1f2"
   plate: "#e4e7e9"
@@ -156,11 +156,14 @@ components:
 **Creative North Star: "The Architect's Monograph"**
 
 The hub reads as one author's book of works. It opens on a title page: the author's name set
-across the full measure at display scale, with "Works, since 2023" beneath it in the secondary
-ink. Below that come a thesis, a lede, a one-line colophon of countable facts, and a contents
-list of four chapters with roman numerals and work ranges. Next is an index of all thirty-six
-works, numbered No. 01–36. Then four chapters follow. Each chapter opens on a full-bleed cobalt
-page holding a huge roman numeral. After the opener, every work is presented as an
+across the full measure at display scale, with "Works" beneath it in the secondary ink (no
+date: the book is not framed by a starting year). Below that come a thesis, a lede, a one-line
+colophon of countable facts, and a contents list of seven themed chapters with roman numerals
+and work ranges. Next is an index of all forty works, numbered No. 01–40 in reading order. Then
+the seven chapters follow, one per theme (Claude Code, local AI and agents, the Mac, network and
+devices, home and energy, information and work, games and leisure). Each chapter opens on a
+full-bleed cobalt page holding a huge roman numeral. A chapter may open its works with one
+**full-page plate** (*planche hors-texte*): a work given a whole spread. After it, every work is presented as an
 architectural plate with a caption. The plate is the project's own pictogram redrawn in ink on a
 construction grid, framed by crop marks. Pictogram and caption are wrapped together in one link.
 
@@ -180,7 +183,7 @@ work in one jump. The plates and captions let a reader linger.
 - Cool light-grey paper, two inks, one cobalt; no gradients, shadows or tints.
 - Schibsted Grotesk only, sentence case throughout, tight negative tracking at display sizes.
 - Plates are line drawings on a construction grid, with a strict three-weight stroke hierarchy.
-- A 12-column grid; three alternating plate/caption layouts.
+- A 12-column grid; three alternating plate/caption layouts, plus the full-page plate for a few works.
 - Full-bleed cobalt chapter openers carrying a giant roman numeral.
 - One motion: the plotter pass, once per plate, absent under reduced motion and without JS.
 
@@ -263,7 +266,7 @@ system Han stack and is never given a webfont.
 and navigation are set in sentence case, at the size their role needs.
 
 **The Tabular Number Rule.** Every work number, range and count uses tabular figures and
-two-digit numbering (01–36), so that columns of numbers align like a book's index.
+two-digit numbering (01–40), so that columns of numbers align like a book's index.
 
 > ZH-Hant: the floor's `body.lang-zh h1/h2` size clamps would shrink the book's headings in Chinese;
 > the hub restores its own scale for the title h1, the index heading, the chapter titles and the
@@ -296,6 +299,10 @@ columns.
     above 960px. C becomes plate 1–4 with caption 6–12.
   - **≤600px:** A stays a large plate across all columns with the caption beneath. B and C
     both become plate 1–4 with the caption beside it in 5–12. The column gap tightens to 16px.
+- **Full-page plate (hors-texte).** At most one per chapter, always the chapter's first work,
+  outside the A → B → C cycle (the cycle starts at A on the next work). Plate in columns 1–6
+  with its dimension lines, caption in 8–12, closed by a full ink rule. ≤960px: plate 1–5,
+  caption 7–12. ≤600px: both full width, caption beneath.
 - **Vertical rhythm.** Generous, viewport-relative rests: about clamp(56px, 8vh, 104px) between
   works and clamp(64px, 10vh, 120px) at the head of a chapter's works. Section padding scales
   with `vh` rather than stepping through a fixed scale.
@@ -376,7 +383,10 @@ is rotated 90° to point down.
 A row at least 44px tall: two-digit number (secondary ink, tabular, spanning both lines), name
 (500), and role beneath it (caption size, secondary ink). Rows are separated by hairlines and
 never break across columns. On hover the name turns cobalt. Each entry links to its work's
-anchor (`#w01`–`#w36`).
+anchor (`#w01`–`#w40`). Works are numbered in reading order; when a theme is reorganised, the
+numbers follow. A project sheet that still carries an older number is caught by a small script:
+when the visitor arrives from a sheet whose URL matches a work's link, the hub lands on that work
+whatever the hash says.
 
 ### Chapter opener (signature)
 A full-bleed cobalt page at the head of each chapter. The giant roman numeral is set
@@ -392,6 +402,16 @@ project" in weight 600, underlined (1px, 5px offset), followed by an authored 16
 (stroke 1.6, round caps). On hover, the name, the link and every pictogram stroke or fill turn
 cobalt at once. The plate ground, grid and marks stay unchanged. The hover has no transition, and
 keyboard focus (`:focus-visible`) applies the same recolour plus the cobalt outline.
+
+### Full-page plate (hors-texte)
+The work the book wants read first in its chapter. Same single link, same plate drawing, same
+hover. The figure caption reads "Fig. N · full-page plate" (FR *planche hors-texte*, ZH 整頁圖版):
+the label lives in the figcaption, never as a kicker above the heading. The name is set larger
+(clamp 2.4–4.25rem), followed by the role, the project's own thesis as one sentence (500,
+clamp 1.3–1.75rem, max 26ch), its lede, and a short facts list: ruled rows under a full ink
+rule, key in secondary ink, value in ink, the facts taken from the project's own sheet. No
+cobalt, no screenshot, no extra rule weight. Currently: No. 01 Cockpit for Claude, 08 Localia,
+25 ZendureMonitor, 30 TheNews.
 
 ### Plotter pass (motion)
 This is the only motion in the system. When a plate first comes within 85% of the viewport
