@@ -1,12 +1,13 @@
 {
   "name": "SolarPulse",
-  "no": "37",
+  "no": "29",
   "url": "https://vincentlauriat.github.io/SolarPulse/",
   "accent": "#E8A21A",
   "meta": {
     "title": "SolarPulse — the real output of a solar fleet, read on a globe",
     "description": "How to read SolarPulse, a dashboard that replays the measured production of a fleet of solar plants on a 3D globe: colours, performance ratio, periods and data flow.",
-    "favicon": "/assets/favicon.svg"
+    "favicon": "/assets/favicon.svg",
+    "head_extra": "<script defer src=\"/vl.js\"></script>"
   },
   "role": {
     "en": "Production dashboard for a fleet of solar plants",
