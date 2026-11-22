@@ -13,7 +13,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#eff1f2">
+<meta name="theme-color" content="#101317">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <!-- Schibsted Grotesk (OFL), variable 400–900, sous-ensemble latin auto-hébergé : 47 Ko,
      la seule fonte de la page. Le chinois tombe sur la pile système de base.css. -->
@@ -50,7 +50,6 @@
   body{font-family:var(--sans);font-size:1.0625rem;line-height:1.55;color:var(--ink);background:var(--paper);
     -webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 0}
   html body.lang-zh{font-family:var(--sans)}
-  html body.lang-zh .title h1{font-size:clamp(3rem,8.4vw,8.5rem);line-height:1}
   /* base.css redescend les h2 en chinois : on rétablit l'échelle du livre */
   html body.lang-zh .index h2{font-size:clamp(1.8rem,3.2vw,2.8rem)}
   html body.lang-zh .op-text h2{font-size:clamp(2rem,3.6vw,3.4rem)}
@@ -76,10 +75,7 @@
   .langs button:not(.on):hover{color:var(--ink)}
   .gh{text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 
-  /* ── Page de titre ── */
-  .title{padding:clamp(48px,9vh,112px) 0 clamp(56px,10vh,120px)}
-  .title h1{grid-column:1/-1;font-size:clamp(3.4rem,11.2vw,11.5rem);line-height:.88;letter-spacing:-.04em;font-weight:500}
-  .title h1 .sub{display:block;color:var(--ink-2);font-weight:400}
+  /* ── Sommaire (sous la page de titre) ── */
   .t-left{grid-column:1/7;margin-top:clamp(40px,7vh,88px)}
   .t-right{grid-column:8/-1;margin-top:clamp(40px,7vh,88px)}
   .thesis{font-size:clamp(1.6rem,2.6vw,2.4rem);line-height:1.12;font-weight:500;letter-spacing:-.02em;max-width:20ch}
@@ -211,6 +207,78 @@
   @media (prefers-reduced-motion: reduce){
     .dwg.pending .ic{clip-path:none}
   }
+
+  /* ══ PAGE DE TITRE DE NUIT ════════════════════════════════════════════
+     Plein écran, sombre, une épure tracée en fond (SVG, ~1 Ko, aucune vidéo).
+     Le livre clair reprend au sommaire ; le titre courant suit (body.on-hero). */
+  .hero{position:relative;min-height:calc(100svh - 57px);display:flex;overflow:hidden}
+  .hero-in{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;
+    width:100%;padding-top:clamp(24px,4vh,48px);padding-bottom:clamp(28px,5vh,56px);gap:40px}
+  .h-band{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);align-items:start}
+  .h-lede{grid-column:1/6;max-width:44ch;font-size:1rem}
+  .h-fact{grid-column:9/-1;justify-self:end;text-align:right;display:flex;align-items:flex-start;gap:14px}
+  .h-fact .fig{font-size:clamp(2.6rem,4.4vw,4rem);line-height:.82;letter-spacing:-.04em;font-weight:500}
+  .h-fact .fig-l{font-size:.9375rem;line-height:1.3;text-align:left;color:var(--ink-2)}
+  .kicker{font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:clamp(16px,2.5vh,28px)}
+  body.lang-zh .kicker{letter-spacing:.04em}
+  .kicker .br{text-transform:none;letter-spacing:.02em}
+  .hero h1{font-size:clamp(3.2rem,11.6vw,12rem);line-height:.85;letter-spacing:-.045em;font-weight:500;margin-left:-.04em}
+  .hero h1 .sub{display:block;font-weight:400}
+  html body.lang-zh .hero h1{font-size:clamp(3rem,8.4vw,8.5rem);line-height:1}
+  .h-foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);align-items:end;margin-top:clamp(28px,5vh,56px)}
+  .h-foot .thesis{grid-column:1/7;max-width:22ch}
+  .cta{grid-column:9/-1;justify-self:end;display:inline-flex;align-items:center;gap:12px;min-height:44px;
+    font-weight:600;text-decoration:none;transition:color .25s ease}
+  .cta .arw{transition:transform .3s cubic-bezier(.3,.7,.2,1)}
+  .cta:hover .arw,.cta:focus-visible .arw{transform:translateY(4px)}
+  .contents-sec{padding:clamp(56px,9vh,104px) 0 clamp(56px,10vh,120px)}
+  .contents-sec .t-left,.contents-sec .t-right{margin-top:0}
+
+  /* le reflet : background-clip:text sur un dégradé, sans bibliothèque */
+  .shine{background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent}
+  .shine span{-webkit-text-fill-color:transparent}
+
+  @media (max-width:960px){
+    .h-lede{grid-column:1/8} .h-fact{grid-column:8/-1}
+    .h-foot .thesis{grid-column:1/-1} .cta{grid-column:1/-1;justify-self:start;margin-top:20px}
+  }
+  @media (max-width:600px){
+    .h-band{row-gap:20px}
+    .h-lede{grid-column:1/-1;font-size:.9375rem}
+    .h-fact{grid-column:1/-1;justify-self:start;text-align:left}
+    .hero h1{font-size:clamp(2.6rem,13.4vw,4rem)}
+    .kicker{font-size:.75rem}
+  }
+
+  .hero{--n-bg:#101317;--n-ink:#eef0f2;--n-ink2:#a9b0b8;--n-line:#262b31;--n-blue:#8ea0ff;
+    background:var(--n-bg);color:var(--n-ink)}
+  .hero .kicker,.hero .h-fact .fig-l{color:var(--n-ink2)}
+  .hero .h-lede{color:var(--n-ink2)}
+  .hero :focus-visible{outline-color:var(--n-blue)}
+  /* l'épure : trame + tracés de construction, redessinés lentement en boucle */
+  .blueprint{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+  .blueprint .tr{fill:none;stroke:var(--n-blue);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.38;
+    stroke-dasharray:1;stroke-dashoffset:1;animation:plot 14s cubic-bezier(.65,0,.35,1) infinite}
+  .blueprint .tr:nth-of-type(2){animation-delay:1.2s} .blueprint .tr:nth-of-type(3){animation-delay:2.4s}
+  .blueprint .tr:nth-of-type(4){animation-delay:3.6s} .blueprint .tr:nth-of-type(5){animation-delay:4.8s}
+  @keyframes plot{0%{stroke-dashoffset:1}35%,75%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
+  .blueprint-fade{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,transparent 40%,var(--n-bg) 96%)}
+  /* le reflet continu du prompt, ralenti : bleu clair, éclat blanc, 6 s */
+  .shine{background-image:linear-gradient(100deg,var(--n-blue) 0 40%,#fff 50%,var(--n-blue) 60% 100%);
+    background-size:200% 100%;background-repeat:repeat-x;animation:sweep 6s linear infinite}
+  @keyframes sweep{from{background-position:200% 0}to{background-position:0 0}}
+  .cta{color:var(--n-bg);background:var(--n-ink);padding:0 22px;transition:background .25s ease}
+  .cta:hover,.cta:focus-visible{background:#fff}
+  .cta:hover .arw,.cta:focus-visible .arw{transform:translateY(3px)}
+  /* le titre courant passe en nuit tant que la page de titre est à l'écran */
+  body.on-hero .running{background:var(--n-bg,#101317);color:#eef0f2;border-color:#262b31;transition:background .3s ease,color .3s ease}
+  body.on-hero .langs button{color:#a9b0b8} body.on-hero .langs button.on,body.on-hero .langs button:hover{color:#eef0f2}
+  .running{transition:background .3s ease,color .3s ease}
+  @media (prefers-reduced-motion: reduce){
+    .blueprint .tr{animation:none;stroke-dashoffset:0}
+    .shine{animation:none;background:none;-webkit-text-fill-color:var(--n-blue);color:var(--n-blue)}
+  }
 </style>
 <script defer src="/vl.js"></script>
 </head>
@@ -223,8 +291,10 @@
      plate with crop marks; full-bleed cobalt chapter openers with a large roman numeral.
      STORY: the visitor reads the author's name and thesis, finds a work in the contents or
      the index, reads its plate and caption, opens its project page; peers read the rigour.
-     FIRST VIEWPORT: running head; author name across the page at display scale; thesis and
-     lede left; contents with work ranges and the index link right.
+     FIRST VIEWPORT: a full-screen night title page — running head in night; lede left and the
+     countable fact (40 works, 24 native instruments) right; a blueprint plotted in the background;
+     kicker, author name at display scale, "Works" under a slow light sweep; thesis left and the
+     "Open the contents" button right. The light book resumes at the contents.
      FORM: architect's monograph — pinned by Vincent on 2026-10-12 after the teletext build,
      superseding the roll of seed c3721d9a.
      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish
@@ -268,18 +338,37 @@
 
 <main id="top">
 
-  <section class="title" aria-labelledby="h-title">
-    <div class="wrap g12">
-      <h1 id="h-title">Vincent Lauriat<span class="sub"><span class="en">Works</span><span class="fr">Réalisations</span><span class="zh">作品</span></span></h1>
-      <div class="t-left">
-        <p class="thesis"><span class="en">Your Mac knows more than it shows.</span><span class="fr">Votre Mac en sait plus qu'il n'en montre.</span><span class="zh">你的 Mac 知道的，遠比它顯示的多。</span></p>
-        <p class="lede"><span class="en">Sensors, fan speed, window stack, bandwidth, token spend, iPhone health — the system measures all of it and surfaces almost none of it. Each work in this book is a shipped instrument that reads it back.</span><span class="fr">Capteurs, ventilateurs, pile de fenêtres, bande passante, tokens, santé de l'iPhone — le système mesure tout et n'en montre presque rien. Chaque réalisation de ce livre est un instrument livré qui le donne à lire.</span><span class="zh">感測器、風扇轉速、視窗堆疊、頻寬、token 用量、iPhone 健康度——系統全都測量了，卻幾乎什麼都不顯示。本書的每一件作品，都是一件已出廠、把數據讀回來的儀器。</span></p>
-        <!-- Règle de comptage : 24 = apps macOS natives Swift — jeux, outils web, OpenAlice (agent),
-             HomebrewConfig (TUI Rust), Toolkit (plugins) et MailClassification (.NET) exclus.
-             À CHAQUE AJOUT DE PROJET : vérifier ce compte, le chapitre, l'index, la meta description
-             et og:description. -->
-        <p class="colophon-line"><span class="en">Twenty-four native macOS instruments, written in Swift, signed &amp; notarized — no telemetry, MIT licensed, apps in English and French.</span><span class="fr">Vingt-quatre instruments macOS natifs, écrits en Swift, signés &amp; notarisés — zéro télémétrie, licence MIT, apps en anglais et en français.</span><span class="zh">二十四件原生 macOS 儀器，以 Swift 撰寫、已簽章公證——零遙測、MIT 授權，應用程式提供英文與法文。</span></p>
+  <section class="hero" aria-labelledby="h-title">
+    <svg class="blueprint" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs><pattern id="ngrid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M40 0H0V40" fill="none" stroke="#1c2126" stroke-width="1"/></pattern></defs>
+      <rect width="1600" height="900" fill="url(#ngrid)"/>
+      <circle class="tr" pathLength="1" cx="1260" cy="470" r="300"/>
+      <circle class="tr" pathLength="1" cx="1260" cy="470" r="190"/>
+      <path class="tr" pathLength="1" d="M820 470H1600M1260 180V900"/>
+      <path class="tr" pathLength="1" d="M1040 250L1480 690M1480 250L1040 690"/>
+      <rect class="tr" pathLength="1" x="1110" y="320" width="300" height="300"/>
+    </svg>
+    <div class="blueprint-fade"></div>
+    <div class="wrap hero-in">
+      <div class="h-band">
+        <p class="h-lede"><span class="en">Sensors, fan speed, window stack, bandwidth, token spend, iPhone health — the system measures all of it and surfaces almost none of it. Each work in this book is a shipped instrument that reads it back.</span><span class="fr">Capteurs, ventilateurs, pile de fenêtres, bande passante, tokens, santé de l'iPhone — le système mesure tout et n'en montre presque rien. Chaque réalisation de ce livre est un instrument livré qui le donne à lire.</span><span class="zh">感測器、風扇轉速、視窗堆疊、頻寬、token 用量、iPhone 健康度——系統全都測量了，卻幾乎什麼都不顯示。本書的每一件作品，都是一件已出廠、把數據讀回來的儀器。</span></p>
+        <p class="h-fact"><span class="fig num">40</span><span class="fig-l"><span class="en">works, 24 of them native<br>Swift instruments</span><span class="fr">réalisations, dont 24 instruments<br>Swift natifs</span><span class="zh">件作品，其中 24 件<br>為原生 Swift 儀器</span></span></p>
       </div>
+      <div class="h-main">
+        <p class="kicker"><span class="en">Native <span class="br">macOS</span> instruments · signed &amp; notarized · 2023–2026</span><span class="fr">Instruments <span class="br">macOS</span> natifs · signés &amp; notarisés · 2023–2026</span><span class="zh">原生 <span class="br">macOS</span> 儀器 · 已簽章公證 · 2023–2026</span></p>
+        <h1 id="h-title">Vincent Lauriat<span class="sub"><span class="shine"><span class="en">Works</span><span class="fr">Réalisations</span><span class="zh">作品</span></span></span></h1>
+        <div class="h-foot">
+          <p class="thesis"><span class="en">Your Mac knows more than it shows.</span><span class="fr">Votre Mac en sait plus qu'il n'en montre.</span><span class="zh">你的 Mac 知道的，遠比它顯示的多。</span></p>
+          <a class="cta" href="#contents"><span class="en">Open the contents</span><span class="fr">Ouvrir le sommaire</span><span class="zh">開啟目錄</span><svg class="arw" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 2v11M4 9l4 4 4-4"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contents-sec" id="contents" aria-labelledby="h-contents">
+    <div class="wrap g12">
+      <div class="t-left"><p class="colophon-line"><span class="en">Twenty-four native macOS instruments, written in Swift, signed &amp; notarized — no telemetry, MIT licensed, apps in English and French.</span><span class="fr">Vingt-quatre instruments macOS natifs, écrits en Swift, signés &amp; notarisés — zéro télémétrie, licence MIT, apps en anglais et en français.</span><span class="zh">二十四件原生 macOS 儀器，以 Swift 撰寫、已簽章公證——零遙測、MIT 授權，應用程式提供英文與法文。</span></p></div>
       <nav class="t-right" aria-labelledby="h-contents">
         <p class="lbl" id="h-contents"><span class="en">Contents</span><span class="fr">Sommaire</span><span class="zh">目錄</span></p>
         <ul class="contents">
@@ -984,6 +1073,15 @@
     var saved;try{saved=localStorage.getItem('vl-lang')}catch(e){}
     var n=(navigator.language||'en').slice(0,2).toLowerCase();
     setLang(saved||(n==='zh'?'zh':(n==='fr'?'fr':'en')));
+  })();
+</script>
+
+<script>
+  /* le titre courant prend la nuit tant que la page de titre occupe le haut */
+  (function(){
+    var h=document.querySelector('.hero'); if(!h||!('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function(e){ document.body.classList.toggle('on-hero', e[0].intersectionRatio>0.08); },
+      {rootMargin:'-56px 0px 0px 0px',threshold:[0,0.08,1]}).observe(h);
   })();
 </script>
 </body>
