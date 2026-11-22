@@ -10,6 +10,11 @@ colors:
   grid: "#cfd3d6"
   cobalt: "#2340c8"
   on-cobalt: "#eff1f2"
+  night: "#101317"
+  night-ink: "#eef0f2"
+  night-ink-2: "#a9b0b8"
+  night-line: "#262b31"
+  night-blue: "#8ea0ff"
 typography:
   display:
     fontFamily: "Schibsted Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, PingFang TC, Noto Sans TC, Microsoft JhengHei, sans-serif"
@@ -155,10 +160,13 @@ components:
 
 **Creative North Star: "The Architect's Monograph"**
 
-The hub reads as one author's book of works. It opens on a title page: the author's name set
-across the full measure at display scale, with "Works" beneath it in the secondary ink (no
-date: the book is not framed by a starting year). Below that come a thesis, a lede, a one-line
-colophon of countable facts, and a contents list of seven themed chapters with roman numerals
+The hub reads as one author's book of works. It opens on a **night title page** (2026-11-22),
+the one dark sheet of the book. It fills the first screen: the lede and a countable fact ("40
+works, 24 of them native Swift instruments") sit in a band at the top. A small uppercase
+kicker, the author's name at display scale and "Works" under a slow light sweep sit at the
+bottom, followed by the thesis and an "Open the contents" button. A blueprint (construction
+circles, diagonals and a square on a grid) plots itself slowly in the background. The light book
+resumes at the contents: the one-line colophon of countable facts and a contents list of seven themed chapters with roman numerals
 and work ranges. Next is an index of all forty works, numbered No. 01–40 in reading order. Then
 the seven chapters follow, one per theme (Claude Code, local AI and agents, the Mac, network and
 devices, home and energy, information and work, games and leisure). Each chapter opens on a
@@ -172,7 +180,8 @@ for captions, hairline rules, and a single cobalt. Hierarchy comes from scale, w
 position on a 12-column grid, never from ornament. There is one face, Schibsted Grotesk. It
 reaches from an 11.5rem title down to 0.875rem figure captions, using weights 400, 500 and 600
 only. Depth is flat. The only colour field is the cobalt chapter opener. The only motion is one
-left-to-right plotter pass over each plate, the first time it enters the screen.
+left-to-right plotter pass over each plate, the first time it enters the screen, plus the two
+loops of the night title page (the blueprint and the sweep on "Works").
 
 Density is that of a well-set book: generous margins, long vertical rests between works, and
 captions held to a reading measure. The index and contents exist so that a visitor can reach a
@@ -180,6 +189,7 @@ work in one jump. The plates and captions let a reader linger.
 
 **Key Characteristics:**
 - A book structure: title page, contents, index, chapters, plates, colophon.
+- One dark sheet: the full-screen night title page, with a blueprint drawn in SVG (~1 KB, no video).
 - Cool light-grey paper, two inks, one cobalt; no gradients, shadows or tints.
 - Schibsted Grotesk only, sentence case throughout, tight negative tracking at display sizes.
 - Plates are line drawings on a construction grid, with a strict three-weight stroke hierarchy.
@@ -215,7 +225,23 @@ A near-monochrome paper-and-ink palette with exactly one chromatic voice.
 - **Paper on Cobalt** (`on-cobalt`): text on the chapter openers. It has the same value as the
   paper, so the opener reads as the page inverted.
 
+### Night (title page only)
+- **Night** (`night`, #101317): the title page ground and, while that page is on screen, the
+  running head (`body.on-hero`, set by an IntersectionObserver). It is also `theme-color`, since
+  it is what the browser chrome meets first.
+- **Night Ink / Night Ink 2** (`night-ink`, `night-ink-2`): name and thesis / lede, kicker and
+  fact label. Night Ink 2 reaches about 8:1 on Night.
+- **Night Line** (`night-line`): the running head hairline at night; the blueprint grid is one
+  step darker (#1c2126).
+- **Night Blue** (`night-blue`, #8ea0ff): cobalt lifted for a dark ground (about 7.5:1). It is
+  the base of the "Works" sweep (a white highlight crosses it every 6 s) and the blueprint
+  strokes at 38% opacity. It appears nowhere else.
+
 ### Named Rules
+**The Night Exception.** The night title page is the only place where the One Cobalt Rule
+bends: Night Blue and its white sweep are resting colour there. Under reduced motion the sweep
+stops on plain Night Blue and the blueprint shows fully drawn.
+
 **The One Cobalt Rule.** Cobalt is the only hue on the page. It appears as a full-bleed field in
 exactly one place, the chapter opener. Everywhere else it appears only as a *response*: hover,
 focus or selection. No resting text, rule or plate uses it.
@@ -284,8 +310,12 @@ columns.
   `requestAnimationFrame` sets it to the section whose top has passed mid-viewport), "Index",
   the EN/FR/中文 buttons and GitHub. `scroll-padding-top: 72px` keeps anchored targets clear of
   it.
-- **Title page.** The name spans all 12 columns. Below it, the thesis, lede and colophon line
-  take columns 1–6, and the contents occupy columns 8–12. At ≤960px both stack full width.
+- **Night title page.** At least `100svh` minus the running head. Top band: lede in columns
+  1–5, fact right-aligned in 9–12. Bottom block: kicker, then the name spanning all 12 columns
+  (clamp 3.2–12rem, line-height 0.85), then the thesis in columns 1–6 and the button right-aligned
+  in 9–12. At ≤960px the button drops under the thesis; at ≤600px everything stacks.
+- **Contents section.** Right after the title page: the colophon line takes columns 1–6, and the
+  contents occupy columns 8–12. At ≤960px both stack full width.
 - **Index of works.** A three-column list using CSS columns (minimum column width 18rem, so it
   can drop to two between breakpoints). Each entry shows number, name and role. At ≤600px it is
   forced to two columns, roles are hidden and the number column narrows.
